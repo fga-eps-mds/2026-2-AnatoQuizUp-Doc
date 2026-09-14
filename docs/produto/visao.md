@@ -12,7 +12,7 @@ Professores da área da saúde enfrentam dificuldades para estimular o interesse
 
 Também foi identificada a necessidade de melhorar o acompanhamento do desenvolvimento dos estudantes. Sem recursos apropriados, os professores encontram limitações para observar o desempenho das turmas, reconhecer dificuldades recorrentes e direcionar atividades de acordo com as necessidades de aprendizagem.
 
-Para os estudantes, um dos principais obstáculos é a dificuldade de encontrar gratuitamente questões relacionadas à anatomia radiológica. A realização de atividades práticas e simulações clínicas baseadas no modelo OSCE também pode ser limitada pela ausência de roteiros estruturados, atores para representar pacientes e disponibilidade dos participantes.
+Para os estudantes, um dos principais obstáculos é a dificuldade de encontrar gratuitamente questões relacionadas à anatomia radiológica. A realização de atividades práticas e simulações clínicas baseadas no modelo OSCE (Objective Structured Clinical Examination ou Exame Clínico Objetivo Estruturado) também pode ser limitada pela ausência de roteiros estruturados, atores para representar pacientes e disponibilidade dos participantes.
 
 ## O que buscamos com esse produto?
 
@@ -22,7 +22,7 @@ As questões e imagens poderão ser produzidas com o apoio de inteligência arti
 
 A plataforma também oferecerá um chatbot para auxiliar os estudantes durante os estudos. Esse recurso poderá esclarecer dúvidas, apresentar explicações complementares e ajudar na compreensão dos erros cometidos durante a resolução das atividades.
 
-Outro componente importante será a criação de pacientes virtuais e casos clínicos inspirados no modelo OSCE. Por meio desses ambientes, os estudantes poderão praticar o raciocínio clínico, realizar perguntas, analisar informações e receber feedback sobre suas decisões. Os professores, por sua vez, poderão utilizar esses recursos para preparar atividades práticas e casos direcionados às suas turmas.
+Outro componente importante será a criação de pacientes virtuais e casos clínicos inspirados no modelo OSCE (Objective Structured Clinical Examination ou Exame Clínico Objetivo Estruturado). Por meio desses ambientes, os estudantes poderão praticar o raciocínio clínico, realizar perguntas, analisar informações e receber feedback sobre suas decisões. Os professores, por sua vez, poderão utilizar esses recursos para preparar atividades práticas e casos direcionados às suas turmas.
 
 ## Proposta de valor
 
