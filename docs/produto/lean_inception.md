@@ -167,7 +167,7 @@ Como essa etapa ainda não foi validada, valores, prazos e datas de releases nã
 | Brainstorming de Funcionalidades | ✅ | ✅ |
 | Revisão Técnica, de Negócio e de Experiência do Usuário | ✅ | ✅ |
 | Sequenciamento de Funcionalidades | ✅ | ✅ |
-| Estimativa de Tempo | ✅ | ✅ |
+| Estimativa de Tempo | ✅ | ❌ |
 | Proposta do MVP | ✅ | ❌ |
 | Custo e Cronograma | ✅ | ❌ |
 
