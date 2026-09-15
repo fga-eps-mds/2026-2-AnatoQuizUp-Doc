@@ -190,4 +190,4 @@ CAROLI, Paulo. *Lean Inception: como alinhar pessoas e construir o produto certo
 | Data | Versão | Descrição | Autor(es) |
 | :---: | :---: | --- | --- |
 | 13/09/2026 | 1.0 | Criação da página da Lean Inception com a contextualização do processo, seus resultados e o planejamento inicial do projeto | https://github.com/leticiatmartins |
-| 13/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [Nome do revisor](https://github.com/usuario) |
+| 15/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) |
