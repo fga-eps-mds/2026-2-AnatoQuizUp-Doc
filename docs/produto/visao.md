@@ -83,4 +83,4 @@ A validação com os clientes orienta as decisões da equipe e reduz o risco de 
 | Data | Versão | Descrição | Autor(es) |
 | :---: | :---: | --- | --- |
 | 13/09/2026 | 1.0 | Criação da visão do produto com base no direcionamento consolidado na Lean Inception | https://github.com/leticiatmartins |
-| xx/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [Nome do revisor](https://github.com/usuario) |
+| 14/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) |
