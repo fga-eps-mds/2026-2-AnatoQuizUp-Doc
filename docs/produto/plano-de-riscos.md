@@ -8,16 +8,16 @@
 
 ---
 
-O Plano de Gerenciamento de Riscos tem como objetivo perceber e tratar pequenos riscos de forma contínua para evitar que cresçam e inviabilizem o desenvolvimento da plataforma AnatoQuizUp[cite: 8]. Um risco é um evento incerto calculado a partir da probabilidade de sua manifestação e do impacto gerado nos pilares de custo, tempo, escopo e qualidade do projeto[cite: 7, 8]. 
+O Plano de Gerenciamento de Riscos tem como objetivo perceber e tratar pequenos riscos de forma contínua para evitar que cresçam e inviabilizem o desenvolvimento da plataforma AnatoQuizUp. Um risco é um evento incerto calculado a partir da probabilidade de sua manifestação e do impacto gerado nos pilares de custo, tempo, escopo e qualidade do projeto. 
 
 ## 1. Estrutura Analítica de Riscos (EAR)
 
 A Estrutura Analítica de Riscos (EAR) agrupa e organiza as possíveis fontes de risco em categorias e níveis hierárquicos[cite: 7]. Para o AnatoQuizUp, os riscos foram mapeados em quatro frentes principais:
 
-*   **Técnico:** Riscos associados à definição de requisitos, adoção de novas tecnologias (modelos de IA, chatbots), complexidade arquitetural e qualidade do produto final[cite: 7, 8].
-*   **Externo:** Fatores fora do controle direto da equipe de desenvolvimento, como indisponibilidade de clientes/stakeholders, questões de saúde, paralisações na universidade e dependência de dados externos (termos de consentimento e LGPD de pacientes)[cite: 7, 8].
-*   **Organizacional:** Riscos gerados por dependências estruturais, gerenciamento de recursos, priorização equivocada de histórias e nível de habilidade individual dos membros da equipe[cite: 7, 8].
-*   **Gerenciamento do Projeto:** Riscos que podem afetar o tempo de produção, envolvendo falhas de comunicação, estimativas equivocadas nas sprints, planejamento falho e execução de atividades[cite: 7, 8].
+*   **Técnico:** Riscos associados à definição de requisitos, adoção de novas tecnologias (modelos de IA, chatbots), complexidade arquitetural e qualidade do produto final.
+*   **Externo:** Fatores fora do controle direto da equipe de desenvolvimento, como indisponibilidade de clientes/stakeholders, questões de saúde, paralisações na universidade e dependência de dados externos (termos de consentimento e LGPD de pacientes).
+*   **Organizacional:** Riscos gerados por dependências estruturais, gerenciamento de recursos, priorização equivocada de histórias e nível de habilidade individual dos membros da equipe.
+*   **Gerenciamento do Projeto:** Riscos que podem afetar o tempo de produção, envolvendo falhas de comunicação, estimativas equivocadas nas sprints, planejamento falho e execução de atividades.
 
 ---
 
@@ -33,7 +33,7 @@ A quantificação dos riscos é baseada na definição de pesos para a Probabili
 | **Média** | 41% a 60% | 3 |
 | **Baixa** | 21% a 40% | 2 |
 | **Muito Baixa** | 0% a 20% | 1 |
-> Fonte dos intervalos e pesos[cite: 7, 8].
+> Fonte dos intervalos e pesos.
 
 ### 2.2. Impacto
 | **Impacto** | **Descrição** | **Peso** |
@@ -46,7 +46,7 @@ A quantificação dos riscos é baseada na definição de pesos para a Probabili
 > Fonte das descrições de impacto[cite: 7].
 
 ### 2.3. Matriz de Prioridade (Probabilidade x Impacto)
-A partir da multiplicação dos pesos de Probabilidade e Impacto, determina-se a urgência das ações de mitigação[cite: 7, 8].
+A partir da multiplicação dos pesos de Probabilidade e Impacto, determina-se a urgência das ações de mitigação.
 
 | **Probabilidade / Impacto** | **Muito Baixo (1)** | **Baixo (2)** | **Médio (3)** | **Alto (4)** | **Muito Alto (5)** |
 | :---: | :---: | :---: | :---: | :---: | :---: |
@@ -57,10 +57,10 @@ A partir da multiplicação dos pesos de Probabilidade e Impacto, determina-se a
 | **Muito Baixa (1)** | 1 | 2 | 3 | 4 | 5 |
 
 **Faixas de Prioridade:**
-*   **Muito Baixa:** 1 a 5[cite: 8].
-*   **Baixa:** 6 a 10[cite: 8].
-*   **Média:** 11 a 15[cite: 8].
-*   **Alta / Muito Alta:** 16 a 25[cite: 8].
+*   **Muito Baixa:** 1 a 5.
+*   **Baixa:** 6 a 10.
+*   **Média:** 11 a 15.
+*   **Alta / Muito Alta:** 16 a 25.
 
 ---
 
@@ -70,10 +70,10 @@ Abaixo estão os principais riscos identificados para o ciclo de desenvolvimento
 
 | ID | Risco | Categoria EAR | Prob. | Imp. | Prevenção (Mitigação) | Plano de Ação (Contingência) |
 | :--- | :--- | :--- | :---: | :---: | :--- | :--- |
-| **RN01** | Integrantes podem não estar familiarizados com as tecnologias adotadas (IA, LLMs, Chatbots)[cite: 7]. | Organizacional | Média | Alto | Promover treinamentos internos e incentivar programação em pares (pareamento)[cite: 7, 8]. | Alocar os membros com mais conhecimento técnico em conjunto com os que possuem mais dificuldades[cite: 8]. |
-| **RN02** | Indisponibilidade do cliente para validação de requisitos ou envio de materiais (ex: planilhas e casos OSCE)[cite: 7, 8]. | Externo | Alta | Muito Alto | Manter comunicação constante com o cliente e agendar validações periódicas[cite: 7, 8]. | Utilizar dados mockados e seguir o desenvolvimento da base da aplicação até a recepção dos dados reais. |
+| **RN01** | Integrantes podem não estar familiarizados com as tecnologias adotadas (IA, LLMs, Chatbots)[cite: 7]. | Organizacional | Média | Alto | Promover treinamentos internos e incentivar programação em pares (pareamento). | Alocar os membros com mais conhecimento técnico em conjunto com os que possuem mais dificuldades. |
+| **RN02** | Indisponibilidade do cliente para validação de requisitos ou envio de materiais (ex: planilhas e casos OSCE). | Externo | Alta | Muito Alto | Manter comunicação constante com o cliente e agendar validações periódicas. | Utilizar dados mockados e seguir o desenvolvimento da base da aplicação até a recepção dos dados reais. |
 | **RN03** | Vazamento de dados não anonimizados de pacientes nos casos clínicos de simulação. | Externo | Baixa | Muito Alto | Adotar rigoroso processo de anonimização e exigir termos de consentimento antes da inserção na base. | Remover imediatamente os dados do ar, notificar stakeholders e aplicar scripts de limpeza no banco de dados. |
-| **RN04** | Tarefas estimadas de forma equivocada, gerando atraso na execução da Sprint[cite: 7, 8]. | Gerenciamento | Alta | Médio | Quebrar tarefas muito grandes ou complexas em pequenas entregas durante a planning[cite: 7]. | Realocar tarefas como dívida técnica para a próxima Sprint e reforçar o pareamento[cite: 8]. |
-| **RN05** | Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura)[cite: 8]. | Técnico | Baixa | Muito Alto | Entender a capacidade e as limitações das tecnologias antes da implementação[cite: 7]. | Repriorizar o escopo do MVP junto ao cliente e, se necessário, utilizar um fluxo fixo de conversas em vez de um LLM treinado[cite: 7]. |
-| **RN06** | A qualidade do software e dos quizzes não corresponder às expectativas educacionais do cliente[cite: 8]. | Técnico | Média | Muito Alto | Validar constantemente os requisitos com o cliente e manter a qualidade do código com testes[cite: 7, 8]. | Realizar refatoração de código, ajustes de escopo nas questões e nova rodada de validação[cite: 8]. |
-| **RN07** | Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente[cite: 8]. | Organizacional | Alta | Alto | Conhecer as habilidades da equipe e entregar tarefas não blocantes para membros menos engajados[cite: 7]. | Realocar imediatamente as tarefas críticas entre os membros remanescentes[cite: 8]. |
+| **RN04** | Tarefas estimadas de forma equivocada, gerando atraso na execução da Sprint. | Gerenciamento | Alta | Médio | Quebrar tarefas muito grandes ou complexas em pequenas entregas durante a planning[cite: 7]. | Realocar tarefas como dívida técnica para a próxima Sprint e reforçar o pareamento. |
+| **RN05** | Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura). | Técnico | Baixa | Muito Alto | Entender a capacidade e as limitações das tecnologias antes da implementação[cite: 7]. | Repriorizar o escopo do MVP junto ao cliente e, se necessário, utilizar um fluxo fixo de conversas em vez de um LLM treinado[cite: 7]. |
+| **RN06** | A qualidade do software e dos quizzes não corresponder às expectativas educacionais do cliente. | Técnico | Média | Muito Alto | Validar constantemente os requisitos com o cliente e manter a qualidade do código com testes. | Realizar refatoração de código, ajustes de escopo nas questões e nova rodada de validação. |
+| **RN07** | Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente. | Organizacional | Alta | Alto | Conhecer as habilidades da equipe e entregar tarefas não blocantes para membros menos engajados[cite: 7]. | Realocar imediatamente as tarefas críticas entre os membros remanescentes. |
