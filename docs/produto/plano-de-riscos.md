@@ -12,7 +12,7 @@ O Plano de Gerenciamento de Riscos tem como objetivo perceber e tratar pequenos 
 
 ## 1. Estrutura Analítica de Riscos (EAR)
 
-A Estrutura Analítica de Riscos (EAR) agrupa e organiza as possíveis fontes de risco em categorias e níveis hierárquicos[cite: 7]. Para o AnatoQuizUp, os riscos foram mapeados em quatro frentes principais:
+A Estrutura Analítica de Riscos (EAR) agrupa e organiza as possíveis fontes de risco em categorias e níveis hierárquicos. Para o AnatoQuizUp, os riscos foram mapeados em quatro frentes principais:
 
 *   **Técnico:** Riscos associados à definição de requisitos, adoção de novas tecnologias (modelos de IA, chatbots), complexidade arquitetural e qualidade do produto final.
 *   **Externo:** Fatores fora do controle direto da equipe de desenvolvimento, como indisponibilidade de clientes/stakeholders, questões de saúde, paralisações na universidade e dependência de dados externos (termos de consentimento e LGPD de pacientes).
@@ -43,7 +43,7 @@ A quantificação dos riscos é baseada na definição de pesos para a Probabili
 | **Médio** | Possui certo impacto, porém é facilmente recuperado. | 3 |
 | **Baixo** | Pouco impacto no desenvolvimento do projeto. | 2 |
 | **Muito Baixo** | Impacto pouco expressivo no desenvolvimento. | 1 |
-> Fonte das descrições de impacto[cite: 7].
+> Fonte das descrições de impacto.
 
 ### 2.3. Matriz de Prioridade (Probabilidade x Impacto)
 A partir da multiplicação dos pesos de Probabilidade e Impacto, determina-se a urgência das ações de mitigação.
@@ -70,10 +70,10 @@ Abaixo estão os principais riscos identificados para o ciclo de desenvolvimento
 
 | ID | Risco | Categoria EAR | Prob. | Imp. | Prevenção (Mitigação) | Plano de Ação (Contingência) |
 | :--- | :--- | :--- | :---: | :---: | :--- | :--- |
-| **RN01** | Integrantes podem não estar familiarizados com as tecnologias adotadas (IA, LLMs, Chatbots)[cite: 7]. | Organizacional | Média | Alto | Promover treinamentos internos e incentivar programação em pares (pareamento). | Alocar os membros com mais conhecimento técnico em conjunto com os que possuem mais dificuldades. |
+| **RN01** | Integrantes podem não estar familiarizados com as tecnologias adotadas (IA, LLMs, Chatbots). | Organizacional | Média | Alto | Promover treinamentos internos e incentivar programação em pares (pareamento). | Alocar os membros com mais conhecimento técnico em conjunto com os que possuem mais dificuldades. |
 | **RN02** | Indisponibilidade do cliente para validação de requisitos ou envio de materiais (ex: planilhas e casos OSCE). | Externo | Alta | Muito Alto | Manter comunicação constante com o cliente e agendar validações periódicas. | Utilizar dados mockados e seguir o desenvolvimento da base da aplicação até a recepção dos dados reais. |
 | **RN03** | Vazamento de dados não anonimizados de pacientes nos casos clínicos de simulação. | Externo | Baixa | Muito Alto | Adotar rigoroso processo de anonimização e exigir termos de consentimento antes da inserção na base. | Remover imediatamente os dados do ar, notificar stakeholders e aplicar scripts de limpeza no banco de dados. |
-| **RN04** | Tarefas estimadas de forma equivocada, gerando atraso na execução da Sprint. | Gerenciamento | Alta | Médio | Quebrar tarefas muito grandes ou complexas em pequenas entregas durante a planning[cite: 7]. | Realocar tarefas como dívida técnica para a próxima Sprint e reforçar o pareamento. |
-| **RN05** | Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura). | Técnico | Baixa | Muito Alto | Entender a capacidade e as limitações das tecnologias antes da implementação[cite: 7]. | Repriorizar o escopo do MVP junto ao cliente e, se necessário, utilizar um fluxo fixo de conversas em vez de um LLM treinado[cite: 7]. |
+| **RN04** | Tarefas estimadas de forma equivocada, gerando atraso na execução da Sprint. | Gerenciamento | Alta | Médio | Quebrar tarefas muito grandes ou complexas em pequenas entregas durante a planning. | Realocar tarefas como dívida técnica para a próxima Sprint e reforçar o pareamento. |
+| **RN05** | Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura). | Técnico | Baixa | Muito Alto | Entender a capacidade e as limitações das tecnologias antes da implementação. | Repriorizar o escopo do MVP junto ao cliente e, se necessário, utilizar um fluxo fixo de conversas em vez de um LLM treinado. |
 | **RN06** | A qualidade do software e dos quizzes não corresponder às expectativas educacionais do cliente. | Técnico | Média | Muito Alto | Validar constantemente os requisitos com o cliente e manter a qualidade do código com testes. | Realizar refatoração de código, ajustes de escopo nas questões e nova rodada de validação. |
-| **RN07** | Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente. | Organizacional | Alta | Alto | Conhecer as habilidades da equipe e entregar tarefas não blocantes para membros menos engajados[cite: 7]. | Realocar imediatamente as tarefas críticas entre os membros remanescentes. |
+| **RN07** | Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente. | Organizacional | Alta | Alto | Conhecer as habilidades da equipe e entregar tarefas não blocantes para membros menos engajados. | Realocar imediatamente as tarefas críticas entre os membros remanescentes. |
