@@ -21,6 +21,7 @@ nav:
   - Produto:
     - Visão do Produto: produto/visao.md
     - Lean Inception: produto/lean_inception.md
+    - Plano de Gerenciamento de Custos: produto/plano-de-custos.md
 
   - Contribuição:
     - Política de Branches: contribuicao/branches.md
