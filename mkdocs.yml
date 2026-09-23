@@ -27,6 +27,9 @@ nav:
     - Política de Commits: contribuicao/commits.md
     - Política de Pull Requests: contribuicao/pull_requests.md
     - Política de Issues: contribuicao/issues.md
+  
+  - Reuniões:
+    - Template de ata de reunião: reunioes/modelo-ata-reuniao.md 
 
 extra_css:
   - stylesheets/extra.css
