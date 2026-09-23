@@ -3,7 +3,7 @@
 ## Histórico de Revisões
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
-| 14/09/2026 | 1.0 | Criação e estruturação do plano de custos unificado | João Paulo Lima |
+| 14/09/2026 | 1.0 | Criação e estruturação do plano de custos unificado | [João Paulo Lima](https://github.com/jpaulohe4rt) | |
 
 ---
 
