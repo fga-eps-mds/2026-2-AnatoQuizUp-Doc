@@ -1,5 +1,5 @@
 site_name: AnatoQuizUp
-site_description: AnatoQuizUp é uma plataforma gameficada para aprendizado de anatomia radiológica e de casos clínicos utilizando IA para criação de modelos OSCE.
+site_description: AnatoQuizUp é uma plataforma gameficada para aprendizado de anatomia radiológica e de casos clínicos.
 
 theme:
   name: material
@@ -7,13 +7,12 @@ theme:
   features:
     - navigation.tabs
   palette:
-    - scheme: default
-      primary: blue
-      accent: blue
-
-    - scheme: slate
-      primary: blue
-      accent: blue
+  - scheme: default
+    primary: blue
+    accent: teal
+  - scheme: slate
+    primary: blue
+    accent: teal
 
 nav:
   - Início: index.md
@@ -28,3 +27,6 @@ nav:
     - Política de Commits: contribuicao/commits.md
     - Política de Pull Requests: contribuicao/pull_requests.md
     - Política de Issues: contribuicao/issues.md
+
+extra_css:
+  - stylesheets/extra.css
