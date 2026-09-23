@@ -6,7 +6,7 @@
       <meta charset="utf-8">
       <meta name="viewport" content="width=device-width,initial-scale=1">
       
-        <meta name="description" content="AnatoQuizUp é uma plataforma gameficada para aprendizado de anatomia radiológica e de casos clínicos utilizando IA para criação de modelos OSCE.">
+        <meta name="description" content="AnatoQuizUp é uma plataforma gameficada para aprendizado de anatomia radiológica e de casos clínicos.">
       
       
       
@@ -46,6 +46,8 @@
       
     
     
+      <link rel="stylesheet" href="stylesheets/extra.css">
+    
     <script>__md_scope=new URL(".",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
     
       
@@ -63,7 +65,7 @@
     
     
     
-    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue">
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal">
   
     
     <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
@@ -72,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#welcome-to-mkdocs" class="md-skip">
+        <a href="#anatoquizup" class="md-skip">
           Pular para conteúdo
         </a>
       
@@ -119,13 +121,13 @@
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
     
   
     
     
     
-    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="blue"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
     
   
 </form>
@@ -329,18 +331,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#sobre-o-projeto" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Sobre o projeto
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
+  <a href="#equipe" class="md-nav__link">
     <span class="md-ellipsis">
-      Project layout
+      Equipe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-executar-a-documentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como executar a documentação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentação do projeto
     </span>
   </a>
   
@@ -618,18 +638,36 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#commands" class="md-nav__link">
+  <a href="#sobre-o-projeto" class="md-nav__link">
     <span class="md-ellipsis">
-      Commands
+      Sobre o projeto
     </span>
   </a>
   
 </li>
       
         <li class="md-nav__item">
-  <a href="#project-layout" class="md-nav__link">
+  <a href="#equipe" class="md-nav__link">
     <span class="md-ellipsis">
-      Project layout
+      Equipe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#como-executar-a-documentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Como executar a documentação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentacao-do-projeto" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentação do projeto
     </span>
   </a>
   
@@ -650,21 +688,60 @@
                   
 
 
-<h1 id="welcome-to-mkdocs">Welcome to MkDocs</h1>
-<p>For full documentation visit <a href="https://www.mkdocs.org">mkdocs.org</a>.</p>
-<h2 id="commands">Commands</h2>
-<ul>
-<li><code>mkdocs new [dir-name]</code> - Create a new project.</li>
-<li><code>mkdocs serve</code> - Start the live-reloading docs server.</li>
-<li><code>mkdocs build</code> - Build the documentation site.</li>
-<li><code>mkdocs -h</code> - Print help message and exit.</li>
-</ul>
-<h2 id="project-layout">Project layout</h2>
-<pre><code>mkdocs.yml    # The configuration file.
-docs/
-    index.md  # The documentation homepage.
-    ...       # Other markdown pages, images and other files.
+<style>
+/* Identidade visual aplicada apenas à página inicial.*/
+.anato-logo { display: block; width: 300px; max-width: 100%; height: auto; margin: 0 auto 1.5rem; }
+.anato-equipe { display: grid; grid-template-columns: repeat(auto-fit, minmax(130px, 1fr)); gap: 24px 16px; margin: 24px 0; }
+.anato-equipe .integrante { display: flex; flex-direction: column; align-items: center; gap: 10px; text-align: center; font-size: 14px; line-height: 1.4; }
+.anato-equipe img { border-radius: 50%; object-fit: cover; width: 80px; height: 80px; }
+[data-md-color-scheme="slate"]:has(.anato-inicio) .md-typeset a { color: #5de2cd; }
+</style>
+
+<div class="anato-inicio"></div>
+
+<h1 id="anatoquizup">AnatoQuizUp</h1>
+<p><img class="anato-logo"
+     src="assets/images/anatoquizup-logo.png"
+     alt="Logo do AnatoQuizUp"
+     width="718"
+     height="632"></p>
+<h2 id="sobre-o-projeto">Sobre o projeto</h2>
+<p>O <strong>AnatoQuizUp</strong> é uma plataforma educacional voltada ao aprendizado de <strong>anatomia radiológica</strong>. Sua proposta combina questões, gamificação e apoio de chatbot para tornar os estudos mais interativos e auxiliar professores no acompanhamento da aprendizagem.</p>
+<p>Este site reúne a documentação, o planejamento e os artefatos produzidos pela equipe ao longo do desenvolvimento do projeto.</p>
+<h2 id="equipe">Equipe</h2>
+<div class="anato-equipe">
+  <a href="https://github.com/arthurfonsecaa" class="integrante"><img src="https://avatars.githubusercontent.com/u/169956243?v=4" alt="" width="80" height="80" loading="lazy"><span>Arthur Fonseca Vale</span></a>
+  <a href="https://github.com/Brenno-Silva01" class="integrante"><img src="https://avatars.githubusercontent.com/u/117456300?v=4" alt="" width="80" height="80" loading="lazy"><span>Brenno da Silva Oliveira</span></a>
+  <a href="https://github.com/caiohabibe" class="integrante"><img src="https://avatars.githubusercontent.com/u/117680471?v=4" alt="" width="80" height="80" loading="lazy"><span>Caio Falcao Habibe Costa</span></a>
+  <a href="https://github.com/dudupaz" class="integrante"><img src="https://avatars.githubusercontent.com/u/122990784?v=4" alt="" width="80" height="80" loading="lazy"><span>Carlos Eduardo de Sousa Paz</span></a>
+  <a href="https://github.com/gabrielfreitass1" class="integrante"><img src="https://avatars.githubusercontent.com/u/56280085?v=4" alt="" width="80" height="80" loading="lazy"><span>Gabriel Freitas Balbino</span></a>
+  <a href="https://github.com/henriquecarv3" class="integrante"><img src="https://avatars.githubusercontent.com/u/134213039?v=4" alt="" width="80" height="80" loading="lazy"><span>Henrique Carvalho Neves</span></a>
+  <a href="https://github.com/jlucasiqueira" class="integrante"><img src="https://avatars.githubusercontent.com/u/143570377?v=4" alt="" width="80" height="80" loading="lazy"><span>Joao Lucas Araujo Siqueira</span></a>
+  <a href="https://github.com/jpaulohe4rt" class="integrante"><img src="https://avatars.githubusercontent.com/u/50640221?v=4" alt="" width="80" height="80" loading="lazy"><span>Joao Paulo Lima da Silva</span></a>
+  <a href="https://github.com/Leonardo0o0" class="integrante"><img src="https://avatars.githubusercontent.com/u/82467659?v=4" alt="" width="80" height="80" loading="lazy"><span>Leonardo Sobrinho De Aguiar</span></a>
+  <a href="https://github.com/leticiatmartins" class="integrante"><img src="https://avatars.githubusercontent.com/u/86434947?v=4" alt="" width="80" height="80" loading="lazy"><span>Letícia Torres Soares Martins</span></a>
+  <a href="https://github.com/rmatuda" class="integrante"><img src="https://avatars.githubusercontent.com/u/134009750?v=4" alt="" width="80" height="80" loading="lazy"><span>Rafael Melo Matuda</span></a>
+</div>
+
+<h2 id="como-executar-a-documentacao">Como executar a documentação</h2>
+<p>Com <strong>Python 3.10 ou superior</strong> e <strong>pip</strong> instalados, clone o repositório:</p>
+<pre><code class="language-bash">git clone https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc.git
+cd 2026-2-AnatoQuizUp-Doc
+python3 -m venv .venv
 </code></pre>
+<p>Ative o ambiente virtual com <code>source .venv/bin/activate</code> no macOS/Linux ou <code>.venv\Scripts\Activate.ps1</code> no PowerShell do Windows. No Windows, utilize <code>python</code> no lugar de <code>python3</code>.</p>
+<pre><code class="language-bash">python -m pip install -r requirements.txt
+python -m mkdocs serve
+</code></pre>
+<p>Acesse <strong>http://127.0.0.1:8000</strong> no navegador. Esses comandos executam o site de documentação.</p>
+<h2 id="documentacao-do-projeto">Documentação do projeto</h2>
+<ul>
+<li><a href="produto/visao/">Visão do Produto</a></li>
+<li><a href="produto/lean_inception/">Lean Inception</a></li>
+<li><a href="produto/plano-de-custos/">Plano de Gerenciamento de Custos</a></li>
+<li><a href="contribuicao/pull_requests/">Como contribuir: política de Pull Requests</a></li>
+<li><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc">Repositório no GitHub</a></li>
+</ul>
 
 
 
