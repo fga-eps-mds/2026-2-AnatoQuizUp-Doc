@@ -32,21 +32,27 @@ O orçamento total do projeto é calculado com base no custo mensal dos profissi
 A previsão orçamentária engloba os custos diretos e indiretos necessários para manter a equipe operando durante os 4 meses previstos para a execução do projeto.
 
 ### 3.1. Custo com a Equipe
+
 Para fins de precificação, os 13 integrantes da equipe foram alocados sob o perfil de Desenvolvedores Júnior.
-* Considerando o mercado atual, adotou-se o salário médio de **R$ 4.500,00** mensais para cada profissional.
-* Dessa forma, a folha de pagamento mensal da equipe de **13 desenvolvedores** totaliza **R$ 58.500,00**.
-* Ao longo dos 4 meses de projeto, o investimento total em pessoal será de **R$ 234.000,00**.
+
+- Considerando o mercado atual, adotou-se o salário médio de **R$ 4.500,00** mensais para cada profissional.
+- Dessa forma, a folha de pagamento mensal da equipe de **13 desenvolvedores** totaliza **R$ 58.500,00**.
+- Ao longo dos 4 meses de projeto, o investimento total em pessoal será de **R$ 234.000,00**.
 
 ### 3.2. Infraestrutura de Hardware (Custo Não Recorrente)
+
 Para garantir a performance no desenvolvimento da plataforma e no treinamento dos modelos de inteligência artificial, foi orçada a aquisição de computadores dedicados. Esse investimento é pontual e incide integralmente no primeiro mês.
-* O equipamento padronizado para a equipe é o notebook **LOQ Intel Core i5-12450H (16GB, 512GB SSD, Linux, tela 15,6" FHD)**.
-* Com um custo unitário de **R$ 4.047,99**, a aquisição para todos os 13 integrantes demanda um aporte de **R$ 52.623,87**.
+
+- O equipamento padronizado para a equipe é o notebook **LOQ Intel Core i5-12450H (16GB, 512GB SSD, Linux, tela 15,6" FHD)**.
+- Com um custo unitário de **R$ 4.047,99**, a aquisição para todos os 13 integrantes demanda um aporte de **R$ 52.623,87**.
 
 ### 3.3. Conectividade e Internet
+
 Para suportar as atividades de pesquisa e o trabalho integrado da equipe, foi orçado um serviço de banda larga de alta qualidade, utilizando os valores da Oi, provedora bem avaliada na região do Distrito Federal.
-* O plano básico de fibra ótica tem o custo mensal de **R$ 99,90** por pessoa.
-* Para o grupo de 13 pessoas, isso representa **R$ 1.298,70** ao mês.
-* No acumulado dos 4 meses, o custo com internet será de **R$ 5.194,80**.
+
+- O plano básico de fibra ótica tem o custo mensal de **R$ 99,90** por pessoa.
+- Para o grupo de 13 pessoas, isso representa **R$ 1.298,70** ao mês.
+- No acumulado dos 4 meses, o custo com internet será de **R$ 5.194,80**.
 
 ### 3.4. Resumo de Despesas Mensais
 
@@ -65,21 +71,25 @@ O acompanhamento financeiro será realizado por meio da metodologia de Gerenciam
 
 ### 4.1. Pilares do Valor Agregado
 
-* **Valor Planejado (VP):** Representa a parcela do orçamento que foi autorizada e designada para as atividades agendadas.
-* **Valor Agregado (VA):** Reflete o orçamento associado ao trabalho que já foi efetivamente concluído pela equipe. É calculado multiplicando o VP pela porcentagem de conclusão da tarefa.
-* **Custo Real (CR):** Demonstra o montante financeiro que já foi concretamente gasto durante a execução do trabalho.
+- **Valor Planejado (VP):** Representa o orçamento autorizado para o trabalho que deveria estar concluído até a data de acompanhamento.
+- **Valor Agregado (VA):** Representa o valor orçado do trabalho efetivamente realizado. Para uma atividade medida por percentual de conclusão, é calculado multiplicando o orçamento total dessa atividade pelo percentual efetivamente concluído.
+- **Custo Real (CR):** Representa o custo efetivamente incorrido na execução do trabalho até a data de acompanhamento.
 
 ### 4.2. Indicadores de Desempenho
 
 Para entender a saúde do projeto de forma objetiva, utilizamos os seguintes indicadores:
 
 **Variação de Prazos (VPR) e Variação de Custos (VC)**
-* **VPR (`VA - VP`):** Indica, em termos financeiros, se o projeto está adiantado (resultado > 0) ou atrasado (resultado < 0) em relação ao cronograma.
-* **VC (`VA - CR`):** Aponta se há déficit ou economia orçamentária. Resultados positivos indicam que o custo está abaixo do planejado, enquanto valores negativos apontam gastos excessivos.
+
+- **VPR (`VA - VP`):** Indica, em termos de valor orçado do trabalho, se o projeto está adiantado (resultado > 0), conforme o planejado (resultado = 0) ou atrasado (resultado < 0).
+- **VC (`VA - CR`):** Compara o valor orçado do trabalho realizado com seu custo real. Resultados positivos indicam economia; resultados iguais a zero indicam custo conforme o orçamento; resultados negativos indicam custo superior ao orçado para o trabalho realizado.
 
 **Índices de Eficiência (IDP e IDC)**
-* **Desempenho de Prazos (`IDP = VA / VP`):** Mede a eficiência do cronograma. Um índice maior que 1 significa que a equipe está adiantada; menor que 1, que há atrasos.
-* **Desempenho de Custos (`IDC = VA / CR`):** Mede a eficiência no uso dos recursos. Um IDC acima de 1 demonstra que as entregas estão custando menos do que o previsto; abaixo de 1, indica estouro do orçamento.
+
+- **Índice de Desempenho de Prazos (`IDP = VA / VP`):** Mede o desempenho do cronograma. Um índice maior que 1 indica avanço superior ao planejado; igual a 1, avanço conforme o planejado; menor que 1, avanço inferior ao planejado.
+- **Índice de Desempenho de Custos (`IDC = VA / CR`):** Mede a eficiência no uso dos recursos. Um índice maior que 1 indica custo inferior ao orçado para o trabalho realizado; igual a 1, custo conforme o orçamento; menor que 1, custo superior ao orçado para o trabalho realizado.
+
+Os índices devem considerar a mesma data de acompanhamento. O IDP não deve ser calculado quando o VP for zero, nem o IDC quando o CR for zero.
 
 ### 4.3. Matriz de Análise Geral
 
