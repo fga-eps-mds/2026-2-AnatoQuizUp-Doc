@@ -20,6 +20,7 @@ nav:
   - Produto:
     - Visão do Produto: produto/visao.md
     - Lean Inception: produto/lean_inception.md
+    - EAP: produto/eap.md
     - Plano de Gerenciamento de Custos: produto/plano-de-custos.md
     - Plano de Gerenciamento de Riscos: produto/plano-de-riscos.md
 
