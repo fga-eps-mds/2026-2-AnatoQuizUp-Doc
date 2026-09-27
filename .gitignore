@@ -1,0 +1,11 @@
+# Ambientes Python
+venv/
+.venv/
+__pycache__/
+*.py[cod]
+
+# Site gerado pelo MkDocs
+/site/
+
+# Arquivos locais do macOS
+.DS_Store
