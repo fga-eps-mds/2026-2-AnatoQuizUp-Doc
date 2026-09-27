@@ -59,4 +59,5 @@
 
 |  **Data**  | **Versão** | **Descrição**    | **Autor(es)**                        |
 | :--------: | :--------: | ---------------- | ------------------------------------ |
-| dd/mm/aaaa |     1.0    | ALGUMA DESCRIÇÃO | [NOME AQUI](https://github.com/USER) |
+| 23/09/2026 |     1.0    | Criação do Documento | [Brenno Silva](https://github.com/Brenno-Silva01) |
+| 27/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) |
