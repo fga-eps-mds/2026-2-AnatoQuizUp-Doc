@@ -4,6 +4,7 @@
 | Data | Versão | Descrição | Autor |
 |---|---|---|---|
 | 14/09/2026 | 1.0 | Criação e estruturação do plano de custos unificado | [João Paulo Lima](https://github.com/jpaulohe4rt) | |
+| 27/09/2026 | 1.1 | Adição do rateio de custo por release major (R1, R2, R3) com base nas datas do cronograma oficial | [João Paulo Lima](https://github.com/jpaulohe4rt) |
 
 ---
 
@@ -62,6 +63,19 @@ Para suportar as atividades de pesquisa e o trabalho integrado da equipe, foi or
 | **Hardware (Pagamento Único)** | R$ 52.623,87 | R$ 0,00 | R$ 0,00 | R$ 0,00 | **R$ 52.623,87** |
 | **Internet** | R$ 1.298,70 | R$ 1.298,70 | R$ 1.298,70 | R$ 1.298,70 | **R$ 5.194,80** |
 | **Orçamento Mensal** | **R$ 112.422,57** | **R$ 59.798,70** | **R$ 59.798,70** | **R$ 59.798,70** | **R$ 291.818,67** |
+
+### 3.5. Custo por Release Major (R1, R2, R3)
+
+O cronograma oficial da disciplina define três releases major, cujas datas-limite dividem o período de 18 semanas do projeto (10/08 a 14/12/2026). O custo recorrente (equipe + internet, R$ 239.194,80 no total) foi rateado proporcionalmente ao número de semanas de cada ciclo; o custo de hardware (R$ 52.623,87), por ser um investimento único realizado na primeira semana do projeto, foi integralmente atribuído à R1.
+
+| Release | Período | Duração | Custo Recorrente | Custo Não Recorrente | Custo da Release |
+| --- | --- | :---: | ---: | ---: | ---: |
+| **R1** | 10/08 a 28/09/2026 | 7 semanas | R$ 93.020,20 | R$ 52.623,87 (hardware) | **R$ 145.644,07** |
+| **R2** | 28/09 a 26/10/2026 | 4 semanas | R$ 53.154,40 | — | **R$ 53.154,40** |
+| **R3** | 26/10 a 14/12/2026 | 7 semanas | R$ 93.020,20 | — | **R$ 93.020,20** |
+| **Total** | | 18 semanas | R$ 239.194,80 | R$ 52.623,87 | **R$ 291.818,67** |
+
+> R3 engloba também as duas semanas de encerramento do projeto (30/11 a 14/12), já que a disciplina não atribui peso orçamentário próprio a essa etapa de fechamento.
 
 ---
 
