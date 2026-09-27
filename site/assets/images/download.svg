@@ -1,0 +1,19 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1100" viewBox="0 0 1800 1100" role="img" aria-labelledby="title desc">
+  <title id="title">Detalhamento da EAP — Release 1</title><desc id="desc">Detalhamento da Release 1 proposta do AnatoQuizUp.</desc>
+  <defs><style><![CDATA[
+    .bg{fill:#f8fafc}.edge{stroke:#94a3b8;stroke-width:3;fill:none}.root{fill:#153e35;stroke:#0e2a24;stroke-width:3}.leaf{fill:#fff;stroke:#4b8b52;stroke-width:3}.roottext{font-family:Arial,Helvetica,sans-serif;text-anchor:middle;fill:#fff;font-weight:700}.label{font-family:Arial,Helvetica,sans-serif;text-anchor:middle;fill:#172033}.title{font-family:Arial,Helvetica,sans-serif;fill:#153e35;font-size:40px;font-weight:700}.subtitle{font-family:Arial,Helvetica,sans-serif;fill:#64748b;font-size:21px}
+  ]]></style></defs>
+  <rect class="bg" width="1800" height="1100" rx="28"/>
+  <text x="80" y="80" class="title">Detalhamento da Release 1</text><text x="80" y="116" class="subtitle">EAP — proposta de escopo</text>
+  <path class="edge" d="M900 225V295M160 295H1640M160 295V390M405 295V390M650 295V390M900 295V390M1150 295V390M1395 295V390M1640 295V390"/>
+  <rect class="root" x="605" y="150" width="590" height="75" rx="16"/><text class="roottext" x="900" y="196" font-size="29">1.5.1 Release 1 — proposta</text>
+  <g class="label" font-size="22">
+    <rect class="leaf" x="45" y="390" width="230" height="120" rx="14"/><text x="160" y="429"><tspan x="160">1.5.1.1</tspan><tspan x="160" dy="28">Avatar padrão</tspan><tspan x="160" dy="26">e acesso</tspan></text>
+    <rect class="leaf" x="290" y="390" width="230" height="120" rx="14"/><text x="405" y="429"><tspan x="405">1.5.1.2</tspan><tspan x="405" dy="28">Aparência do</tspan><tspan x="405" dy="26">avatar</tspan></text>
+    <rect class="leaf" x="535" y="390" width="230" height="120" rx="14"/><text x="650" y="429"><tspan x="650">1.5.1.3</tspan><tspan x="650" dy="28">Itens</tspan><tspan x="650" dy="26">cosméticos</tspan></text>
+    <rect class="leaf" x="785" y="390" width="230" height="120" rx="14"/><text x="900" y="429"><tspan x="900">1.5.1.4</tspan><tspan x="900" dy="28">Loja, compra</tspan><tspan x="900" dy="26">e inventário</tspan></text>
+    <rect class="leaf" x="1035" y="390" width="230" height="120" rx="14"/><text x="1150" y="429"><tspan x="1150">1.5.1.5</tspan><tspan x="1150" dy="28">Potencializadores</tspan></text>
+    <rect class="leaf" x="1280" y="390" width="230" height="120" rx="14"/><text x="1395" y="429"><tspan x="1395">1.5.1.6</tspan><tspan x="1395" dy="28">Histórico e</tspan><tspan x="1395" dy="26">qualidade</tspan></text>
+    <rect class="leaf" x="1525" y="390" width="230" height="120" rx="14"/><text x="1640" y="429"><tspan x="1640">1.5.1.7</tspan><tspan x="1640" dy="28">Integração e</tspan><tspan x="1640" dy="26">validação</tspan></text>
+  </g>
+</svg>
