@@ -1,12 +1,16 @@
 ## Issue relacionada
 
-<!-- Informe a Issue relacionada a este Pull Request. -->
-
-
+<!-- Informe a Issue relacionada a este Pull Request.
+Exemplo:
+Closes #XX
+ou
+Relates to #XX
+ -->
 
 ## Descrição
 
-<!-- Descreva de forma sucinta as alterações realizadas. -->
+<!--Explique de forma objetiva o que foi desenvolvido, corrigido,
+alterado ou documentado neste Pull Request. -->
 
 Neste Pull Request foram realizadas:
 
@@ -37,7 +41,8 @@ Neste Pull Request foram realizadas:
 
 ### Descrição dos testes
 
-<!-- Explique brevemente como a alteração foi validada. -->
+<!-- Descreva brevemente os testes executados, incluindo comandos,
+cenários testados ou comportamentos verificados, quando aplicável. -->
 
 ## Alterações principais
 
@@ -60,4 +65,5 @@ Neste Pull Request foram realizadas:
 
 ## Observações
 
-<!-- Informe limitações, decisões técnicas, pontos de atenção ou outras informações relevantes. -->
+<!-- Informe limitações conhecidas, decisões tomadas, dependências,
+pontos de atenção ou qualquer outra informação relevante para a revisão.. -->
