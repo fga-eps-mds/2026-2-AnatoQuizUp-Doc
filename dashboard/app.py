@@ -4,9 +4,11 @@ Fontes de dados, todas em analytics-raw-data/<repo>/ no repositorio de Doc:
 
 1. SonarCloud: arquivos fga-eps-mds-<repo>-<data>-<versao>.json publicados pelo
    workflow "Export de metricas" (metricas.yml) de cada repositorio.
-2. Jest (plano B enquanto o SonarCloud nao esta configurado): arquivos
+2. Jest (coleta manual complementar ao SonarCloud): arquivos
    jest-coverage-<repo>-<data>.json gerados a partir do
-   coverage/coverage-summary.json de cada repositorio.
+   coverage/coverage-summary.json de cada repositorio. Mostram a cobertura
+   separada por tipo (linhas, instrucoes, funcoes e ramificacoes), que o
+   SonarCloud apresenta combinada em um unico percentual.
 
 Executar localmente (na raiz do repositorio de Doc):
     pip install -r dashboard/requirements.txt
@@ -28,7 +30,7 @@ FORMATO_DATA = "%m-%d-%Y-%H-%M-%S"
 PADRAO_DATA = r"\d{2}-\d{2}-\d{4}-\d{2}-\d{2}-\d{2}"
 # Fuso fixo: o Brasil nao tem horario de verao desde 2019.
 FUSO_BRASILIA = timezone(timedelta(hours=-3), "BRT")
-AVISO_FUSO = "Horarios exibidos no horario de Brasilia (UTC-3)."
+AVISO_FUSO = "Horários exibidos no horário de Brasília (UTC-3)."
 # Escala do security_rating no SonarCloud.
 NOTAS_SEGURANCA = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E"}
 
@@ -38,21 +40,21 @@ METRICAS_SONAR = {
     "tests": "Testes",
     "test_failures": "Falhas de teste",
     "test_errors": "Erros de teste",
-    "ncloc": "Linhas de codigo",
+    "ncloc": "Linhas de código",
     "files": "Arquivos",
-    "functions": "Funcoes",
+    "functions": "Funções",
     "complexity": "Complexidade",
-    "duplicated_lines_density": "Duplicacao (%)",
-    "comment_lines_density": "Comentarios (%)",
-    "security_rating": "Nota de seguranca",
+    "duplicated_lines_density": "Duplicação (%)",
+    "comment_lines_density": "Comentários (%)",
+    "security_rating": "Nota de segurança",
 }
 
 # Tipos de cobertura do Jest (coverage-summary.json) -> rotulo exibido.
 METRICAS_JEST = {
     "lines": "Linhas (%)",
-    "statements": "Instrucoes (%)",
-    "functions": "Funcoes (%)",
-    "branches": "Ramificacoes (%)",
+    "statements": "Instruções (%)",
+    "functions": "Funções (%)",
+    "branches": "Ramificações (%)",
 }
 
 # Ex.: fga-eps-mds-2026-2-AnatoQuizUp-BFF-09-28-2026-00-15-00-1.0.0.json
@@ -195,8 +197,8 @@ def linha_meta(grafico) -> None:
     grafico.add_hline(y=META_COBERTURA, line_dash="dash", annotation_text=f"meta {META_COBERTURA:.0f}%")
 
 
-st.set_page_config(page_title="AnatoQuizUp · Metricas R1", layout="wide")
-st.title("AnatoQuizUp · Dashboard de metricas")
+st.set_page_config(page_title="AnatoQuizUp · Métricas R1", layout="wide")
+st.title("AnatoQuizUp · Dashboard de métricas")
 st.caption(AVISO_FUSO)
 
 sonar = carregar_sonar(str(PASTA_DADOS))
@@ -204,24 +206,80 @@ jest = carregar_jest(str(PASTA_DADOS))
 
 if sonar.empty and jest.empty:
     st.warning(
-        f"Nenhum arquivo de metricas encontrado em `{PASTA_DADOS.name}/`. "
+        f"Nenhum arquivo de métricas encontrado em `{PASTA_DADOS.name}/`. "
         "Verifique se o workflow metricas.yml rodou ou se os arquivos jest-coverage-*.json foram adicionados."
     )
     st.stop()
 
-# ----- Cobertura via Jest (plano B) -----
+# ----- SonarCloud -----
+if not sonar.empty:
+    ultimas_sonar = mais_recente_por_repo(sonar)
+    st.subheader(f"SonarCloud · cobertura x meta de {META_COBERTURA:.0f}%")
+    st.caption("Gerado automaticamente pelo workflow metricas.yml de cada repositório.")
+    cartoes_cobertura(
+        ultimas_sonar,
+        "coverage",
+        lambda linha: f"Versão {linha['versao']} · coleta {linha['coleta']:%d/%m %H:%M} (horário de Brasília)",
+    )
+    grafico_sonar = px.bar(
+        ultimas_sonar.reset_index(),
+        x="repositorio",
+        y="coverage",
+        range_y=[0, 100],
+        text_auto=".1f",
+        labels={"repositorio": "", "coverage": "Cobertura (%)"},
+    )
+    linha_meta(grafico_sonar)
+    st.plotly_chart(grafico_sonar, width="stretch")
+
+    st.subheader("Métricas do SonarCloud (última coleta)")
+    # Esconde metricas sem nenhum valor (ex.: testes, que o SonarCloud nao recebe).
+    colunas_sonar = [m for m in METRICAS_SONAR if m in ultimas_sonar.columns and ultimas_sonar[m].notna().any()]
+    tabela_sonar = ultimas_sonar[colunas_sonar].copy()
+    if "security_rating" in tabela_sonar.columns:
+        tabela_sonar["security_rating"] = tabela_sonar["security_rating"].map(nota_seguranca)
+    st.dataframe(tabela_sonar.rename(columns=METRICAS_SONAR).rename_axis("Repositório"), width="stretch")
+
+    if sonar.groupby("repositorio").size().max() > 1:
+        st.subheader("Evolução ao longo das coletas")
+        metrica = st.selectbox("Métrica", colunas_sonar, format_func=lambda m: METRICAS_SONAR[m])
+        evolucao = px.line(
+            sonar.sort_values("coleta"),
+            x="coleta",
+            y=metrica,
+            color="repositorio",
+            markers=True,
+            labels={
+                "coleta": "Coleta (horário de Brasília)",
+                metrica: METRICAS_SONAR[metrica],
+                "repositorio": "Repositório",
+            },
+        )
+        if metrica == "security_rating":
+            evolucao.update_yaxes(
+                title_text="Nota de segurança (1=A ... 5=E)",
+                tickvals=list(NOTAS_SEGURANCA),
+                ticktext=[f"{n} ({letra})" for n, letra in NOTAS_SEGURANCA.items()],
+                range=[0.5, 5.5],
+            )
+        st.plotly_chart(evolucao, width="stretch")
+else:
+    st.info(f"Nenhum dado do SonarCloud encontrado em {PASTA_DADOS.name}/.")
+
+# ----- Cobertura via Jest (coleta complementar) -----
 if not jest.empty:
     ultimas_jest = mais_recente_por_repo(jest)
     st.subheader(f"Cobertura de testes (Jest) x meta de {META_COBERTURA:.0f}%")
     st.caption(
-        "Coleta manual: `npm run test:ci` na main de cada repositorio, a partir do "
-        "coverage/coverage-summary.json. Usada enquanto a integracao com o SonarCloud nao esta ativa. "
-        "Percentual principal: linhas."
+        f"Coleta manual complementar, feita em {jest['coleta'].max():%d/%m} com `npm run test:ci` na `main` "
+        "de cada repositório (arquivo coverage/coverage-summary.json). Mostra a cobertura separada por tipo "
+        "(linhas, instruções, funções e ramificações), que o SonarCloud apresenta combinada em um único "
+        "percentual. Percentual principal dos cartões: linhas."
     )
     cartoes_cobertura(
         ultimas_jest,
         "lines",
-        lambda linha: f"{linha['branch'] or 'main'} @ {linha['commit'] or '?'} · {linha['coleta']:%d/%m %H:%M} (horario de Brasilia)",
+        lambda linha: f"{linha['branch'] or 'main'} @ {linha['commit'] or '?'} · {linha['coleta']:%d/%m %H:%M} (horário de Brasília)",
     )
 
     por_tipo = ultimas_jest[list(METRICAS_JEST)].reset_index().melt(
@@ -244,67 +302,14 @@ if not jest.empty:
     if not abaixo.empty:
         st.info("Abaixo da meta em pelo menos um tipo de cobertura: " + ", ".join(abaixo.index))
 
-    st.dataframe(ultimas_jest[list(METRICAS_JEST)].rename(columns=METRICAS_JEST), width="stretch")
-
-# ----- SonarCloud -----
-if not sonar.empty:
-    ultimas_sonar = mais_recente_por_repo(sonar)
-    st.subheader(f"SonarCloud · cobertura x meta de {META_COBERTURA:.0f}%")
-    st.caption("Gerado automaticamente pelo workflow metricas.yml de cada repositorio.")
-    cartoes_cobertura(
-        ultimas_sonar,
-        "coverage",
-        lambda linha: f"Versao {linha['versao']} · coleta {linha['coleta']:%d/%m %H:%M} (horario de Brasilia)",
+    st.dataframe(
+        ultimas_jest[list(METRICAS_JEST)].rename(columns=METRICAS_JEST).rename_axis("Repositório"), width="stretch"
     )
-    grafico_sonar = px.bar(
-        ultimas_sonar.reset_index(),
-        x="repositorio",
-        y="coverage",
-        range_y=[0, 100],
-        text_auto=".1f",
-        labels={"repositorio": "", "coverage": "Cobertura (%)"},
-    )
-    linha_meta(grafico_sonar)
-    st.plotly_chart(grafico_sonar, width="stretch")
-
-    st.subheader("Metricas do SonarCloud (ultima coleta)")
-    # Esconde metricas sem nenhum valor (ex.: testes, que o SonarCloud nao recebe).
-    colunas_sonar = [m for m in METRICAS_SONAR if m in ultimas_sonar.columns and ultimas_sonar[m].notna().any()]
-    tabela_sonar = ultimas_sonar[colunas_sonar].copy()
-    if "security_rating" in tabela_sonar.columns:
-        tabela_sonar["security_rating"] = tabela_sonar["security_rating"].map(nota_seguranca)
-    st.dataframe(tabela_sonar.rename(columns=METRICAS_SONAR), width="stretch")
-
-    if sonar.groupby("repositorio").size().max() > 1:
-        st.subheader("Evolucao ao longo das coletas")
-        metrica = st.selectbox("Metrica", colunas_sonar, format_func=lambda m: METRICAS_SONAR[m])
-        evolucao = px.line(
-            sonar.sort_values("coleta"),
-            x="coleta",
-            y=metrica,
-            color="repositorio",
-            markers=True,
-            labels={
-                "coleta": "Coleta (horario de Brasilia)",
-                metrica: METRICAS_SONAR[metrica],
-                "repositorio": "Repositorio",
-            },
-        )
-        if metrica == "security_rating":
-            evolucao.update_yaxes(
-                title_text="Nota de seguranca (1=A ... 5=E)",
-                tickvals=list(NOTAS_SEGURANCA),
-                ticktext=[f"{n} ({letra})" for n, letra in NOTAS_SEGURANCA.items()],
-                range=[0.5, 5.5],
-            )
-        st.plotly_chart(evolucao, width="stretch")
-else:
-    st.info("SonarCloud ainda sem dados: os projetos 2026-2 nao estao publicados no SonarCloud.")
 
 # ----- Issues -----
 issues = carregar_issues(str(PASTA_DADOS))
 if not issues.empty:
-    st.subheader("Issues do repositorio de Doc")
+    st.subheader("Issues do repositório de Doc")
     c1, c2, c3 = st.columns(3)
     c1.metric("Total", len(issues))
     c2.metric("Fechadas", int((issues["estado"] == "closed").sum()))
@@ -313,12 +318,21 @@ if not issues.empty:
 with st.expander("Arquivos lidos"):
     lidos = pd.concat(
         [
-            jest.assign(fonte="Jest")[["fonte", "repositorio", "coleta", "arquivo"]] if not jest.empty else None,
             sonar.assign(fonte="SonarCloud")[["fonte", "repositorio", "coleta", "arquivo"]] if not sonar.empty else None,
+            jest.assign(fonte="Jest")[["fonte", "repositorio", "coleta", "arquivo"]] if not jest.empty else None,
         ]
     )
     lidos = lidos.sort_values("coleta", ascending=False)
     lidos["coleta"] = lidos["coleta"].dt.strftime("%d/%m/%Y %H:%M:%S")
     st.dataframe(
-        lidos.rename(columns={"coleta": "coleta (horario de Brasilia)"}), width="stretch", hide_index=True
+        lidos.rename(
+            columns={
+                "fonte": "Fonte",
+                "repositorio": "Repositório",
+                "coleta": "Coleta (horário de Brasília)",
+                "arquivo": "Arquivo",
+            }
+        ),
+        width="stretch",
+        hide_index=True,
     )
