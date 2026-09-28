@@ -34,6 +34,9 @@ nav:
     - Plano de Gerenciamento de Custos: produto/plano-de-custos.md
     - Plano de Gerenciamento de Riscos: produto/plano-de-riscos.md
     - Roadmap: produto/roadmap.md
+    - Backlog:
+      - Visão Geral: backlog/visao-geral.md
+      - Release Major 1: backlog/release-major-1.md
 
   - Arquitetura:
     - Visão Geral: arquitetura/visao-geral.md
