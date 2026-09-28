@@ -15,9 +15,8 @@ Executar localmente (na raiz do repositorio de Doc):
 
 import json
 import re
-from datetime import datetime, timezone
+from datetime import datetime, timedelta, timezone
 from pathlib import Path
-from zoneinfo import ZoneInfo
 
 import pandas as pd
 import plotly.express as px
@@ -27,8 +26,9 @@ PASTA_DADOS = Path(__file__).resolve().parent.parent / "analytics-raw-data"
 META_COBERTURA = 85.0
 FORMATO_DATA = "%m-%d-%Y-%H-%M-%S"
 PADRAO_DATA = r"\d{2}-\d{2}-\d{4}-\d{2}-\d{2}-\d{2}"
-FUSO_BRASILIA = ZoneInfo("America/Sao_Paulo")
-AVISO_FUSO = "Horarios exibidos no horario de Brasilia (America/Sao_Paulo)."
+# Fuso fixo: o Brasil nao tem horario de verao desde 2019.
+FUSO_BRASILIA = timezone(timedelta(hours=-3), "BRT")
+AVISO_FUSO = "Horarios exibidos no horario de Brasilia (UTC-3)."
 # Escala do security_rating no SonarCloud.
 NOTAS_SEGURANCA = {1: "A", 2: "B", 3: "C", 4: "D", 5: "E"}
 
