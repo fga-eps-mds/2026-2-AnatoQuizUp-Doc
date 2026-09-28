@@ -26,6 +26,7 @@ nav:
     - EAP: produto/EAP.md
     - Plano de Gerenciamento de Custos: produto/plano-de-custos.md
     - Plano de Gerenciamento de Riscos: produto/plano-de-riscos.md
+    - Roadmap: produto/roadmap.md
 
   - Gestão:
     - Dashboards da R1: dashboards.md
