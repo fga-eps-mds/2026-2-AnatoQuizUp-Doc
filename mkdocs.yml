@@ -15,12 +15,18 @@ theme:
       primary: blue
       accent: blue
 
+markdown_extensions:
+  - attr_list
+
 nav:
   - Início: index.md
 
   - Produto:
     - Visão do Produto: produto/visao.md
     - Lean Inception: produto/lean_inception.md
+
+  - Gestão:
+    - Dashboards da R1: dashboards.md
 
   - Contribuição:
     - Política de Branches: contribuicao/branches.md
