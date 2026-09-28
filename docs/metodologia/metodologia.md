@@ -3,14 +3,14 @@
 ## Objetivo
 
 Este documento descreve a **metodologia** de desenvolvimento escolhida pelo grupo e como ela define nossa orientação de trabalho, ritmo de entregas, papéis bem definidos, entre outros fatores.
-> Seguir uma metodologia de desenvolvimento de software é fundamental para o sucesso dos projetos. No entanto, não basta escolher uma e começar a trabalhar, é preciso considerar qual modelo se adequará melhor às habilidades da sua equipe, ao estilo de trabalho e às necessidades do projeto.
+> Seguir uma metodologia de desenvolvimento de software é fundamental para o sucesso dos projetos. No entanto, não basta escolher uma e começar a trabalhar, é preciso considerar qual modelo se adequará melhor às habilidades da sua equipe, ao estilo de trabalho e às necessidades do projeto.[1]
 ---
 
 ## Metodologia adotada: Ágil com adaptações(Scrum + Kanban + XP)
 
 O time aplica uma metodologia focada no **Ágil** onde:
 
-- Do **Scrum**, herdamos o ritmo de iterações curtas, as cerimônias de planejamento e revisão, os papéis (Product Owner e Scrum Master) e o compromisso com entregas incrementais a cada sprint.
+- Do **Scrum**, herdamos o ritmo de iterações curtas, os eventos(Sprint, Sprint Plannin, Daily Assincrona e Sprint Review), os papéis de (Product Owner, Scrum Master e Developers) e o compromisso com entregas incrementais a cada sprint.
 - Do **Kanban**, herdamos o fluxo visual contínuo de tarefas em um quadro e a transparência sobre o estado de cada item.
 - Do **XP**, herdamos principalmente o pair programming, alem da integração e refatoração contínuas.
 
@@ -20,18 +20,19 @@ Foi realizado um heatmap na primeira semana da disciplina para identificar os ho
 
 <iframe style="border: 1px solid rgba(0, 0, 0, 0.1);" width="100%" height="500" src="https://docs.google.com/spreadsheets/d/1vzA4bEQm_K49IRhpzVkVF_C3KajeAwC8VPWL_7339H8/edit?usp=sharing" allowfullscreen></iframe>
 
-Se preferir abrir direto no Figma:
+Ele tambem pode ser encontrado aqui:
 
 [Abrir Heatmap](https://docs.google.com/spreadsheets/d/1vzA4bEQm_K49IRhpzVkVF_C3KajeAwC8VPWL_7339H8/edit?usp=sharing)
 
-Dado que sa
-| Característica do projeto | Implicação na metodologia |
+Como pode ser observado, os horarios semelhantes de trabalho ficam para o periodo da noite, porem ainda é dificil conciliar ou dar certeza de trabalho diario dado a divergencia de rotinas ou imprevisibilidade.
+
+| Características do time | Inferencia da metodologia no time |
 |---|---|
-| Time acadêmico (13 integrantes), 100% remoto, com agendas heterogêneas | O Scrum puro exigiria sincronia diária inviável; o Kanban puro perderia o ritmo necessário para uma disciplina com prazos fechados. Scrumban concilia ritmo previsível com flexibilidade assíncrona. |
-| Múltiplas frentes paralelas (backend, frontend, documentação e DevOps) com dependências cruzadas | Quadro Kanban único dá visibilidade a bloqueios entre frentes; sprints curtas forçam integração frequente. |
+| Time com 11 integrantes, 100% remoto, agendas dificeis de conciliar | O Scrum puro exigiria sincronia diária inviável; o Kanban puro perderia o ritmo necessário para uma disciplina com prazos fechados. Scrumban concilia ritmo previsível com flexibilidade assíncrona. |
+| Múltiplas frentes paralelas (backend, frontend, documentação e DevOps) com dependências cruzadas | Quadro Kanban permite organizar melhor multiplas frentes de trabalho mesmo que elas sejam dependentes em algum momento ou não; Permite melhor visualização dessas frentes de trabalho |
 | Stakeholders externos (Product Owners) com janelas de validação restritas | Sprints curtas (1 semana) garantem ciclos de feedback rápidos, mantendo o PO próximo do produto. |
 | Objetivo pedagógico de exercitar todos os papéis ágeis | Rotatividade de funções a cada sprint é compatível com o caráter incremental do Scrumban. |
-
+| Diversas Stacks trabalhadas ao mesmo tempo(Js, python, infra , docs) | Com o XP podemos realizar pareamentos adequados para juntar membros que dominam mais a tecnologia com o que menos domina e assim terem uma troca de conhecimento alem de não atrapalharem os prazos estabelecidos |
 ---
 
 ## Valores e princípios ágeis aplicados
@@ -41,7 +42,7 @@ A metodologia se ancora no [Manifesto Ágil](https://agilemanifesto.org/iso/ptbr
 | Valor ágil | Como o time aplica |
 |---|---|
 | **Indivíduos e interações** mais que processos e ferramentas | Reuniões síncronas semanais no Discord; decisões discutidas em canal aberto, não impostas por liderança fixa. |
-| **Software em funcionamento** mais que documentação abrangente | Toda sprint deve produzir incremento integrado e deployado (Vercel + Railway). Documentação acompanha o código, não o substitui. |
+| **Software em funcionamento** mais que documentação abrangente | Toda sprint deve produzir incremento integrado e deployado (Railway). Documentação acompanha o código, não o substitui. |
 | **Colaboração com o cliente** mais que negociação de contratos | Reuniões periódicas com os Product Owners no Microsoft Teams; backlog é repriorizado de forma colaborativa, não congelado. |
 | **Responder a mudanças** mais que seguir um plano | Backlog da release é revisto a cada sprint; itens podem ser repriorizados, divididos ou removidos quando o aprendizado da sprint anterior justifica. |
 
@@ -54,59 +55,58 @@ Princípios do manifesto especialmente enfatizados:
 
 ---
 
-## Práticas de Engenharia (Extreme Programming - XP)
+## Metodologia considerada
 
-Para complementar a gestão e garantir a qualidade técnica e de código, a equipe utiliza conceitos do **Extreme Programming (XP)**:
-
-- **Pareamento (Pair Programming):** Realizado para nivelar o conhecimento da equipe, reduzir a chance de bugs e disseminar as regras de negócio em todas as frentes.
-- **Integração Contínua (CI):** Validação constante do código integrado por meio de pipelines de verificação de testes, lint e build.
-- **Refatoração Contínua:** Melhoria orgânica do código sem alteração do escopo do comportamento original.
-
----
+Dado as primeiras reuniões com os PO's, foi levantado varios recursos sobre Inteligencia Artificial e melhorias em gameficação que não sao stacks predominantes do time. Dado o risco e talvez possiveis insatisfações, foi pensado em utilizar uma metodologia voltada a protótipos onde o time poderia sempre testar coisas novas para aprendizado proprio e com o objetivo de satisfazer as expectativas dos PO's. Porem como o tempo da disciplina é pouco esse tipo de abordagem entregaria muito pouco e fazia o time ter muito retrabalho semanalmente então foi desconsiderado.
 
 ## Estrutura de papéis
 
 ### Product Owners (fixos, externos ao time de desenvolvimento)
 
-São stakeholders externos à equipe de desenvolvimento. Validam o produto, definem prioridades de release e participam das reuniões de revisão. Por serem externos, a comunicação é mediada pelo Scrum Master da sprint.
+São stakeholders externos à equipe de desenvolvimento, os clientes do produto final. Validam o produto, definem as prioridades a serem entregadas e participam das reuniões de revisão. Por serem externos, a comunicação é mediada pelo Scrum Master da sprint.
 
 ### Scrum Master (rotativo por sprint e feito em duplas)
 
-Um membro do time assume o papel de SM por **duas sprints consecutivas** (≈ 2 semanas). É a janela mais longa entre os papéis rotativos para garantir continuidade no acompanhamento de impedimentos e na interlocução com os POs. Responsabilidades:
+Dois membros do time assumem o papel de SM por **sprint**. O tempo é relativamente curto porem faz todos exercitarem, buscar aprender sobre o produto semana a semana e terem mais contato com os PO's. São esponsabilidades do SM:
 
-- Facilitar as cerimônias da sprint.
-- Remover impedimentos levantados pelo time.
-- Mediar a comunicação com os POs.
-- Garantir que o quadro Kanban (ZenHub) reflita o estado real do trabalho.
+- Facilitar as cerimônias da sprint;
+- Remover impedimentos levantados pelo time;
+- Mediar a comunicação com os POs;
+- Garantir que o quadro Kanban (ZenHub) reflita o estado real do trabalho;
+- Iniciar Planning e Reviews;
+- Mediar comunicação entre os membros do time;
+- Dividir o trabalho adequadamente;
 
-### Equipe de desenvolvimento (integrantes, rotação total por sprint)
+### Equipe de desenvolvimento (rotativo por sprint)
 
-A cada sprint, todos os 9 integrantes podem migrar entre as frentes técnicas:
+A cada sprint, todos os 11 integrantes podem migrar entre as frentes técnicas:
 
 - **Frente Frontend** (React/Vite/FSD)
 - **Frente Backend** (Node/Express/Prisma)
 - **Frente Documentação** (MkDocs)
 - **Frente DevOps/CI** (GitHub Actions, SonarCloud, deploy)
+- **Frente de IA** (majoritariamente python)
 
 A rotação total é deliberadamente pedagógica: ao final da release, todos os integrantes terão tido contato com todas as frentes, evitando silos de conhecimento e cumprindo o objetivo formativo da disciplina EPS.
-
-> A equipe iniciou o projeto com 12 integrantes e, ao longo das releases (12 → 10 → 9), passou a contar com 9 integrantes ativos. A rotação de papéis e o pareamento foram reforçados para absorver a redução sem criar silos de conhecimento.
 
 ---
 
 ## Cadência e cerimônias
 
-A unidade de iteração é a **sprint de 1 semana**. As cerimônias são enxutas para caber no calendário acadêmico:
+A unidade de iteração é a **sprint** que tem duração de **uma semana**. As cerimônias são enxutas para caber no calendário acadêmico:
+> Scrum combina quatro eventos formais para inspeção e adaptação, contidos dentro de um
+evento, a Sprint. Esses eventos funcionam porque implementam os pilares empíricos do
+Scrum: transparência, inspeção e adaptação.[2]
 
 | Cerimônia | Frequência | Duração-alvo | Participantes | Objetivo |
 |---|---|---|---|---|
 | **Sprint Planning** | Início da sprint | ~1h | Time + SM | Selecionar itens do backlog da release, definir meta da sprint e distribuir frentes. |
-| **Reunião com POs** | 1x por sprint | ~1h | SM + POs (time observa) | Apresentar incremento da sprint anterior, validar prioridades e capturar feedback. |
-| **Sprint Review** | Fim da sprint | ~30min | Time + SM | Demonstrar o que foi entregue e medir aderência à meta da sprint. |
-| **Retrospectiva** | Fim da sprint | ~30min | Time + SM | Identificar o que manter, o que mudar e definir 1–2 ações concretas para a próxima sprint. |
-| **Sincronização assíncrona** | Diariamente | Contínua | Time | Substitui a daily formal. Atualizações de progresso e bloqueios via WhatsApp (interna) e Discord (com POs). |
+| **Reunião com POs** | 1x por sprint | ~1:30h | SM + POs (time observa) | Apresentar incremento da sprint anterior, validar prioridades e capturar feedback. |
+| **Sprint Review** | Fim da sprint | ~1h | Time + SM | Demonstrar o que foi entregue e medir aderência à meta da sprint. |
+| **Retrospectiva** | Fim da sprint | ~1h | Time + SM | Identificar o que manter, o que mudar e definir 1–2 ações concretas para a próxima sprint. |
+| **Sincronização assíncrona** | Diariamente | Contínua | Time + SM | Substitui a daily formal. Atualizações de progresso e bloqueios via WhatsApp (interna) e Discord (com POs). |
 
-> **Por que sem daily síncrona?** O custo de sincronizar 9 agendas diariamente em um time remoto e acadêmico é alto e o ganho é baixo: o quadro ZenHub e os canais assíncronos já dão visibilidade do progresso. A sincronia é reservada para os momentos de maior valor (planning, review, retro, reunião com PO). A daily acontece de forma **assíncrona e diária** pelos canais do time.
+> **Por que sem daily síncrona?** O custo de sincronizar 11 agendas diariamente em um time remoto e acadêmico é alto e o ganho é baixo: o quadro ZenHub e os canais assíncronos já dão visibilidade do progresso. A sincronia é reservada para os momentos de maior valor (planning, review, retro, reunião com PO). A daily acontece de forma **assíncrona e diária** pelos canais do time.
 
 ---
 
@@ -120,8 +120,6 @@ O fluxo de cada item segue um quadro Kanban no **ZenHub** (integrado ao GitHub).
 4. **Em Revisão**: PR aberto aguardando code review.
 5. **Concluído**: merge na `main` + DoD atendida.
 
-*(Nota: O diagrama visual foi simplificado para lista para evitar quebras de conflito)*
-
 ---
 
 ## Ferramentas de apoio
@@ -130,7 +128,7 @@ O fluxo de cada item segue um quadro Kanban no **ZenHub** (integrado ao GitHub).
 |---|---|
 | **GitHub** | Repositórios, issues, Pull Requests e CI (GitHub Actions). |
 | **ZenHub** | Quadro Kanban da sprint, conectado às issues do GitHub. Fonte única da verdade sobre o estado do trabalho. |
-| **WhatsApp** | Comunicação interna rápida e assíncrona apenas entre os 12 membros do time. |
+| **WhatsApp** | Comunicação interna rápida e assíncrona apenas entre os 11 membros do time. |
 | **Discord** | Reuniões síncronas internas do time (planning, review, retro) e comunicação assíncrona com os POs. |
 | **Microsoft Teams** | Reuniões síncronas com os Product Owners. |
 
@@ -143,21 +141,18 @@ Os documentos abaixo descrevem **métodos** específicos e padrões técnicos in
 - [Política de Branches](../contribuicao/politica_branchs.md): modelo Git Flow adotado.
 - [Política de Commits](../contribuicao/politica_commits.md): Conventional Commits.
 - [Código de Conduta](../contribuicao/codigo_conduta.md): combinados de convivência.
-- [Métricas e Qualidade](../qualidade/qualidade.md): CI, cobertura mínima e SonarCloud.
 - [Matriz de Riscos](riscos.md): riscos monitorados a cada sprint.
 - [Comunicação](comunicacao.md): canais, periodicidade e regras de uso.
-- [Acompanhamento de Sprints](sprints.md): registros e métricas (EVM) de cada sprint.
 
 ---
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) |
-|---|---|---|---|
-| 27/04/2026 | 1.0 | Criação da metodologia, fluxo de desenvolvimento e Definition of Done | [Miguel Moreira](https://github.com/miguelmsoliveira) |
-| 03/05/2026 | 2.0 | Reescrita com foco em metodologia (Scrumban, valores ágeis, papéis, cadência); práticas operacionais movidas para documentos próprios | [Miguel Moreira](https://github.com/miguelmsoliveira) |
-| 04/05/2026 | 2.1 | Adição do XP nas abordagens de trabalho | [Genilson Junior](https://github.com/GenilsonJrs) |
-| 02/06/2026 | 2.2 | Atualização da composição da equipe (12 → 9 integrantes), ajuste das frentes de trabalho e detalhamento da daily assíncrona | [Miguel Moreira](https://github.com/EhOMiguel) |
+| Data | Versão | Descrição | Autor(es) | Reviso(es) |
+|---|---|---|---|---|
+| 18/09/2026 | 1.0 | Definição das Metodologias utilizadas, Definição dos papeis, Eventos e fluxo de trabalho | [Gabriel Freitas](https://github.com/gabrielfreitass1) | --- |
+
 
 ## Referencias 
-https://monday.com/blog/pt/desenvolvimento/metodologias-de-desenvolvimento-de-software/
+- [1] https://monday.com/blog/pt/desenvolvimento/metodologias-de-desenvolvimento-de-software/
+- [2] O Guia Definitivo para o Scrum: As Regras do Jogo, Ken Schwaber e Jeff Sutherland, 2020.
