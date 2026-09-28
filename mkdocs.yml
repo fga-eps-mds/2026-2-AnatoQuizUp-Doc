@@ -14,6 +14,9 @@ theme:
     primary: blue
     accent: teal
 
+markdown_extensions:
+  - attr_list
+
 nav:
   - Início: index.md
 
@@ -23,6 +26,9 @@ nav:
     - EAP: produto/EAP.md
     - Plano de Gerenciamento de Custos: produto/plano-de-custos.md
     - Plano de Gerenciamento de Riscos: produto/plano-de-riscos.md
+
+  - Gestão:
+    - Dashboards da R1: dashboards.md
 
   - Contribuição:
     - Política de Branches: contribuicao/branches.md
