@@ -92,16 +92,6 @@ Este repositório tem como objetivo manter a documentação do projeto, reunir o
                     <br />
             </td>
             <td align="center">
-                <a href="https://github.com/JoaoPedro2206">
-                    <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/151416735?v=4" width="100px;" alt="Imagem de Joao Pedro Ferreira Moraes "/>
-                    <br />
-                    <sub><b>Joao Pedro Ferreira Moraes</b></sub>
-                    <br />
-                </a>
-                    <sub><b>231028989</b></sub>
-                    <br />
-            </td>
-            <td align="center">
                 <a href="https://github.com/Leonardo0o0">
                     <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/82467659?v=4" width="100px;" alt="Imagem de Leonardo Sobrinho De Aguiar"/>
                     <br />
@@ -133,16 +123,6 @@ Este repositório tem como objetivo manter a documentação do projeto, reunir o
             </td>
         </tr>
         <tr>
-            <td align="center">
-                <a href="https://github.com/renanpariiz">
-                    <img style="border-radius: 50%;" src="https://avatars.githubusercontent.com/u/101299192?v=4" width="100px;" alt="Imagem de Renan Batista Gonçalves Pariz"/>
-                    <br />
-                    <sub><b>Renan Batista Gonçalves Pariz</b></sub>
-                    <br />
-                </a>
-                    <sub><b>222006392</b></sub>
-                    <br />
-            </td>
         </tr>
     </table>
 </center>
