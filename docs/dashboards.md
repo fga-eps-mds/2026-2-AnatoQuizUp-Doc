@@ -14,7 +14,7 @@ Métricas técnicas da R1: cobertura de testes por repositório (linhas, instru�
 funções e ramificações), comparada com a meta de 85%. Os dados vêm dos arquivos em 
 `analytics-raw-data/` deste repositório.
 
-[Abrir o dashboard no Streamlit](https://2026-2-anatoquizup-doc-r1.streamlit.app/){ .md-button .md-button--primary }
+[Abrir o dashboard no Streamlit](https://2026-2-anatoquizup-doc.streamlit.app/){ .md-button .md-button--primary }
 
 ## Origem dos dados
 
