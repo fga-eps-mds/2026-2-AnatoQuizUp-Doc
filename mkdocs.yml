@@ -16,6 +16,13 @@ theme:
 
 markdown_extensions:
   - attr_list
+  - admonition
+  - pymdownx.details
+  - pymdownx.superfences:
+      custom_fences:
+        - name: mermaid
+          class: mermaid
+          format: !!python/name:pymdownx.superfences.fence_code_format
 
 nav:
   - Início: index.md
@@ -28,7 +35,15 @@ nav:
     - Plano de Gerenciamento de Riscos: produto/plano-de-riscos.md
     - Roadmap: produto/roadmap.md
 
+  - Arquitetura:
+    - Visão Geral: arquitetura/visao-geral.md
+    - Tecnologias: arquitetura/tecnologias.md
+    - Decisões Arquiteturais: arquitetura/decisoes.md
+    - Banco de Dados: arquitetura/banco-de-dados.md
+    - Endpoints: arquitetura/endpoints.md
+
   - Gestão:
+    - Metodologia: metodologia/metodologia.md
     - Dashboards da R1: dashboards.md
 
   - Contribuição:
@@ -36,9 +51,9 @@ nav:
     - Política de Commits: contribuicao/commits.md
     - Política de Pull Requests: contribuicao/pull_requests.md
     - Política de Issues: contribuicao/issues.md
-  
+
   - Reuniões:
-    - Template de ata de reunião: reunioes/modelo-ata-reuniao.md 
+    - Template de ata de reunião: reunioes/modelo-ata-reuniao.md
 
 extra_css:
   - stylesheets/extra.css
