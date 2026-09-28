@@ -1,0 +1,39 @@
+{
+  "fonte": "jest --coverage",
+  "repositorio": "2026-2-AnatoQuizUp-Usuario-Service",
+  "branch": "main",
+  "commit": "4b99f3a95a3022e3a94ed2b0e69312ef530370c3",
+  "gerado_em": "2026-09-28T00:49:32-03:00",
+  "total": {
+    "lines": {
+      "total": 697,
+      "covered": 687,
+      "skipped": 0,
+      "pct": 98.56
+    },
+    "statements": {
+      "total": 701,
+      "covered": 690,
+      "skipped": 0,
+      "pct": 98.43
+    },
+    "functions": {
+      "total": 200,
+      "covered": 199,
+      "skipped": 0,
+      "pct": 99.5
+    },
+    "branches": {
+      "total": 381,
+      "covered": 357,
+      "skipped": 0,
+      "pct": 93.7
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  }
+}
