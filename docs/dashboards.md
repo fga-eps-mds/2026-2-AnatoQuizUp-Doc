@@ -8,6 +8,14 @@ Atualizado em **27/09/2026**. A R1 possui **11 itens mapeados**, sendo **6 concl
 
 > **Observação:** as estimativas em pontos e o histórico diário do burndown ainda não foram registrados pela equipe. Por isso, esses campos permanecem sem dados.
 
+## Dashboard interativo (Streamlit)
+
+Métricas técnicas da R1: cobertura de testes por repositório (linhas, instruções, 
+funções e ramificações), comparada com a meta de 85%. Os dados vêm dos arquivos em 
+`analytics-raw-data/` deste repositório.
+
+[Abrir o dashboard no Streamlit](https://2026-2-anatoquizup-doc-r1.streamlit.app/){ .md-button .md-button--primary }
+
 ## Origem dos dados
 
 Os dados foram consolidados em **27/09/2026** a partir das informações públicas dos repositórios do projeto.
@@ -27,3 +35,4 @@ Os cinco itens que ainda estavam abertos foram apresentados no painel como ponto
 | Versão | Data | Descrição | Elaboradora |
 | :-----: | :--: | --------- | ----------- |
 | 1.0 | 27/09/2026 | Criação do dashboard da Release 1 | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) |
+| 1.1 | 28/09/2026 | Adição do link para o dashboard interativo em Streamlit | [Rafael Matuda](https://github.com/rmatuda) |
