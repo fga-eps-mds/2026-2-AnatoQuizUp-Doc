@@ -1,0 +1,39 @@
+{
+  "fonte": "jest --coverage",
+  "repositorio": "2026-2-AnatoQuizUp-BFF",
+  "branch": "main",
+  "commit": "f0051b83a48f79041a8015bc29a0ad8991c0aa75",
+  "gerado_em": "2026-09-28T00:46:25-03:00",
+  "total": {
+    "lines": {
+      "total": 569,
+      "covered": 558,
+      "skipped": 0,
+      "pct": 98.06
+    },
+    "statements": {
+      "total": 588,
+      "covered": 576,
+      "skipped": 0,
+      "pct": 97.95
+    },
+    "functions": {
+      "total": 86,
+      "covered": 81,
+      "skipped": 0,
+      "pct": 94.18
+    },
+    "branches": {
+      "total": 169,
+      "covered": 155,
+      "skipped": 0,
+      "pct": 91.71
+    },
+    "branchesTrue": {
+      "total": 0,
+      "covered": 0,
+      "skipped": 0,
+      "pct": 100
+    }
+  }
+}
