@@ -4,9 +4,11 @@ Fontes de dados, todas em analytics-raw-data/<repo>/ no repositorio de Doc:
 
 1. SonarCloud: arquivos fga-eps-mds-<repo>-<data>-<versao>.json publicados pelo
    workflow "Export de metricas" (metricas.yml) de cada repositorio.
-2. Jest (plano B enquanto o SonarCloud nao esta configurado): arquivos
+2. Jest (coleta manual complementar ao SonarCloud): arquivos
    jest-coverage-<repo>-<data>.json gerados a partir do
-   coverage/coverage-summary.json de cada repositorio.
+   coverage/coverage-summary.json de cada repositorio. Mostram a cobertura
+   separada por tipo (linhas, instrucoes, funcoes e ramificacoes), que o
+   SonarCloud apresenta combinada em um unico percentual.
 
 Executar localmente (na raiz do repositorio de Doc):
     pip install -r dashboard/requirements.txt
