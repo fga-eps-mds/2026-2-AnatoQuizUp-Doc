@@ -20,9 +20,9 @@ A estrutura mantém os cinco ramos da documentação de 2026.1: gerenciamento, d
 
 O diagrama principal mostra a decomposição do projeto. O segundo amplia a Release 1 para facilitar a leitura na página.
 
-![Diagrama principal da EAP](../assets/images/eap-principal.svg)
+![Diagrama principal da EAP](../../site/assets/images/download%20(1).svg)
 
-![Detalhamento da Release 1](../assets/images/eap-release-1.svg)
+![Detalhamento da Release 1](../../site/assets/images/download.svg)
 
 ## 3. Dicionário da EAP
 
