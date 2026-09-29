@@ -13,7 +13,8 @@ A Release Major 1 entrega a base de **gamificação visual** do AnatoQuizUp: a i
 | Tarefas técnicas | 12 |
 | Repositórios | Web, BFF, Quiz-Service, Usuario-Service, Doc |
 | Base herdada | Loja, inventário, conquistas e ranking implementados em 2026.1; a R1 evolui essa base |
-| Protótipos | [Figma — telas da R1](COLOCAR_LINK_DO_FIGMA) |
+| Protótipos | [Figma — telas e itens da R1](https://www.figma.com/design/qKgur6yKTkAN83ofJtbFxM/AnatoQuizUp-2026.2?node-id=0-1) · [Figma — personalização do avatar](https://www.figma.com/design/8bVgBVQrqCdDK750IamfbO/Prototipo-per-av-aparencia?node-id=0-1) |
+| Visão do Produto | [Mural da Lean Inception no Figma](https://www.figma.com/board/IwsqM1gCmdrS2ZrR8HgRGz/Vis%C3%A3o-do-Produto-AnatoQuizUP-2026-2?node-id=0-1) |
 
 ## Escopo da release
 
@@ -61,7 +62,7 @@ flowchart LR
 
 | Prioridade | Status | Repositórios | Issue | Protótipo |
 |---|---|---|---|---|
-| Must | Parcial (3/5 tarefas; ilustrações em andamento) | Web, Usuario-Service, BFF | [#27](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/27) | [Figma](COLOCAR_LINK_DA_TELA) |
+| Must | Parcial (3/5 tarefas; ilustrações em andamento) | Web, Usuario-Service, BFF | [#27](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/27) | [Figma](https://www.figma.com/design/8bVgBVQrqCdDK750IamfbO/Prototipo-per-av-aparencia?node-id=0-1) |
 
 #### Critérios de aceitação
 
@@ -93,7 +94,7 @@ Cenário: Avatar padrão é substituído após personalização
 
 | Prioridade | Status | Repositórios | Issue | Protótipo |
 |---|---|---|---|---|
-| Must | Parcial: Aparência e Acessórios concluídos; Roupas adiada para a R2 | Web, Quiz-Service, BFF | [#26](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/26) | [Figma](COLOCAR_LINK_DA_TELA) |
+| Must | Parcial: Aparência e Acessórios concluídos; Roupas adiada para a R2 | Web, Quiz-Service, BFF | [#26](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/26) | [Figma](https://www.figma.com/design/8bVgBVQrqCdDK750IamfbO/Prototipo-per-av-aparencia?node-id=0-1) |
 
 #### Critérios de aceitação
 
@@ -125,7 +126,7 @@ Cenário: Item não adquirido
 
 | Prioridade | Status | Repositórios | Issues | Protótipo |
 |---|---|---|---|---|
-| Must | Concluída | Web, BFF, Quiz-Service | [#28](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/28), [#25](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/25) | [Figma](COLOCAR_LINK_DA_TELA) |
+| Must | Concluída | Web, BFF, Quiz-Service | [#28](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/28), [#25](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/25) | [Figma](https://www.figma.com/design/qKgur6yKTkAN83ofJtbFxM/AnatoQuizUp-2026.2?node-id=0-1) |
 
 #### Critérios de aceitação
 
@@ -216,7 +217,7 @@ Cenário: Utilização inválida
 **TASK12 — Backlog do produto**
 - [x] Épicos derivados da Lean Inception, com tabela de cobertura.
 - [x] Histórias no formato Como / Quero / Para, priorizadas com MoSCoW.
-- [x] Critérios de aceitação das histórias da R1.
+- [x] Critérios de aceitação e protótipos das histórias da R1.
 - [ ] Validação por todos os membros do grupo.
 
 ## Rastreabilidade
@@ -236,3 +237,4 @@ Cenário: Utilização inválida
 | Data | Versão | Descrição | Autor(es) |
 | :--- | :--- | :--- | :--- |
 | 28/09/2026 | 1.0 | Detalhamento do Product Backlog e Project Backlog da Release Major 1 | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) |
+| 28/09/2026 | 1.1 | Inclusão dos links dos protótipos do Figma, conforme revisão do PR #58 | [Henrique Carvalho](https://github.com/henriquecarv3) |
