@@ -1,0 +1,2079 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AnatoQuizUp é uma plataforma gameficada para aprendizado de anatomia radiológica e de casos clínicos.">
+      
+      
+      
+      
+        <link rel="prev" href="../visao-geral/">
+      
+      
+        <link rel="next" href="../../arquitetura/visao-geral/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Release Major 1 - AnatoQuizUp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#backlog-release-major-1" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="AnatoQuizUp" class="md-header__button md-logo" aria-label="AnatoQuizUp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnatoQuizUp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Release Major 1
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../../produto/visao/" class="md-tabs__link">
+          
+  
+  Produto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arquitetura/visao-geral/" class="md-tabs__link">
+          
+  
+  Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../metodologia/metodologia/" class="md-tabs__link">
+          
+  
+  Gestão
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../operacao/ambiente-homologacao/" class="md-tabs__link">
+          
+  
+  Operação
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../contribuicao/branches/" class="md-tabs__link">
+          
+  
+  Contribuição
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reunioes/modelo-ata-reuniao/" class="md-tabs__link">
+          
+  
+  Reuniões
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AnatoQuizUp" class="md-nav__button md-logo" aria-label="AnatoQuizUp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AnatoQuizUp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Início
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Produto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Produto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/visao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão do Produto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/lean_inception/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lean Inception
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/EAP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EAP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/plano-de-custos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gerenciamento de Custos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/plano-de-riscos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gerenciamento de Riscos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_7" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_2_7" id="__nav_2_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Backlog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_7_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_2_7">
+            <span class="md-nav__icon md-icon"></span>
+            Backlog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visao-geral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Release Major 1
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Release Major 1
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escopo-da-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escopo da release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escopo da release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incluido" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incluído
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fora-de-escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fora de escopo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependências
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-backlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Product Backlog
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Product Backlog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us01-avatar-padrao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US01 — Avatar padrão
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="US01 — Avatar padrão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-aceitacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de aceitação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us02-personalizar-avatar" class="md-nav__link">
+    <span class="md-ellipsis">
+      US02 — Personalizar avatar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="US02 — Personalizar avatar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-aceitacao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de aceitação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us03-loja-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      US03 — Loja virtual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="US03 — Loja virtual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-aceitacao_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de aceitação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-backlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Backlog
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Backlog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-conclusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de conclusão
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rastreabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rastreabilidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arquitetura
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arquitetura
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/visao-geral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/tecnologias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tecnologias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/decisoes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decisões Arquiteturais
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/banco-de-dados/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Banco de Dados
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/endpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Gestão
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Gestão
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodologia/metodologia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dashboards da R1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Operação
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Operação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operacao/ambiente-homologacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ambiente de Homologação
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contribuição
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Contribuição
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/commits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Commits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/pull_requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Pull Requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reuniões
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Reuniões
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/modelo-ata-reuniao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Template de ata de reunião
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#visao-geral" class="md-nav__link">
+    <span class="md-ellipsis">
+      Visão geral
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escopo-da-release" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escopo da release
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Escopo da release">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#incluido" class="md-nav__link">
+    <span class="md-ellipsis">
+      Incluído
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#fora-de-escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Fora de escopo
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#dependencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Dependências
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#product-backlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Product Backlog
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Product Backlog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#us01-avatar-padrao" class="md-nav__link">
+    <span class="md-ellipsis">
+      US01 — Avatar padrão
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="US01 — Avatar padrão">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-aceitacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de aceitação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us02-personalizar-avatar" class="md-nav__link">
+    <span class="md-ellipsis">
+      US02 — Personalizar avatar
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="US02 — Personalizar avatar">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-aceitacao_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de aceitação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#us03-loja-virtual" class="md-nav__link">
+    <span class="md-ellipsis">
+      US03 — Loja virtual
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="US03 — Loja virtual">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-aceitacao_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de aceitação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#project-backlog" class="md-nav__link">
+    <span class="md-ellipsis">
+      Project Backlog
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Project Backlog">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#criterios-de-conclusao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Critérios de conclusão
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#rastreabilidade" class="md-nav__link">
+    <span class="md-ellipsis">
+      Rastreabilidade
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="backlog-release-major-1">Backlog — Release Major 1</h1>
+<h2 id="visao-geral">Visão geral</h2>
+<p>A Release Major 1 entrega a base de <strong>gamificação visual</strong> do AnatoQuizUp: a identidade do estudante por meio do <strong>avatar</strong> e a evolução da <strong>loja virtual</strong> com confirmação de compra, uso de potencializadores e histórico.</p>
+<table>
+<thead>
+<tr>
+<th>Aspecto</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Período</td>
+<td>17/08/2026 a 28/09/2026</td>
+</tr>
+<tr>
+<td>Épico</td>
+<td>EP01 — Gamificação e identidade do estudante</td>
+</tr>
+<tr>
+<td>Persona atendida</td>
+<td>Estudante</td>
+</tr>
+<tr>
+<td>Histórias de usuário</td>
+<td>3 (1 concluída, 2 parcialmente concluídas)</td>
+</tr>
+<tr>
+<td>Tarefas técnicas</td>
+<td>12</td>
+</tr>
+<tr>
+<td>Repositórios</td>
+<td>Web, BFF, Quiz-Service, Usuario-Service, Doc</td>
+</tr>
+<tr>
+<td>Base herdada</td>
+<td>Loja, inventário, conquistas e ranking implementados em 2026.1; a R1 evolui essa base</td>
+</tr>
+<tr>
+<td>Protótipos</td>
+<td><a href="https://www.figma.com/design/qKgur6yKTkAN83ofJtbFxM/AnatoQuizUp-2026.2?node-id=0-1">Figma — telas e itens da R1</a> · <a href="https://www.figma.com/design/8bVgBVQrqCdDK750IamfbO/Prototipo-per-av-aparencia?node-id=0-1">Figma — personalização do avatar</a></td>
+</tr>
+<tr>
+<td>Visão do Produto</td>
+<td><a href="https://www.figma.com/board/IwsqM1gCmdrS2ZrR8HgRGz/Vis%C3%A3o-do-Produto-AnatoQuizUP-2026-2?node-id=0-1">Mural da Lean Inception no Figma</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="escopo-da-release">Escopo da release</h2>
+<h3 id="incluido">Incluído</h3>
+<ul>
+<li>Avatar padrão (cérebro) atribuído a todo estudante e página <strong>Meu avatar</strong>.</li>
+<li>Personalização do avatar: <strong>Aparência</strong> e <strong>Acessórios</strong>.</li>
+<li>Loja virtual: confirmação de compra, controle de quantidade e mensagens de resultado.</li>
+<li>Utilização de itens potencializadores com validação e consumo.</li>
+<li>Histórico unificado de compras e utilizações.</li>
+<li>Ambiente de homologação.</li>
+</ul>
+<h3 id="fora-de-escopo">Fora de escopo</h3>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Motivo</th>
+<th>Destino</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Pontos de experiência (XP)</td>
+<td>Esforço maior que o previsto; o time priorizou concluir loja e avatar ponta a ponta</td>
+<td>R2 (US04)</td>
+</tr>
+<tr>
+<td>Aba "Roupas" do avatar</td>
+<td>Priorizou-se concluir Aparência e Acessórios; a aba ficou desabilitada na interface</td>
+<td>R2 (issue #33)</td>
+</tr>
+<tr>
+<td>Item "Congelar ofensiva"</td>
+<td>Depende de um sistema de ofensiva diária, ainda não implementado</td>
+<td>Backlog</td>
+</tr>
+</tbody>
+</table>
+<h2 id="dependencias">Dependências</h2>
+<pre class="mermaid"><code>flowchart LR
+    T04["TASK04&lt;br/&gt;Avatar padrão"] --&gt; US01["US01&lt;br/&gt;Avatar padrão"]
+    US01 --&gt; US02["US02&lt;br/&gt;Personalizar avatar"]
+    T05["TASK05&lt;br/&gt;Aparência"] --&gt; US02
+    T06["TASK06&lt;br/&gt;Acessórios"] --&gt; US02
+    T07["TASK07&lt;br/&gt;Roupas (R2)"] -.-&gt; US02
+    T01["TASK01&lt;br/&gt;Compra"] --&gt; US03["US03&lt;br/&gt;Loja virtual"]
+    T02["TASK02&lt;br/&gt;Potencializador"] --&gt; US03
+    T03["TASK03&lt;br/&gt;Histórico"] --&gt; US03
+    T01 --&gt; T03
+    T02 --&gt; T03
+    US03 -.-&gt;|"itens adquiridos"| US02</code></pre>
+<hr />
+<h2 id="product-backlog">Product Backlog</h2>
+<h3 id="us01-avatar-padrao">US01 — Avatar padrão</h3>
+<p><strong>Como</strong> estudante, <strong>quero</strong> possuir um avatar padrão <strong>para</strong> ter uma identidade na plataforma desde o primeiro acesso.</p>
+<table>
+<thead>
+<tr>
+<th>Prioridade</th>
+<th>Status</th>
+<th>Repositórios</th>
+<th>Issue</th>
+<th>Protótipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Must</td>
+<td>Parcial (3/5 tarefas; ilustrações em andamento)</td>
+<td>Web, Usuario-Service, BFF</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/27">#27</a></td>
+<td><a href="https://www.figma.com/design/8bVgBVQrqCdDK750IamfbO/Prototipo-per-av-aparencia?node-id=0-1">Figma</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="criterios-de-aceitacao">Critérios de aceitação</h4>
+<div class="highlight"><pre><span></span><code><span class="k">Cenário:</span><span class="nf"> Novo usuário recebe um avatar padrão</span>
+<span class="k">  Dado </span><span class="nf">que um novo usuário concluiu o cadastro</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele acessa a plataforma pela primeira vez</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">um avatar padrão deve ser atribuído automaticamente</span>
+
+<span class="k">Cenário:</span><span class="nf"> Avatar padrão é exibido no perfil</span>
+<span class="k">  Dado </span><span class="nf">que o usuário ainda não personalizou seu avatar</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele acessa seu perfil ou aparece em outras telas</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">o avatar padrão deve ser exibido</span>
+
+<span class="k">Cenário:</span><span class="nf"> Avatar padrão permanece até ser personalizado</span>
+<span class="k">  Dado </span><span class="nf">que o usuário possui apenas o avatar padrão</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele faz login em sessões futuras</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">o mesmo avatar padrão deve continuar sendo exibido</span>
+
+<span class="k">Cenário:</span><span class="nf"> Avatar padrão é substituído após personalização</span>
+<span class="k">  Dado </span><span class="nf">que o usuário possui o avatar padrão</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele personaliza e salva um novo avatar</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">o avatar personalizado passa a representá-lo</span>
+</code></pre></div>
+<h3 id="us02-personalizar-avatar">US02 — Personalizar avatar</h3>
+<p><strong>Como</strong> estudante, <strong>quero</strong> personalizar a aparência, os acessórios e as roupas do meu avatar <strong>para</strong> me sentir representado e exibir os itens que conquistei.</p>
+<table>
+<thead>
+<tr>
+<th>Prioridade</th>
+<th>Status</th>
+<th>Repositórios</th>
+<th>Issue</th>
+<th>Protótipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Must</td>
+<td>Parcial: Aparência e Acessórios concluídos; Roupas adiada para a R2</td>
+<td>Web, Quiz-Service, BFF</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/26">#26</a></td>
+<td><a href="https://www.figma.com/design/8bVgBVQrqCdDK750IamfbO/Prototipo-per-av-aparencia?node-id=0-1">Figma</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="criterios-de-aceitacao_1">Critérios de aceitação</h4>
+<div class="highlight"><pre><span></span><code><span class="k">Cenário:</span><span class="nf"> Exibir opções de personalização</span>
+<span class="k">  Dado </span><span class="nf">que o estudante acessa a página de personalização</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele seleciona uma aba (Aparência ou Acessórios)</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">devem ser exibidas as opções daquela categoria</span>
+
+<span class="k">Cenário:</span><span class="nf"> Pré-visualizar um item</span>
+<span class="k">  Dado </span><span class="nf">que o estudante está em uma aba de personalização</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele seleciona um item disponível</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">a pré-visualização do avatar é atualizada</span>
+
+<span class="k">Cenário:</span><span class="nf"> Salvar a personalização</span>
+<span class="k">  Dado </span><span class="nf">que o estudante selecionou os itens desejados</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele confirma a personalização</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">as alterações são salvas e exibidas nos próximos acessos</span>
+
+<span class="k">Cenário:</span><span class="nf"> Item não adquirido</span>
+<span class="k">  Dado </span><span class="nf">que o estudante está em uma aba de personalização</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele tenta selecionar um item que ainda não possui</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">a seleção é impedida e o sistema indica que o item está na loja</span>
+</code></pre></div>
+<h3 id="us03-loja-virtual">US03 — Loja virtual</h3>
+<p><strong>Como</strong> estudante, <strong>quero</strong> comprar e utilizar itens na loja virtual <strong>para</strong> usar minhas moedas para potencializar meu aprendizado.</p>
+<table>
+<thead>
+<tr>
+<th>Prioridade</th>
+<th>Status</th>
+<th>Repositórios</th>
+<th>Issues</th>
+<th>Protótipo</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Must</td>
+<td>Concluída</td>
+<td>Web, BFF, Quiz-Service</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/28">#28</a>, <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/25">#25</a></td>
+<td><a href="https://www.figma.com/design/qKgur6yKTkAN83ofJtbFxM/AnatoQuizUp-2026.2?node-id=0-1">Figma</a></td>
+</tr>
+</tbody>
+</table>
+<h4 id="criterios-de-aceitacao_2">Critérios de aceitação</h4>
+<div class="highlight"><pre><span></span><code><span class="k">Cenário:</span><span class="nf"> Comprar item com saldo suficiente</span>
+<span class="k">  Dado </span><span class="nf">que o estudante possui moedas suficientes</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele confirma a compra de um item</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">o item é adicionado ao inventário</span>
+<span class="nf">  </span><span class="k">E </span><span class="nf">o saldo é descontado uma única vez</span>
+<span class="nf">  </span><span class="k">E </span><span class="nf">a compra aparece no histórico</span>
+
+<span class="k">Cenário:</span><span class="nf"> Comprar item sem saldo suficiente</span>
+<span class="k">  Dado </span><span class="nf">que o estudante não possui moedas suficientes</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele tenta comprar o item</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">saldo e inventário não são alterados</span>
+<span class="nf">  </span><span class="k">E </span><span class="nf">uma mensagem de saldo insuficiente é exibida</span>
+
+<span class="k">Cenário:</span><span class="nf"> Utilizar um potencializador</span>
+<span class="k">  Dado </span><span class="nf">que o estudante possui um potencializador no inventário</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">ele confirma o uso e as condições de uso são atendidas</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">o efeito é aplicado</span>
+<span class="nf">  </span><span class="k">E </span><span class="nf">a quantidade do item diminui em uma unidade</span>
+<span class="nf">  </span><span class="k">E </span><span class="nf">o uso aparece no histórico</span>
+
+<span class="k">Cenário:</span><span class="nf"> Utilização inválida</span>
+<span class="k">  Dado </span><span class="nf">que o item está ausente, sem unidades ou fora das condições de uso</span>
+<span class="nf">  </span><span class="k">Quando </span><span class="nf">o estudante tenta utilizá-lo</span>
+<span class="nf">  </span><span class="k">Então </span><span class="nf">nada é alterado e o motivo é informado</span>
+</code></pre></div>
+<hr />
+<h2 id="project-backlog">Project Backlog</h2>
+<table>
+<thead>
+<tr>
+<th>ID</th>
+<th>Tarefa</th>
+<th>US</th>
+<th>Repositórios</th>
+<th>Issue</th>
+<th>Status</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>TASK01</td>
+<td>Comprar item na loja, ponta a ponta</td>
+<td>US03</td>
+<td>Web, Quiz-Service</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/35">#35</a></td>
+<td>Concluída</td>
+</tr>
+<tr>
+<td>TASK02</td>
+<td>Utilizar potencializador, ponta a ponta</td>
+<td>US03</td>
+<td>Web, Quiz-Service</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/38">#38</a></td>
+<td>Concluída</td>
+</tr>
+<tr>
+<td>TASK03</td>
+<td>Integrar loja, histórico e qualidade</td>
+<td>US03</td>
+<td>Web, BFF, Quiz-Service</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/40">#40</a></td>
+<td>Concluída</td>
+</tr>
+<tr>
+<td>TASK04</td>
+<td>Construir o avatar padrão e a página "Meu avatar"</td>
+<td>US01</td>
+<td>Web, BFF, Usuario-Service</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/31">#31</a></td>
+<td>Concluída</td>
+</tr>
+<tr>
+<td>TASK05</td>
+<td>Página de personalização — Aparência</td>
+<td>US02</td>
+<td>Web, Quiz-Service</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/32">#32</a></td>
+<td>Concluída</td>
+</tr>
+<tr>
+<td>TASK06</td>
+<td>Página de personalização — Acessórios</td>
+<td>US02</td>
+<td>Web</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/34">#34</a></td>
+<td>Concluída</td>
+</tr>
+<tr>
+<td>TASK07</td>
+<td>Página de personalização — Roupas</td>
+<td>US02</td>
+<td>Web, Quiz-Service</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/33">#33</a></td>
+<td>Adiada para a R2</td>
+</tr>
+<tr>
+<td>TASK08</td>
+<td>Página de personalização do avatar (estrutura)</td>
+<td>US02</td>
+<td>Web</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/30">#30</a></td>
+<td>Em andamento</td>
+</tr>
+<tr>
+<td>TASK09</td>
+<td>Definir ilustrações do avatar</td>
+<td>US01, US02</td>
+<td>Web</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/29">#29</a></td>
+<td>Em andamento</td>
+</tr>
+<tr>
+<td>TASK10</td>
+<td>Criar ambiente de homologação</td>
+<td>Todas</td>
+<td>Quiz-Service, infraestrutura</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/41">#41</a></td>
+<td>Concluída</td>
+</tr>
+<tr>
+<td>TASK11</td>
+<td>Documento de arquitetura</td>
+<td>—</td>
+<td>Doc</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/53">#53</a></td>
+<td>Concluída</td>
+</tr>
+<tr>
+<td>TASK12</td>
+<td>Backlog do produto</td>
+<td>—</td>
+<td>Doc</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/6">#6</a></td>
+<td>Em andamento</td>
+</tr>
+</tbody>
+</table>
+<h3 id="criterios-de-conclusao">Critérios de conclusão</h3>
+<p><strong>TASK01 — Compra ponta a ponta</strong>
+- [x] Catálogo, preço e saldo exibidos na loja.
+- [x] Compra enviada somente após confirmação, com controle de quantidade.
+- [x] Débito único do saldo e inclusão no inventário.
+- [x] Modais de resultado para sucesso e saldo insuficiente.</p>
+<p><strong>TASK02 — Uso de potencializador</strong>
+- [x] Item utilizável com efeito e condições de uso definidos.
+- [x] Ativação do potencializador pelo inventário, após confirmação.
+- [x] Consumo de uma unidade somente após sucesso.
+- [x] Registro da utilização para o histórico.</p>
+<p><strong>TASK03 — Histórico e qualidade</strong>
+- [x] Endpoint <code>GET /api/v1/loja/meu-historico</code> com compras e usos do usuário autenticado.
+- [x] O BFF usa a identidade do JWT, ignorando identidade enviada pelo cliente.
+- [x] Aba <strong>Histórico</strong> na loja.
+- [x] Testes de contrato (frontend × backend) e ponta a ponta, sem regressão nos cosméticos.</p>
+<p><strong>TASK04 — Avatar padrão</strong>
+- [x] Cérebro exibido como avatar padrão no perfil e na barra lateral.
+- [x] Endpoint autenticado <code>GET /api/v1/usuarios/meu-avatar</code>.
+- [x] Página <strong>Meu avatar</strong> acessível por Perfil → Meu avatar.
+- [x] Acesso à personalização pelo ícone de edição (caneta).</p>
+<p><strong>TASK05 — Aparência</strong>
+- [x] Personalização da cor do cérebro e do cabelo.
+- [x] Itens de rosto e cabelo disponíveis no catálogo da loja.</p>
+<p><strong>TASK06 — Acessórios</strong>
+- [x] Aba <strong>Acessórios</strong> na personalização do avatar.
+- [x] Equipar e desequipar acessórios do inventário.</p>
+<p><strong>TASK10 — Homologação</strong>
+- [x] Seed de dados para o ambiente de homologação, incluindo itens utilizáveis.
+- [x] Armazenamento de imagens opcional no ambiente de homologação.</p>
+<p><strong>TASK12 — Backlog do produto</strong>
+- [x] Épicos derivados da Lean Inception, com tabela de cobertura.
+- [x] Histórias no formato Como / Quero / Para, priorizadas com MoSCoW.
+- [x] Critérios de aceitação e protótipos das histórias da R1.
+- [ ] Validação por todos os membros do grupo.</p>
+<h2 id="rastreabilidade">Rastreabilidade</h2>
+<table>
+<thead>
+<tr>
+<th>Item</th>
+<th>Pull Requests</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>US01 / TASK04 — Avatar padrão</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/2">Web #2</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-BFF/pull/2">BFF #2</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Usuario-Service/pull/2">Usuario-Service #2</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/8">Web #8</a></td>
+</tr>
+<tr>
+<td>TASK05 — Aparência</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/5">Web #5</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/4">Quiz-Service #4</a></td>
+</tr>
+<tr>
+<td>TASK06 — Acessórios</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/7">Web #7</a></td>
+</tr>
+<tr>
+<td>TASK01 — Compra</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/3">Web #3</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/2">Quiz-Service #2</a></td>
+</tr>
+<tr>
+<td>TASK02 — Potencializador</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/4">Web #4</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/3">Quiz-Service #3</a></td>
+</tr>
+<tr>
+<td>TASK03 — Histórico e qualidade</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/6">Web #6</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/5">Quiz-Service #5</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-BFF/pull/3">BFF #3</a></td>
+</tr>
+<tr>
+<td>TASK10 — Homologação</td>
+<td><a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/6">Quiz-Service #6</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/7">Quiz-Service #7</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/9">Quiz-Service #9</a></td>
+</tr>
+</tbody>
+</table>
+<h2 id="historico-de-versao">Histórico de Versão</h2>
+<table>
+<thead>
+<tr>
+<th style="text-align: left;">Data</th>
+<th style="text-align: left;">Versão</th>
+<th style="text-align: left;">Descrição</th>
+<th style="text-align: left;">Autor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td style="text-align: left;">28/09/2026</td>
+<td style="text-align: left;">1.0</td>
+<td style="text-align: left;">Detalhamento do Product Backlog e Project Backlog da Release Major 1</td>
+<td style="text-align: left;"><a href="https://github.com/henriquecarv3">Henrique Carvalho</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">28/09/2026</td>
+<td style="text-align: left;">1.1</td>
+<td style="text-align: left;">Inclusão dos links dos protótipos do Figma, conforme revisão do PR #58</td>
+<td style="text-align: left;"><a href="https://github.com/henriquecarv3">Henrique Carvalho</a></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
