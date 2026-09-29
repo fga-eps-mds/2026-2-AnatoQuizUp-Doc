@@ -18,22 +18,8 @@ Ele deve ser lido em conjunto com os demais artefatos da R1, e não como substit
 | --- | --- |
 | Visão, escopo e planejamento do produto | [Visão do Produto](../produto/visao.md), [Roadmap](../produto/roadmap.md), [EAP](../produto/EAP.md) e [Plano de Riscos](../produto/plano-de-riscos.md). |
 | Arquitetura e decisões técnicas | [Visão de Arquitetura](../arquitetura/visao-geral.md), [Decisões Arquiteturais](../arquitetura/decisoes.md), [Banco de Dados](../arquitetura/banco-de-dados.md) e [Endpoints](../arquitetura/endpoints.md). |
-| Indicadores de projeto, processo e produto | [Dashboard da R1](../dashboards.md). A automação/exportação do SonarCloud ainda é acompanhada na [issue #55](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/55). |
+| Indicadores de projeto, processo e produto | [Dashboard da R1](../dashboards.md). |
 | Ambiente integrado, roteiro de teste e limitações | Esta página e a [issue #41](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/41). |
-
-## Rastreabilidade de implementação
-
-| Item | Evidência | Situação |
-| --- | --- | --- |
-| Criação do ambiente | [Issue #41](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/41) | Concluída. |
-| Armazenamento de imagens opcional em homologação | [Quiz-Service PR #6](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/6) | Concluído; imagens permanecem desativadas neste ambiente. |
-| Dados demonstrativos controlados | [Quiz-Service PR #7](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/7) e [PR #9](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/9) | Concluído; a execução exige comando e confirmação explícitos. |
-| Compra de item | [Issue #35](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/35), [Web PR #3](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/3) e [Quiz-Service PR #2](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/2) | Validado em homologação. |
-| Uso de potencializador | [Issue #38](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/38), [Web PR #4](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/4) e [Quiz-Service PR #3](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/3) | Validado em homologação para o Café do Foco. |
-| Histórico, contratos e qualidade da loja | [Issue #40](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/40), [Web PR #6](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/6), [BFF PR #3](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-BFF/pull/3) e [Quiz-Service PR #5](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/5) | Integrado e testado. |
-| Divulgação do acesso no Web | [Web PR #10](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/10) | Concluído. |
-
-Os links acima permitem partir de uma funcionalidade demonstrada para a issue, os PRs e os repositórios que a modificaram. Eles não substituem a revisão humana nem a explicação do time sobre o código e as decisões tomadas.
 
 ## Acesso
 
@@ -115,11 +101,11 @@ O deploy de homologação deve acontecer **após** a mudança passar por revisã
 
 Quando o Quiz-Service é atualizado, suas migrations são aplicadas no processo de inicialização configurado para o serviço. Migrations alteram a **estrutura** do banco; elas não são, por si só, uma garantia de que haverá conteúdo de teste. O catálogo é sincronizado no deploy.
 
-O cenário demonstrativo de questões, turmas e itens foi carregado por uma seed controlada, implementada no [PR #7](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/7) e corrigida no [PR #9](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/9) do Quiz-Service. Essa seed não é disparada no deploy normal: exige uma confirmação explícita e pode reinicializar dados de demonstração. Ela deve ser usada somente por alguém do time que entenda o impacto, após registrar a necessidade na issue ou no PR correspondente.
+O cenário demonstrativo de questões, turmas e itens foi carregado por uma seed controlada. Essa seed não é disparada no deploy normal: exige uma confirmação explícita e pode reinicializar dados de demonstração. Ela deve ser usada somente por alguém do time que entenda o impacto e registre a necessidade antes da execução.
 
 Em caso de regressão após um deploy, a equipe deve interromper a demonstração do fluxo afetado, registrar o problema e decidir humanamente entre corrigir e publicar uma nova versão ou retornar a uma versão estável na plataforma. Não existe, por enquanto, rollback automatizado documentado; esta é uma lacuna a ser tratada antes de tratar a homologação como pré-produção.
 
-## Roteiro de validação integrado
+## Checklist de validação integrado
 
 Antes de uma demonstração, realizar ao menos os seguintes testes manuais:
 
@@ -134,7 +120,7 @@ Antes de uma demonstração, realizar ao menos os seguintes testes manuais:
 | Loja e inventário | Compra desconta ATP; item aparece no inventário. |
 | Café do Foco | Ao usar o item, o próximo acerto concede o ATP normal mais o bônus equivalente. |
 
-Na validação realizada em 28/09/2026, foram confirmados: criação de questões sem imagem por professor; exibição dessas questões para aluno; crédito de 50 ATP por acerto difícil; compra e uso do Café do Foco; e crédito de 25 ATP do acerto médio mais 25 ATP adicionais do efeito do item. A evidência funcional está rastreada pelas [issues #35](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/35), [#38](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/38) e [#40](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/40).
+Na validação realizada em 28/09/2026, foram confirmados: criação de questões sem imagem por professor; exibição dessas questões para aluno; crédito de 50 ATP por acerto difícil; compra e uso do Café do Foco; e crédito de 25 ATP do acerto médio mais 25 ATP adicionais do efeito do item.
 
 Utilizar contas de teste gerenciadas pela equipe. As credenciais não pertencem a esta documentação e não devem ser publicadas em issues, PRs ou commits.
 
@@ -148,7 +134,7 @@ Se uma ferramenta de IA for usada para rascunhar documentação, configuração 
 
 As limitações abaixo são conhecidas e devem ser comunicadas em demonstrações, sem apresentá-las como funcionalidades concluídas:
 
-1. **Imagens de questões:** o armazenamento MinIO está temporariamente desativado na homologação, conforme a decisão implementada no [Quiz-Service PR #6](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/6). O fluxo de questões sem imagem funciona; para a demonstração, criar ou usar apenas questões sem imagem. A restauração de imagens exige configurar uma solução de armazenamento compatível e retestar upload, leitura e remoção de arquivos.
+1. **Imagens de questões:** o armazenamento MinIO está temporariamente desativado na homologação. O fluxo de questões sem imagem funciona; para a demonstração, criar ou usar apenas questões sem imagem. A restauração de imagens exige configurar uma solução de armazenamento compatível e retestar upload, leitura e remoção de arquivos.
 2. **Itens de loja:** o Café do Foco está integrado ao quiz e foi validado. Os demais itens consumíveis presentes no catálogo ainda não têm efeito de jogo integrado e não devem ser usados como demonstração de funcionalidade completa.
 3. **Rotas internas da SPA:** a navegação pelo menu funciona. Recarregar diretamente uma rota interna ou abri-la por URL pode resultar em 404 no Netlify, pois o fallback de SPA ainda não foi configurado. Durante os testes, acessar as telas pelo menu a partir da página inicial.
 4. **Dados de homologação:** saldos, questões e resoluções são dados de teste persistentes. Eles podem ser alterados por testes da equipe e não devem ser interpretados como métricas reais.
@@ -160,4 +146,3 @@ As limitações abaixo são conhecidas e devem ser comunicadas em demonstraçõe
 - Configurar fallback de SPA no Netlify para suportar refresh e acesso direto às rotas internas.
 - Implementar e testar o efeito dos demais itens consumíveis ou ocultá-los até que estejam funcionais.
 - Definir uma rotina de deploy automatizado e de rollback documentada antes de usar o ambiente como pré-produção.
-- Concluir a [issue #55](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/55) para fortalecer a rastreabilidade automática de métricas de qualidade no dashboard.
