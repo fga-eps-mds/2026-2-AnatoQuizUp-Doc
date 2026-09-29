@@ -1,0 +1,78 @@
+{
+  "fontes": {
+    "riscos": "docs/produto/plano-de-riscos.md, seção 3 (Identificação e Plano de Ação dos Riscos)",
+    "pesos": "docs/produto/plano-de-riscos.md, seções 2.1 (Probabilidade) e 2.2 (Impacto)",
+    "faixas": "docs/produto/plano-de-riscos.md, seção 2.3 (Faixas de Prioridade)"
+  },
+  "pesos_probabilidade": {
+    "Muito Baixa": 1,
+    "Baixa": 2,
+    "Média": 3,
+    "Alta": 4,
+    "Muito Alta": 5
+  },
+  "pesos_impacto": {
+    "Muito Baixo": 1,
+    "Baixo": 2,
+    "Médio": 3,
+    "Alto": 4,
+    "Muito Alto": 5
+  },
+  "faixas": [
+    {"nome": "Muito Baixa", "min": 1, "max": 5},
+    {"nome": "Baixa", "min": 6, "max": 10},
+    {"nome": "Média", "min": 11, "max": 15},
+    {"nome": "Alta / Muito Alta", "min": 16, "max": 25}
+  ],
+  "riscos": [
+    {
+      "id": "RN01",
+      "risco": "Integrantes podem não estar familiarizados com as tecnologias adotadas (IA, LLMs, Chatbots).",
+      "categoria": "Organizacional",
+      "probabilidade": "Média",
+      "impacto": "Alto"
+    },
+    {
+      "id": "RN02",
+      "risco": "Indisponibilidade do cliente para validação de requisitos ou envio de materiais (ex: planilhas e casos OSCE).",
+      "categoria": "Externo",
+      "probabilidade": "Alta",
+      "impacto": "Muito Alto"
+    },
+    {
+      "id": "RN03",
+      "risco": "Vazamento de dados não anonimizados de pacientes nos casos clínicos de simulação.",
+      "categoria": "Externo",
+      "probabilidade": "Baixa",
+      "impacto": "Muito Alto"
+    },
+    {
+      "id": "RN04",
+      "risco": "Tarefas estimadas de forma equivocada, gerando atraso na execução da Sprint.",
+      "categoria": "Gerenciamento",
+      "probabilidade": "Alta",
+      "impacto": "Médio"
+    },
+    {
+      "id": "RN05",
+      "risco": "Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura).",
+      "categoria": "Técnico",
+      "probabilidade": "Baixa",
+      "impacto": "Muito Alto"
+    },
+    {
+      "id": "RN06",
+      "risco": "A qualidade do software e dos quizzes não corresponder às expectativas educacionais do cliente.",
+      "categoria": "Técnico",
+      "probabilidade": "Média",
+      "impacto": "Muito Alto"
+    },
+    {
+      "id": "RN07",
+      "risco": "Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente.",
+      "categoria": "Organizacional",
+      "probabilidade": "Alta",
+      "impacto": "Alto"
+    }
+  ]
+}

@@ -9,6 +9,11 @@ Fontes de dados, todas em analytics-raw-data/<repo>/ no repositorio de Doc:
    coverage/coverage-summary.json de cada repositorio. Mostram a cobertura
    separada por tipo (linhas, instrucoes, funcoes e ramificacoes), que o
    SonarCloud apresenta combinada em um unico percentual.
+3. GitHub (issues do repositorio de Doc): arquivos GitHub_API-Issues-*.json
+   publicados pelo mesmo workflow. Alimentam os indicadores de gestao
+   (velocity, burndown e EVM-Agil), junto com dashboard/config/gestao.json.
+4. Plano de riscos: dashboard/config/riscos.json, copiado de
+   docs/produto/plano-de-riscos.md, alimenta a matriz de riscos.
 
 Executar localmente (na raiz do repositorio de Doc):
     pip install -r dashboard/requirements.txt
@@ -17,14 +22,16 @@ Executar localmente (na raiz do repositorio de Doc):
 
 import json
 import re
-from datetime import datetime, timedelta, timezone
+from datetime import date, datetime, timedelta, timezone
 from pathlib import Path
 
 import pandas as pd
 import plotly.express as px
+import plotly.graph_objects as go
 import streamlit as st
 
 PASTA_DADOS = Path(__file__).resolve().parent.parent / "analytics-raw-data"
+PASTA_CONFIG = Path(__file__).resolve().parent / "config"
 META_COBERTURA = 85.0
 FORMATO_DATA = "%m-%d-%Y-%H-%M-%S"
 PADRAO_DATA = r"\d{2}-\d{2}-\d{4}-\d{2}-\d{2}-\d{2}"
@@ -56,6 +63,14 @@ METRICAS_JEST = {
     "functions": "Funções (%)",
     "branches": "Ramificações (%)",
 }
+
+# Cores dos graficos de gestao: serie principal e um tom mais claro do mesmo azul.
+COR_SERIE = "#2a78d6"
+COR_SERIE_CLARA = "#86b6ef"
+# Cores das faixas de prioridade do plano de riscos (paleta de status: bom, atencao, serio, critico).
+CORES_FAIXAS_RISCO = ["#0ca30c", "#fab219", "#ec835a", "#d03b3b"]
+# Cor do texto sobre cada faixa, para manter contraste.
+TEXTO_FAIXAS_RISCO = ["#ffffff", "#0b0b0b", "#0b0b0b", "#ffffff"]
 
 # Ex.: fga-eps-mds-2026-2-AnatoQuizUp-BFF-09-28-2026-00-15-00-1.0.0.json
 PADRAO_SONAR = re.compile(rf"^fga-eps-mds-(?P<repo>.+)-(?P<data>{PADRAO_DATA})-(?P<tag>[^-]+)\.json$")
@@ -162,18 +177,160 @@ def carregar_jest(pasta: str) -> pd.DataFrame:
     return pd.DataFrame(linhas)
 
 
+def momento_github(valor):
+    """Datas da API do GitHub vem em UTC (ex.: 2026-09-28T00:35:15Z)."""
+    try:
+        return para_brasilia(datetime.fromisoformat(str(valor).replace("Z", "+00:00")))
+    except ValueError:
+        return None
+
+
 @st.cache_data(ttl=300)
-def carregar_issues(pasta: str) -> pd.DataFrame:
-    arquivos = sorted(Path(pasta).rglob("GitHub_API-Issues-*.json"), key=lambda p: p.stat().st_mtime)
-    issues = ler_json(arquivos[-1]) if arquivos else None
-    if not isinstance(issues, list):
-        return pd.DataFrame()
+def carregar_issues(pasta: str):
+    """Le o GitHub_API-Issues-*.json mais recente, ignorando os PRs.
+
+    O nome desses arquivos nao tem data, entao a coleta e estimada pelo registro mais
+    recente (created_at, updated_at ou closed_at, inclusive de PRs) do proprio JSON:
+    a coleta aconteceu nesse instante ou logo depois. Retorna (issues, arquivo, coleta).
+    """
+    escolhido = None
+    for arquivo in sorted(Path(pasta).rglob("GitHub_API-Issues-*.json")):
+        itens = ler_json(arquivo)
+        if not isinstance(itens, list):
+            continue
+        momentos = [
+            momento
+            for item in itens
+            if isinstance(item, dict)
+            for campo in ("created_at", "updated_at", "closed_at")
+            if (momento := momento_github(item.get(campo))) is not None
+        ]
+        if momentos and (escolhido is None or max(momentos) > escolhido[2]):
+            escolhido = (itens, arquivo, max(momentos))
+    if escolhido is None:
+        return pd.DataFrame(), None, None
+    itens, arquivo, coleta = escolhido
     linhas = [
-        {"numero": item.get("number"), "titulo": item.get("title"), "estado": item.get("state")}
-        for item in issues
+        {
+            "numero": item.get("number"),
+            "titulo": item.get("title"),
+            "estado": item.get("state"),
+            "criada": momento_github(item.get("created_at")),
+            "fechada": momento_github(item.get("closed_at")),
+        }
+        for item in itens
         if isinstance(item, dict) and "pull_request" not in item
     ]
+    issues = pd.DataFrame(linhas, columns=["numero", "titulo", "estado", "criada", "fechada"])
+    issues["criada"] = pd.to_datetime(issues["criada"])
+    issues["fechada"] = pd.to_datetime(issues["fechada"])
+    return issues, f"{arquivo.parent.name}/{arquivo.name}", coleta
+
+
+@st.cache_data(ttl=300)
+def carregar_config(caminho: str):
+    conteudo = ler_json(Path(caminho))
+    return conteudo if isinstance(conteudo, dict) else None
+
+
+def ler_gestao(config) -> dict | None:
+    """Valida o gestao.json e converte as datas; None se faltar algum campo."""
+    try:
+        releases = {
+            r["nome"]: {
+                "inicio": date.fromisoformat(r["inicio"]),
+                "fim": date.fromisoformat(r["fim"]),
+                "orcamento": float(r["orcamento"]),
+            }
+            for r in config["releases"]
+        }
+        return {
+            "releases": releases,
+            "custo_recorrente_semanal": float(config["custo_recorrente_semanal"]),
+            "custo_hardware": float(config["custo_hardware"]),
+            "escopo_r1": [int(n) for n in config["escopo_r1"]],
+            "duracao_sprint_dias": int(config["duracao_sprint_dias"]),
+        }
+    except (KeyError, TypeError, ValueError):
+        return None
+
+
+def calcular_velocity(issues: pd.DataFrame, coleta: datetime, duracao_dias: int) -> pd.DataFrame:
+    """Issues fechadas por sprint. As sprints comecam na segunda-feira da semana da primeira issue."""
+    inicio = issues["criada"].min().normalize()
+    inicio -= timedelta(days=inicio.weekday())
+    passo = timedelta(days=duracao_dias)
+    fechadas = issues["fechada"].dropna()
+    linhas = []
+    comeco = inicio
+    while comeco <= coleta:
+        fim = comeco + passo
+        linhas.append(
+            {
+                "comeco": comeco,
+                "sprint": f"{comeco:%d/%m} a {fim - timedelta(days=1):%d/%m}",
+                "fechadas": int(((fechadas >= comeco) & (fechadas < fim)).sum()),
+                "situacao": "Sprint concluída" if fim <= coleta else "Sprint em andamento",
+            }
+        )
+        comeco = fim
     return pd.DataFrame(linhas)
+
+
+def calcular_burndown(issues: pd.DataFrame, escopo: list, inicio: date, fim: date, coleta: datetime) -> pd.DataFrame:
+    """Itens do escopo abertos ao fim de cada dia (ou no momento da coleta, no dia da coleta)."""
+    itens = issues[issues["numero"].isin(escopo)]
+    linhas = []
+    dia = inicio
+    while dia <= min(fim, coleta.date()):
+        instante = min(datetime.combine(dia + timedelta(days=1), datetime.min.time()), coleta)
+        criados = itens[itens["criada"] <= instante]
+        abertos = criados[criados["fechada"].isna() | (criados["fechada"] > instante)]
+        linhas.append({"dia": dia, "abertos": len(abertos), "escopo": len(criados)})
+        dia += timedelta(days=1)
+    return pd.DataFrame(linhas)
+
+
+def calcular_evm(release: dict, gestao: dict, concluidos: int, total: int, coleta: datetime) -> dict:
+    referencia = min(coleta.date(), release["fim"])
+    semanas_totais = (release["fim"] - release["inicio"]).days / 7
+    semanas = max((referencia - release["inicio"]).days, 0) / 7
+    ppc = min(semanas / semanas_totais, 1.0)
+    apc = concluidos / total
+    pv = ppc * release["orcamento"]
+    ev = apc * release["orcamento"]
+    hardware = gestao["custo_hardware"] if referencia >= release["inicio"] else 0.0
+    ac = gestao["custo_recorrente_semanal"] * semanas + hardware
+    return {
+        "referencia": referencia,
+        "semanas": semanas,
+        "semanas_totais": semanas_totais,
+        "ppc": ppc,
+        "apc": apc,
+        "pv": pv,
+        "ev": ev,
+        "ac": ac,
+        "hardware": hardware,
+        # O plano de custos (secao 4.2) nao calcula os indices com denominador zero.
+        "spi": ev / pv if pv > 0 else None,
+        "cpi": ev / ac if ac > 0 else None,
+    }
+
+
+def reais(valor: float) -> str:
+    return "R$ " + f"{valor:,.2f}".replace(",", "X").replace(".", ",").replace("X", ".")
+
+
+def interpretar_indice(valor, acima: str, igual: str, abaixo: str) -> str:
+    if valor is None:
+        return "sem dados (denominador zero)"
+    if round(valor, 2) > 1:
+        return acima
+    return igual if round(valor, 2) == 1 else abaixo
+
+
+def sem_dados(indicador: str, motivo: str) -> None:
+    st.info(f"**{indicador}: sem dados.** {motivo}")
 
 
 def mais_recente_por_repo(df: pd.DataFrame) -> pd.DataFrame:
@@ -307,7 +464,7 @@ if not jest.empty:
     )
 
 # ----- Issues -----
-issues = carregar_issues(str(PASTA_DADOS))
+issues, arquivo_issues, coleta_issues = carregar_issues(str(PASTA_DADOS))
 if not issues.empty:
     st.subheader("Issues do repositório de Doc")
     c1, c2, c3 = st.columns(3)
@@ -315,11 +472,278 @@ if not issues.empty:
     c2.metric("Fechadas", int((issues["estado"] == "closed").sum()))
     c3.metric("Abertas", int((issues["estado"] == "open").sum()))
 
+# ----- Indicadores de gestão -----
+st.header("Indicadores de gestão")
+gestao_bruta = carregar_config(str(PASTA_CONFIG / "gestao.json"))
+gestao = ler_gestao(gestao_bruta) if gestao_bruta else None
+riscos_config = carregar_config(str(PASTA_CONFIG / "riscos.json"))
+
+motivo_sem_gestao = None
+if issues.empty:
+    motivo_sem_gestao = (
+        f"Nenhum arquivo GitHub_API-Issues-*.json com issues foi encontrado em `{PASTA_DADOS.name}/`. "
+        "Esses arquivos são gerados pelo workflow de exportação de métricas."
+    )
+elif gestao is None:
+    motivo_sem_gestao = (
+        "O arquivo `dashboard/config/gestao.json` não foi encontrado ou está incompleto "
+        "(releases, custos, escopo da R1 e duração da sprint)."
+    )
+
+if motivo_sem_gestao is None:
+    st.caption(
+        f"Issues do repositório de Doc lidas de `{arquivo_issues}` (pull requests ignorados). "
+        f"Data de referência: {coleta_issues:%d/%m/%Y %H:%M} (horário de Brasília), o registro mais "
+        "recente do JSON. O nome do arquivo não traz a data da coleta, então ela é estimada por esse "
+        "registro. Releases, orçamento e escopo da R1 vêm de `dashboard/config/gestao.json`, com as "
+        "fontes indicadas no próprio arquivo."
+    )
+
+# Velocity
+st.subheader("Velocity por sprint")
+if motivo_sem_gestao:
+    sem_dados("Velocity", motivo_sem_gestao)
+else:
+    velocity = calcular_velocity(issues, coleta_issues, gestao["duracao_sprint_dias"])
+    concluidas = velocity[velocity["situacao"] == "Sprint concluída"]
+    st.caption(
+        "Velocity por **quantidade de issues fechadas** em cada sprint, porque as issues não têm story "
+        f"points. Sprint de {gestao['duracao_sprint_dias']} dias, de segunda a domingo (horário de "
+        "Brasília), a partir da semana da primeira issue criada. A média considera só as sprints "
+        "concluídas até a data de referência."
+    )
+    grafico_velocity = px.bar(
+        velocity,
+        x="sprint",
+        y="fechadas",
+        color="situacao",
+        text_auto=True,
+        color_discrete_map={"Sprint concluída": COR_SERIE, "Sprint em andamento": COR_SERIE_CLARA},
+        labels={"sprint": "Sprint", "fechadas": "Issues fechadas", "situacao": ""},
+    )
+    if not concluidas.empty:
+        media_velocity = concluidas["fechadas"].mean()
+        grafico_velocity.add_hline(
+            y=media_velocity, line_dash="dash", annotation_text=f"média {media_velocity:.1f} issues/sprint"
+        )
+        st.metric("Velocity média (sprints concluídas)", f"{media_velocity:.1f} issues/sprint")
+    else:
+        st.caption("Ainda não há sprint concluída para calcular a média.")
+    st.plotly_chart(grafico_velocity, width="stretch")
+
+# Burndown e EVM usam o escopo da R1
+release_r1 = gestao["releases"].get("R1") if gestao else None
+if gestao and release_r1 is None:
+    motivo_sem_gestao = "A release R1 não está definida em `dashboard/config/gestao.json`."
+
+st.subheader("Burndown da R1")
+if motivo_sem_gestao:
+    sem_dados("Burndown", motivo_sem_gestao)
+elif coleta_issues.date() < release_r1["inicio"]:
+    sem_dados("Burndown", "A coleta das issues é anterior ao início da R1.")
+else:
+    escopo_r1 = gestao["escopo_r1"]
+    ausentes = sorted(set(escopo_r1) - set(issues["numero"]))
+    burndown = calcular_burndown(issues, escopo_r1, release_r1["inicio"], release_r1["fim"], coleta_issues)
+    st.caption(
+        f"Itens do escopo da R1 ainda abertos ao fim de cada dia, de {release_r1['inicio']:%d/%m} a "
+        f"{release_r1['fim']:%d/%m/%Y}. Um item conta como aberto do created_at até o closed_at; itens "
+        "criados depois do início entram a partir do created_at (linha de escopo). A linha ideal vai "
+        f"do escopo completo ({len(escopo_r1)} itens) a zero no fim da release. Pontos posteriores à "
+        "data de referência não são desenhados, porque ainda não há dados."
+    )
+    if ausentes:
+        st.warning(
+            "Issues do escopo da R1 que não estão no JSON (ficam fora do gráfico): "
+            + ", ".join(f"#{n}" for n in ausentes)
+        )
+    grafico_burndown = go.Figure()
+    grafico_burndown.add_scatter(
+        x=[release_r1["inicio"], release_r1["fim"]],
+        y=[len(escopo_r1), 0],
+        name="Ideal",
+        mode="lines",
+        line={"dash": "dash", "color": "#898781", "width": 2},
+    )
+    grafico_burndown.add_scatter(
+        x=burndown["dia"], y=burndown["escopo"], name="Escopo total", mode="lines", line_shape="hv",
+        line={"width": 2, "dash": "dot", "color": COR_SERIE_CLARA},
+    )
+    grafico_burndown.add_scatter(
+        x=burndown["dia"], y=burndown["abertos"], name="Itens abertos", mode="lines+markers", line_shape="hv",
+        line={"width": 2, "color": COR_SERIE},
+    )
+    grafico_burndown.update_layout(
+        xaxis_title="Dia (horário de Brasília)",
+        xaxis_tickformat="%d/%m",
+        xaxis_hoverformat="%d/%m/%Y",
+        yaxis_title="Itens",
+        yaxis_rangemode="tozero",
+        hovermode="x unified",
+    )
+    st.plotly_chart(grafico_burndown, width="stretch")
+    ultimo = burndown.iloc[-1]
+    st.caption(
+        f"Em {ultimo['dia']:%d/%m}: {ultimo['abertos']} de {ultimo['escopo']} itens do escopo ainda abertos."
+    )
+
+st.subheader("EVM-Ágil da R1")
+if motivo_sem_gestao:
+    sem_dados("EVM-Ágil", motivo_sem_gestao)
+elif not gestao["escopo_r1"]:
+    sem_dados("EVM-Ágil", "O escopo da R1 está vazio em `dashboard/config/gestao.json`.")
+else:
+    escopo_r1 = gestao["escopo_r1"]
+    fechados_r1 = issues[issues["numero"].isin(escopo_r1) & (issues["estado"] == "closed")]
+    evm = calcular_evm(release_r1, gestao, len(fechados_r1), len(escopo_r1), coleta_issues)
+    st.caption(
+        f"Data de referência: {evm['referencia']:%d/%m/%Y} (data da coleta das issues, limitada ao fim da R1). "
+        "Item concluído = issue do escopo fechada na coleta. O **AC usa o custo planejado** do plano de "
+        "custos (`docs/produto/plano-de-custos.md`), porque o time não mede o custo real; por isso o CPI "
+        "mostra o valor entregue em relação ao gasto previsto, e não uma eficiência de custo medida."
+    )
+    c1, c2, c3, c4 = st.columns(4)
+    c1.metric("SPI", f"{evm['spi']:.2f}" if evm["spi"] is not None else "sem dados")
+    c2.metric("CPI", f"{evm['cpi']:.2f}" if evm["cpi"] is not None else "sem dados")
+    c3.metric("PPC", f"{evm['ppc']:.1%}")
+    c4.metric("APC", f"{evm['apc']:.1%}")
+    st.markdown(
+        f"""
+| Indicador | Fórmula | Cálculo | Valor |
+| --- | --- | --- | --- |
+| PPC (percentual planejado) | semanas decorridas ÷ semanas totais (máx. 100%) | {evm['semanas']:.2f} ÷ {evm['semanas_totais']:.2f} | {evm['ppc']:.1%} |
+| APC (percentual concluído) | itens concluídos ÷ itens do escopo | {len(fechados_r1)} ÷ {len(escopo_r1)} | {evm['apc']:.1%} |
+| PV (valor planejado) | PPC × orçamento da R1 | {evm['ppc']:.1%} × {reais(release_r1['orcamento'])} | {reais(evm['pv'])} |
+| EV (valor agregado) | APC × orçamento da R1 | {evm['apc']:.1%} × {reais(release_r1['orcamento'])} | {reais(evm['ev'])} |
+| AC (custo planejado até a data) | custo recorrente semanal × semanas decorridas + hardware | {reais(gestao['custo_recorrente_semanal'])} × {evm['semanas']:.2f} + {reais(evm['hardware'])} | {reais(evm['ac'])} |
+| SPI | EV ÷ PV | {reais(evm['ev'])} ÷ {reais(evm['pv'])} | {f"{evm['spi']:.2f}" if evm['spi'] is not None else "sem dados"} |
+| CPI | EV ÷ AC | {reais(evm['ev'])} ÷ {reais(evm['ac'])} | {f"{evm['cpi']:.2f}" if evm['cpi'] is not None else "sem dados"} |
+"""
+    )
+    st.markdown(
+        "- **SPI:** "
+        + interpretar_indice(
+            evm["spi"],
+            "maior que 1: avanço superior ao planejado.",
+            "igual a 1: avanço conforme o planejado.",
+            "menor que 1: avanço inferior ao planejado.",
+        )
+        + "\n- **CPI:** "
+        + interpretar_indice(
+            evm["cpi"],
+            "maior que 1: entregou mais valor do que o custo planejado até a data.",
+            "igual a 1: valor entregue igual ao custo planejado até a data.",
+            "menor que 1: entregou menos valor do que o custo planejado até a data.",
+        )
+    )
+    if len(fechados_r1) < len(escopo_r1):
+        abertos_r1 = sorted(set(escopo_r1) - set(fechados_r1["numero"]))
+        st.caption("Itens do escopo não concluídos na coleta: " + ", ".join(f"#{n}" for n in abertos_r1))
+
+# Matriz de riscos
+st.subheader("Matriz de riscos")
+riscos = None
+if riscos_config:
+    try:
+        pesos_p = {k: int(v) for k, v in riscos_config["pesos_probabilidade"].items()}
+        pesos_i = {k: int(v) for k, v in riscos_config["pesos_impacto"].items()}
+        faixas = riscos_config["faixas"]
+        riscos = pd.DataFrame(riscos_config["riscos"])
+        riscos["p"] = riscos["probabilidade"].map(pesos_p)
+        riscos["i"] = riscos["impacto"].map(pesos_i)
+        config_valida = (
+            sorted(pesos_p.values()) == sorted(pesos_i.values()) == [1, 2, 3, 4, 5]
+            and len(faixas) == len(CORES_FAIXAS_RISCO)
+            and all(any(f["min"] <= s <= f["max"] for f in faixas) for s in range(1, 26))
+            and not riscos[["p", "i"]].isna().any().any()
+        )
+        if not config_valida:
+            riscos = None
+    except (KeyError, TypeError, ValueError, AttributeError):
+        riscos = None
+
+if riscos is None or riscos.empty:
+    sem_dados(
+        "Matriz de riscos",
+        "O arquivo `dashboard/config/riscos.json` não foi encontrado ou está incompleto (riscos, pesos de "
+        "probabilidade e impacto e faixas de prioridade de `docs/produto/plano-de-riscos.md`).",
+    )
+else:
+    riscos["pontuacao"] = (riscos["p"] * riscos["i"]).astype(int)
+
+    def faixa_da(pontuacao: int) -> int:
+        return next(n for n, f in enumerate(faixas) if f["min"] <= pontuacao <= f["max"])
+
+    riscos["faixa"] = riscos["pontuacao"].map(lambda p: faixas[faixa_da(p)]["nome"])
+    st.caption(
+        "Riscos, pesos (1 a 5) e faixas de prioridade copiados de `docs/produto/plano-de-riscos.md`. "
+        "Pontuação = probabilidade × impacto. Faixas: "
+        + "; ".join(f"{f['nome']} ({f['min']}–{f['max']})" for f in faixas)
+        + "."
+    )
+    nomes_p = {v: k for k, v in pesos_p.items()}
+    nomes_i = {v: k for k, v in pesos_i.items()}
+    niveis = range(1, 6)
+    grafico_riscos = go.Figure(
+        go.Heatmap(
+            x=[f"{nomes_i[i]} ({i})" for i in niveis],
+            y=[f"{nomes_p[p]} ({p})" for p in niveis],
+            z=[[faixa_da(p * i) for i in niveis] for p in niveis],
+            customdata=[[[p * i, faixas[faixa_da(p * i)]["nome"]] for i in niveis] for p in niveis],
+            hovertemplate="Probabilidade: %{y}<br>Impacto: %{x}<br>Pontuação: %{customdata[0]}"
+            "<br>Faixa: %{customdata[1]}<extra></extra>",
+            colorscale=[
+                [limite, cor]
+                for n, cor in enumerate(CORES_FAIXAS_RISCO)
+                for limite in (n / len(CORES_FAIXAS_RISCO), (n + 1) / len(CORES_FAIXAS_RISCO))
+            ],
+            zmin=-0.5,
+            zmax=len(CORES_FAIXAS_RISCO) - 0.5,
+            showscale=False,
+            xgap=2,
+            ygap=2,
+        )
+    )
+    for (p, i), grupo in riscos.groupby(["p", "i"]):
+        grafico_riscos.add_annotation(
+            x=f"{nomes_i[i]} ({i})",
+            y=f"{nomes_p[p]} ({p})",
+            text="<br>".join(sorted(grupo["id"])),
+            showarrow=False,
+            font={"color": TEXTO_FAIXAS_RISCO[faixa_da(p * i)], "size": 14},
+        )
+    grafico_riscos.update_layout(
+        xaxis_title="Impacto", yaxis_title="Probabilidade", yaxis_automargin=True, yaxis_title_standoff=16, height=480
+    )
+    st.plotly_chart(grafico_riscos, width="stretch")
+    st.dataframe(
+        riscos.sort_values(["pontuacao", "id"], ascending=[False, True])[
+            ["id", "risco", "categoria", "probabilidade", "impacto", "pontuacao", "faixa"]
+        ].rename(
+            columns={
+                "id": "ID",
+                "risco": "Risco",
+                "categoria": "Categoria EAR",
+                "probabilidade": "Probabilidade",
+                "impacto": "Impacto",
+                "pontuacao": "Pontuação (P×I)",
+                "faixa": "Faixa de prioridade",
+            }
+        ),
+        width="stretch",
+        hide_index=True,
+    )
+
 with st.expander("Arquivos lidos"):
     lidos = pd.concat(
         [
             sonar.assign(fonte="SonarCloud")[["fonte", "repositorio", "coleta", "arquivo"]] if not sonar.empty else None,
             jest.assign(fonte="Jest")[["fonte", "repositorio", "coleta", "arquivo"]] if not jest.empty else None,
+            pd.DataFrame(
+                [{"fonte": "GitHub (issues)", "repositorio": "Doc", "coleta": coleta_issues, "arquivo": arquivo_issues}]
+            )
+            if arquivo_issues
+            else None,
         ]
     )
     lidos = lidos.sort_values("coleta", ascending=False)

@@ -1,0 +1,18 @@
+{
+  "fontes": {
+    "releases": "docs/produto/plano-de-custos.md, seção 3.5 (Custo por Release Major): períodos e coluna Custo da Release",
+    "custo_recorrente_semanal": "docs/produto/plano-de-custos.md, seção 3.5: custo recorrente total de R$ 239.194,80 dividido pelas 18 semanas do projeto",
+    "custo_hardware": "docs/produto/plano-de-custos.md, seções 3.2 e 3.5: investimento único de R$ 52.623,87 na primeira semana do projeto, atribuído à R1",
+    "escopo_r1": "docs/dashboards.md, seção Origem dos dados: issues #6, #8, #9, #31, #32, #33, #34, #35, #38, #40 e #41",
+    "duracao_sprint_dias": "Semanas de segunda a domingo (7 dias), usadas como sprint no cálculo da velocity"
+  },
+  "releases": [
+    {"nome": "R1", "inicio": "2026-08-10", "fim": "2026-09-28", "orcamento": 145644.07},
+    {"nome": "R2", "inicio": "2026-09-28", "fim": "2026-10-26", "orcamento": 53154.40},
+    {"nome": "R3", "inicio": "2026-10-26", "fim": "2026-12-14", "orcamento": 93020.20}
+  ],
+  "custo_recorrente_semanal": 13288.60,
+  "custo_hardware": 52623.87,
+  "escopo_r1": [6, 8, 9, 31, 32, 33, 34, 35, 38, 40, 41],
+  "duracao_sprint_dias": 7
+}
