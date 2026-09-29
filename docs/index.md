@@ -63,5 +63,6 @@ Acesse **http://127.0.0.1:8000** no navegador. Esses comandos executam o site de
 - [Visão do Produto](produto/visao.md)
 - [Lean Inception](produto/lean_inception.md)
 - [Plano de Gerenciamento de Custos](produto/plano-de-custos.md)
+- [Ambiente de Homologação](operacao/ambiente-homologacao.md)
 - [Como contribuir: política de Pull Requests](contribuicao/pull_requests.md)
 - [Repositório no GitHub](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc)
