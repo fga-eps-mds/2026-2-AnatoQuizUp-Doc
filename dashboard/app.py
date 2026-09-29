@@ -541,17 +541,27 @@ if motivo_sem_gestao:
     sem_dados("Burndown", motivo_sem_gestao)
 elif coleta_issues.date() < release_r1["inicio"]:
     sem_dados("Burndown", "A coleta das issues é anterior ao início da R1.")
+elif not issues["numero"].isin(gestao["escopo_r1"]).any():
+    sem_dados("Burndown", "Nenhuma issue do escopo da R1 está no JSON de issues.")
 else:
     escopo_r1 = gestao["escopo_r1"]
     ausentes = sorted(set(escopo_r1) - set(issues["numero"]))
-    burndown = calcular_burndown(issues, escopo_r1, release_r1["inicio"], release_r1["fim"], coleta_issues)
+    # O grafico comeca quando o primeiro item do escopo foi criado: antes disso nao ha o que acompanhar.
+    primeiro_item = issues.loc[issues["numero"].isin(escopo_r1), "criada"].min().date()
+    inicio_burndown = max(primeiro_item, release_r1["inicio"])
+    burndown = calcular_burndown(issues, escopo_r1, inicio_burndown, release_r1["fim"], coleta_issues)
     st.caption(
-        f"Itens do escopo da R1 ainda abertos ao fim de cada dia, de {release_r1['inicio']:%d/%m} a "
+        f"Itens do escopo da R1 ainda abertos ao fim de cada dia, de {inicio_burndown:%d/%m} a "
         f"{release_r1['fim']:%d/%m/%Y}. Um item conta como aberto do created_at até o closed_at; itens "
         "criados depois do início entram a partir do created_at (linha de escopo). A linha ideal vai "
         f"do escopo completo ({len(escopo_r1)} itens) a zero no fim da release. Pontos posteriores à "
         "data de referência não são desenhados, porque ainda não há dados."
     )
+    if inicio_burndown > release_r1["inicio"]:
+        st.caption(
+            f"O backlog da R1 passou a ser registrado no GitHub em {inicio_burndown:%d/%m}; "
+            "antes disso não há itens para acompanhar."
+        )
     if ausentes:
         st.warning(
             "Issues do escopo da R1 que não estão no JSON (ficam fora do gráfico): "
@@ -559,7 +569,7 @@ else:
         )
     grafico_burndown = go.Figure()
     grafico_burndown.add_scatter(
-        x=[release_r1["inicio"], release_r1["fim"]],
+        x=[inicio_burndown, release_r1["fim"]],
         y=[len(escopo_r1), 0],
         name="Ideal",
         mode="lines",
