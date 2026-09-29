@@ -49,6 +49,9 @@ nav:
     - Metodologia: metodologia/metodologia.md
     - Dashboards da R1: dashboards.md
 
+  - Operação:
+    - Ambiente de Homologação: operacao/ambiente-homologacao.md
+
   - Contribuição:
     - Política de Branches: contribuicao/branches.md
     - Política de Commits: contribuicao/commits.md
