@@ -52,7 +52,7 @@ Esse quadro nos auxilia para definir melhor os pareamentos e distribuir as taref
 | Documentação                | **4,00** |
 | Jest                        | **2,45** |
 | Git                         | **4,00** |
-| Desenvolvimento de Chatbots | **1,58** |
+| Desenvolvimento de Chatbots | **1,45** |
 
 ---
 
@@ -88,5 +88,4 @@ Com base no quadro, os seguintes pareamentos são recomendados para maximizar tr
 
 | Versão | Data       | Descrição                            | Autor(es)                                                         | Revisor(es)  |
 | ------ | ---------- | ------------------------------------ | ----------------------------------------------------------------- | ------------ |
-| 1.0    | 05/10/2026 | Criação do quadro de conhecimento | [Gabriel Freitas](https://github.com/gabrielfreitass1)<br> [João Lucas Araújo](https://github.com/jlucasiqueira) |  |
-
+| 1.0    | 05/10/2026 | Criação do quadro de conhecimento | [Gabriel Freitas](https://github.com/gabrielfreitass1)<br> [João Lucas Araújo](https://github.com/jlucasiqueira) | [Arthur Fonseca](https://github.com/arthurfonsecaa) |
