@@ -48,6 +48,7 @@ nav:
   - Gestão:
     - Metodologia: metodologia/metodologia.md
     - Dashboards da R1: dashboards.md
+    - Quadro de Conhecimento: metodologia/quadro-conhecimento.md
 
   - Operação:
     - Ambiente de Homologação: operacao/ambiente-homologacao.md
