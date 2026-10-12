@@ -153,8 +153,6 @@ Permanecem fora do MVP, podendo ser tratados como incrementos posteriores:
 
 O [Canvas MVP ampliado no FigJam](https://www.figma.com/board/IwsqM1gCmdrS2ZrR8HgRGz/Vis%C3%A3o-do-Produto-AnatoQuizUP-2026-2?node-id=17425-2220) apresenta visualmente esse recorte.
 
-![Canvas MVP ampliado organizado em post-its](../assets/images/canvas-mvp-ampliado-postits.png)
-
 ## Resultados esperados e métricas iniciais
 
 O MVP apresenta como resultados esperados a continuidade dos estudos, a evolução da aprendizagem e o apoio à tomada de decisão da professora. Para acompanhar esses resultados, serão utilizadas as seguintes métricas:
@@ -244,4 +242,3 @@ CAROLI, Paulo. *Lean Inception: como alinhar pessoas e construir o produto certo
 | 13/09/2026 | 1.0 | Criação da página da Lean Inception com a contextualização do processo, seus resultados e o planejamento inicial do projeto | [Leticia Torres Soares](https://github.com/leticiatmartins) |
 | 15/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) |
 | 12/10/2026 | 1.2 | Ampliação do MVP em três ciclos integrados, com métricas, capacidades de apoio e limites explícitos | [Leticia Torres Soares](https://github.com/leticiatmartins) |
-| 12/10/2026 | 1.3 | Inclusão da versão visual do Canvas MVP ampliado organizada em post-its | [Leticia Torres Soares](https://github.com/leticiatmartins) |
