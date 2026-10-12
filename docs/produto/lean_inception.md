@@ -89,36 +89,86 @@ Representada por Renata Oliveira, profissional da área de tecnologia. Esse perf
 
 ## Proposta do MVP
 
-> **Status: aguardando validação com os clientes.**
+> **Status: escopo ampliado após revisão acadêmica; seleção do piloto avançado pendente de validação com os Product Owners.**
 
-A proposta inicial do MVP busca verificar se os recursos selecionados geram valor para estudantes e professores. Entre as hipóteses levantadas estão:
+O MVP ampliado deixa de representar um conjunto isolado de funcionalidades e passa a validar três ciclos de valor completos. Pelo posicionamento do marco de MVP no sequenciador, o recorte contempla as **Ondas 1 a 4**. A Onda 5 permanece como incremento posterior.
 
-* O uso de gamificação pode aumentar o engajamento e a continuidade dos estudos.
-* O chatbot pode auxiliar os estudantes durante a resolução dos quizzes.
-* Professores podem utilizar a plataforma para validar conteúdos e apoiar metodologias ativas de ensino.
-* Recursos de acompanhamento podem ajudar os professores a identificar dificuldades dos estudantes.
-* A personalização de avatares, os pontos e as recompensas podem incentivar a participação.
-* Casos clínicos baseados no modelo OSCE podem ampliar as possibilidades de prática dos estudantes.
+### Ciclo de aprendizagem
 
-Essas hipóteses ainda não representam decisões definitivas. Elas deverão ser apresentadas aos clientes e revisadas de acordo com o retorno recebido.
+1. O estudante acessa a plataforma e escolhe tema e nível de conhecimento.
+2. Responde um quiz com imagens radiológicas.
+3. Recebe feedback e explicações para as respostas.
+4. Revisa as questões respondidas incorretamente.
+5. Acompanha o próprio progresso.
+
+Esse ciclo valida se o AnatoQuizUP apoia o aprendizado, e não apenas a realização de perguntas.
+
+### Ciclo de gamificação
+
+1. A conclusão de atividades educacionais gera XP e moedas.
+2. Missões estimulam frequência e continuidade.
+3. O ranking permite acompanhar a progressão em relação à turma.
+4. As moedas podem ser utilizadas na loja virtual.
+5. Os itens adquiridos podem ser aplicados na personalização do avatar.
+
+A gamificação permanece vinculada às atividades de aprendizagem. XP, moedas, missões e recompensas não são tratados como recursos independentes dos quizzes.
+
+### Ciclo da professora
+
+1. A professora cria ou seleciona questões previamente validadas.
+2. Organiza as questões em uma lista de quizzes.
+3. Aplica a lista a uma turma.
+4. Consulta resultados individuais e coletivos.
+5. Identifica dificuldades e ajusta atividades futuras.
+
+Esse ciclo permite validar a hipótese de que o produto apoia metodologias ativas e o acompanhamento pedagógico.
+
+### Capacidades de apoio
+
+O funcionamento dos três ciclos depende das seguintes capacidades:
+
+* Cadastro, autenticação e perfis de estudante, professora e administradora.
+* Administração de usuários e permissões.
+* Registro do progresso e das interações necessárias às métricas.
+* Integração das funcionalidades herdadas do semestre anterior.
+* Validação humana antes da publicação de conteúdos produzidos com apoio de inteligência artificial.
+
+### Piloto avançado
+
+O MVP deverá conter **somente um** piloto avançado, selecionado com os Product Owners:
+
+* Um caso OSCE pré-configurado, com interação limitada; ou
+* Um chatbot contextual para explicar respostas durante o quiz.
+
+O piloto escolhido deverá produzir evidência de uso e valor antes que a equipe amplie sua complexidade.
+
+### Fora do MVP atual
+
+Permanecem fora do MVP, podendo ser tratados como incrementos posteriores:
+
+* Geração de questões com imagens, correspondente à Onda 5.
+* Paciente virtual completo e geração aberta de casos clínicos.
+* Implementação simultânea dos dois pilotos avançados.
+* Filtro de questões por tipo, retirado conforme orientação registrada no FigJam.
+
+O [Canvas MVP ampliado no FigJam](https://www.figma.com/board/IwsqM1gCmdrS2ZrR8HgRGz/Vis%C3%A3o-do-Produto-AnatoQuizUP-2026-2?node-id=17425-2220) apresenta visualmente esse recorte.
 
 ## Resultados esperados e métricas iniciais
 
-O Canvas MVP apresenta como resultados esperados a melhoria do desempenho de uma turma, o apoio ao professor na validação do ensino e a utilização da plataforma por estudantes.
-
-Para acompanhar esses resultados, foram sugeridas as seguintes métricas:
+O MVP apresenta como resultados esperados a continuidade dos estudos, a evolução da aprendizagem e o apoio à tomada de decisão da professora. Para acompanhar esses resultados, serão utilizadas as seguintes métricas:
 
 | Métrica | Finalidade |
 | --- | --- |
-| Número de estudantes cadastrados | Avaliar a adesão inicial à plataforma |
-| Quantidade de quizzes criados | Verificar a disponibilidade e o crescimento do conteúdo |
-| Quantidade de questões respondidas | Acompanhar o uso das atividades educacionais |
-| Quantidade de pontos registrados | Observar a participação nos recursos de gamificação |
-| Número de avatares cadastrados | Avaliar o uso da personalização |
-| Desempenho dos estudantes | Identificar a evolução e as dificuldades de aprendizagem |
-| Conteúdos validados por professores | Acompanhar a qualidade do material disponibilizado |
+| Percentual de quizzes concluídos | Avaliar se os estudantes concluem o ciclo de aprendizagem |
+| Taxa de acerto inicial e após a revisão | Verificar evolução após feedback e revisão dos erros |
+| Estudantes ativos por semana | Acompanhar adesão e frequência de uso |
+| Retorno após a primeira atividade | Avaliar continuidade dos estudos |
+| Listas aplicadas e concluídas pelas turmas | Verificar a utilização do fluxo da professora |
+| Temas com maior índice de erro | Apoiar a identificação de dificuldades de aprendizagem |
+| Conteúdos aprovados ou rejeitados pelas professoras | Acompanhar a qualidade e a curadoria do conteúdo |
+| Uso de XP, moedas, missões, loja e personalização | Verificar se a gamificação está associada à participação |
 
-As metas quantitativas deverão ser confirmadas após a validação da proposta do MVP.
+As metas quantitativas serão definidas com os Product Owners antes da execução da validação do MVP.
 
 ## Planejamento para realização do projeto
 
@@ -168,7 +218,7 @@ Como essa etapa ainda não foi validada, valores, prazos e datas de releases nã
 | Revisão Técnica, de Negócio e de Experiência do Usuário | ✅ | ✅ |
 | Sequenciamento de Funcionalidades | ✅ | ✅ |
 | Estimativa de Tempo | ✅ | ❌ |
-| Proposta do MVP | ✅ | ❌ |
+| Proposta do MVP ampliado | ✅ | ❌ |
 | Custo e Cronograma | ✅ | ❌ |
 
 A tabela será atualizada após a apresentação e a validação das etapas pendentes com os clientes.
@@ -191,3 +241,4 @@ CAROLI, Paulo. *Lean Inception: como alinhar pessoas e construir o produto certo
 | :---: | :---: | --- | --- |
 | 13/09/2026 | 1.0 | Criação da página da Lean Inception com a contextualização do processo, seus resultados e o planejamento inicial do projeto | [Leticia Torres Soares](https://github.com/leticiatmartins) |
 | 15/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) |
+| 12/10/2026 | 1.2 | Ampliação do MVP em três ciclos integrados, com métricas, capacidades de apoio e limites explícitos | [Leticia Torres Soares](https://github.com/leticiatmartins) |
