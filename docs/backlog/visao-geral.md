@@ -16,11 +16,25 @@ O backlog é revisado ao final de cada sprint, considerando as entregas realizad
 
 | Release | Foco | Detalhamento |
 |---|---|---|
-| Release Major 1 | Identidade do estudante (avatar) e loja virtual | [Release Major 1](release-major-1.md) |
-| Release Major 2 | A definir após validação da R1 com os POs | — |
-| Release Major 3 | A definir | — |
+| Release 1 | Identidade do estudante, avatar e loja virtual | [Release 1](release-major-1.md) |
+| Release 2 | Ciclos de aprendizagem e gamificação, com base do acompanhamento pedagógico | A detalhar após refinamento com os Product Owners |
+| Release 3 | Fechamento do ciclo da professora, curadoria e um piloto avançado | A detalhar após seleção do piloto com os Product Owners |
 
 > **Base herdada:** o AnatoQuizUp é evoluído a partir do produto desenvolvido em 2026.1, que já possuía cadastro e autenticação, questões, quiz, turmas, listas, loja, inventário, conquistas e ranking. Este backlog registra o que é construído ou evoluído em 2026.2 e identifica as histórias herdadas.
+
+## Recorte do MVP ampliado
+
+Após a revisão do escopo, o MVP passou a abranger as **Ondas 1 a 4** do sequenciador e três ciclos de valor completos:
+
+1. **Aprendizagem:** acessar, escolher tema e nível, responder quiz com imagem, receber explicação, revisar erros e acompanhar o próprio progresso.
+2. **Gamificação:** concluir atividades, receber XP e moedas, cumprir missões, acompanhar o ranking, utilizar a loja e personalizar o avatar.
+3. **Gestão pedagógica:** criar ou selecionar questões validadas, montar listas, aplicar às turmas e analisar os resultados.
+
+Cadastro, autenticação, perfis, permissões, integração das funcionalidades herdadas e instrumentação das métricas são capacidades obrigatórias de apoio.
+
+O MVP também prevê **um único piloto avançado**, ainda a ser selecionado com os Product Owners: caso OSCE pré-configurado ou chatbot contextual. Geração de questões com imagens, paciente virtual completo e execução simultânea dos dois pilotos permanecem fora do MVP atual.
+
+O recorte visual está disponível no [Canvas MVP ampliado](https://www.figma.com/board/IwsqM1gCmdrS2ZrR8HgRGz/Vis%C3%A3o-do-Produto-AnatoQuizUP-2026-2?node-id=17425-2220).
 
 ## Padrão de escrita
 
@@ -49,10 +63,11 @@ A prioridade segue a técnica **MoSCoW**:
 
 Critérios considerados:
 
-1. **Valor para o estudante**: hipótese central do MVP de que a gamificação aumenta o engajamento.
-2. **Dependência técnica**: itens que destravam outros vêm primeiro (ex.: avatar padrão antes da personalização).
-3. **Esforço e risco**: riscos do [Plano de Riscos](../produto/plano-de-riscos.md), como curva de aprendizado e prazo.
-4. **Retorno dos Product Owners**.
+1. **Valor educacional**: o ciclo de aprendizagem precisa funcionar de ponta a ponta antes da ampliação dos recursos avançados.
+2. **Fechamento do fluxo**: funcionalidades que permitem concluir os ciclos do estudante e da professora têm prioridade sobre recursos isolados.
+3. **Dependência técnica**: itens que destravam outros vêm primeiro, como autenticação, permissões e registro de resultados.
+4. **Esforço e risco**: riscos do [Plano de Riscos](../produto/plano-de-riscos.md), como curva de aprendizado, integração e prazo.
+5. **Retorno dos Product Owners**.
 
 ## Épicos
 
@@ -81,7 +96,9 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 | Explicações adaptadas às dificuldades do estudante | EP04 | US11 |
 | Criação e personalização de avatar | EP01 | US01, US02 |
 | Pontos de experiência, moedas e ranking | EP01 | US03, US04, US05 |
+| Missões diárias, semanais e mensais | EP01 | US18 |
 | Loja virtual com itens para o avatar | EP01 | US03 |
+| Visualização do próprio progresso | EP02 | US19 |
 | Criação de listas de quizzes por professores | EP03 | US09 |
 | Visualização dos resultados dos estudantes | EP03 | US10 |
 | Validação de questões e imagens produzidas com apoio de IA | EP04 | US12 |
@@ -100,18 +117,20 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 | US05 | estudante | ver minha posição no ranking geral, de amigos e da turma | me comparar com colegas e me manter engajado | EP01 | Should | R2 | Herdada de 2026.1 |
 | US06 | estudante | responder quizzes por tema com imagens radiológicas | praticar anatomia aplicada à radiologia | EP02 | Must | R2 | Herdada de 2026.1 |
 | US07 | estudante | ver a explicação da resposta após responder | entender o motivo do acerto ou erro | EP02 | Must | R2 | Herdada de 2026.1 |
-| US08 | estudante | revisar as questões que errei | focar nas minhas dificuldades | EP02 | Should | R2 | Não iniciada |
+| US08 | estudante | revisar as questões que errei | focar nas minhas dificuldades | EP02 | Must | R2 | Não iniciada |
 | US09 | professora | criar listas de questões e aplicá-las às turmas | usar a plataforma em sala de aula | EP03 | Must | R2 | Herdada de 2026.1 |
-| US10 | professora | visualizar os resultados dos estudantes da turma | identificar dificuldades e ajustar minhas aulas | EP03 | Should | R2 | Herdada de 2026.1 |
-| US11 | estudante | tirar dúvidas com um chatbot durante o estudo | resolver dúvidas sem depender do horário da professora | EP04 | Should | R3 | Não iniciada |
-| US12 | professora | validar questões e imagens geradas com apoio de IA | garantir a qualidade do conteúdo | EP04 | Should | R3 | Não iniciada |
-| US13 | estudante | praticar casos clínicos no modelo OSCE | treinar raciocínio clínico | EP05 | Could | R3 | Não iniciada |
+| US10 | professora | visualizar os resultados dos estudantes da turma | identificar dificuldades e ajustar minhas aulas | EP03 | Must | R2 | Herdada de 2026.1 |
+| US11 | estudante | tirar dúvidas com um chatbot durante o estudo | resolver dúvidas sem depender do horário da professora | EP04 | Should (piloto) | R3 | Candidato a piloto |
+| US12 | professora | validar questões e imagens geradas com apoio de IA | garantir a qualidade do conteúdo | EP04 | Must | R3 | Não iniciada |
+| US13 | estudante | praticar casos clínicos no modelo OSCE | treinar raciocínio clínico | EP05 | Should (piloto) | R3 | Candidato a piloto |
 | US14 | administradora | gerenciar usuários e permissões | manter o acesso à plataforma seguro | EP06 | Must | Contínuo | Herdada de 2026.1 |
 | US15 | estudante | me cadastrar e acessar a plataforma com e-mail e senha | ter meu progresso salvo | EP06 | Must | Contínuo | Herdada de 2026.1 |
-| US16 | estudante | escolher disciplina, tema e nível de conhecimento antes do quiz | estudar no ritmo e no conteúdo de que preciso | EP02 | Should | R2 | Não iniciada |
-| US17 | estudante | simular consultas com pacientes virtuais | praticar a anamnese e o raciocínio clínico | EP05 | Could | R3 | Não iniciada |
+| US16 | estudante | escolher disciplina, tema e nível de conhecimento antes do quiz | estudar no ritmo e no conteúdo de que preciso | EP02 | Must | R2 | Não iniciada |
+| US17 | estudante | simular consultas com pacientes virtuais | praticar a anamnese e o raciocínio clínico | EP05 | Won't (MVP) | Incremento | Não iniciada |
+| US18 | estudante | cumprir missões diárias, semanais e mensais | manter frequência e continuidade nos estudos | EP01 | Should | R2 | Não iniciada |
+| US19 | estudante | visualizar meu progresso, resultados e temas com dificuldade | direcionar meus próximos estudos | EP02 | Must | R2 | Não iniciada |
 
-> As histórias a partir da US04 são uma proposta inicial derivada da Lean Inception. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Todas serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.
+> As histórias a partir da US04 são uma proposta derivada da Lean Inception e do MVP ampliado. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Somente um dos candidatos a piloto, US11 ou US13, deverá ser comprometido no MVP. Todas as histórias serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.
 
 ## Legenda de status
 
@@ -149,3 +168,4 @@ Uma história é considerada concluída quando:
 | Data | Versão | Descrição | Autor(es) |
 | :--- | :--- | :--- | :--- |
 | 28/09/2026 | 1.0 | Criação do backlog do produto com épicos, cobertura da Lean Inception, histórias priorizadas, DoR e DoD | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) |
+| 12/10/2026 | 1.1 | Alinhamento do backlog ao MVP ampliado, com ciclos completos, novas histórias e seleção de um piloto avançado | [Leticia Torres Soares](https://github.com/leticiatmartins) |
