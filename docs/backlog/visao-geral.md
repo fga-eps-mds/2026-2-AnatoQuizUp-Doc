@@ -110,8 +110,11 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 | US15 | estudante | me cadastrar e acessar a plataforma com e-mail e senha | ter meu progresso salvo | EP06 | Must | Contínuo | Herdada de 2026.1 |
 | US16 | estudante | escolher disciplina, tema e nível de conhecimento antes do quiz | estudar no ritmo e no conteúdo de que preciso | EP02 | Should | R2 | Não iniciada |
 | US17 | estudante | simular consultas com pacientes virtuais | praticar a anamnese e o raciocínio clínico | EP05 | Could | R3 | Não iniciada |
+| US19 | estudante | visualizar minhas missões diárias, acompanhar o progresso e receber a recompensa ao concluí-las | saber o que fazer no dia e avançar na minha progressão | EP01 | A definir | R2 | Não iniciada |
 
 > As histórias a partir da US04 são uma proposta inicial derivada da Lean Inception. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Todas serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.
+
+> A US19 (missões diárias) entrou no escopo de gamificação da Release 2 definido no [Roadmap](../produto/roadmap.md). As regras, o fluxo e o contrato estão na proposta [Missões Diárias](../produto/missoes-diarias.md), em validação com o PO. A definição e o protótipo são tratados na issue [#83](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83), e a implementação, na [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84). A prioridade MoSCoW ainda não foi definida. O identificador US18 foi sugerido na issue [#82](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82) (ranking por XP) e não é registrado aqui.
 
 ## Legenda de status
 
@@ -149,3 +152,4 @@ Uma história é considerada concluída quando:
 | Data | Versão | Descrição | Autor(es) |
 | :--- | :--- | :--- | :--- |
 | 28/09/2026 | 1.0 | Criação do backlog do produto com épicos, cobertura da Lean Inception, histórias priorizadas, DoR e DoD | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) |
+| 13/10/2026 | 1.1 | Inclusão da US19 (missões diárias) na Release 2, com referência às issues #83 e #84 | [Rafael Melo](https://github.com/rmatuda) |
