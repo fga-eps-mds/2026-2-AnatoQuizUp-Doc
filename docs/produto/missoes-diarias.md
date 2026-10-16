@@ -2,7 +2,7 @@
 
 | Campo | Informação |
 | --- | --- |
-| Situação | **Proposta em validação**: nenhuma regra deste documento foi aprovada pelo PO até a versão 1.0 |
+| Situação | **Proposta em validação**: nenhuma regra deste documento foi aprovada pelo PO até a versão 1.1 |
 | Épico | [#62 — Progressão, missões e ranking por XP](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/62) |
 | Definição e protótipo | [#83 — Definir e prototipar missões diárias](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83) |
 | Implementação | [#84 — Implementar missões diárias, progresso e recompensas](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84) |
@@ -361,6 +361,37 @@ A primeira opção dá retorno imediato e segue o padrão das conquistas. **Situ
 
 O código de suporte "MIS-503" do protótipo não existe no sistema. Os códigos de erro atuais seguem o enum `CodigoDeErro` dos serviços. **Situação:** pendente.
 
+### 8.7 Controle de acesso
+
+Esta seção define quem pode consultar e quem pode alterar as missões e o progresso de cada estudante. As regras seguem o padrão já usado para moedas, conquistas e XP.
+
+**Quem pode fazer o quê**
+
+| Ação | Estudante (papel ALUNO) | Professor ou administrador | Usuário não autenticado | Situação |
+| --- | --- | --- | --- | --- |
+| Consultar as próprias missões e o próprio progresso | Permitido | Não se aplica (regra 5) | Negado | Proposta |
+| Consultar as missões ou o progresso de outro estudante | Negado | Negado no MVP | Negado | Proposta |
+| Alterar diretamente progresso, status ou recompensa de uma missão | Negado | Negado | Negado | Proposta |
+| Gerar progresso por meio de atividades válidas | Permitido | Não gera progresso | Negado | Proposta |
+| Alterar o catálogo de missões | Negado | Negado no MVP (catálogo fixo, decisão 10) | Negado | Pendente |
+
+**Regras**
+
+1. Toda consulta às missões exige autenticação. Sem um token de acesso válido, o BFF recusa a requisição antes de encaminhá-la ao Quiz-Service, como já acontece nas rotas `/quiz`, `/loja` e `/conquistas`.
+2. A identidade do estudante vem **somente do token de acesso**. O BFF valida o JWT, descarta qualquer cabeçalho `x-user-*` enviado pelo cliente e repassa ao Quiz-Service os cabeçalhos `x-user-id` e `x-user-papel` obtidos do token, junto com o token interno. Qualquer identificador de usuário enviado no corpo, na URL ou em parâmetros da requisição é ignorado.
+3. A rota proposta (`GET /missoes/minhas`) não recebe identificador de usuário. Por isso, não há como pedir as missões de outra pessoa por ela.
+4. Não existe rota para alterar progresso, status ou recompensa. Essas informações mudam apenas dentro do Quiz-Service, quando uma atividade válida é registrada (seções 4.3 e 7).
+5. Somente o papel ALUNO participa das missões. Atividades de professores e administradores no quiz não geram progresso nem recompensa, como já acontece com moedas, conquistas e XP. **Situação:** proposta, a confirmar junto com as decisões do PO.
+6. Consultas de professores ou administradores às missões dos estudantes, por exemplo em um painel da turma, ficam fora do MVP. Se forem necessárias, devem ter regras próprias em outra história.
+
+**Comportamento esperado em caso de acesso negado**
+
+| Situação | Resposta esperada |
+| --- | --- |
+| Requisição sem token ou com token inválido | Recusada pelo BFF, sem dados de missões |
+| Identificador de outro usuário enviado na requisição | Ignorado; a resposta traz apenas as missões do usuário do token |
+| Tentativa de alterar progresso ou recompensa | Não há rota para isso; nenhuma alteração ocorre |
+
 ## 9. Rastreabilidade dos critérios da #83
 
 | Critério de aceitação da #83 | Onde está | Documentado | Implementado | Validado pelo PO |
@@ -372,6 +403,7 @@ O código de suporte "MIS-503" do protótipo não existe no sistema. Os códigos
 | O protótipo contempla os estados vazio, em andamento e concluído | [Figma](https://www.figma.com/design/qKgur6yKTkAN83ofJtbFxM/AnatoQuizUp-2026.2?node-id=96-221) e seção 8.6 | Sim | Não se aplica | Não |
 | Está definido quais atividades aumentam o progresso de cada missão | Seção 3.2 e decisões 4 e 11 | Parcial: os eventos estão mapeados, mas a elegibilidade depende do PO | Não | Não |
 | A documentação permite incluir missões semanais futuramente sem alterar o conceito principal | Seção 5.2 | Sim, como proposta técnica | Não | Não |
+| As regras de controle de acesso estão documentadas | Seção 8.7 | Sim, como proposta | Não | Não |
 | A #84 referencia a documentação aprovada como pré-requisito de implementação | — | Não; depende da aprovação | Não se aplica | Não |
 
 ## 10. Referências
@@ -388,3 +420,4 @@ O código de suporte "MIS-503" do protótipo não existe no sistema. Os códigos
 | Data | Versão | Descrição | Autor(es) |
 | :--- | :--- | :--- | :--- |
 | 13/10/2026 | 1.0 | Criação da proposta de regras, fluxo e contrato das missões diárias para validação pelo PO (issue #83) | [Rafael Melo](https://github.com/rmatuda) |
+| 16/10/2026 | 1.1 | Inclusão das regras de controle de acesso às missões (seção 8.7) | [Rafael Melo](https://github.com/rmatuda) |
