@@ -861,6 +861,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#87-controle-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.7 Controle de acesso
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1831,6 +1840,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#87-controle-de-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      8.7 Controle de acesso
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1889,7 +1907,7 @@
 <tbody>
 <tr>
 <td>Situação</td>
-<td><strong>Proposta em validação</strong>: nenhuma regra deste documento foi aprovada pelo PO até a versão 1.0</td>
+<td><strong>Proposta em validação</strong>: nenhuma regra deste documento foi aprovada pelo PO até a versão 1.1</td>
 </tr>
 <tr>
 <td>Épico</td>
@@ -2617,6 +2635,89 @@
 </tbody>
 </table>
 <p>O código de suporte "MIS-503" do protótipo não existe no sistema. Os códigos de erro atuais seguem o enum <code>CodigoDeErro</code> dos serviços. <strong>Situação:</strong> pendente.</p>
+<h3 id="87-controle-de-acesso">8.7 Controle de acesso</h3>
+<p>Esta seção define quem pode consultar e quem pode alterar as missões e o progresso de cada estudante. As regras seguem o padrão já usado para moedas, conquistas e XP.</p>
+<p><strong>Quem pode fazer o quê</strong></p>
+<table>
+<thead>
+<tr>
+<th>Ação</th>
+<th>Estudante (papel ALUNO)</th>
+<th>Professor ou administrador</th>
+<th>Usuário não autenticado</th>
+<th>Situação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Consultar as próprias missões e o próprio progresso</td>
+<td>Permitido</td>
+<td>Não se aplica (regra 5)</td>
+<td>Negado</td>
+<td>Proposta</td>
+</tr>
+<tr>
+<td>Consultar as missões ou o progresso de outro estudante</td>
+<td>Negado</td>
+<td>Negado no MVP</td>
+<td>Negado</td>
+<td>Proposta</td>
+</tr>
+<tr>
+<td>Alterar diretamente progresso, status ou recompensa de uma missão</td>
+<td>Negado</td>
+<td>Negado</td>
+<td>Negado</td>
+<td>Proposta</td>
+</tr>
+<tr>
+<td>Gerar progresso por meio de atividades válidas</td>
+<td>Permitido</td>
+<td>Não gera progresso</td>
+<td>Negado</td>
+<td>Proposta</td>
+</tr>
+<tr>
+<td>Alterar o catálogo de missões</td>
+<td>Negado</td>
+<td>Negado no MVP (catálogo fixo, decisão 10)</td>
+<td>Negado</td>
+<td>Pendente</td>
+</tr>
+</tbody>
+</table>
+<p><strong>Regras</strong></p>
+<ol>
+<li>Toda consulta às missões exige autenticação. Sem um token de acesso válido, o BFF recusa a requisição antes de encaminhá-la ao Quiz-Service, como já acontece nas rotas <code>/quiz</code>, <code>/loja</code> e <code>/conquistas</code>.</li>
+<li>A identidade do estudante vem <strong>somente do token de acesso</strong>. O BFF valida o JWT, descarta qualquer cabeçalho <code>x-user-*</code> enviado pelo cliente e repassa ao Quiz-Service os cabeçalhos <code>x-user-id</code> e <code>x-user-papel</code> obtidos do token, junto com o token interno. Qualquer identificador de usuário enviado no corpo, na URL ou em parâmetros da requisição é ignorado.</li>
+<li>A rota proposta (<code>GET /missoes/minhas</code>) não recebe identificador de usuário. Por isso, não há como pedir as missões de outra pessoa por ela.</li>
+<li>Não existe rota para alterar progresso, status ou recompensa. Essas informações mudam apenas dentro do Quiz-Service, quando uma atividade válida é registrada (seções 4.3 e 7).</li>
+<li>Somente o papel ALUNO participa das missões. Atividades de professores e administradores no quiz não geram progresso nem recompensa, como já acontece com moedas, conquistas e XP. <strong>Situação:</strong> proposta, a confirmar junto com as decisões do PO.</li>
+<li>Consultas de professores ou administradores às missões dos estudantes, por exemplo em um painel da turma, ficam fora do MVP. Se forem necessárias, devem ter regras próprias em outra história.</li>
+</ol>
+<p><strong>Comportamento esperado em caso de acesso negado</strong></p>
+<table>
+<thead>
+<tr>
+<th>Situação</th>
+<th>Resposta esperada</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Requisição sem token ou com token inválido</td>
+<td>Recusada pelo BFF, sem dados de missões</td>
+</tr>
+<tr>
+<td>Identificador de outro usuário enviado na requisição</td>
+<td>Ignorado; a resposta traz apenas as missões do usuário do token</td>
+</tr>
+<tr>
+<td>Tentativa de alterar progresso ou recompensa</td>
+<td>Não há rota para isso; nenhuma alteração ocorre</td>
+</tr>
+</tbody>
+</table>
 <h2 id="9-rastreabilidade-dos-criterios-da-83">9. Rastreabilidade dos critérios da #83</h2>
 <table>
 <thead>
@@ -2679,6 +2780,13 @@
 <td>Não</td>
 </tr>
 <tr>
+<td>As regras de controle de acesso estão documentadas</td>
+<td>Seção 8.7</td>
+<td>Sim, como proposta</td>
+<td>Não</td>
+<td>Não</td>
+</tr>
+<tr>
 <td>A #84 referencia a documentação aprovada como pré-requisito de implementação</td>
 <td>—</td>
 <td>Não; depende da aprovação</td>
@@ -2711,6 +2819,12 @@
 <td style="text-align: left;">13/10/2026</td>
 <td style="text-align: left;">1.0</td>
 <td style="text-align: left;">Criação da proposta de regras, fluxo e contrato das missões diárias para validação pelo PO (issue #83)</td>
+<td style="text-align: left;"><a href="https://github.com/rmatuda">Rafael Melo</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">16/10/2026</td>
+<td style="text-align: left;">1.1</td>
+<td style="text-align: left;">Inclusão das regras de controle de acesso às missões (seção 8.7)</td>
 <td style="text-align: left;"><a href="https://github.com/rmatuda">Rafael Melo</a></td>
 </tr>
 </tbody>
