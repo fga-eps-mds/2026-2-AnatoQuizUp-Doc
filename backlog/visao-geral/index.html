@@ -1544,7 +1544,7 @@
 Quero [ação ou necessidade]
 Para [benefício esperado]
 </code></pre></div>
-<p>Os critérios de aceitação são escritos em <strong>Gherkin</strong> (Dado / Quando / Então) ou como checklist verificável.</p>
+<p>Os critérios de aceitação das histórias refinadas são escritos em <strong>Gherkin</strong> (Dado / Quando / Então); listas de cobertura registram status de implementação.</p>
 <p><strong>Tarefas técnicas</strong> descrevem um resultado verificável pelo time e possuem <strong>critérios de conclusão</strong> e <strong>repositórios impactados</strong>.</p>
 <h2 id="priorizacao">Priorização</h2>
 <p>A prioridade segue a técnica <strong>MoSCoW</strong>:</p>
@@ -1720,6 +1720,31 @@ Para [benefício esperado]
 <td>Simulação de consultas com pacientes virtuais</td>
 <td>EP05</td>
 <td>US17</td>
+</tr>
+<tr>
+<td>Progressão de elo conforme XP acumulado</td>
+<td>EP01</td>
+<td>US18 (#82)</td>
+</tr>
+<tr>
+<td>Perda e recuperação de elo por inatividade</td>
+<td>EP01</td>
+<td>US20 (#89)</td>
+</tr>
+<tr>
+<td>Exibição consistente do avatar ativo</td>
+<td>EP01</td>
+<td>US21 (#91)</td>
+</tr>
+<tr>
+<td>Acesso visível à personalização do avatar</td>
+<td>EP01</td>
+<td>US22 (#92)</td>
+</tr>
+<tr>
+<td>Padronização de nomenclatura avatar/perfil (melhoria de UX)</td>
+<td>EP01</td>
+<td>US01, US02, US21, US22 (#93)</td>
 </tr>
 <tr>
 <td>Administração de usuários e permissões</td>
@@ -1914,6 +1939,16 @@ Para [benefício esperado]
 <td>Não iniciada</td>
 </tr>
 <tr>
+<td>US18</td>
+<td>estudante</td>
+<td>evoluir de elo conforme o XP acumulado</td>
+<td>acompanhar meu progresso e estabelecer objetivos</td>
+<td>EP01</td>
+<td>Should</td>
+<td>R2</td>
+<td>Proposta refinada (#82)</td>
+</tr>
+<tr>
 <td>US19</td>
 <td>estudante</td>
 <td>visualizar minhas missões diárias, acompanhar o progresso e receber a recompensa ao concluí-las</td>
@@ -1923,11 +1958,41 @@ Para [benefício esperado]
 <td>R2</td>
 <td>Não iniciada</td>
 </tr>
+<tr>
+<td>US20</td>
+<td>estudante</td>
+<td>receber avisos de inatividade e recuperar um elo após voltar a estudar</td>
+<td>manter uma rotina de estudos e continuar progredindo</td>
+<td>EP01</td>
+<td>Should</td>
+<td>R2</td>
+<td>Refinada (#89; depende de US18)</td>
+</tr>
+<tr>
+<td>US21</td>
+<td>estudante</td>
+<td>visualizar meu avatar ativo nas áreas que me representam</td>
+<td>manter minha identidade visual consistente</td>
+<td>EP01</td>
+<td>Should</td>
+<td>Pós-validação R1</td>
+<td>Refinada (#91; vinculada a US01 e US02)</td>
+</tr>
+<tr>
+<td>US22</td>
+<td>estudante</td>
+<td>localizar a personalização do avatar na navegação principal</td>
+<td>customizar minha identidade visual sem procurar pela interface</td>
+<td>EP01</td>
+<td>Should</td>
+<td>Pós-validação R1</td>
+<td>Refinada (#92; melhoria de UX #93)</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
 <p>As histórias a partir da US04 são uma proposta inicial derivada da Lean Inception. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Todas serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.</p>
-<p>A US19 (missões diárias) entrou no escopo de gamificação da Release 2 definido no <a href="../../produto/roadmap/">Roadmap</a>. As regras, o fluxo e o contrato estão na proposta <a href="../../produto/missoes-diarias/">Missões Diárias</a>, em validação com o PO. A definição e o protótipo são tratados na issue <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83">#83</a>, e a implementação, na <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84">#84</a>. A prioridade MoSCoW ainda não foi definida. O identificador US18 foi sugerido na issue <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82">#82</a> (ranking por XP) e não é registrado aqui.</p>
+<p>A US19 (missões diárias) entrou no escopo de gamificação da Release 2 definido no <a href="../../produto/roadmap/">Roadmap</a>. As regras, o fluxo e o contrato estão na proposta <a href="../../produto/missoes-diarias/">Missões Diárias</a>, em validação com o PO. A definição e o protótipo são tratados na issue <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83">#83</a>, e a implementação, na <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84">#84</a>. A prioridade MoSCoW ainda não foi definida. A US18 corresponde à progressão de elos da <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82">#82</a>, sem duplicar a história de ranking; a US19 continua reservada às missões diárias. As issues <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96">#96</a> e <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97">#97</a> são etapas técnicas da US11, não novas histórias.</p>
 </blockquote>
 <h2 id="legenda-de-status">Legenda de status</h2>
 <table>
@@ -2001,6 +2066,12 @@ Para [benefício esperado]
 <td style="text-align: left;">1.1</td>
 <td style="text-align: left;">Inclusão da US19 (missões diárias) na Release 2, com referência às issues #83 e #84</td>
 <td style="text-align: left;"><a href="https://github.com/rmatuda">Rafael Melo</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">18/10/2026</td>
+<td style="text-align: left;">1.2</td>
+<td style="text-align: left;">Inclusão das US18 e US20–US22; vínculo das #96 e #97 à US11; preservação da US19 e registro da melhoria de UX #93</td>
+<td style="text-align: left;"><a href="https://github.com/leticiatmartins">Letícia Torres</a></td>
 </tr>
 </tbody>
 </table>
