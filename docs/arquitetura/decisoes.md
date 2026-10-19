@@ -79,6 +79,6 @@ O BFF já possui a rota `/ia` e o cliente `ai.client`, que respondem `503` enqua
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) |
-| :--- | :--- | :--- | :--- |
-| 28/09/2026 | 1.0 | Registro das decisões arquiteturais de 2026.2 | [Henrique Carvalho](https://github.com/henriquecarv3), [Caio Habibe](https://github.com/CaioHabibe), [João Lucas](https://github.com/jlucasiqueira), [Rafael Melo](https://github.com/rmatuda) |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 28/09/2026 | 1.0 | Registro das decisões arquiteturais de 2026.2 | [Henrique Carvalho](https://github.com/henriquecarv3), [Caio Habibe](https://github.com/CaioHabibe), [João Lucas](https://github.com/jlucasiqueira), [Rafael Melo](https://github.com/rmatuda) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #54](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/54)) |

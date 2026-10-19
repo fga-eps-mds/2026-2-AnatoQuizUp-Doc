@@ -417,7 +417,7 @@ Esta seção define quem pode consultar e quem pode alterar as missões e o prog
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) |
-| :--- | :--- | :--- | :--- |
-| 13/10/2026 | 1.0 | Criação da proposta de regras, fluxo e contrato das missões diárias para validação pelo PO (issue #83) | [Rafael Melo](https://github.com/rmatuda) |
-| 16/10/2026 | 1.1 | Inclusão das regras de controle de acesso às missões (seção 8.7) | [Rafael Melo](https://github.com/rmatuda) |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 13/10/2026 | 1.0 | Criação da proposta de regras, fluxo e contrato das missões diárias para validação pelo PO (issue #83) | [Rafael Melo](https://github.com/rmatuda) | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) ([PR #94](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/94)) |
+| 16/10/2026 | 1.1 | Inclusão das regras de controle de acesso às missões (seção 8.7) | [Rafael Melo](https://github.com/rmatuda) | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) ([PR #95](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/95)) |

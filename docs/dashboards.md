@@ -32,7 +32,8 @@ Os cinco itens que ainda estavam abertos foram apresentados no painel como ponto
 
 ## Histórico de versão
 
-| Versão | Data | Descrição | Elaboradora |
-| :-----: | :--: | --------- | ----------- |
-| 1.0 | 27/09/2026 | Criação do dashboard da Release 1 | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) |
-| 1.1 | 28/09/2026 | Adição do link para o dashboard interativo em Streamlit | [Rafael Matuda](https://github.com/rmatuda) |
+| Versão | Data | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 1.0 | 27/09/2026 | Criação do dashboard da Release 1 | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) | [Rafael Melo](https://github.com/rmatuda) ([PR #48](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/48)) |
+| 1.1 | 28/09/2026 | Adição do link para o dashboard interativo em Streamlit | [Rafael Matuda](https://github.com/rmatuda) | [Henrique Carvalho](https://github.com/henriquecarv3) ([PR #51](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/51)) |
+| 1.2 | 28/09/2026 | Atualização do link do dashboard interativo | [Rafael Matuda](https://github.com/rmatuda) | [Henrique Carvalho](https://github.com/henriquecarv3), [Brenno da Silva Oliveira](https://github.com/Brenno-Silva01) ([PR #56](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/56)) |

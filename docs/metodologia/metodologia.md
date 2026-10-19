@@ -148,9 +148,9 @@ Os documentos abaixo descrevem **métodos** específicos e padrões técnicos in
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) | Reviso(es) |
-|---|---|---|---|---|
-| 18/09/2026 | 1.0 | Definição das Metodologias utilizadas, Definição dos papeis, Eventos e fluxo de trabalho | [Gabriel Freitas](https://github.com/gabrielfreitass1) | --- |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 18/09/2026 | 1.0 | Definição das Metodologias utilizadas, Definição dos papeis, Eventos e fluxo de trabalho | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #52](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/52)) |
 
 
 ## Referencias 
