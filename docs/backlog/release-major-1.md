@@ -248,7 +248,8 @@ Cenário: Utilização inválida
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) |
-| :--- | :--- | :--- | :--- |
-| 28/09/2026 | 1.0 | Detalhamento do Product Backlog e Project Backlog da Release Major 1 | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) |
-| 28/09/2026 | 1.1 | Inclusão dos links dos protótipos do Figma, conforme revisão do PR #58 | [Henrique Carvalho](https://github.com/henriquecarv3) |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 28/09/2026 | 1.0 | Detalhamento do Product Backlog e Project Backlog da Release Major 1 | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #58](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/58)) |
+| 28/09/2026 | 1.1 | Inclusão dos links dos protótipos do Figma, conforme revisão do PR #58 | [Henrique Carvalho](https://github.com/henriquecarv3) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #58](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/58)) |
+| 18/10/2026 | 1.2 | Refinamentos após a validação da R1 | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) | [Brenno da Silva Oliveira](https://github.com/Brenno-Silva01) ([PR #98](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/98)) |

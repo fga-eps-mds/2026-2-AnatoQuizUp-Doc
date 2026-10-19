@@ -187,7 +187,7 @@ CAROLI, Paulo. *Lean Inception: como alinhar pessoas e construir o produto certo
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) |
-| :---: | :---: | --- | --- |
-| 13/09/2026 | 1.0 | Criação da página da Lean Inception com a contextualização do processo, seus resultados e o planejamento inicial do projeto | [Leticia Torres Soares](https://github.com/leticiatmartins) |
-| 15/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 13/09/2026 | 1.0 | Criação da página da Lean Inception com a contextualização do processo, seus resultados e o planejamento inicial do projeto | [Leticia Torres Soares](https://github.com/leticiatmartins) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #13](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/13)) |
+| 15/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #13](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/13)) |

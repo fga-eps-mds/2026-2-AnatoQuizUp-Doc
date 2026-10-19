@@ -2,9 +2,9 @@
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor |
-| :---: | :---: | :--- | :--- |
-| 17/09/2026 | 1.0 | Criação e estruturação do plano de riscos | [João Paulo Lima](https://github.com/jpaulohe4rt) |
+| Data | Versão | Descrição | Autor | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 17/09/2026 | 1.0 | Criação e estruturação do plano de riscos | [João Paulo Lima](https://github.com/jpaulohe4rt) | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) ([PR #16](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/16)) |
 
 ---
 
