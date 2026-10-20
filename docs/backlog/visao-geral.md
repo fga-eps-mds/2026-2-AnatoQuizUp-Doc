@@ -123,7 +123,7 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 
 > As histórias a partir da US04 são uma proposta inicial derivada da Lean Inception. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Todas serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.
 
-> A US19 (missões diárias) entrou no escopo de gamificação da Release 2 definido no [Roadmap](../produto/roadmap.md). As regras, o fluxo e o contrato estão na proposta [Missões Diárias](../produto/missoes-diarias.md), em validação com o PO. A definição e o protótipo são tratados na issue [#83](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83), e a implementação, na [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84). A prioridade MoSCoW ainda não foi definida. A US18 corresponde à progressão de elos da [#82](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82), sem duplicar a história de ranking; a US19 continua reservada às missões diárias. As issues [#96](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96) e [#97](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97) são etapas técnicas da US11, não novas histórias.
+> A US19 (missões diárias) entrou no escopo de gamificação da Release 2 definido no [Roadmap](../produto/roadmap.md). As regras, o fluxo e o contrato estão no documento [Missões Diárias](../produto/missoes-diarias.md), validado pelo PO em 19/10/2026. A definição e o protótipo são tratados na issue [#83](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83), e a implementação, na [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84). A prioridade MoSCoW ainda não foi definida. A US18 corresponde à progressão de elos da [#82](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82), sem duplicar a história de ranking; a US19 continua reservada às missões diárias. As issues [#96](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96) e [#97](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97) são etapas técnicas da US11, não novas histórias.
 
 ## Legenda de status
 
@@ -158,8 +158,9 @@ Uma história é considerada concluída quando:
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) | Revisor(es) |
-| --- | --- | --- | --- | --- |
-| 28/09/2026 | 1.0 | Criação do backlog do produto com épicos, cobertura da Lean Inception, histórias priorizadas, DoR e DoD | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #58](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/58)) |
-| 13/10/2026 | 1.1 | Inclusão da US19 (missões diárias) na Release 2, com referência às issues #83 e #84 | [Rafael Melo](https://github.com/rmatuda) | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) ([PR #94](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/94)) |
-| 18/10/2026 | 1.2 | Inclusão das US18 e US20–US22; vínculo das #96 e #97 à US11; preservação da US19 e registro da melhoria de UX #93 | [Letícia Torres](https://github.com/leticiatmartins) | [Brenno da Silva Oliveira](https://github.com/Brenno-Silva01) ([PR #98](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/98)) |
+| Data | Versão | Descrição | Autor(es) |
+| :--- | :--- | :--- | :--- |
+| 28/09/2026 | 1.0 | Criação do backlog do produto com épicos, cobertura da Lean Inception, histórias priorizadas, DoR e DoD | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) |
+| 13/10/2026 | 1.1 | Inclusão da US19 (missões diárias) na Release 2, com referência às issues #83 e #84 | [Rafael Melo](https://github.com/rmatuda) |
+| 18/10/2026 | 1.2 | Inclusão das US18 e US20–US22; vínculo das #96 e #97 à US11; preservação da US19 e registro da melhoria de UX #93 | [Letícia Torres](https://github.com/leticiatmartins) |
+| 19/10/2026 | 1.3 | Registro da validação das regras da US19 (missões diárias) pelo PO | [Rafael Melo](https://github.com/rmatuda) e [Henrique Neves](https://github.com/henriquecarv3) |
