@@ -104,6 +104,6 @@ Geração de questões/imagens com IA, chatbot de estudo e simulação OSCE pert
 
 ## 7. Histórico de versão
 
-| Data | Versão | Descrição | Responsável |
-| --- | --- | --- | --- |
-| 27/09/2026 | 1.0 | Estrutura inicial para 2026.2, dicionário e diagramas; releases futuras pendentes de definição. | Equipe AnatoQuizUp 2026.2 — proposta para revisão |
+| Data | Versão | Descrição | Responsável | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 27/09/2026 | 1.0 | Estrutura inicial para 2026.2, dicionário e diagramas; releases futuras pendentes de definição. | Equipe AnatoQuizUp 2026.2 | [João Lucas Araújo Siqueira](https://github.com/jlucasiqueira) ([PR #45](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/45)) |

@@ -143,7 +143,7 @@ A visão visual do recorte aprovado está no [Canvas MVP ampliado no FigJam](htt
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) |
-| :--- | :--- | :--- | :--- |
-| [Data] | 1.0 | Criação do roadmap com base no escopo e replanejamento da Release 1 | [João Lucas](https://github.com/jlucasiqueira) |
-| 12/10/2026 | 1.1 | Alinhamento das Releases 1, 2 e 3 ao MVP ampliado e inclusão de critérios e métricas | [Leticia](https://github.com/leticiatmartins) |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 28/09/2026 | 1.0 | Criação do roadmap com base no escopo e replanejamento da Release 1 | [João Lucas](https://github.com/jlucasiqueira) | [Henrique Carvalho](https://github.com/henriquecarv3) ([PR #49](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/49)) |
+| 12/10/2026 | 1.1 | Alinhamento das Releases 1, 2 e 3 ao MVP ampliado e inclusão de critérios e métricas | [Leticia](https://github.com/leticiatmartins) | [Rafael Melo](https://github.com/rmatuda) ([PR #87](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/87)) |

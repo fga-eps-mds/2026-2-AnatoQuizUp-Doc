@@ -45,6 +45,6 @@
 
 ## Histórico de Versão
 
-| **Data** | **Versão** | **Descrição** | **Autor(es)** |
-| :---: | :---: | --- | --- |
-| 06/10/2026 | 1.0 | Criação da ata da reunião de alinhamento técnico. | [Leticia](https://github.com/leticiatmartins) |
+| **Data** | **Versão** | **Descrição** | **Autor(es)** | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 06/10/2026 | 1.0 | Criação da ata da reunião de alinhamento técnico. | [Leticia](https://github.com/leticiatmartins) | [Rafael Melo](https://github.com/rmatuda) ([PR #80](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/80)) |
