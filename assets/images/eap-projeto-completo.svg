@@ -1,0 +1,97 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1800" height="1250" viewBox="0 0 1800 1250" role="img" aria-labelledby="title desc">
+  <title id="title">EAP do projeto AnatoQuizUp 2026.2</title>
+  <desc id="desc">Diagrama hierárquico e sequencial com iniciação, planejamento, execução e encerramento, incluindo seus pacotes de trabalho.</desc>
+  <defs>
+    <marker id="arrow" viewBox="0 0 10 10" refX="9" refY="5" markerWidth="8" markerHeight="8" orient="auto-start-reverse">
+      <path d="M 0 0 L 10 5 L 0 10 z" fill="#64748b"/>
+    </marker>
+    <filter id="shadow" x="-20%" y="-20%" width="140%" height="140%">
+      <feDropShadow dx="0" dy="5" stdDeviation="7" flood-color="#0f172a" flood-opacity="0.12"/>
+    </filter>
+  </defs>
+  <style>
+    .bg{fill:#f8fafc}.root{fill:#083344}.phase{filter:url(#shadow)}.p1{fill:#0f766e}.p2{fill:#2563eb}.p3{fill:#7c3aed}.p4{fill:#be185d}.card{fill:#fff;stroke-width:3}.c1{stroke:#5eead4}.c2{stroke:#93c5fd}.c3{stroke:#c4b5fd}.c4{stroke:#f9a8d4}.release{fill:#f5f3ff;stroke:#8b5cf6}.line{fill:none;stroke:#64748b;stroke-width:4;marker-end:url(#arrow)}.branch{fill:none;stroke:#94a3b8;stroke-width:3;marker-end:url(#arrow)}.heading{fill:#0f172a;font:700 38px Arial,sans-serif}.subheading{fill:#475569;font:400 21px Arial,sans-serif}.rootText{fill:#fff;font:700 34px Arial,sans-serif}.rootSub{fill:#cffafe;font:400 19px Arial,sans-serif}.phaseTitle{fill:#fff;font:700 25px Arial,sans-serif}.phaseSub{fill:#e2e8f0;font:400 17px Arial,sans-serif}.code{fill:#475569;font:700 16px Arial,sans-serif}.cardTitle{fill:#0f172a;font:700 19px Arial,sans-serif}.cardSub{fill:#475569;font:400 15px Arial,sans-serif}.legend{fill:#334155;font:400 17px Arial,sans-serif}
+  </style>
+  <rect class="bg" width="1800" height="1250"/>
+  <text class="heading" x="900" y="54" text-anchor="middle">EAP do AnatoQuizUp 2026.2</text>
+  <text class="subheading" x="900" y="88" text-anchor="middle">Fluxo do projeto e pacotes de trabalho verificáveis</text>
+
+  <rect class="root" x="650" y="120" width="500" height="105" rx="24" filter="url(#shadow)"/>
+  <text class="rootText" x="900" y="165" text-anchor="middle">1.0 Projeto AnatoQuizUp</text>
+  <text class="rootSub" x="900" y="198" text-anchor="middle">Escopo total do semestre 2026.2</text>
+
+  <path class="line" d="M 900 225 L 900 270 L 240 270 L 240 305"/>
+  <path class="line" d="M 420 355 L 515 355"/>
+  <path class="line" d="M 850 355 L 945 355"/>
+  <path class="line" d="M 1280 355 L 1375 355"/>
+
+  <rect class="phase p1" x="60" y="305" width="360" height="100" rx="20"/>
+  <text class="phaseTitle" x="240" y="348" text-anchor="middle">1.1 Iniciação</text>
+  <text class="phaseSub" x="240" y="378" text-anchor="middle">entender o problema e alinhar a visão</text>
+
+  <rect class="phase p2" x="515" y="305" width="335" height="100" rx="20"/>
+  <text class="phaseTitle" x="682" y="348" text-anchor="middle">1.2 Planejamento</text>
+  <text class="phaseSub" x="682" y="378" text-anchor="middle">decompor, priorizar e preparar</text>
+
+  <rect class="phase p3" x="945" y="305" width="335" height="100" rx="20"/>
+  <text class="phaseTitle" x="1112" y="348" text-anchor="middle">1.3 Execução</text>
+  <text class="phaseSub" x="1112" y="378" text-anchor="middle">entregar e validar incrementos</text>
+
+  <rect class="phase p4" x="1375" y="305" width="365" height="100" rx="20"/>
+  <text class="phaseTitle" x="1557" y="348" text-anchor="middle">1.4 Encerramento</text>
+  <text class="phaseSub" x="1557" y="378" text-anchor="middle">aceitar, avaliar e transferir</text>
+
+  <path class="branch" d="M 240 405 L 240 448"/>
+  <path class="branch" d="M 682 405 L 682 448"/>
+  <path class="branch" d="M 1112 405 L 1112 448"/>
+  <path class="branch" d="M 1557 405 L 1557 448"/>
+
+  <g>
+    <rect class="card c1" x="60" y="448" width="360" height="88" rx="16"/><text class="code" x="82" y="476">1.1.1</text><text class="cardTitle" x="240" y="500" text-anchor="middle">Visão do produto</text><text class="cardSub" x="240" y="523" text-anchor="middle">problema, valor e limites validados</text>
+    <path class="branch" d="M 240 536 L 240 559"/>
+    <rect class="card c1" x="60" y="559" width="360" height="88" rx="16"/><text class="code" x="82" y="587">1.1.2</text><text class="cardTitle" x="240" y="611" text-anchor="middle">Pessoas usuárias e objetivos</text><text class="cardSub" x="240" y="634" text-anchor="middle">estudante, professora e administração</text>
+    <path class="branch" d="M 240 647 L 240 670"/>
+    <rect class="card c1" x="60" y="670" width="360" height="88" rx="16"/><text class="code" x="82" y="698">1.1.3</text><text class="cardTitle" x="240" y="722" text-anchor="middle">Lean Inception</text><text class="cardSub" x="240" y="745" text-anchor="middle">jornadas, funcionalidades e hipóteses</text>
+    <path class="branch" d="M 240 758 L 240 781"/>
+    <rect class="card c1" x="60" y="781" width="360" height="88" rx="16"/><text class="code" x="82" y="809">1.1.4</text><text class="cardTitle" x="240" y="833" text-anchor="middle">Diagnóstico herdado</text><text class="cardSub" x="240" y="856" text-anchor="middle">capacidades, dívidas e riscos</text>
+    <path class="branch" d="M 240 869 L 240 892"/>
+    <rect class="card c1" x="60" y="892" width="360" height="88" rx="16"/><text class="code" x="82" y="920">1.1.5</text><text class="cardTitle" x="240" y="944" text-anchor="middle">Organização da equipe</text><text class="cardSub" x="240" y="967" text-anchor="middle">repositórios e políticas de colaboração</text>
+  </g>
+
+  <g>
+    <rect class="card c2" x="515" y="448" width="335" height="88" rx="16"/><text class="code" x="537" y="476">1.2.1</text><text class="cardTitle" x="682" y="500" text-anchor="middle">Sequenciador e ondas</text><text class="cardSub" x="682" y="523" text-anchor="middle">valor, esforço e dependências</text>
+    <path class="branch" d="M 682 536 L 682 559"/>
+    <rect class="card c2" x="515" y="559" width="335" height="88" rx="16"/><text class="code" x="537" y="587">1.2.2</text><text class="cardTitle" x="682" y="611" text-anchor="middle">Escopo e EAP</text><text class="cardSub" x="682" y="634" text-anchor="middle">regra dos 100% e entregáveis</text>
+    <path class="branch" d="M 682 647 L 682 670"/>
+    <rect class="card c2" x="515" y="670" width="335" height="88" rx="16"/><text class="code" x="537" y="698">1.2.3</text><text class="cardTitle" x="682" y="722" text-anchor="middle">Backlog, roadmap e releases</text><text class="cardSub" x="682" y="745" text-anchor="middle">histórias e critérios de aceite</text>
+    <path class="branch" d="M 682 758 L 682 781"/>
+    <rect class="card c2" x="515" y="781" width="335" height="88" rx="16"/><text class="code" x="537" y="809">1.2.4</text><text class="cardTitle" x="682" y="833" text-anchor="middle">Arquitetura e dados</text><text class="cardSub" x="682" y="856" text-anchor="middle">Web, BFF, serviços e contratos</text>
+    <path class="branch" d="M 682 869 L 682 892"/>
+    <rect class="card c2" x="515" y="892" width="335" height="88" rx="16"/><text class="code" x="537" y="920">1.2.5</text><text class="cardTitle" x="682" y="944" text-anchor="middle">Qualidade, custos e riscos</text><text class="cardSub" x="682" y="967" text-anchor="middle">testes, pipeline e controles</text>
+    <path class="branch" d="M 682 980 L 682 1003"/>
+    <rect class="card c2" x="515" y="1003" width="335" height="88" rx="16"/><text class="code" x="537" y="1031">1.2.6</text><text class="cardTitle" x="682" y="1055" text-anchor="middle">Ambientes e operação</text><text class="cardSub" x="682" y="1078" text-anchor="middle">desenvolvimento e homologação</text>
+  </g>
+
+  <g>
+    <rect class="card release" x="945" y="448" width="335" height="105" rx="16"/><text class="code" x="967" y="476">1.3.1</text><text class="cardTitle" x="1112" y="504" text-anchor="middle">Release 1 · 28/09</text><text class="cardSub" x="1112" y="530" text-anchor="middle">avatar, loja e integração</text>
+    <path class="branch" d="M 1112 553 L 1112 582"/>
+    <rect class="card release" x="945" y="582" width="335" height="105" rx="16"/><text class="code" x="967" y="610">1.3.2</text><text class="cardTitle" x="1112" y="638" text-anchor="middle">Release 2 · 26/10</text><text class="cardSub" x="1112" y="664" text-anchor="middle">engajamento e acompanhamento</text>
+    <path class="branch" d="M 1112 687 L 1112 716"/>
+    <rect class="card release" x="945" y="716" width="335" height="105" rx="16"/><text class="code" x="967" y="744">1.3.3</text><text class="cardTitle" x="1112" y="772" text-anchor="middle">Release 3 · 30/11</text><text class="cardSub" x="1112" y="798" text-anchor="middle">IA, OSCE e prática clínica</text>
+    <path class="branch" d="M 1112 821 L 1112 850"/>
+    <rect class="card c3" x="945" y="850" width="335" height="105" rx="16"/><text class="code" x="967" y="878">1.3.4</text><text class="cardTitle" x="1112" y="906" text-anchor="middle">Qualidade contínua</text><text class="cardSub" x="1112" y="932" text-anchor="middle">CI/CD, testes, segurança e métricas</text>
+  </g>
+
+  <g>
+    <rect class="card c4" x="1375" y="448" width="365" height="88" rx="16"/><text class="code" x="1397" y="476">1.4.1</text><text class="cardTitle" x="1557" y="500" text-anchor="middle">Aceite e demonstração final</text><text class="cardSub" x="1557" y="523" text-anchor="middle">versão integrada e validada</text>
+    <path class="branch" d="M 1557 536 L 1557 559"/>
+    <rect class="card c4" x="1375" y="559" width="365" height="88" rx="16"/><text class="code" x="1397" y="587">1.4.2</text><text class="cardTitle" x="1557" y="611" text-anchor="middle">Documentação final</text><text class="cardSub" x="1557" y="634" text-anchor="middle">uso, operação e decisões</text>
+    <path class="branch" d="M 1557 647 L 1557 670"/>
+    <rect class="card c4" x="1375" y="670" width="365" height="88" rx="16"/><text class="code" x="1397" y="698">1.4.3</text><text class="cardTitle" x="1557" y="722" text-anchor="middle">Avaliação do projeto</text><text class="cardSub" x="1557" y="745" text-anchor="middle">planejado × realizado</text>
+    <path class="branch" d="M 1557 758 L 1557 781"/>
+    <rect class="card c4" x="1375" y="781" width="365" height="88" rx="16"/><text class="code" x="1397" y="809">1.4.4</text><text class="cardTitle" x="1557" y="833" text-anchor="middle">Retrospectiva e transição</text><text class="cardSub" x="1557" y="856" text-anchor="middle">lições e continuidade do produto</text>
+  </g>
+
+  <rect x="60" y="1150" width="1680" height="58" rx="20" fill="#e2e8f0"/>
+  <text class="legend" x="900" y="1186" text-anchor="middle">As setas indicam o fluxo do projeto; cada coluna decompõe uma fase em entregas verificáveis.</text>
+</svg>
