@@ -165,13 +165,13 @@ Este documento será atualizado quando houver inclusão, exclusão ou reorganiza
 - PMI. *A Guide to the Project Management Body of Knowledge (PMBOK Guide)* — decomposição de escopo, regra dos 100% e planejamento em ondas sucessivas.
 - NORMAN, E. S.; BROTHERTON, S. A.; FRIED, R. T. *Work Breakdown Structures: The Foundation for Project Management Excellence*. John Wiley, 2011.
 - CAROLI, P. *Lean Inception: como alinhar pessoas e construir o produto certo* — origem do sequenciador que define as ondas.
-- [EAP 2026.1](https://github.com/fga-eps-mds/2026.1-MeasureSoftGram-DOC/blob/main/docs/produto/eap.md) — versão do semestre anterior, mantida como registro da evolução do documento.
+- [EAP AnatoQuizUp 2026.1](https://fga-eps-mds.github.io/2026-1-AnatoQuizUp-Doc/processo/eap/) — versão do semestre anterior, mantida como registro da evolução do documento.
 - [FigJam da Visão do Produto AnatoQuizUp 2026.2](https://www.figma.com/board/IwsqM1gCmdrS2ZrR8HgRGz/Vis%C3%A3o-do-Produto-AnatoQuizUP-2026-2?node-id=17142-1766) — fonte das funcionalidades e ondas do sequenciador.
 - [Visão do Produto](visao.md) e [Backlog do Produto](../backlog/visao-geral.md) — fontes do escopo funcional e das prioridades do AnatoQuizUp.
 
 ## 10. Histórico de versão
 
-| Versão | Data | Descrição | Responsável |
-| --- | --- | --- | --- |
-| 1.0 | 27/09/2026 | Estrutura inicial com foco predominante na R1. | Equipe AnatoQuizUp 2026.2 |
-| 2.0 | 12/10/2026 | EAP refeita para cobrir o ciclo completo do projeto, com releases, pacotes de planejamento e diagramas visuais. | Letícia Torres Soares Martins |
+| Data | Versão | Descrição | Responsável | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 27/09/2026 | 1.0 | Estrutura inicial para 2026.2, dicionário e diagramas; releases futuras pendentes de definição. | Equipe AnatoQuizUp 2026.2 | [João Lucas Araújo Siqueira](https://github.com/jlucasiqueira) ([PR #45](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/45)) |
+| 12/10/2026 | 2.0 | EAP refeita para cobrir o ciclo completo do projeto, com releases, pacotes de planejamento e diagramas visuais. | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) | |

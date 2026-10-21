@@ -1,10 +1,11 @@
 # Plano de Gerenciamento de Custos - AnatoQuizUp
 
-## Histórico de Revisões
-| Data | Versão | Descrição | Autor |
-|---|---|---|---|
-| 14/09/2026 | 1.0 | Criação e estruturação do plano de custos unificado | [João Paulo Lima](https://github.com/jpaulohe4rt) | |
-| 27/09/2026 | 1.1 | Adição do rateio de custo por release major (R1, R2, R3) com base nas datas do cronograma oficial | [João Paulo Lima](https://github.com/jpaulohe4rt) |
+## Histórico de Versão
+
+| Data | Versão | Descrição | Autor | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 14/09/2026 | 1.0 | Criação e estruturação do plano de custos unificado | [João Paulo Lima](https://github.com/jpaulohe4rt) | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) ([PR #15](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/15)) |
+| 27/09/2026 | 1.1 | Adição do rateio de custo por release major (R1, R2, R3) com base nas datas do cronograma oficial | [João Paulo Lima](https://github.com/jpaulohe4rt) | [João Lucas Araújo Siqueira](https://github.com/jlucasiqueira) ([PR #44](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/44)) |
 
 ---
 

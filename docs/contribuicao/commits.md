@@ -117,9 +117,9 @@ A estrutura adotada nesta política é baseada nos princípios definidos pela es
 
 # Histórico de Versão
 
-| Versão | Data       | Descrição                                      | Autor               | Revisor               |
-|--------|------------|------------------------------------------------|---------------------|-----------------------|
-| 1.0    | 07/09/2026 | Criação do documento de Commits | [Gabriel Freitas](https://github.com/gabrielfreitass1) |  |
+| Versão | Data | Descrição | Autor | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 1.0 | 07/09/2026 | Criação do documento de Commits | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |
 
 
 
