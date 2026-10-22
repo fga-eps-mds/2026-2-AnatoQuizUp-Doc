@@ -82,5 +82,5 @@ A validação com os clientes orienta as decisões da equipe e reduz o risco de 
 
 | Data | Versão | Descrição | Autor(es) | Revisor(es) |
 | --- | --- | --- | --- | --- |
-| 13/09/2026 | 1.0 | Criação da visão do produto com base no direcionamento consolidado na Lean Inception | https://github.com/leticiatmartins | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #12](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/12)) |
+| 13/09/2026 | 1.0 | Criação da visão do produto com base no direcionamento consolidado na Lean Inception | [leticiatmartins](https://github.com/leticiatmartins) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #12](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/12)) |
 | 14/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #12](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/12)) |
