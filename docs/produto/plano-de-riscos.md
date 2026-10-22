@@ -5,6 +5,7 @@
 | Data | Versão | Descrição | Autor | Revisor(es) |
 | --- | --- | --- | --- | --- |
 | 17/09/2026 | 1.0 | Criação e estruturação do plano de riscos | [João Paulo Lima](https://github.com/jpaulohe4rt) | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) ([PR #16](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/16)) |
+| 21/10/2026 | 1.1 | Adição dos riscos RN08 (pareamento/revisão não evidenciados) e RN09 (EVM ágil não aplicado corretamente), a partir dos apontamentos da reunião de acompanhamento (issue [#78](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/78)) | [João Paulo Lima](https://github.com/jpaulohe4rt) | |
 
 ---
 
@@ -77,3 +78,5 @@ Abaixo estão os principais riscos identificados para o ciclo de desenvolvimento
 | **RN05** | Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura). | Técnico | Baixa | Muito Alto | Entender a capacidade e as limitações das tecnologias antes da implementação. | Repriorizar o escopo do MVP junto ao cliente e, se necessário, utilizar um fluxo fixo de conversas em vez de um LLM treinado. |
 | **RN06** | A qualidade do software e dos quizzes não corresponder às expectativas educacionais do cliente. | Técnico | Média | Muito Alto | Validar constantemente os requisitos com o cliente e manter a qualidade do código com testes. | Realizar refatoração de código, ajustes de escopo nas questões e nova rodada de validação. |
 | **RN07** | Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente. | Organizacional | Alta | Alto | Conhecer as habilidades da equipe e entregar tarefas não blocantes para membros menos engajados. | Realocar imediatamente as tarefas críticas entre os membros remanescentes. |
+| **RN08** | Pareamento e revisão de código não serem realizados de forma efetiva ou comprovável entre os membros, concentrando a implementação em poucos integrantes. | Organizacional | Alta | Alto | Exigir coautoria (`Co-authored-by`) nos commits pareados e revisão por um segundo membro antes do merge de cada PR. | Auditar periodicamente a distribuição de commits e PRs por integrante e redistribuir tarefas entre a equipe. |
+| **RN09** | Estimativa de custo e monitoramento via EVM ágil feitos de forma incorreta ou não rastreável, comprometendo a visibilidade real do orçamento e do cronograma. | Gerenciamento | Média | Alto | Aplicar a metodologia de custo-hora e EVM ágil do Plano de Custos revisado, registrando story points e velocity a partir da R2. | Recalcular retroativamente os indicadores (IDP/IDC) com os dados disponíveis e comunicar o desvio à coordenação do projeto. |
