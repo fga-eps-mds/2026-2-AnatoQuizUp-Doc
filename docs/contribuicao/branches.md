@@ -176,4 +176,4 @@ A organização apresentada nesta política utiliza como referência o modelo de
 
 | Versão | Data | Descrição | Autor(es) | Revisor(es) |
 | --- | --- | --- | --- | --- |
-| 1.0 | 07/09/2026 | Criação da política de branches | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |
+| 1.0 | 07/09/2026 | Criação da política de branches | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) |

@@ -138,11 +138,11 @@ O fluxo de cada item segue um quadro Kanban no **ZenHub** (integrado ao GitHub).
 
 Os documentos abaixo descrevem **métodos** específicos e padrões técnicos invocados por esta metodologia:
 
-- [Política de Branches](../contribuicao/politica_branchs.md): modelo Git Flow adotado.
-- [Política de Commits](../contribuicao/politica_commits.md): Conventional Commits.
-- [Código de Conduta](../contribuicao/codigo_conduta.md): combinados de convivência.
-- [Matriz de Riscos](riscos.md): riscos monitorados a cada sprint.
-- [Comunicação](comunicacao.md): canais, periodicidade e regras de uso.
+- [Política de Branches](../contribuicao/branches.md): convenções de branches adotadas.
+- [Política de Commits](../contribuicao/commits.md): Conventional Commits.
+- [Código de Conduta](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/blob/main/CODE_OF_CONDUCT.md): combinados de convivência.
+- [Plano de Gerenciamento de Riscos](../produto/plano-de-riscos.md): riscos e estratégias de resposta do projeto.
+- Comunicação: [cadência e cerimônias](#cadencia-e-cerimonias) e [ferramentas de apoio](#ferramentas-de-apoio).
 
 ---
 
