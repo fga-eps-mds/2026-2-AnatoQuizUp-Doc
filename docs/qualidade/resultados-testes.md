@@ -27,18 +27,18 @@ Os resultados correspondem ao **deploy observado durante a execução**, sem equ
 
 | Caso | Resultado | Comportamento observado | Evidências |
 |---|---|---|---|
-| CT-AU-01 | Falhou | A conta de aluno acessou a aplicação, mas abrir ou recarregar `/aluno/perfil` apresentou 404 do Netlify. A invalidação da sessão não foi comprovada nesse caso. | [1_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/1_1.PNG), [2.PNG](../assets/images/roteiro-testes/rodada-2026-10/2.PNG); recarregamento também relatado durante sessão autenticada |
-| CT-AC-01 | Aprovado | A conta nova apresentou seu próprio estado inicial. Após personalizá-la, João manteve seu avatar azul, com cabelo castanho e óculos. | [12_2.PNG](../assets/images/roteiro-testes/rodada-2026-10/12_2.PNG), [12_3.PNG](../assets/images/roteiro-testes/rodada-2026-10/12_3.PNG); alteração de B e retorno a A confirmados por relato, sem captura dessa sequência |
+| CT-AU-01 | Falhou | A conta de aluno acessou a aplicação, mas abrir ou recarregar `/aluno/perfil` apresentou 404 do Netlify. A invalidação da sessão não foi comprovada nesse caso. | [1_1.PNG](#evidencia-1-1), [2.PNG](#evidencia-2); recarregamento também relatado durante sessão autenticada |
+| CT-AC-01 | Aprovado | A conta nova apresentou seu próprio estado inicial. Após personalizá-la, João manteve seu avatar azul, com cabelo castanho e óculos. | [12_2.PNG](#evidencia-12-2), [12_3.PNG](#evidencia-12-3); alteração de B e retorno a A confirmados por relato, sem captura dessa sequência |
 | CT-AC-02 | Bloqueado | Professor não dispõe da opção de edição de avatar no menu. O acesso direto à página resultou em 404 da hospedagem, impedindo avaliar a autorização pela aplicação. | Relato e transcrição da página 404; sem captura adicional |
 
 ### Avatar e personalização
 
 | Caso | Resultado | Comportamento observado | Evidências |
 |---|---|---|---|
-| CT-AV-01 | Aprovado | A conta nova exibiu cérebro rosa, sem cabelo ou acessório, com luvas e calçados azuis. O padrão permaneceu após novo login. | [12_3.PNG](../assets/images/roteiro-testes/rodada-2026-10/12_3.PNG); primeiro acesso e permanência confirmados por relato |
-| CT-AV-02 | Aprovado | Aparência e Acessórios exibiram opções e atualizaram a prévia antes de salvar. Cérebro azul, cabelo castanho e óculos permaneceram após novo login. | [12.PNG](../assets/images/roteiro-testes/rodada-2026-10/12.PNG), [12_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/12_1.PNG), [12_2.PNG](../assets/images/roteiro-testes/rodada-2026-10/12_2.PNG); prévia e sequência de novo login confirmadas por relato |
+| CT-AV-01 | Aprovado | A conta nova exibiu cérebro rosa, sem cabelo ou acessório, com luvas e calçados azuis. O padrão permaneceu após novo login. | [12_3.PNG](#evidencia-12-3); primeiro acesso e permanência confirmados por relato |
+| CT-AV-02 | Aprovado | Aparência e Acessórios exibiram opções e atualizaram a prévia antes de salvar. Cérebro azul, cabelo castanho e óculos permaneceram após novo login. | [12.PNG](#evidencia-12), [12_1.PNG](#evidencia-12-1), [12_2.PNG](#evidencia-12-2); prévia e sequência de novo login confirmadas por relato |
 | CT-AV-03 | Bloqueado | Todos os itens do avatar cérebro estavam disponíveis e a loja não oferecia peças desse avatar. Não foi possível preparar um item não adquirido. | Relato do executor; restrição de equipamento não exercitada |
-| CT-AV-04 | Aprovado | O avatar voltou ao padrão e permaneceu assim após novo login. As opções anteriormente disponíveis continuaram disponíveis. | [4_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/4_1.PNG), [4_2.PNG](../assets/images/roteiro-testes/rodada-2026-10/4_2.PNG); permanência e disponibilidade confirmadas por relato |
+| CT-AV-04 | Aprovado | O avatar voltou ao padrão e permaneceu assim após novo login. As opções anteriormente disponíveis continuaram disponíveis. | [4_1.PNG](#evidencia-4-1), [4_2.PNG](#evidencia-4-2); permanência e disponibilidade confirmadas por relato |
 
 O resultado de CT-AV-04 cobre a restauração e a manutenção das opções disponíveis. Como não foi identificado item adquirido especificamente para o avatar cérebro, **a preservação de itens adquiridos não foi comprovada**. A permanência observada no mesmo navegador também não comprova gravação remota.
 
@@ -48,9 +48,9 @@ Ao salvar a personalização, nenhuma mensagem de confirmação foi exibida. As 
 
 | Caso | Resultado | Comportamento observado | Evidências |
 |---|---|---|---|
-| CT-LJ-01 | Aprovado | Compra de uma moldura Dourada por 220 ATP: saldo de 2235 para 2015; inventário de 8 para 9 tipos de itens e histórico de 20 para 21 registros. Saldo e item permaneceram após novo login. | [5.PNG](../assets/images/roteiro-testes/rodada-2026-10/5.PNG), [7.PNG](../assets/images/roteiro-testes/rodada-2026-10/7.PNG), [7_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/7_1.PNG), [7_2.PNG](../assets/images/roteiro-testes/rodada-2026-10/7_2.PNG); permanência confirmada por relato |
-| CT-LJ-02 | Aprovado | Cancelamento da compra de Dourada preservou 2235 ATP, inventário com 8 tipos e histórico com 20 registros, sem conceder o item. | [5.PNG](../assets/images/roteiro-testes/rodada-2026-10/5.PNG), [5_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/5_1.PNG), [6.PNG](../assets/images/roteiro-testes/rodada-2026-10/6.PNG), [6_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/6_1.PNG), [6_2.PNG](../assets/images/roteiro-testes/rodada-2026-10/6_2.PNG) |
-| CT-LJ-03 | Aprovado | Com 2015 ATP e preço de 120 ATP por Café do Foco, o controle limitou a compra a 16 unidades, totalizando 1920 ATP. A 17ª unidade excederia o saldo. | [8.PNG](../assets/images/roteiro-testes/rodada-2026-10/8.PNG); manutenção dos demais dados confirmada por relato |
+| CT-LJ-01 | Aprovado | Compra de uma moldura Dourada por 220 ATP: saldo de 2235 para 2015; inventário de 8 para 9 tipos de itens e histórico de 20 para 21 registros. Saldo e item permaneceram após novo login. | [5.PNG](#evidencia-5), [7.PNG](#evidencia-7), [7_1.PNG](#evidencia-7-1), [7_2.PNG](#evidencia-7-2); permanência confirmada por relato |
+| CT-LJ-02 | Aprovado | Cancelamento da compra de Dourada preservou 2235 ATP, inventário com 8 tipos e histórico com 20 registros, sem conceder o item. | [5.PNG](#evidencia-5), [5_1.PNG](#evidencia-5-1), [6.PNG](#evidencia-6), [6_1.PNG](#evidencia-6-1), [6_2.PNG](#evidencia-6-2) |
+| CT-LJ-03 | Aprovado | Com 2015 ATP e preço de 120 ATP por Café do Foco, o controle limitou a compra a 16 unidades, totalizando 1920 ATP. A 17ª unidade excederia o saldo. | [8.PNG](#evidencia-8); manutenção dos demais dados confirmada por relato |
 
 CT-LJ-03 comprova a prevenção pela interface. Não houve envio de uma compra acima do saldo para avaliar sua rejeição diretamente pela API. Em CT-LJ-02, a navegação pelo menu foi utilizada no lugar da recarga direta devido ao 404 conhecido.
 
@@ -58,9 +58,9 @@ CT-LJ-03 comprova a prevenção pela interface. Não houve envio de uma compra a
 
 | Caso | Resultado | Comportamento observado | Evidências |
 |---|---|---|---|
-| CT-PT-01 | Aprovado | Café do Foco consumido de 14 para 13 unidades. Acerto médio concedeu 50 ATP: 25 de base e 25 extras. Saldo de 2015 para 2065 ATP e histórico atualizado de ativado para aplicado. | [9.PNG](../assets/images/roteiro-testes/rodada-2026-10/9.PNG), [9_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/9_1.PNG), [10.PNG](../assets/images/roteiro-testes/rodada-2026-10/10.PNG), [10_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/10_1.PNG); permanência de saldo, quantidade e registros após novo login confirmada por relato |
-| CT-PT-02 | Falhou | Nova ativação válida reduziu o estoque de 13 para 12. Tentar ativar outro café antes de aplicar o efeito não consumiu mais uma unidade, mas não explicou o impedimento. | [11.PNG](../assets/images/roteiro-testes/rodada-2026-10/11.PNG), [11_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/11_1.PNG), [11_2.PNG](../assets/images/roteiro-testes/rodada-2026-10/11_2.PNG); clique e ausência de mensagem confirmados por relato |
-| CT-HI-01 | Aprovado | Compra de Dourada e uso do Café do Foco aparecem no histórico. A mudança de ativado para aplicado não duplicou o registro; o contador permaneceu em 22 nessa atualização. | [7_2.PNG](../assets/images/roteiro-testes/rodada-2026-10/7_2.PNG), [9_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/9_1.PNG), [10_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/10_1.PNG); permanência após novo login confirmada por relato |
+| CT-PT-01 | Aprovado | Café do Foco consumido de 14 para 13 unidades. Acerto médio concedeu 50 ATP: 25 de base e 25 extras. Saldo de 2015 para 2065 ATP e histórico atualizado de ativado para aplicado. | [9.PNG](#evidencia-9), [9_1.PNG](#evidencia-9-1), [10.PNG](#evidencia-10), [10_1.PNG](#evidencia-10-1); permanência de saldo, quantidade e registros após novo login confirmada por relato |
+| CT-PT-02 | Falhou | Nova ativação válida reduziu o estoque de 13 para 12. Tentar ativar outro café antes de aplicar o efeito não consumiu mais uma unidade, mas não explicou o impedimento. | [11.PNG](#evidencia-11), [11_1.PNG](#evidencia-11-1), [11_2.PNG](#evidencia-11-2); clique e ausência de mensagem confirmados por relato |
+| CT-HI-01 | Aprovado | Compra de Dourada e uso do Café do Foco aparecem no histórico. A mudança de ativado para aplicado não duplicou o registro; o contador permaneceu em 22 nessa atualização. | [7_2.PNG](#evidencia-7-2), [9_1.PNG](#evidencia-9-1), [10_1.PNG](#evidencia-10-1); permanência após novo login confirmada por relato |
 
 A tentativa inválida de CT-PT-02 preservou 12 cafés e 2065 ATP. O histórico apresentou uma única nova ativação, às 20:51 de 22/10/2026, sem registro adicional da tentativa impedida. A variante de uso **sem unidades** não foi executada.
 
@@ -88,9 +88,9 @@ Na próxima execução, registrar os commits publicados e complementar com captu
 
 ## Evidências complementares
 
-As capturas [3.PNG](../assets/images/roteiro-testes/rodada-2026-10/3.PNG), [3_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/3_1.PNG) registram a personalização do cartão de perfil, diferente do avatar cérebro. A compra do fundo Laranja Vibrante foi confirmada pelo executor e é compatível com a redução de 180 ATP observada; essa compra não foi usada como comprovação completa de CT-LJ-01.
+As capturas [3.PNG](#evidencia-3), [3_1.PNG](#evidencia-3-1) registram a personalização do cartão de perfil, diferente do avatar cérebro. A compra do fundo Laranja Vibrante foi confirmada pelo executor e é compatível com a redução de 180 ATP observada; essa compra não foi usada como comprovação completa de CT-LJ-01.
 
-As capturas [4.PNG](../assets/images/roteiro-testes/rodada-2026-10/4.PNG), [4_1.PNG](../assets/images/roteiro-testes/rodada-2026-10/4_1.PNG) preservam a execução inicial da personalização do cérebro, posteriormente complementada pelas evidências de 23/10/2026.
+As capturas [4.PNG](#evidencia-4), [4_1.PNG](#evidencia-4-1) preservam a execução inicial da personalização do cérebro, posteriormente complementada pelas evidências de 23/10/2026.
 
 ## Galeria de evidências
 
@@ -98,111 +98,111 @@ Expanda uma captura para consultar a imagem original. As imagens foram preservad
 
 ??? info "Captura 1_1.PNG"
 
-    ![Captura 1_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/1_1.PNG)
+    ![Captura 1_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/1_1.PNG){ #evidencia-1-1 loading=lazy }
 
 ??? info "Captura 2.PNG"
 
-    ![Captura 2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/2.PNG)
+    ![Captura 2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/2.PNG){ #evidencia-2 loading=lazy }
 
 ??? info "Captura 3.PNG"
 
-    ![Captura 3.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/3.PNG)
+    ![Captura 3.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/3.PNG){ #evidencia-3 loading=lazy }
 
 ??? info "Captura 3_1.PNG"
 
-    ![Captura 3_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/3_1.PNG)
+    ![Captura 3_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/3_1.PNG){ #evidencia-3-1 loading=lazy }
 
 ??? info "Captura 4.PNG"
 
-    ![Captura 4.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/4.PNG)
+    ![Captura 4.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/4.PNG){ #evidencia-4 loading=lazy }
 
 ??? info "Captura 4_1.PNG"
 
-    ![Captura 4_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/4_1.PNG)
+    ![Captura 4_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/4_1.PNG){ #evidencia-4-1 loading=lazy }
 
 ??? info "Captura 4_2.PNG"
 
-    ![Captura 4_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/4_2.PNG)
+    ![Captura 4_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/4_2.PNG){ #evidencia-4-2 loading=lazy }
 
 ??? info "Captura 5.PNG"
 
-    ![Captura 5.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/5.PNG)
+    ![Captura 5.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/5.PNG){ #evidencia-5 loading=lazy }
 
 ??? info "Captura 5_1.PNG"
 
-    ![Captura 5_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/5_1.PNG)
+    ![Captura 5_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/5_1.PNG){ #evidencia-5-1 loading=lazy }
 
 ??? info "Captura 6.PNG"
 
-    ![Captura 6.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/6.PNG)
+    ![Captura 6.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/6.PNG){ #evidencia-6 loading=lazy }
 
 ??? info "Captura 6_1.PNG"
 
-    ![Captura 6_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/6_1.PNG)
+    ![Captura 6_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/6_1.PNG){ #evidencia-6-1 loading=lazy }
 
 ??? info "Captura 6_2.PNG"
 
-    ![Captura 6_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/6_2.PNG)
+    ![Captura 6_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/6_2.PNG){ #evidencia-6-2 loading=lazy }
 
 ??? info "Captura 7.PNG"
 
-    ![Captura 7.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/7.PNG)
+    ![Captura 7.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/7.PNG){ #evidencia-7 loading=lazy }
 
 ??? info "Captura 7_1.PNG"
 
-    ![Captura 7_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/7_1.PNG)
+    ![Captura 7_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/7_1.PNG){ #evidencia-7-1 loading=lazy }
 
 ??? info "Captura 7_2.PNG"
 
-    ![Captura 7_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/7_2.PNG)
+    ![Captura 7_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/7_2.PNG){ #evidencia-7-2 loading=lazy }
 
 ??? info "Captura 8.PNG"
 
-    ![Captura 8.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/8.PNG)
+    ![Captura 8.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/8.PNG){ #evidencia-8 loading=lazy }
 
 ??? info "Captura 9.PNG"
 
-    ![Captura 9.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/9.PNG)
+    ![Captura 9.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/9.PNG){ #evidencia-9 loading=lazy }
 
 ??? info "Captura 9_1.PNG"
 
-    ![Captura 9_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/9_1.PNG)
+    ![Captura 9_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/9_1.PNG){ #evidencia-9-1 loading=lazy }
 
 ??? info "Captura 10.PNG"
 
-    ![Captura 10.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/10.PNG)
+    ![Captura 10.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/10.PNG){ #evidencia-10 loading=lazy }
 
 ??? info "Captura 10_1.PNG"
 
-    ![Captura 10_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/10_1.PNG)
+    ![Captura 10_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/10_1.PNG){ #evidencia-10-1 loading=lazy }
 
 ??? info "Captura 11.PNG"
 
-    ![Captura 11.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/11.PNG)
+    ![Captura 11.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/11.PNG){ #evidencia-11 loading=lazy }
 
 ??? info "Captura 11_1.PNG"
 
-    ![Captura 11_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/11_1.PNG)
+    ![Captura 11_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/11_1.PNG){ #evidencia-11-1 loading=lazy }
 
 ??? info "Captura 11_2.PNG"
 
-    ![Captura 11_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/11_2.PNG)
+    ![Captura 11_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/11_2.PNG){ #evidencia-11-2 loading=lazy }
 
 ??? info "Captura 12.PNG"
 
-    ![Captura 12.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/12.PNG)
+    ![Captura 12.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/12.PNG){ #evidencia-12 loading=lazy }
 
 ??? info "Captura 12_1.PNG"
 
-    ![Captura 12_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/12_1.PNG)
+    ![Captura 12_1.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/12_1.PNG){ #evidencia-12-1 loading=lazy }
 
 ??? info "Captura 12_2.PNG"
 
-    ![Captura 12_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/12_2.PNG)
+    ![Captura 12_2.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/12_2.PNG){ #evidencia-12-2 loading=lazy }
 
 ??? info "Captura 12_3.PNG"
 
-    ![Captura 12_3.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/12_3.PNG)
+    ![Captura 12_3.PNG dos testes em homologação](../assets/images/roteiro-testes/rodada-2026-10/12_3.PNG){ #evidencia-12-3 loading=lazy }
 
 ## Histórico de versão
 
