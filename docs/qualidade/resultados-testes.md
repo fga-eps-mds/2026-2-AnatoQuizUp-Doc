@@ -23,6 +23,10 @@ Os resultados correspondem ao **deploy observado durante a execução**, sem equ
 
 ## Resultados por funcionalidade
 
+Os identificadores relacionam cada resultado ao procedimento correspondente no [roteiro de testes](roteiro-testes.md#organizacao-dos-casos). **CT** significa **Caso de Teste**; as siglas dos grupos são **AU** (Autenticação), **AV** (Avatar), **LJ** (Loja), **PT** (Potencializadores), **HI** (Histórico) e **AC** (Controle de acesso).
+
+Por exemplo, **CT-AU-01** identifica o primeiro caso de teste do grupo Autenticação. O número é sequencial dentro de cada grupo.
+
 ### Autenticação e controle de acesso
 
 | Caso | Resultado | Comportamento observado | Evidências |

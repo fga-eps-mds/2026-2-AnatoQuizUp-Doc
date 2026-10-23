@@ -29,6 +29,20 @@ O avatar cérebro de **Meu avatar** é diferente da imagem e do fundo do cartão
 
 ## Organização dos casos
 
+Os códigos identificam cada **caso de teste** e relacionam seus procedimentos aos resultados e às evidências. O formato adotado neste roteiro é `CT-GRUPO-NÚMERO`.
+
+Por exemplo, **CT-AU-01** significa **Caso de Teste de Autenticação, número 01**. A numeração é sequencial dentro de cada grupo.
+
+| Sigla | Significado |
+|---|---|
+| CT | Caso de teste |
+| AU | Autenticação |
+| AV | Avatar |
+| LJ | Loja |
+| PT | Potencializadores |
+| HI | Histórico |
+| AC | Controle de acesso |
+
 | Identificador | Verificação |
 |---|---|
 | CT-AU-01 | Entrada, saída e acesso a páginas protegidas |
