@@ -1,0 +1,2092 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AnatoQuizUp é uma plataforma gameficada para aprendizado de anatomia radiológica e de casos clínicos.">
+      
+      
+      
+      
+        <link rel="prev" href="../../metodologia/quadro-conhecimento/">
+      
+      
+        <link rel="next" href="../resultados-testes/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Roteiro de Testes - AnatoQuizUp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#roteiro-de-testes-de-sistema" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="AnatoQuizUp" class="md-header__button md-logo" aria-label="AnatoQuizUp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnatoQuizUp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Roteiro de Testes
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../produto/visao/" class="md-tabs__link">
+          
+  
+  Produto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../arquitetura/visao-geral/" class="md-tabs__link">
+          
+  
+  Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../metodologia/metodologia/" class="md-tabs__link">
+          
+  
+  Gestão
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="./" class="md-tabs__link">
+          
+  
+  Qualidade
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../operacao/ambiente-homologacao/" class="md-tabs__link">
+          
+  
+  Operação
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../contribuicao/branches/" class="md-tabs__link">
+          
+  
+  Contribuição
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reunioes/modelo-ata-reuniao/" class="md-tabs__link">
+          
+  
+  Reuniões
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AnatoQuizUp" class="md-nav__button md-logo" aria-label="AnatoQuizUp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AnatoQuizUp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Início
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Produto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Produto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/visao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão do Produto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/lean_inception/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lean Inception
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/EAP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EAP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/plano-de-custos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gerenciamento de Custos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/plano-de-riscos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gerenciamento de Riscos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/missoes-diarias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Missões Diárias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_8" id="__nav_2_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Backlog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_8">
+            <span class="md-nav__icon md-icon"></span>
+            Backlog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backlog/visao-geral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backlog/release-major-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Major 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arquitetura
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arquitetura
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/visao-geral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/tecnologias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tecnologias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/decisoes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decisões Arquiteturais
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/banco-de-dados/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Banco de Dados
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../arquitetura/endpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Gestão
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Gestão
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodologia/metodologia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dashboards da R1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodologia/quadro-conhecimento/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quadro de Conhecimento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Qualidade
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Qualidade
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Roteiro de Testes
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Roteiro de Testes
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apresentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apresentação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escopo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ambiente-e-preparacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ambiente e preparação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organizacao-dos-casos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organização dos casos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedimentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedimentos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedimentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ct-au-01-entrar-e-encerrar-a-sessao" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AU-01 — Entrar e encerrar a sessão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-av-01-avatar-padrao-no-primeiro-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AV-01 — Avatar padrão no primeiro acesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-av-02-pre-visualizar-e-manter-a-personalizacao-entre-sessoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AV-02 — Pré-visualizar e manter a personalização entre sessões
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-av-03-impedir-equipamento-de-item-nao-adquirido" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AV-03 — Impedir equipamento de item não adquirido
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-av-04-restaurar-o-padrao-preservando-o-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AV-04 — Restaurar o padrão preservando o inventário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-lj-01-comprar-com-saldo-suficiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-LJ-01 — Comprar com saldo suficiente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-lj-02-cancelar-uma-compra" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-LJ-02 — Cancelar uma compra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-lj-03-comprar-sem-saldo-suficiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-LJ-03 — Comprar sem saldo suficiente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-pt-01-utilizar-um-potencializador-valido" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-PT-01 — Utilizar um potencializador válido
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-pt-02-impedir-utilizacao-invalida" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-PT-02 — Impedir utilização inválida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-hi-01-consultar-historico-de-compras-e-utilizacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-HI-01 — Consultar histórico de compras e utilizações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-ac-01-preservar-a-personalizacao-de-outra-conta" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AC-01 — Preservar a personalização de outra conta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-ac-02-restringir-edicao-de-avatar-ao-aluno-autenticado" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AC-02 — Restringir edição de avatar ao aluno autenticado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registro-dos-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registro dos resultados
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../resultados-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resultados dos Testes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Operação
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Operação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operacao/ambiente-homologacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ambiente de Homologação
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contribuição
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Contribuição
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/commits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Commits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/pull_requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Pull Requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reuniões
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Reuniões
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/modelo-ata-reuniao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Template de ata de reunião
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/reuniao-06-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    06-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#apresentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Apresentação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#escopo" class="md-nav__link">
+    <span class="md-ellipsis">
+      Escopo
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ambiente-e-preparacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ambiente e preparação
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#organizacao-dos-casos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Organização dos casos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#procedimentos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Procedimentos
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Procedimentos">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#ct-au-01-entrar-e-encerrar-a-sessao" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AU-01 — Entrar e encerrar a sessão
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-av-01-avatar-padrao-no-primeiro-acesso" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AV-01 — Avatar padrão no primeiro acesso
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-av-02-pre-visualizar-e-manter-a-personalizacao-entre-sessoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AV-02 — Pré-visualizar e manter a personalização entre sessões
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-av-03-impedir-equipamento-de-item-nao-adquirido" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AV-03 — Impedir equipamento de item não adquirido
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-av-04-restaurar-o-padrao-preservando-o-inventario" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AV-04 — Restaurar o padrão preservando o inventário
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-lj-01-comprar-com-saldo-suficiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-LJ-01 — Comprar com saldo suficiente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-lj-02-cancelar-uma-compra" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-LJ-02 — Cancelar uma compra
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-lj-03-comprar-sem-saldo-suficiente" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-LJ-03 — Comprar sem saldo suficiente
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-pt-01-utilizar-um-potencializador-valido" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-PT-01 — Utilizar um potencializador válido
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-pt-02-impedir-utilizacao-invalida" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-PT-02 — Impedir utilização inválida
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-hi-01-consultar-historico-de-compras-e-utilizacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-HI-01 — Consultar histórico de compras e utilizações
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-ac-01-preservar-a-personalizacao-de-outra-conta" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AC-01 — Preservar a personalização de outra conta
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#ct-ac-02-restringir-edicao-de-avatar-ao-aluno-autenticado" class="md-nav__link">
+    <span class="md-ellipsis">
+      CT-AC-02 — Restringir edição de avatar ao aluno autenticado
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#registro-dos-resultados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Registro dos resultados
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="roteiro-de-testes-de-sistema">Roteiro de testes de sistema</h1>
+<h2 id="apresentacao">Apresentação</h2>
+<p>Este documento orienta a execução manual dos testes de sistema do AnatoQuizUp. Os procedimentos verificam o comportamento observado na aplicação Web, utilizando os serviços integrados do ambiente de homologação.</p>
+<p>O roteiro pode ser repetido a cada versão publicada. Os resultados, as capturas e as limitações da primeira execução estão em <a href="../resultados-testes/">Resultados dos testes</a>.</p>
+<h2 id="escopo">Escopo</h2>
+<p>Os testes cobrem os fluxos da <a href="../../backlog/release-major-1/">Release Major 1</a>: avatar padrão, personalização de aparência e acessórios, loja, uso de potencializadores e histórico. Autenticação e isolamento entre contas são verificados como apoio a esses fluxos.</p>
+<p>Testes unitários, de integração, carga e segurança da API exigem verificações próprias. Esta execução pode apoiar o aceite do produto, mas não substitui a validação dos responsáveis pelo produto.</p>
+<h2 id="ambiente-e-preparacao">Ambiente e preparação</h2>
+<p>Utilizar a <a href="https://anatoquizup-homolog-2026-2.netlify.app">homologação do AnatoQuizUp</a>, conforme o <a href="../../operacao/ambiente-homologacao/">guia do ambiente</a>.</p>
+<p>Antes de executar:</p>
+<ol>
+<li>Registrar data, responsável, navegador e versões dos componentes publicados. Se uma versão não estiver disponível, indicar essa limitação no resultado.</li>
+<li>Separar duas contas de aluno para testes, identificadas como A e B, e uma conta de professor. Para o primeiro acesso, usar uma conta nova sem personalização anterior.</li>
+<li>Preparar saldo, um item com preço conhecido, inventário e potencializador com regra de uso confirmada. Anotar os valores antes de alterar os dados.</li>
+<li>Confirmar que as contas e os dados podem ser usados em testes. Não publicar senhas ou tokens nem modificar dados de usuários reais.</li>
+</ol>
+<p>Os casos de compra e utilização deixam dados para a consulta do histórico. Ao repetir a execução, registrar o novo estado inicial. Não esgotar estoques ou editar bancos apenas para preparar uma condição de teste.</p>
+<p>O avatar cérebro de <strong>Meu avatar</strong> é diferente da imagem e do fundo do cartão de perfil. Nos casos de avatar, utilizar o personagem cérebro.</p>
+<h2 id="organizacao-dos-casos">Organização dos casos</h2>
+<p>Os códigos identificam cada <strong>caso de teste</strong> e relacionam seus procedimentos aos resultados e às evidências. O formato adotado neste roteiro é <code>CT-GRUPO-NÚMERO</code>.</p>
+<p>Por exemplo, <strong>CT-AU-01</strong> significa <strong>Caso de Teste de Autenticação, número 01</strong>. A numeração é sequencial dentro de cada grupo.</p>
+<table>
+<thead>
+<tr>
+<th>Sigla</th>
+<th>Significado</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CT</td>
+<td>Caso de teste</td>
+</tr>
+<tr>
+<td>AU</td>
+<td>Autenticação</td>
+</tr>
+<tr>
+<td>AV</td>
+<td>Avatar</td>
+</tr>
+<tr>
+<td>LJ</td>
+<td>Loja</td>
+</tr>
+<tr>
+<td>PT</td>
+<td>Potencializadores</td>
+</tr>
+<tr>
+<td>HI</td>
+<td>Histórico</td>
+</tr>
+<tr>
+<td>AC</td>
+<td>Controle de acesso</td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Identificador</th>
+<th>Verificação</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>CT-AU-01</td>
+<td>Entrada, saída e acesso a páginas protegidas</td>
+</tr>
+<tr>
+<td>CT-AV-01</td>
+<td>Avatar padrão no primeiro acesso</td>
+</tr>
+<tr>
+<td>CT-AV-02</td>
+<td>Prévia e manutenção da personalização</td>
+</tr>
+<tr>
+<td>CT-AV-03</td>
+<td>Restrição de item não adquirido</td>
+</tr>
+<tr>
+<td>CT-AV-04</td>
+<td>Restauração do padrão e preservação do inventário</td>
+</tr>
+<tr>
+<td>CT-LJ-01</td>
+<td>Compra com saldo suficiente</td>
+</tr>
+<tr>
+<td>CT-LJ-02</td>
+<td>Cancelamento de compra</td>
+</tr>
+<tr>
+<td>CT-LJ-03</td>
+<td>Compra sem saldo suficiente</td>
+</tr>
+<tr>
+<td>CT-PT-01</td>
+<td>Uso de potencializador válido</td>
+</tr>
+<tr>
+<td>CT-PT-02</td>
+<td>Tentativa de uso inválido</td>
+</tr>
+<tr>
+<td>CT-HI-01</td>
+<td>Histórico de compras e utilizações</td>
+</tr>
+<tr>
+<td>CT-AC-01</td>
+<td>Isolamento entre contas de aluno</td>
+</tr>
+<tr>
+<td>CT-AC-02</td>
+<td>Permissão de acesso à edição do avatar</td>
+</tr>
+</tbody>
+</table>
+<h2 id="procedimentos">Procedimentos</h2>
+<p>Cada caso apresenta o requisito de referência, as condições necessárias e os passos com seus resultados esperados.</p>
+<h3 id="ct-au-01-entrar-e-encerrar-a-sessao">CT-AU-01 — Entrar e encerrar a sessão</h3>
+<p><strong>Referência:</strong> pré-condição dos fluxos da R1.</p>
+<p><strong>Pré-condições:</strong> conta de aluno de teste ativa; usuário deslogado.</p>
+<ol>
+<li>Entrar com as credenciais válidas. <strong>Esperado:</strong> acesso à área autenticada da conta correta.</li>
+<li>Encerrar a sessão. <strong>Esperado:</strong> retorno à área pública, sem acesso aos dados autenticados.</li>
+<li>Tentar abrir diretamente uma página protegida e recarregá-la. <strong>Esperado:</strong> solicitação de autenticação, sem exibição de dados privados.</li>
+</ol>
+<h3 id="ct-av-01-avatar-padrao-no-primeiro-acesso">CT-AV-01 — Avatar padrão no primeiro acesso</h3>
+<p><strong>Referência:</strong> US01, <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/27">#27</a>.</p>
+<p><strong>Pré-condições:</strong> conta nova de aluno, sem personalização anterior; forma de criação da conta confirmada.</p>
+<ol>
+<li>Acessar a conta pela primeira vez e abrir o perfil. <strong>Esperado:</strong> exibição do avatar padrão definido para a versão, sem imagem quebrada.</li>
+<li>Sair e entrar novamente sem personalizar. <strong>Esperado:</strong> manutenção do mesmo avatar padrão.</li>
+</ol>
+<h3 id="ct-av-02-pre-visualizar-e-manter-a-personalizacao-entre-sessoes">CT-AV-02 — Pré-visualizar e manter a personalização entre sessões</h3>
+<p><strong>Referência:</strong> US02, <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/26">#26</a>.</p>
+<p><strong>Pré-condições:</strong> aluno A autenticado; opções de aparência e acessórios disponíveis no seu inventário.</p>
+<ol>
+<li>Abrir a personalização e selecionar Aparência e Acessórios. <strong>Esperado:</strong> opções correspondentes a cada categoria.</li>
+<li>Alterar a cor e equipar uma opção disponível. <strong>Esperado:</strong> pré-visualização atualizada antes de salvar.</li>
+<li>Salvar, se houver controle explícito, e consultar novamente o avatar. <strong>Esperado:</strong> avatar com as escolhas salvas. Registrar a presença ou ausência de mensagem como observação de feedback; sua ausência, isoladamente, não reprova o requisito de persistência.</li>
+<li>Sair, entrar novamente e consultar o perfil e a personalização. <strong>Esperado:</strong> escolhas mantidas após a nova sessão.</li>
+</ol>
+<h3 id="ct-av-03-impedir-equipamento-de-item-nao-adquirido">CT-AV-03 — Impedir equipamento de item não adquirido</h3>
+<p><strong>Referência:</strong> US02, #26.</p>
+<p><strong>Pré-condições:</strong> aluno autenticado; item de personalização não pertencente ao seu inventário identificado.</p>
+<ol>
+<li>Localizar o item na personalização. <strong>Esperado:</strong> indicação de indisponibilidade e de aquisição na loja, conforme o requisito.</li>
+<li>Tentar equipá-lo pelos controles disponíveis. <strong>Esperado:</strong> equipamento impedido.</li>
+<li>Consultar o avatar salvo e o inventário. <strong>Esperado:</strong> item não equipado nem concedido; estado anterior preservado.</li>
+</ol>
+<h3 id="ct-av-04-restaurar-o-padrao-preservando-o-inventario">CT-AV-04 — Restaurar o padrão preservando o inventário</h3>
+<p><strong>Referência:</strong> US02, #26.</p>
+<p><strong>Pré-condições:</strong> aluno com avatar personalizado e itens adquiridos; inventário inicial registrado.</p>
+<ol>
+<li>Restaurar a caracterização padrão e salvar. <strong>Esperado:</strong> avatar padrão exibido.</li>
+<li>Sair e entrar novamente. <strong>Esperado:</strong> avatar padrão mantido.</li>
+<li>Consultar o inventário. <strong>Esperado:</strong> itens adquiridos continuam disponíveis, sem perda decorrente da restauração.</li>
+</ol>
+<h3 id="ct-lj-01-comprar-com-saldo-suficiente">CT-LJ-01 — Comprar com saldo suficiente</h3>
+<p><strong>Referência:</strong> US03, <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/28">#28</a>, <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/35">#35</a>.</p>
+<p><strong>Pré-condições:</strong> aluno autenticado; item e quantidade válidos; saldo suficiente; preço, saldo e inventário iniciais registrados.</p>
+<ol>
+<li>Selecionar o item e a quantidade. <strong>Esperado:</strong> confirmação com item, quantidade e valor coerentes com o catálogo.</li>
+<li>Confirmar uma única compra. <strong>Esperado:</strong> mensagem de sucesso; item ou quantidade adicionados ao inventário; desconto exatamente igual ao valor confirmado, uma única vez.</li>
+<li>Recarregar a página e consultar o histórico. <strong>Esperado:</strong> saldo e inventário persistidos; um registro correspondente à compra.</li>
+</ol>
+<h3 id="ct-lj-02-cancelar-uma-compra">CT-LJ-02 — Cancelar uma compra</h3>
+<p><strong>Referência:</strong> confirmação de compra da US03, #35.</p>
+<p><strong>Pré-condições:</strong> aluno autenticado; saldo, inventário e histórico iniciais registrados.</p>
+<ol>
+<li>Selecionar um item e abrir a confirmação. <strong>Esperado:</strong> resumo da compra antes de sua efetivação.</li>
+<li>Cancelar a operação. <strong>Esperado:</strong> nenhuma compra concluída.</li>
+<li>Conferir saldo, inventário e histórico, inclusive após recarregar. <strong>Esperado:</strong> nenhum desconto, concessão de item ou registro de compra decorrente do cancelamento.</li>
+</ol>
+<h3 id="ct-lj-03-comprar-sem-saldo-suficiente">CT-LJ-03 — Comprar sem saldo suficiente</h3>
+<p><strong>Referência:</strong> US03, #28 e #35.</p>
+<p><strong>Pré-condições:</strong> aluno com saldo inferior ao preço da compra; valores iniciais registrados.</p>
+<ol>
+<li>Tentar comprar o item. <strong>Esperado:</strong> operação impedida com indicação compreensível de saldo insuficiente.</li>
+<li>Conferir saldo, inventário e histórico após recarregar. <strong>Esperado:</strong> nenhum débito ou concessão de item; nenhuma compra bem-sucedida registrada para a tentativa.</li>
+</ol>
+<h3 id="ct-pt-01-utilizar-um-potencializador-valido">CT-PT-01 — Utilizar um potencializador válido</h3>
+<p><strong>Referência:</strong> US03, <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/38">#38</a>.</p>
+<p><strong>Pré-condições:</strong> aluno com ao menos uma unidade de um potencializador; quantidade inicial registrada. Antes de executar, preencher: <strong>item = ___; condição de uso = ___; efeito esperado observável = ___; fonte da regra = ___</strong>. Sem esses dados, o caso fica bloqueado.</p>
+<ol>
+<li>Acessar o contexto que atende à condição de uso e selecionar o potencializador. <strong>Esperado:</strong> possibilidade de uso conforme a regra registrada.</li>
+<li>Confirmar uma utilização. <strong>Esperado:</strong> efeito registrado aplicado e quantidade reduzida em exatamente uma unidade.</li>
+<li>Consultar inventário e histórico após recarregar. <strong>Esperado:</strong> consumo persistido e um registro correspondente ao uso.</li>
+</ol>
+<h3 id="ct-pt-02-impedir-utilizacao-invalida">CT-PT-02 — Impedir utilização inválida</h3>
+<p><strong>Referência:</strong> US03, #38.</p>
+<p><strong>Pré-condições:</strong> repetir o caso para cada situação aplicável: item sem unidades e item com condição de uso não atendida. Registrar a condição e a regra correspondente. Registrar inventário e estado inicial do efeito. Para Café do Foco, verificar a tentativa de nova ativação enquanto já existe um efeito ativo, antes do próximo acerto elegível. Executar a variante sem unidades com dados próprios, sem esgotar um estoque por repetição.</p>
+<ol>
+<li>Tentar utilizar o item pelos controles disponíveis. <strong>Esperado:</strong> utilização impedida, com indicação do motivo.</li>
+<li>Conferir inventário, efeito e histórico. <strong>Esperado:</strong> nenhuma quantidade negativa, efeito indevido ou utilização bem-sucedida registrada.</li>
+</ol>
+<h3 id="ct-hi-01-consultar-historico-de-compras-e-utilizacoes">CT-HI-01 — Consultar histórico de compras e utilizações</h3>
+<p><strong>Referência:</strong> US03, <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/40">#40</a>.</p>
+<p><strong>Pré-condições:</strong> aluno com uma compra e uma utilização bem-sucedidas desta execução, com dados e horários anotados.</p>
+<ol>
+<li>Abrir o histórico. <strong>Esperado:</strong> presença dos registros de compra e utilização correspondentes às operações anotadas.</li>
+<li>Comparar os dados apresentados com item, quantidade e valores registrados, quando aplicáveis ao tipo de operação. <strong>Esperado:</strong> coerência com as operações efetivadas.</li>
+<li>Sair, entrar novamente e consultar o histórico. <strong>Esperado:</strong> registros mantidos e sem duplicações causadas pela consulta.</li>
+</ol>
+<h3 id="ct-ac-01-preservar-a-personalizacao-de-outra-conta">CT-AC-01 — Preservar a personalização de outra conta</h3>
+<p><strong>Referência:</strong> controle de acesso das US01 e US02, #27 e #26.</p>
+<p><strong>Pré-condições:</strong> contas de alunos A e B com aparências identificáveis e registradas; usar sessões separadas ou encerrar completamente uma sessão antes de trocar de conta.</p>
+<ol>
+<li>Personalizar e salvar o avatar de A. <strong>Esperado:</strong> mudança aplicada a A.</li>
+<li>Entrar como B e consultar sua própria personalização. <strong>Esperado:</strong> estado anterior de B preservado, sem herdar as escolhas de A.</li>
+<li>Alterar e salvar B; voltar à conta A. <strong>Esperado:</strong> escolhas de A preservadas.</li>
+</ol>
+<p><strong>Limite:</strong> este caso verifica isolamento observado na interface. Não comprova sozinho a autorização da API contra requisições manipuladas; essa verificação deve ter caso e evidência próprios.</p>
+<h3 id="ct-ac-02-restringir-edicao-de-avatar-ao-aluno-autenticado">CT-AC-02 — Restringir edição de avatar ao aluno autenticado</h3>
+<p><strong>Referência:</strong> controle de acesso das US01 e US02, #27 e #26.</p>
+<p><strong>Pré-condições:</strong> URL da personalização identificada; conta de professor de teste disponível.</p>
+<ol>
+<li>Sem autenticação, tentar abrir diretamente a personalização. <strong>Esperado:</strong> acesso à edição negado, sem alteração de avatar.</li>
+<li>Entrar como professor e tentar acessar a mesma página. <strong>Esperado:</strong> edição de avatar de aluno indisponível, sem alteração de dados.</li>
+<li>Entrar como aluno. <strong>Esperado:</strong> acesso à edição do próprio avatar permitido.</li>
+</ol>
+<h2 id="registro-dos-resultados">Registro dos resultados</h2>
+<p>Para cada execução, criar um registro com ambiente, período, responsável e versão observada. Identificar o caso e descrever o resultado obtido, os valores antes e depois, as evidências e eventuais limitações.</p>
+<table>
+<thead>
+<tr>
+<th>Resultado</th>
+<th>Critério</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Aprovado</td>
+<td>O comportamento esperado foi observado no escopo executado e sustentado por evidência ou relato identificado.</td>
+</tr>
+<tr>
+<td>Falhou</td>
+<td>Houve diferença entre o comportamento esperado e o obtido.</td>
+</tr>
+<tr>
+<td>Bloqueado</td>
+<td>Uma condição de ambiente, acesso ou dados impediu concluir o teste.</td>
+</tr>
+<tr>
+<td>Parcial</td>
+<td>Somente parte do procedimento foi executada.</td>
+</tr>
+<tr>
+<td>Não executado</td>
+<td>O caso ainda não foi iniciado.</td>
+</tr>
+</tbody>
+</table>
+<p>Uma captura comprova o estado visível da tela, mas não comprova sozinha uma sequência de ações. Identificar quando a conclusão depende do relato de quem executou o teste. Uma página 404 da hospedagem não comprova o controle de permissão da aplicação.</p>
+<p>Após uma correção ou nova publicação, repetir os casos afetados e registrar a nova execução, preservando o histórico anterior. Resultados aprovados na interface não comprovam, por si só, persistência remota nem segurança da API.</p>
+<h2 id="historico-de-versao">Histórico de versão</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+<th>Revisor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>23/10/2026</td>
+<td>1.0</td>
+<td>Procedimentos para os testes de sistema da R1</td>
+<td><a href="https://github.com/Brenno-Silva01">Brenno Oliveira</a></td>
+<td>Revisão pendente</td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
