@@ -51,6 +51,10 @@ nav:
     - Dashboards da R1: dashboards.md
     - Quadro de Conhecimento: metodologia/quadro-conhecimento.md
 
+  - Qualidade:
+    - Roteiro de Testes: qualidade/roteiro-testes.md
+    - Resultados dos Testes: qualidade/resultados-testes.md
+
   - Operação:
     - Ambiente de Homologação: operacao/ambiente-homologacao.md
 
