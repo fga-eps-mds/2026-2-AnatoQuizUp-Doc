@@ -2,7 +2,7 @@
 
 ## Apresentação
 
-Este relatório reúne os resultados da execução manual do [roteiro de testes de sistema](roteiro-testes.md), realizada por [Brenno Oliveira](https://github.com/Brenno-Silva01) entre **21 e 23 de outubro de 2026**, no ambiente de homologação do AnatoQuizUp.
+O relatório reúne os resultados da execução manual do [roteiro de testes de sistema](roteiro-testes.md), realizada por [Brenno Oliveira](https://github.com/Brenno-Silva01) entre **21 e 23 de outubro de 2026**, no ambiente de homologação do AnatoQuizUp.
 
 Foram registrados **13 casos: 9 aprovados, 2 com falha e 2 bloqueados**. O registro preserva os limites de cada verificação; não representa aprovação integral do sistema ou aceite formal do produto.
 
@@ -17,7 +17,8 @@ Foram registrados **13 casos: 9 aprovados, 2 com falha e 2 bloqueados**. O regis
 | Frontend observado | `/assets/index-DwxRb5sh.js`, confirmado em consulta pública de 23/10/2026 às 16:10 |
 | CSS observado | `/assets/index-CsBMaz9i.css` |
 | Endereço do BFF utilizado pelo frontend | `https://minio-homolog.up.railway.app/api/v1` |
-| Commits publicados | Não identificados para Web, BFF, Quiz-Service e Usuario-Service |
+
+---
 
 Os resultados correspondem ao **deploy observado durante a execução**, sem equivalência comprovada com a versão mais recente da `main`. As imagens identificam os estados das telas. As sequências confirmadas apenas por relato estão indicadas abaixo.
 
@@ -210,6 +211,6 @@ Expanda uma captura para consultar a imagem original. As imagens foram preservad
 
 ## Histórico de versão
 
-| Data | Versão | Descrição | Autor | Revisor |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
 |---|---|---|---|---|
 | 23/10/2026 | 1.0 | Resultados e evidências da execução em homologação | [Brenno Oliveira](https://github.com/Brenno-Silva01) | Revisão pendente |

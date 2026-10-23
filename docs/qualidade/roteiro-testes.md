@@ -2,7 +2,7 @@
 
 ## Apresentação
 
-Este documento orienta a execução manual dos testes de sistema do AnatoQuizUp. Os procedimentos verificam o comportamento observado pelo estudante na aplicação Web, utilizando os serviços integrados do ambiente de homologação.
+Este documento orienta a execução manual dos testes de sistema do AnatoQuizUp. Os procedimentos verificam o comportamento observado na aplicação Web, utilizando os serviços integrados do ambiente de homologação.
 
 O roteiro pode ser repetido a cada versão publicada. Os resultados, as capturas e as limitações da primeira execução estão em [Resultados dos testes](resultados-testes.md).
 
@@ -10,7 +10,7 @@ O roteiro pode ser repetido a cada versão publicada. Os resultados, as capturas
 
 Os testes cobrem os fluxos da [Release Major 1](../backlog/release-major-1.md): avatar padrão, personalização de aparência e acessórios, loja, uso de potencializadores e histórico. Autenticação e isolamento entre contas são verificados como apoio a esses fluxos.
 
-A categoria Roupas e as funcionalidades posteriores de XP e elos não fazem parte desta versão do roteiro. Testes unitários, de integração, carga e segurança da API exigem verificações próprias. Esta execução pode apoiar o aceite do produto, mas não substitui a validação dos responsáveis pelo produto.
+Testes unitários, de integração, carga e segurança da API exigem verificações próprias. Esta execução pode apoiar o aceite do produto, mas não substitui a validação dos responsáveis pelo produto.
 
 ## Ambiente e preparação
 
@@ -209,15 +209,9 @@ Uma captura comprova o estado visível da tela, mas não comprova sozinha uma se
 
 Após uma correção ou nova publicação, repetir os casos afetados e registrar a nova execução, preservando o histórico anterior. Resultados aprovados na interface não comprovam, por si só, persistência remota nem segurança da API.
 
-## Referências
-
-- [Backlog da Release Major 1](../backlog/release-major-1.md).
-- [Ambiente de homologação](../operacao/ambiente-homologacao.md).
-- [Resultados dos testes](resultados-testes.md).
-- [Issue #73 — Elaborar roteiro de testes](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/73).
 
 ## Histórico de versão
 
-| Data | Versão | Descrição | Autor | Revisor |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
 |---|---|---|---|---|
 | 23/10/2026 | 1.0 | Procedimentos para os testes de sistema da R1 | [Brenno Oliveira](https://github.com/Brenno-Silva01) | Revisão pendente |
