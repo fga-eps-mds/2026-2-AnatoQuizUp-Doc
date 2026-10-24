@@ -57,7 +57,7 @@
 
 ## Histórico de Versão
 
-|  **Data**  | **Versão** | **Descrição**    | **Autor(es)**                        |
-| :--------: | :--------: | ---------------- | ------------------------------------ |
-| 23/09/2026 |     1.0    | Criação do Documento | [Brenno Silva](https://github.com/Brenno-Silva01) |
-| 27/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) |
+| **Data** | **Versão** | **Descrição** | **Autor(es)** | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 23/09/2026 | 1.0 | Criação do Documento | [Brenno Silva](https://github.com/Brenno-Silva01) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #42](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/42)) |
+| 27/09/2026 | 1.1 | Revisão textual e validação do conteúdo | [João Paulo Lima](https://github.com/jpaulohe4rt) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #42](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/42)) |

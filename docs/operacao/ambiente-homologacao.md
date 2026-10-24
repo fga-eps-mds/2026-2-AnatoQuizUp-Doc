@@ -146,3 +146,9 @@ As limitações abaixo são conhecidas e devem ser comunicadas em demonstraçõe
 - Configurar fallback de SPA no Netlify para suportar refresh e acesso direto às rotas internas.
 - Implementar e testar o efeito dos demais itens consumíveis ou ocultá-los até que estejam funcionais.
 - Definir uma rotina de deploy automatizado e de rollback documentada antes de usar o ambiente como pré-produção.
+
+## Histórico de Versão
+
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 28/09/2026 | 1.0 | Documentação do ambiente de homologação da R1 | [Caio Habibe](https://github.com/CaioHabibe) | [Henrique Carvalho](https://github.com/henriquecarv3) ([PR #60](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/60)) |

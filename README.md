@@ -160,7 +160,10 @@ Acesse no navegador:
 http://127.0.0.1:8000
 ```
 
+## Histórico de Versão
 
-
-
-
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 04/09/2026 | 1.0 | Criação do README | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |
+| 09/09/2026 | 1.1 | Atualização do README | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |
+| 27/09/2026 | 1.2 | Remoção dos dados dos contribuidores | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #47](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/47)) |

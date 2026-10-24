@@ -46,7 +46,7 @@ Quero [ação ou necessidade]
 Para [benefício esperado]
 ```
 
-Os critérios de aceitação são escritos em **Gherkin** (Dado / Quando / Então) ou como checklist verificável.
+Os critérios de aceitação das histórias refinadas são escritos em **Gherkin** (Dado / Quando / Então); listas de cobertura registram status de implementação.
 
 **Tarefas técnicas** descrevem um resultado verificável pelo time e possuem **critérios de conclusão** e **repositórios impactados**.
 
@@ -104,6 +104,11 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 | Validação de questões e imagens produzidas com apoio de IA | EP04 | US12 |
 | Criação de casos clínicos baseados no modelo OSCE | EP05 | US13 |
 | Simulação de consultas com pacientes virtuais | EP05 | US17 |
+| Progressão de elo conforme XP acumulado | EP01 | US23 (#82) |
+| Perda e recuperação de elo por inatividade | EP01 | US20 (#89) |
+| Exibição consistente do avatar ativo | EP01 | US21 (#91) |
+| Acesso visível à personalização do avatar | EP01 | US22 (#92) |
+| Padronização de nomenclatura avatar/perfil (melhoria de UX) | EP01 | US01, US02, US21, US22 (#93) |
 | Administração de usuários e permissões | EP06 | US14 |
 
 ## Backlog priorizado
@@ -129,8 +134,26 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 | US17 | estudante | simular consultas com pacientes virtuais | praticar a anamnese e o raciocínio clínico | EP05 | Won't (MVP) | Incremento | Não iniciada |
 | US18 | estudante | cumprir missões diárias, semanais e mensais | manter frequência e continuidade nos estudos | EP01 | Should | R2 | Não iniciada |
 | US19 | estudante | visualizar meu progresso, resultados e temas com dificuldade | direcionar meus próximos estudos | EP02 | Must | R2 | Não iniciada |
+| US20 | estudante | receber avisos de inatividade e recuperar um elo após voltar a estudar | manter uma rotina de estudos e continuar progredindo | EP01 | Should | R2 | Refinada (#89; depende de US23) |
+| US21 | estudante | visualizar meu avatar ativo nas áreas que me representam | manter minha identidade visual consistente | EP01 | Should | Pós-validação R1 | Refinada (#91; vinculada a US01 e US02) |
+| US22 | estudante | localizar a personalização do avatar na navegação principal | customizar minha identidade visual sem procurar pela interface | EP01 | Should | Pós-validação R1 | Refinada (#92; melhoria de UX #93) |
+| US23 | estudante | evoluir de elo conforme o XP acumulado | acompanhar meu progresso e estabelecer objetivos | EP01 | Should | R2 | Proposta refinada (#82) |
 
 > As histórias a partir da US04 são uma proposta derivada da Lean Inception e do MVP ampliado. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Somente um dos candidatos a piloto, US11 ou US13, deverá ser comprometido no MVP. Todas as histórias serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.
+
+> As missões diárias da US18 fazem parte do escopo de gamificação da Release 2 definido no [Roadmap](../produto/roadmap.md). As regras diárias, o fluxo e o contrato estão em [Missões Diárias](../produto/missoes-diarias.md), validados pelo PO em 19/10/2026. A definição e o protótipo são tratados na [#83](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83), e a implementação, na [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84). A extensão para missões semanais e mensais e a prioridade Should desta proposta ainda devem ser validadas com os Product Owners. A US19 trata do acompanhamento dos resultados e das dificuldades de aprendizagem. A US23 corresponde à progressão de elos da [#82](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82), sem duplicar a história de ranking. As issues [#96](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96) e [#97](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97) são etapas técnicas da US11, não novas histórias.
+
+### Correspondência dos identificadores
+
+Para preservar as histórias do MVP ampliado sem duplicar códigos, os identificadores atuais ficam organizados assim:
+
+| História | Identificador anterior na main | Identificador nesta proposta |
+|---|---|---|
+| Missões | US19 | US18 |
+| Progresso de aprendizagem | Nova história do PR #86 | US19 |
+| Progressão de elos | US18 | US23 |
+
+Os registros anteriores no histórico de versões mantêm os identificadores utilizados na época. Ao integrar esta proposta, conferir e atualizar as referências externas ao backlog conforme essa correspondência; o número das issues do GitHub permanece inalterado.
 
 ## Legenda de status
 
@@ -163,9 +186,13 @@ Uma história é considerada concluída quando:
 - [ ] A funcionalidade está disponível no ambiente de homologação.
 - [ ] A issue foi fechada com link para os PRs.
 
+
 ## Histórico de Versão
 
 | Data | Versão | Descrição | Autor(es) |
 | :--- | :--- | :--- | :--- |
 | 28/09/2026 | 1.0 | Criação do backlog do produto com épicos, cobertura da Lean Inception, histórias priorizadas, DoR e DoD | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) |
 | 12/10/2026 | 1.1 | Alinhamento do backlog ao MVP ampliado, com ciclos completos, novas histórias e seleção de um piloto avançado | [Leticia Torres Soares](https://github.com/leticiatmartins) |
+| 13/10/2026 | 1.2 | Inclusão da US19 (missões diárias) na Release 2, com referência às issues #83 e #84 | [Rafael Melo](https://github.com/rmatuda) |
+| 18/10/2026 | 1.3 | Inclusão das US18 e US20–US22; vínculo das #96 e #97 à US11; preservação da US19 e registro da melhoria de UX #93 | [Letícia Torres](https://github.com/leticiatmartins) |
+| 19/10/2026 | 1.4 | Registro da validação das regras da US19 (missões diárias) pelo PO | [Rafael Melo](https://github.com/rmatuda) e [Henrique Neves](https://github.com/henriquecarv3) |

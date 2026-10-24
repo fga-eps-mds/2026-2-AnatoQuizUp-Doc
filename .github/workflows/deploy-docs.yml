@@ -1,0 +1,45 @@
+name: Publicar documentacao no GitHub Pages
+
+on:
+  push:
+    branches:
+      - main
+    paths:
+      - docs/**
+      - mkdocs.yml
+      - requirements.txt
+      - .github/workflows/deploy-docs.yml
+  workflow_dispatch:
+
+permissions:
+  contents: write
+
+concurrency:
+  group: github-pages
+  cancel-in-progress: true
+
+jobs:
+  deploy:
+    name: Construir e publicar MkDocs
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Baixar o repositorio
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Configurar Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+          cache: pip
+
+      - name: Instalar dependencias
+        run: python -m pip install -r requirements.txt
+
+      - name: Validar a documentacao
+        run: python -m mkdocs build
+
+      - name: Publicar na branch gh-pages
+        run: python -m mkdocs gh-deploy --force

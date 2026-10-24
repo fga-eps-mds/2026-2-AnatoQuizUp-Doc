@@ -66,3 +66,11 @@ Acesse **http://127.0.0.1:8000** no navegador. Esses comandos executam o site de
 - [Ambiente de Homologação](operacao/ambiente-homologacao.md)
 - [Como contribuir: política de Pull Requests](contribuicao/pull_requests.md)
 - [Repositório no GitHub](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc)
+
+## Histórico de Versão
+
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 07/09/2026 | 1.0 | Criação da página inicial | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |
+| 22/09/2026 | 1.1 | Atualização da página inicial | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) | [Brenno da Silva Oliveira](https://github.com/Brenno-Silva01) ([PR #18](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/18)) |
+| 28/09/2026 | 1.2 | Inclusão da documentação de homologação | [Caio Habibe](https://github.com/CaioHabibe) | [Henrique Carvalho](https://github.com/henriquecarv3) ([PR #60](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/60)) |

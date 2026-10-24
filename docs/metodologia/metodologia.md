@@ -138,19 +138,19 @@ O fluxo de cada item segue um quadro Kanban no **ZenHub** (integrado ao GitHub).
 
 Os documentos abaixo descrevem **métodos** específicos e padrões técnicos invocados por esta metodologia:
 
-- [Política de Branches](../contribuicao/politica_branchs.md): modelo Git Flow adotado.
-- [Política de Commits](../contribuicao/politica_commits.md): Conventional Commits.
-- [Código de Conduta](../contribuicao/codigo_conduta.md): combinados de convivência.
-- [Matriz de Riscos](riscos.md): riscos monitorados a cada sprint.
-- [Comunicação](comunicacao.md): canais, periodicidade e regras de uso.
+- [Política de Branches](../contribuicao/branches.md): convenções de branches adotadas.
+- [Política de Commits](../contribuicao/commits.md): Conventional Commits.
+- [Código de Conduta](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/blob/main/CODE_OF_CONDUCT.md): combinados de convivência.
+- [Plano de Gerenciamento de Riscos](../produto/plano-de-riscos.md): riscos e estratégias de resposta do projeto.
+- Comunicação: [cadência e cerimônias](#cadencia-e-cerimonias) e [ferramentas de apoio](#ferramentas-de-apoio).
 
 ---
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) | Reviso(es) |
-|---|---|---|---|---|
-| 18/09/2026 | 1.0 | Definição das Metodologias utilizadas, Definição dos papeis, Eventos e fluxo de trabalho | [Gabriel Freitas](https://github.com/gabrielfreitass1) | --- |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 18/09/2026 | 1.0 | Definição das Metodologias utilizadas, Definição dos papeis, Eventos e fluxo de trabalho | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #52](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/52)) |
 
 
 ## Referencias 
