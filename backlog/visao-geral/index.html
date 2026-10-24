@@ -691,6 +691,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#recorte-do-mvp-ampliado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recorte do MVP ampliado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#padrao-de-escrita" class="md-nav__link">
     <span class="md-ellipsis">
       Padrão de escrita
@@ -1488,6 +1497,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#recorte-do-mvp-ampliado" class="md-nav__link">
+    <span class="md-ellipsis">
+      Recorte do MVP ampliado
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#padrao-de-escrita" class="md-nav__link">
     <span class="md-ellipsis">
       Padrão de escrita
@@ -1624,25 +1642,35 @@
 </thead>
 <tbody>
 <tr>
-<td>Release Major 1</td>
-<td>Identidade do estudante (avatar) e loja virtual</td>
-<td><a href="../release-major-1/">Release Major 1</a></td>
+<td>Release 1</td>
+<td>Identidade do estudante, avatar e loja virtual</td>
+<td><a href="../release-major-1/">Release 1</a></td>
 </tr>
 <tr>
-<td>Release Major 2</td>
-<td>A definir após validação da R1 com os POs</td>
-<td>—</td>
+<td>Release 2</td>
+<td>Ciclos de aprendizagem e gamificação, com base do acompanhamento pedagógico</td>
+<td>A detalhar após refinamento com os Product Owners</td>
 </tr>
 <tr>
-<td>Release Major 3</td>
-<td>A definir</td>
-<td>—</td>
+<td>Release 3</td>
+<td>Fechamento do ciclo da professora, curadoria e um piloto avançado</td>
+<td>A detalhar após seleção do piloto com os Product Owners</td>
 </tr>
 </tbody>
 </table>
 <blockquote>
 <p><strong>Base herdada:</strong> o AnatoQuizUp é evoluído a partir do produto desenvolvido em 2026.1, que já possuía cadastro e autenticação, questões, quiz, turmas, listas, loja, inventário, conquistas e ranking. Este backlog registra o que é construído ou evoluído em 2026.2 e identifica as histórias herdadas.</p>
 </blockquote>
+<h2 id="recorte-do-mvp-ampliado">Recorte do MVP ampliado</h2>
+<p>Após a revisão do escopo, o MVP passou a abranger as <strong>Ondas 1 a 4</strong> do sequenciador e três ciclos de valor completos:</p>
+<ol>
+<li><strong>Aprendizagem:</strong> acessar, escolher tema e nível, responder quiz com imagem, receber explicação, revisar erros e acompanhar o próprio progresso.</li>
+<li><strong>Gamificação:</strong> concluir atividades, receber XP e moedas, cumprir missões, acompanhar o ranking, utilizar a loja e personalizar o avatar.</li>
+<li><strong>Gestão pedagógica:</strong> criar ou selecionar questões validadas, montar listas, aplicar às turmas e analisar os resultados.</li>
+</ol>
+<p>Cadastro, autenticação, perfis, permissões, integração das funcionalidades herdadas e instrumentação das métricas são capacidades obrigatórias de apoio.</p>
+<p>O MVP também prevê <strong>um único piloto avançado</strong>, ainda a ser selecionado com os Product Owners: caso OSCE pré-configurado ou chatbot contextual. Geração de questões com imagens, paciente virtual completo e execução simultânea dos dois pilotos permanecem fora do MVP atual.</p>
+<p>O recorte visual está disponível no <a href="https://www.figma.com/board/IwsqM1gCmdrS2ZrR8HgRGz/Vis%C3%A3o-do-Produto-AnatoQuizUP-2026-2?node-id=17425-2220">Canvas MVP ampliado</a>.</p>
 <h2 id="padrao-de-escrita">Padrão de escrita</h2>
 <p><strong>Histórias de usuário</strong> seguem o formato:</p>
 <div class="highlight"><pre><span></span><code>Como [persona]
@@ -1681,9 +1709,10 @@ Para [benefício esperado]
 </table>
 <p>Critérios considerados:</p>
 <ol>
-<li><strong>Valor para o estudante</strong>: hipótese central do MVP de que a gamificação aumenta o engajamento.</li>
-<li><strong>Dependência técnica</strong>: itens que destravam outros vêm primeiro (ex.: avatar padrão antes da personalização).</li>
-<li><strong>Esforço e risco</strong>: riscos do <a href="../../produto/plano-de-riscos/">Plano de Riscos</a>, como curva de aprendizado e prazo.</li>
+<li><strong>Valor educacional</strong>: o ciclo de aprendizagem precisa funcionar de ponta a ponta antes da ampliação dos recursos avançados.</li>
+<li><strong>Fechamento do fluxo</strong>: funcionalidades que permitem concluir os ciclos do estudante e da professora têm prioridade sobre recursos isolados.</li>
+<li><strong>Dependência técnica</strong>: itens que destravam outros vêm primeiro, como autenticação, permissões e registro de resultados.</li>
+<li><strong>Esforço e risco</strong>: riscos do <a href="../../produto/plano-de-riscos/">Plano de Riscos</a>, como curva de aprendizado, integração e prazo.</li>
 <li><strong>Retorno dos Product Owners</strong>.</li>
 </ol>
 <h2 id="epicos">Épicos</h2>
@@ -1797,9 +1826,19 @@ Para [benefício esperado]
 <td>US03, US04, US05</td>
 </tr>
 <tr>
+<td>Missões diárias, semanais e mensais</td>
+<td>EP01</td>
+<td>US18</td>
+</tr>
+<tr>
 <td>Loja virtual com itens para o avatar</td>
 <td>EP01</td>
 <td>US03</td>
+</tr>
+<tr>
+<td>Visualização do próprio progresso</td>
+<td>EP02</td>
+<td>US19</td>
 </tr>
 <tr>
 <td>Criação de listas de quizzes por professores</td>
@@ -1829,7 +1868,7 @@ Para [benefício esperado]
 <tr>
 <td>Progressão de elo conforme XP acumulado</td>
 <td>EP01</td>
-<td>US18 (#82)</td>
+<td>US23 (#82)</td>
 </tr>
 <tr>
 <td>Perda e recuperação de elo por inatividade</td>
@@ -1949,7 +1988,7 @@ Para [benefício esperado]
 <td>revisar as questões que errei</td>
 <td>focar nas minhas dificuldades</td>
 <td>EP02</td>
-<td>Should</td>
+<td>Must</td>
 <td>R2</td>
 <td>Não iniciada</td>
 </tr>
@@ -1969,7 +2008,7 @@ Para [benefício esperado]
 <td>visualizar os resultados dos estudantes da turma</td>
 <td>identificar dificuldades e ajustar minhas aulas</td>
 <td>EP03</td>
-<td>Should</td>
+<td>Must</td>
 <td>R2</td>
 <td>Herdada de 2026.1</td>
 </tr>
@@ -1979,9 +2018,9 @@ Para [benefício esperado]
 <td>tirar dúvidas com um chatbot durante o estudo</td>
 <td>resolver dúvidas sem depender do horário da professora</td>
 <td>EP04</td>
-<td>Should</td>
+<td>Should (piloto)</td>
 <td>R3</td>
-<td>Não iniciada</td>
+<td>Candidato a piloto</td>
 </tr>
 <tr>
 <td>US12</td>
@@ -1989,7 +2028,7 @@ Para [benefício esperado]
 <td>validar questões e imagens geradas com apoio de IA</td>
 <td>garantir a qualidade do conteúdo</td>
 <td>EP04</td>
-<td>Should</td>
+<td>Must</td>
 <td>R3</td>
 <td>Não iniciada</td>
 </tr>
@@ -1999,9 +2038,9 @@ Para [benefício esperado]
 <td>praticar casos clínicos no modelo OSCE</td>
 <td>treinar raciocínio clínico</td>
 <td>EP05</td>
-<td>Could</td>
+<td>Should (piloto)</td>
 <td>R3</td>
-<td>Não iniciada</td>
+<td>Candidato a piloto</td>
 </tr>
 <tr>
 <td>US14</td>
@@ -2029,7 +2068,7 @@ Para [benefício esperado]
 <td>escolher disciplina, tema e nível de conhecimento antes do quiz</td>
 <td>estudar no ritmo e no conteúdo de que preciso</td>
 <td>EP02</td>
-<td>Should</td>
+<td>Must</td>
 <td>R2</td>
 <td>Não iniciada</td>
 </tr>
@@ -2039,27 +2078,27 @@ Para [benefício esperado]
 <td>simular consultas com pacientes virtuais</td>
 <td>praticar a anamnese e o raciocínio clínico</td>
 <td>EP05</td>
-<td>Could</td>
-<td>R3</td>
+<td>Won't (MVP)</td>
+<td>Incremento</td>
 <td>Não iniciada</td>
 </tr>
 <tr>
 <td>US18</td>
 <td>estudante</td>
-<td>evoluir de elo conforme o XP acumulado</td>
-<td>acompanhar meu progresso e estabelecer objetivos</td>
+<td>cumprir missões diárias, semanais e mensais</td>
+<td>manter frequência e continuidade nos estudos</td>
 <td>EP01</td>
 <td>Should</td>
 <td>R2</td>
-<td>Proposta refinada (#82)</td>
+<td>Não iniciada</td>
 </tr>
 <tr>
 <td>US19</td>
 <td>estudante</td>
-<td>visualizar minhas missões diárias, acompanhar o progresso e receber a recompensa ao concluí-las</td>
-<td>saber o que fazer no dia e avançar na minha progressão</td>
-<td>EP01</td>
-<td>A definir</td>
+<td>visualizar meu progresso, resultados e temas com dificuldade</td>
+<td>direcionar meus próximos estudos</td>
+<td>EP02</td>
+<td>Must</td>
 <td>R2</td>
 <td>Não iniciada</td>
 </tr>
@@ -2071,7 +2110,7 @@ Para [benefício esperado]
 <td>EP01</td>
 <td>Should</td>
 <td>R2</td>
-<td>Refinada (#89; depende de US18)</td>
+<td>Refinada (#89; depende de US23)</td>
 </tr>
 <tr>
 <td>US21</td>
@@ -2093,11 +2132,21 @@ Para [benefício esperado]
 <td>Pós-validação R1</td>
 <td>Refinada (#92; melhoria de UX #93)</td>
 </tr>
+<tr>
+<td>US23</td>
+<td>estudante</td>
+<td>evoluir de elo conforme o XP acumulado</td>
+<td>acompanhar meu progresso e estabelecer objetivos</td>
+<td>EP01</td>
+<td>Should</td>
+<td>R2</td>
+<td>Proposta refinada (#82)</td>
+</tr>
 </tbody>
 </table>
 <blockquote>
-<p>As histórias a partir da US04 são uma proposta inicial derivada da Lean Inception. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Todas serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.</p>
-<p>A US19 (missões diárias) entrou no escopo de gamificação da Release 2 definido no <a href="../../produto/roadmap/">Roadmap</a>. As regras, o fluxo e o contrato estão no documento <a href="../../produto/missoes-diarias/">Missões Diárias</a>, validado pelo PO em 19/10/2026. A definição e o protótipo são tratados na issue <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83">#83</a>, e a implementação, na <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84">#84</a>. A prioridade MoSCoW ainda não foi definida. A US18 corresponde à progressão de elos da <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82">#82</a>, sem duplicar a história de ranking; a US19 continua reservada às missões diárias. As issues <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96">#96</a> e <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97">#97</a> são etapas técnicas da US11, não novas histórias.</p>
+<p>As histórias a partir da US04 são uma proposta derivada da Lean Inception e do MVP ampliado. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Somente um dos candidatos a piloto, US11 ou US13, deverá ser comprometido no MVP. Todas as histórias serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.</p>
+<p>As missões diárias da US18 fazem parte do escopo de gamificação da Release 2 definido no <a href="../../produto/roadmap/">Roadmap</a>. As regras diárias, o fluxo e o contrato estão em <a href="../../produto/missoes-diarias/">Missões Diárias</a>, validados pelo PO em 19/10/2026. A definição e o protótipo são tratados na <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83">#83</a>, e a implementação, na <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84">#84</a>. A extensão para missões semanais e mensais e a prioridade Should desta proposta ainda devem ser validadas com os Product Owners. A US19 trata do acompanhamento dos resultados e das dificuldades de aprendizagem. A US23 corresponde à progressão de elos da <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82">#82</a>, sem duplicar a história de ranking. As issues <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96">#96</a> e <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97">#97</a> são etapas técnicas da US11, não novas histórias.</p>
 </blockquote>
 <h2 id="legenda-de-status">Legenda de status</h2>
 <table>
@@ -2167,20 +2216,26 @@ Para [benefício esperado]
 <td style="text-align: left;"><a href="https://github.com/henriquecarv3">Henrique Carvalho</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
 </tr>
 <tr>
-<td style="text-align: left;">13/10/2026</td>
+<td style="text-align: left;">12/10/2026</td>
 <td style="text-align: left;">1.1</td>
+<td style="text-align: left;">Alinhamento do backlog ao MVP ampliado, com ciclos completos, novas histórias e seleção de um piloto avançado</td>
+<td style="text-align: left;"><a href="https://github.com/leticiatmartins">Leticia Torres Soares</a></td>
+</tr>
+<tr>
+<td style="text-align: left;">13/10/2026</td>
+<td style="text-align: left;">1.2</td>
 <td style="text-align: left;">Inclusão da US19 (missões diárias) na Release 2, com referência às issues #83 e #84</td>
 <td style="text-align: left;"><a href="https://github.com/rmatuda">Rafael Melo</a></td>
 </tr>
 <tr>
 <td style="text-align: left;">18/10/2026</td>
-<td style="text-align: left;">1.2</td>
+<td style="text-align: left;">1.3</td>
 <td style="text-align: left;">Inclusão das US18 e US20–US22; vínculo das #96 e #97 à US11; preservação da US19 e registro da melhoria de UX #93</td>
 <td style="text-align: left;"><a href="https://github.com/leticiatmartins">Letícia Torres</a></td>
 </tr>
 <tr>
 <td style="text-align: left;">19/10/2026</td>
-<td style="text-align: left;">1.3</td>
+<td style="text-align: left;">1.4</td>
 <td style="text-align: left;">Registro da validação das regras da US19 (missões diárias) pelo PO</td>
 <td style="text-align: left;"><a href="https://github.com/rmatuda">Rafael Melo</a> e <a href="https://github.com/henriquecarv3">Henrique Neves</a></td>
 </tr>
