@@ -143,18 +143,6 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 
 > As missões diárias da US18 fazem parte do escopo de gamificação da Release 2 definido no [Roadmap](../produto/roadmap.md). As regras diárias, o fluxo e o contrato estão em [Missões Diárias](../produto/missoes-diarias.md), validados pelo PO em 19/10/2026. A definição e o protótipo são tratados na [#83](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83), e a implementação, na [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84). A extensão para missões semanais e mensais e a prioridade Should desta proposta ainda devem ser validadas com os Product Owners. A US19 trata do acompanhamento dos resultados e das dificuldades de aprendizagem. A US23 corresponde à progressão de elos da [#82](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82), sem duplicar a história de ranking. As issues [#96](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96) e [#97](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97) são etapas técnicas da US11, não novas histórias.
 
-### Correspondência dos identificadores
-
-Para preservar as histórias do MVP ampliado sem duplicar códigos, os identificadores atuais ficam organizados assim:
-
-| História | Identificador anterior na main | Identificador nesta proposta |
-|---|---|---|
-| Missões | US19 | US18 |
-| Progresso de aprendizagem | Nova história do PR #86 | US19 |
-| Progressão de elos | US18 | US23 |
-
-Os registros anteriores no histórico de versões mantêm os identificadores utilizados na época. Ao integrar esta proposta, conferir e atualizar as referências externas ao backlog conforme essa correspondência; o número das issues do GitHub permanece inalterado.
-
 ## Legenda de status
 
 | Status | Significado |
