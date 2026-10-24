@@ -239,6 +239,6 @@ Antes de considerar uma Issue pronta para execução, verificar:
 
 ## 16. Histórico de Versão
 
-| Versão | Data       | Descrição                     | Autor(es)       | Revisor(es) |
-| ------ | ---------- | ----------------------------- | --------------- | ----------- |
-| 1.0    | 07/09/2026 | Criação da política de Issues | [Gabriel Freitas](https://github.com/gabrielfreitass1) |             |
+| Versão | Data | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 1.0 | 07/09/2026 | Criação da política de Issues | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |

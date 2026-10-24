@@ -35,6 +35,20 @@ A Release Major 1 entrega a base de **gamificação visual** do AnatoQuizUp: a i
 | Aba "Roupas" do avatar | Priorizou-se concluir Aparência e Acessórios; a aba ficou desabilitada na interface | R2 (issue #33) |
 | Item "Congelar ofensiva" | Depende de um sistema de ofensiva diária, ainda não implementado | Backlog |
 
+## Melhorias identificadas após a validação da R1
+
+As issues abaixo registram refinamentos originados do feedback de validação, após o encerramento do escopo original da Release 1. Elas não alteram retroativamente o resultado da release nem indicam que as melhorias já foram implementadas. A situação deve ser acompanhada nas respectivas issues e no backlog geral.
+
+| História / melhoria | Origem | Relação com a R1 | Acompanhamento |
+|---|---|---|---|
+| US21 — Exibir o avatar ativo nas áreas que representam o estudante | [#91](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/91) | Refinamento das US01 e US02: consistência entre avatar padrão/personalizado, perfil e ranking | Aberta; critério de aceite validado conforme a issue |
+| US22 — Dar visibilidade ao acesso de personalização | [#92](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/92) | Melhoria da navegação para a funcionalidade entregue na R1 | Aberta; entrada Avatar, posição, rota e papéis estão especificados na issue |
+| Melhoria de UX — Padronizar avatar, perfil e foto de perfil | [#93](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/93) | Vinculada às US01, US02, US21 e US22; não é uma nova US nem amplia o escopo funcional | Aberta; glossário e consistência textual a validar com o PO |
+
+A US01 (#27) e a US02 (#26) continuam como histórias originais da R1. As histórias US21 e US22 representam refinamentos posteriores; a melhoria #93 é transversal. Ver [Backlog do Produto](visao-geral.md) para os identificadores e a numeração consolidados.
+
+---
+
 ## Dependências
 
 ```mermaid
@@ -234,7 +248,8 @@ Cenário: Utilização inválida
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) |
-| :--- | :--- | :--- | :--- |
-| 28/09/2026 | 1.0 | Detalhamento do Product Backlog e Project Backlog da Release Major 1 | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) |
-| 28/09/2026 | 1.1 | Inclusão dos links dos protótipos do Figma, conforme revisão do PR #58 | [Henrique Carvalho](https://github.com/henriquecarv3) |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 28/09/2026 | 1.0 | Detalhamento do Product Backlog e Project Backlog da Release Major 1 | [Henrique Carvalho](https://github.com/henriquecarv3), [Rafael Melo](https://github.com/rmatuda) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #58](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/58)) |
+| 28/09/2026 | 1.1 | Inclusão dos links dos protótipos do Figma, conforme revisão do PR #58 | [Henrique Carvalho](https://github.com/henriquecarv3) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #58](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/58)) |
+| 18/10/2026 | 1.2 | Refinamentos após a validação da R1 | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) | [Brenno da Silva Oliveira](https://github.com/Brenno-Silva01) ([PR #98](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/98)) |

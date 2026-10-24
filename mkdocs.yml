@@ -34,6 +34,7 @@ nav:
     - Plano de Gerenciamento de Custos: produto/plano-de-custos.md
     - Plano de Gerenciamento de Riscos: produto/plano-de-riscos.md
     - Roadmap: produto/roadmap.md
+    - Missões Diárias: produto/missoes-diarias.md
     - Backlog:
       - Visão Geral: backlog/visao-geral.md
       - Release Major 1: backlog/release-major-1.md
@@ -50,6 +51,10 @@ nav:
     - Dashboards da R1: dashboards.md
     - Quadro de Conhecimento: metodologia/quadro-conhecimento.md
 
+  - Qualidade:
+    - Roteiro de Testes: qualidade/roteiro-testes.md
+    - Resultados dos Testes: qualidade/resultados-testes.md
+
   - Operação:
     - Ambiente de Homologação: operacao/ambiente-homologacao.md
 
@@ -61,6 +66,7 @@ nav:
 
   - Reuniões:
     - Template de ata de reunião: reunioes/modelo-ata-reuniao.md
+    - 06-10-2026: reunioes/reuniao-06-10-26.md
 
 extra_css:
   - stylesheets/extra.css

@@ -86,6 +86,6 @@ Com base no quadro, os seguintes pareamentos são recomendados para maximizar tr
 
 ## Histórico de Versão
 
-| Versão | Data       | Descrição                            | Autor(es)                                                         | Revisor(es)  |
-| ------ | ---------- | ------------------------------------ | ----------------------------------------------------------------- | ------------ |
-| 1.0    | 05/10/2026 | Criação do quadro de conhecimento | [Gabriel Freitas](https://github.com/gabrielfreitass1)<br> [João Lucas Araújo](https://github.com/jlucasiqueira) | [Arthur Fonseca](https://github.com/arthurfonsecaa) |
+| Versão | Data | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 1.0 | 05/10/2026 | Criação do quadro de conhecimento | [Gabriel Freitas](https://github.com/gabrielfreitass1)<br> [João Lucas Araújo](https://github.com/jlucasiqueira) | [Arthur Fonseca Vale](https://github.com/arthurfonsecaa) ([PR #79](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/79)) |
