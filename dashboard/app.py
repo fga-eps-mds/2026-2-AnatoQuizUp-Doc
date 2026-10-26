@@ -415,8 +415,8 @@ if not sonar.empty:
     r1_sonar = retrato_sonar(sonar, inicio_r1, fim_r1)
     r2_sonar = retrato_sonar(sonar, inicio_r2, fim_r2)
     if not r1_sonar.empty and not r2_sonar.empty:
-        pares = r1_sonar[["coverage", "coleta"]].join(
-            r2_sonar[["coverage", "coleta"]], how="outer", lsuffix="_R1", rsuffix="_R2"
+        pares = r1_sonar[["coverage", "coleta"]].add_suffix("_R1").join(
+            r2_sonar[["coverage", "coleta"]].add_suffix("_R2"), how="outer"
         )
         pares["Variação (p.p.)"] = pares["coverage_R2"] - pares["coverage_R1"]
         st.subheader("Cobertura SonarCloud")
@@ -427,7 +427,7 @@ if not sonar.empty:
         if set(r1_sonar.index) == set(r2_sonar.index) == {"BFF", "Quiz-Service", "Usuario-Service", "Web"}:
             q1 = indice_qualidade(r1_sonar)
             q2 = indice_qualidade(r2_sonar)
-            indice = q1[["indice"]].join(q2[["indice"]], lsuffix="_R1", rsuffix="_R2")
+            indice = q1[["indice"]].add_suffix("_R1").join(q2[["indice"]].add_suffix("_R2"))
             indice["Variação"] = indice["indice_R2"] - indice["indice_R1"]
             st.subheader("Índice composto de qualidade de produto")
             st.caption(
