@@ -638,6 +638,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Referências
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1506,6 +1515,15 @@
   
 </li>
       
+        <li class="md-nav__item">
+  <a href="#4-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Referências
+    </span>
+  </a>
+  
+</li>
+      
     </ul>
   
 </nav>
@@ -1540,6 +1558,20 @@
 <td>Criação e estruturação do plano de riscos</td>
 <td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a></td>
 <td><a href="https://github.com/leticiatmartins">Letícia Torres Soares Martins</a> (<a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/16">PR #16</a>)</td>
+</tr>
+<tr>
+<td>21/10/2026</td>
+<td>1.1</td>
+<td>Adição dos riscos RN08 (pareamento/revisão não evidenciados) e RN09 (EVM ágil não aplicado corretamente), a partir dos apontamentos da reunião de acompanhamento (issue <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/78">#78</a>)</td>
+<td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a></td>
+<td></td>
+</tr>
+<tr>
+<td>25/10/2026</td>
+<td>1.2</td>
+<td>Conversão de probabilidade e impacto para os pesos de 1 a 5, adição da coluna de Prioridade (P×I) na tabela de riscos e das referências que embasam as escalas</td>
+<td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>
@@ -1592,7 +1624,7 @@
 <td style="text-align: center;">1</td>
 </tr>
 <tr>
-<td style="text-align: center;">&gt; Fonte dos intervalos e pesos.</td>
+<td style="text-align: center;">&gt; Intervalos e pesos adaptados da análise qualitativa de riscos do PMBOK [1].</td>
 <td style="text-align: center;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1634,7 +1666,7 @@
 <td style="text-align: center;">1</td>
 </tr>
 <tr>
-<td style="text-align: center;">&gt; Fonte das descrições de impacto.</td>
+<td style="text-align: center;">&gt; Descrições de impacto adaptadas do PMBOK [1] e calibradas para o contexto da disciplina.</td>
 <td style="text-align: left;"></td>
 <td style="text-align: center;"></td>
 </tr>
@@ -1696,6 +1728,7 @@
 </tr>
 </tbody>
 </table>
+<p>A tabela da seção 3 traz esse produto já calculado para cada risco, na coluna Prioridade (P×I).</p>
 <p><strong>Faixas de Prioridade:</strong>
 *   <strong>Muito Baixa:</strong> 1 a 5.
 *   <strong>Baixa:</strong> 6 a 10.
@@ -1710,8 +1743,9 @@
 <th style="text-align: left;">ID</th>
 <th style="text-align: left;">Risco</th>
 <th style="text-align: left;">Categoria EAR</th>
-<th style="text-align: center;">Prob.</th>
-<th style="text-align: center;">Imp.</th>
+<th style="text-align: center;">P</th>
+<th style="text-align: center;">I</th>
+<th style="text-align: center;">Prioridade (P×I)</th>
 <th style="text-align: left;">Prevenção (Mitigação)</th>
 <th style="text-align: left;">Plano de Ação (Contingência)</th>
 </tr>
@@ -1721,8 +1755,9 @@
 <td style="text-align: left;"><strong>RN01</strong></td>
 <td style="text-align: left;">Integrantes podem não estar familiarizados com as tecnologias adotadas (IA, LLMs, Chatbots).</td>
 <td style="text-align: left;">Organizacional</td>
-<td style="text-align: center;">Média</td>
-<td style="text-align: center;">Alto</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><strong>12</strong> (Média)</td>
 <td style="text-align: left;">Promover treinamentos internos e incentivar programação em pares (pareamento).</td>
 <td style="text-align: left;">Alocar os membros com mais conhecimento técnico em conjunto com os que possuem mais dificuldades.</td>
 </tr>
@@ -1730,8 +1765,9 @@
 <td style="text-align: left;"><strong>RN02</strong></td>
 <td style="text-align: left;">Indisponibilidade do cliente para validação de requisitos ou envio de materiais (ex: planilhas e casos OSCE).</td>
 <td style="text-align: left;">Externo</td>
-<td style="text-align: center;">Alta</td>
-<td style="text-align: center;">Muito Alto</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><strong>20</strong> (Alta)</td>
 <td style="text-align: left;">Manter comunicação constante com o cliente e agendar validações periódicas.</td>
 <td style="text-align: left;">Utilizar dados mockados e seguir o desenvolvimento da base da aplicação até a recepção dos dados reais.</td>
 </tr>
@@ -1739,8 +1775,9 @@
 <td style="text-align: left;"><strong>RN03</strong></td>
 <td style="text-align: left;">Vazamento de dados não anonimizados de pacientes nos casos clínicos de simulação.</td>
 <td style="text-align: left;">Externo</td>
-<td style="text-align: center;">Baixa</td>
-<td style="text-align: center;">Muito Alto</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><strong>10</strong> (Baixa)</td>
 <td style="text-align: left;">Adotar rigoroso processo de anonimização e exigir termos de consentimento antes da inserção na base.</td>
 <td style="text-align: left;">Remover imediatamente os dados do ar, notificar stakeholders e aplicar scripts de limpeza no banco de dados.</td>
 </tr>
@@ -1748,8 +1785,9 @@
 <td style="text-align: left;"><strong>RN04</strong></td>
 <td style="text-align: left;">Tarefas estimadas de forma equivocada, gerando atraso na execução da Sprint.</td>
 <td style="text-align: left;">Gerenciamento</td>
-<td style="text-align: center;">Alta</td>
-<td style="text-align: center;">Médio</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;"><strong>12</strong> (Média)</td>
 <td style="text-align: left;">Quebrar tarefas muito grandes ou complexas em pequenas entregas durante a planning.</td>
 <td style="text-align: left;">Realocar tarefas como dívida técnica para a próxima Sprint e reforçar o pareamento.</td>
 </tr>
@@ -1757,8 +1795,9 @@
 <td style="text-align: left;"><strong>RN05</strong></td>
 <td style="text-align: left;">Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura).</td>
 <td style="text-align: left;">Técnico</td>
-<td style="text-align: center;">Baixa</td>
-<td style="text-align: center;">Muito Alto</td>
+<td style="text-align: center;">2</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><strong>10</strong> (Baixa)</td>
 <td style="text-align: left;">Entender a capacidade e as limitações das tecnologias antes da implementação.</td>
 <td style="text-align: left;">Repriorizar o escopo do MVP junto ao cliente e, se necessário, utilizar um fluxo fixo de conversas em vez de um LLM treinado.</td>
 </tr>
@@ -1766,8 +1805,9 @@
 <td style="text-align: left;"><strong>RN06</strong></td>
 <td style="text-align: left;">A qualidade do software e dos quizzes não corresponder às expectativas educacionais do cliente.</td>
 <td style="text-align: left;">Técnico</td>
-<td style="text-align: center;">Média</td>
-<td style="text-align: center;">Muito Alto</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">5</td>
+<td style="text-align: center;"><strong>15</strong> (Média)</td>
 <td style="text-align: left;">Validar constantemente os requisitos com o cliente e manter a qualidade do código com testes.</td>
 <td style="text-align: left;">Realizar refatoração de código, ajustes de escopo nas questões e nova rodada de validação.</td>
 </tr>
@@ -1775,13 +1815,40 @@
 <td style="text-align: left;"><strong>RN07</strong></td>
 <td style="text-align: left;">Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente.</td>
 <td style="text-align: left;">Organizacional</td>
-<td style="text-align: center;">Alta</td>
-<td style="text-align: center;">Alto</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><strong>16</strong> (Alta)</td>
 <td style="text-align: left;">Conhecer as habilidades da equipe e entregar tarefas não blocantes para membros menos engajados.</td>
 <td style="text-align: left;">Realocar imediatamente as tarefas críticas entre os membros remanescentes.</td>
 </tr>
+<tr>
+<td style="text-align: left;"><strong>RN08</strong></td>
+<td style="text-align: left;">Pareamento e revisão de código não serem realizados de forma efetiva ou comprovável entre os membros, concentrando a implementação em poucos integrantes.</td>
+<td style="text-align: left;">Organizacional</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><strong>16</strong> (Alta)</td>
+<td style="text-align: left;">Exigir coautoria (<code>Co-authored-by</code>) nos commits pareados e revisão por um segundo membro antes do merge de cada PR.</td>
+<td style="text-align: left;">Auditar periodicamente a distribuição de commits e PRs por integrante e redistribuir tarefas entre a equipe.</td>
+</tr>
+<tr>
+<td style="text-align: left;"><strong>RN09</strong></td>
+<td style="text-align: left;">Estimativa de custo e monitoramento via EVM ágil feitos de forma incorreta ou não rastreável, comprometendo a visibilidade real do orçamento e do cronograma.</td>
+<td style="text-align: left;">Gerenciamento</td>
+<td style="text-align: center;">3</td>
+<td style="text-align: center;">4</td>
+<td style="text-align: center;"><strong>12</strong> (Média)</td>
+<td style="text-align: left;">Aplicar a metodologia de custo-hora e EVM ágil do Plano de Custos revisado, registrando story points e velocity a partir da R2.</td>
+<td style="text-align: left;">Recalcular retroativamente os indicadores (IDP/IDC) com os dados disponíveis e comunicar o desvio à coordenação do projeto.</td>
+</tr>
 </tbody>
 </table>
+<hr />
+<h2 id="4-referencias">4. Referências</h2>
+<blockquote>
+<p>[1] PMI. <strong>Um guia do conhecimento em gerenciamento de projetos (Guia PMBOK)</strong>. 6. ed. Project Management Institute, 2017. Capítulo 11, que trata das escalas de probabilidade e impacto e da matriz de probabilidade-impacto.</p>
+<p>[2] PMI. <strong>The Standard for Risk Management in Portfolios, Programs, and Projects</strong>. Project Management Institute, 2019.</p>
+</blockquote>
 
 
 
