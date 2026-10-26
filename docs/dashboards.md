@@ -2,7 +2,7 @@
 
 ## Release 2 — processo e qualidade
 
-O [app Streamlit](https://2026-2-anatoquizup-doc.streamlit.app/) compara as coletas R1 e R2 por repositório e apresenta os índices de qualidade do produto e de processo. A análise e as limitações das fontes estão em [Análise do dashboard R2](dashboard-r2.md); as três decisões gerenciais para o planejamento da R3 também estão [registradas na Wiki](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/wiki). A publicação da versão R2 depende do merge do PR desta atualização.
+O [app Streamlit](https://2026-2-anatoquizup-doc.streamlit.app/) compara as coletas R1 e R2 por repositório e apresenta os índices de qualidade do produto e de processo. A análise e as limitações das fontes estão em [Análise do dashboard R2](dashboard-r2.md); as três decisões gerenciais para o planejamento da R3 também estão [registradas na Wiki](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/wiki).
 
 ## Histórico da Release 1
 

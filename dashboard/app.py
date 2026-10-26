@@ -516,17 +516,17 @@ if not issues_r2.empty:
         "Não interprete ausência de registros como ausência de defeitos."
     )
 
-st.subheader("Interpretação e decisões propostas")
+st.subheader("Interpretação e decisões gerenciais")
 st.markdown(
     """
-1. **Confiabilidade dos dados:** conferir as coletas dos quatro repositórios após a mudança
-   de formato do exportador, antes de usar o painel na apresentação.
-2. **Capacidade da sprint:** investigar no ZenHub a variação de issues concluídas por semana
-   e registrar estimativas para separar volume de trabalho de tamanho das tarefas.
-3. **Qualidade:** examinar a nota C de segurança em Web e a queda de cobertura
-   do Usuario-Service antes de repriorizar correções.
+1. **Distribuir as entregas ao longo da sprint:** limitar o trabalho simultâneo e revisar
+   bloqueios no meio da semana, acompanhando a concentração de fechamentos na review e na retro.
+2. **Estimar story points e registrar horas:** estimar os itens elegíveis antes da R3,
+   congelar a baseline e registrar horas reais por integrante a cada sprint.
+3. **Priorizar a segurança da Web:** triar e corrigir os achados de segurança antes de ampliar
+   o escopo do frontend, vinculando issues e PRs às evidências do SonarCloud.
 
-Estas são propostas para deliberação do time, com causa, evidência e ação detalhadas na
+Estas decisões orientam o planejamento da R3, com evidências e acompanhamento detalhados na
 [análise R2](https://fga-eps-mds.github.io/2026-2-AnatoQuizUp-Doc/dashboard-r2/).
 """
 )
@@ -694,10 +694,16 @@ else:
     )
     if not concluidas.empty:
         media_velocity = concluidas["fechadas"].mean()
+        media_velocity_legenda = f"{media_velocity:.1f}".replace(".", ",")
         grafico_velocity.add_hline(
             y=media_velocity, line_dash="dash", annotation_text=f"média {media_velocity:.1f} issues/sprint"
         )
         st.metric("Velocity média (sprints concluídas)", f"{media_velocity:.1f} issues/sprint")
+        st.caption(
+            "A comparação R1 × R2 considera somente as quatro sprints da R2 (28/09–25/10), "
+            "por isso mostra 8,25 issues/semana. Esta seção calcula a média de todas as sprints "
+            f"concluídas desde setembro, atualmente {media_velocity_legenda} issues/sprint."
+        )
     else:
         st.caption("Ainda não há sprint concluída para calcular a média.")
     st.plotly_chart(grafico_velocity, width="stretch")
