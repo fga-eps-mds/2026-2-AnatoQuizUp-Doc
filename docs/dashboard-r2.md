@@ -54,7 +54,7 @@ O painel passa a usar o [plano de custos v2.1](produto/plano-de-custos.md): BAC 
 
 ## Decisões gerenciais para o planejamento da R3
 
-As três decisões abaixo foram incorporadas a esta revisão em 26/10 para orientar o planejamento da R3. A equipe deve registrar a deliberação, os responsáveis individuais, os prazos e o acompanhamento na Wiki; este documento não substitui a ata da equipe.
+As três decisões abaixo foram incorporadas a esta revisão em 26/10 para orientar o planejamento da R3 e [registradas na Wiki](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/wiki). A equipe ainda deve registrar a deliberação coletiva, os responsáveis individuais e os prazos; este documento não substitui a ata da equipe.
 
 | # | Evidência do dashboard | Decisão gerencial | Acompanhamento |
 | --- | --- | --- | --- |
@@ -69,6 +69,7 @@ As três decisões abaixo foram incorporadas a esta revisão em 26/10 para orien
 ## Checklist de publicação
 
 - [x] Conferir as coletas dos quatro repositórios publicadas em 26/10.
-- [ ] Registrar as três decisões, responsáveis, prazos e acompanhamento na Wiki; validar pesos e limiares com o time e professor.
+- [x] Registrar as três decisões, evidências e acompanhamento na Wiki.
+- [ ] Registrar a deliberação coletiva, responsáveis e prazos; validar pesos e limiares com o time e professor.
 - [ ] Registrar a análise crítica de IA e as entradas individuais no `MD_Template.md`.
 - [ ] Fazer merge do PR, abrir o app publicado, conferir a comparação R1 × R2 e enviar URL e PR no Aprender 3.
