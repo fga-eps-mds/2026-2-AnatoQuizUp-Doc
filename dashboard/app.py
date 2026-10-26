@@ -1,4 +1,4 @@
-"""Dashboard de metricas do AnatoQuizUp (R1).
+"""Dashboard de metricas do AnatoQuizUp (R1 e R2).
 
 Fontes de dados, todas em analytics-raw-data/<repo>/ no repositorio de Doc:
 
@@ -78,7 +78,7 @@ PADRAO_SONAR = re.compile(rf"^fga-eps-mds-(?P<repo>.+)-(?P<data>{PADRAO_DATA})-(
 PADRAO_JEST = re.compile(rf"^jest-coverage-(?P<repo>.+)-(?P<data>{PADRAO_DATA})\.json$")
 
 
-# Nome canonico de cada repositorio, independente do prefixo e da caixa usados no arquivo.
+# Nome canônico de cada repositório, independente do prefixo e da caixa no arquivo.
 NOMES_REPOSITORIOS = {
     "WEB": "Web",
     "BFF": "BFF",
@@ -88,7 +88,7 @@ NOMES_REPOSITORIOS = {
 
 
 def nome_curto(repo: str) -> str:
-    """Aceita 2026-2-AnatoQuizUp-Web (formato antigo) e 2026_2_UNB-AnatoQuizUp-WEB (formato novo)."""
+    """Aceita os nomes de projeto Sonar usados em setembro e outubro."""
     nome = re.sub(r"^2026[-_]2(?:_UNB)?-AnatoQuizUp-", "", repo)
     return NOMES_REPOSITORIOS.get(nome.upper(), nome)
 
@@ -126,7 +126,7 @@ def ler_json(arquivo: Path):
 
 
 def ler_medidas_sonar(conteudo: dict) -> dict:
-    """Extrai as medidas do projeto (formato novo project_measures ou antigo component/component_tree)."""
+    """Extrai medidas dos formatos antigo e novo do exportador SonarCloud."""
     brutas = conteudo.get("project_measures")
     if brutas is None:
         base = conteudo.get("baseComponent") or conteudo.get("component") or conteudo.get("data", {}).get("component", {})
@@ -201,26 +201,18 @@ def momento_github(valor):
 
 @st.cache_data(ttl=300)
 def carregar_issues(pasta: str):
-    """Le o GitHub_API-Issues-*.json mais recente, ignorando os PRs.
-
-    O nome desses arquivos nao tem data, entao a coleta e estimada pelo registro mais
-    recente (created_at, updated_at ou closed_at, inclusive de PRs) do proprio JSON:
-    a coleta aconteceu nesse instante ou logo depois. Retorna (issues, arquivo, coleta).
-    """
+    """Lê a captura datada mais recente das issues do repositório de Doc."""
     escolhido = None
-    for arquivo in sorted(Path(pasta).rglob("GitHub_API-Issues-*.json")):
+    for arquivo in Path(pasta).rglob("GitHub_API-Issues-*.json"):
         itens = ler_json(arquivo)
         if not isinstance(itens, list):
             continue
-        momentos = [
-            momento
-            for item in itens
-            if isinstance(item, dict)
-            for campo in ("created_at", "updated_at", "closed_at")
-            if (momento := momento_github(item.get(campo))) is not None
-        ]
-        if momentos and (escolhido is None or max(momentos) > escolhido[2]):
-            escolhido = (itens, arquivo, max(momentos))
+        data_nome = re.search(rf"({PADRAO_DATA})\.json$", arquivo.name)
+        if not data_nome:
+            continue
+        coleta = coleta_sonar(data_nome.group(1))
+        if escolhido is None or coleta > escolhido[2]:
+            escolhido = (itens, arquivo, coleta)
     if escolhido is None:
         return pd.DataFrame(), None, None
     itens, arquivo, coleta = escolhido
@@ -231,11 +223,12 @@ def carregar_issues(pasta: str):
             "estado": item.get("state"),
             "criada": momento_github(item.get("created_at")),
             "fechada": momento_github(item.get("closed_at")),
+            "rotulos": [rotulo.get("name", "").lower() for rotulo in item.get("labels", []) if isinstance(rotulo, dict)],
         }
         for item in itens
         if isinstance(item, dict) and "pull_request" not in item
     ]
-    issues = pd.DataFrame(linhas, columns=["numero", "titulo", "estado", "criada", "fechada"])
+    issues = pd.DataFrame(linhas, columns=["numero", "titulo", "estado", "criada", "fechada", "rotulos"])
     issues["criada"] = pd.to_datetime(issues["criada"])
     issues["fechada"] = pd.to_datetime(issues["fechada"])
     return issues, f"{arquivo.parent.name}/{arquivo.name}", coleta
@@ -368,7 +361,36 @@ def linha_meta(grafico) -> None:
     grafico.add_hline(y=META_COBERTURA, line_dash="dash", annotation_text=f"meta {META_COBERTURA:.0f}%")
 
 
-st.set_page_config(page_title="AnatoQuizUp · Métricas R1", layout="wide")
+def retrato_sonar(dados: pd.DataFrame, inicio: datetime, fim: datetime) -> pd.DataFrame:
+    periodo = dados[(dados["coleta"] >= inicio) & (dados["coleta"] <= fim)]
+    return mais_recente_por_repo(periodo) if not periodo.empty else pd.DataFrame()
+
+
+def indice_qualidade(retrato: pd.DataFrame) -> pd.DataFrame:
+    """Convenção analítica R2: cobertura 50%, segurança 25%, duplicação 25%."""
+    resultado = retrato[["coverage", "security_rating", "duplicated_lines_density", "coleta"]].copy()
+    resultado["cobertura_normalizada"] = resultado["coverage"].clip(0, 100)
+    resultado["seguranca_normalizada"] = (125 - 25 * resultado["security_rating"]).clip(0, 100)
+    resultado["duplicacao_normalizada"] = (100 - 10 * resultado["duplicated_lines_density"]).clip(0, 100)
+    resultado["indice"] = (
+        0.50 * resultado["cobertura_normalizada"]
+        + 0.25 * resultado["seguranca_normalizada"]
+        + 0.25 * resultado["duplicacao_normalizada"]
+    )
+    return resultado
+
+
+def velocidade_periodo(issues: pd.DataFrame, inicio: datetime, fim: datetime) -> tuple[float | None, int]:
+    """Média de issues fechadas por janela completa de sete dias."""
+    semanas = (fim.date() - inicio.date()).days // 7
+    if semanas < 1:
+        return None, 0
+    fim_completo = inicio + timedelta(days=7 * semanas)
+    fechadas = issues["fechada"].between(inicio, fim_completo, inclusive="left").sum()
+    return float(fechadas / semanas), int(fechadas)
+
+
+st.set_page_config(page_title="AnatoQuizUp · Métricas R2", layout="wide")
 st.title("AnatoQuizUp · Dashboard de métricas")
 st.caption(AVISO_FUSO)
 
@@ -381,6 +403,96 @@ if sonar.empty and jest.empty:
         "Verifique se o workflow metricas.yml rodou ou se os arquivos jest-coverage-*.json foram adicionados."
     )
     st.stop()
+
+# ----- Comparação R1 × R2 -----
+st.header("Comparação R1 × R2")
+st.caption("R1: última coleta de 10/08 a 28/09. R2: última coleta de 29/09 a 26/10, por repositório. A data de cada medida aparece na tabela.")
+inicio_r1 = datetime(2026, 8, 10)
+fim_r1 = datetime(2026, 9, 28, 23, 59, 59)
+inicio_r2 = datetime(2026, 9, 29)
+fim_r2 = datetime(2026, 10, 26, 23, 59, 59)
+if not sonar.empty:
+    r1_sonar = retrato_sonar(sonar, inicio_r1, fim_r1)
+    r2_sonar = retrato_sonar(sonar, inicio_r2, fim_r2)
+    if not r1_sonar.empty and not r2_sonar.empty:
+        pares = r1_sonar[["coverage", "coleta"]].add_suffix("_R1").join(
+            r2_sonar[["coverage", "coleta"]].add_suffix("_R2"), how="outer"
+        )
+        pares["Variação (p.p.)"] = pares["coverage_R2"] - pares["coverage_R1"]
+        st.subheader("Cobertura SonarCloud")
+        st.dataframe(
+            pares.rename(columns={"coverage_R1": "R1 (%)", "coverage_R2": "R2 (%)", "coleta_R1": "Coleta R1", "coleta_R2": "Coleta R2"})
+            .rename_axis("Repositório"), width="stretch"
+        )
+        if set(r1_sonar.index) == set(r2_sonar.index) == {"BFF", "Quiz-Service", "Usuario-Service", "Web"}:
+            q1 = indice_qualidade(r1_sonar)
+            q2 = indice_qualidade(r2_sonar)
+            indice = q1[["indice"]].add_suffix("_R1").join(q2[["indice"]].add_suffix("_R2"))
+            indice["Variação"] = indice["indice_R2"] - indice["indice_R1"]
+            st.subheader("Índice composto de qualidade de produto")
+            st.caption(
+                "Convenção de análise proposta: cobertura 50%, nota de segurança 25%, duplicação 25%. "
+                "Cobertura já varia de 0 a 100; segurança A–E vira 100, 75, 50, 25, 0; "
+                "duplicação vira máximo(0, 100 − 10 × percentual). Agregação: média simples dos quatro "
+                "repositórios. Pesos e limiares precisam de validação do time e professor antes de orientar decisões."
+            )
+            st.dataframe(indice.rename(columns={"indice_R1": "R1", "indice_R2": "R2"}).round(1), width="stretch")
+            st.metric("Índice agregado R2", f"{indice['indice_R2'].mean():.1f}/100", f"{indice['Variação'].mean():+.1f} frente à R1")
+        else:
+            st.warning("Não há quatro repositórios com dados nos dois períodos para agregar o índice.")
+    else:
+        st.info("Faltam coletas SonarCloud em uma das releases para comparação.")
+
+issues_r2, arquivo_issues_r2, coleta_issues_r2 = carregar_issues(str(PASTA_DADOS))
+if not issues_r2.empty:
+    fim_observado = min(coleta_issues_r2, fim_r2)
+    v1, total_v1 = velocidade_periodo(issues_r2, inicio_r1, fim_r1)
+    v2, total_v2 = velocidade_periodo(issues_r2, inicio_r2, fim_observado)
+    st.subheader("Velocidade observada no backlog")
+    st.caption(
+        "Proxy: issues fechadas por janela completa de sete dias; não representa story points nem aceitações "
+        f"do cliente. Fonte: repositório Doc, captura de {coleta_issues_r2:%d/%m/%Y %H:%M}. "
+        "A janela parcial da R2 fica fora da média."
+    )
+    st.dataframe(pd.DataFrame([
+        {"Release": "R1", "Issues fechadas": total_v1, "Média por 7 dias": v1},
+        {"Release": "R2 até a coleta", "Issues fechadas": total_v2, "Média por 7 dias": v2},
+    ]), hide_index=True, width="stretch")
+    defeitos = issues_r2[issues_r2["rotulos"].map(lambda tags: "bug" in tags)]
+    st.subheader("Defeitos registrados no backlog de Doc")
+    st.dataframe(pd.DataFrame([
+        {"Release (criação)": "R1", "Issues com rótulo bug": int(defeitos["criada"].between(inicio_r1, fim_r1).sum())},
+        {"Release (criação)": "R2 até a coleta", "Issues com rótulo bug": int(defeitos["criada"].between(inicio_r2, fim_observado).sum())},
+    ]), hide_index=True, width="stretch")
+    st.warning(
+        "Esta contagem inclui defeitos de documentação e DevOps. Não equivale a defeitos do produto: "
+        "a coleta de issues dos quatro repositórios de código ainda não existe no dashboard. "
+        "Não interprete ausência de registros como ausência de defeitos."
+    )
+
+st.subheader("Interpretação e decisões propostas")
+st.markdown(
+    """
+1. **Confiabilidade dos dados:** conferir as coletas dos quatro repositórios após a mudança
+   de formato do exportador, antes de usar o painel na apresentação.
+2. **Capacidade da sprint:** investigar no ZenHub a variação de issues concluídas por semana
+   e registrar estimativas para separar volume de trabalho de tamanho das tarefas.
+3. **Qualidade:** examinar a nota C de segurança em Web e a queda de cobertura
+   do Usuario-Service antes de repriorizar correções.
+
+Estas são propostas para deliberação do time, com causa, evidência e ação detalhadas na
+[análise R2](https://fga-eps-mds.github.io/2026-2-AnatoQuizUp-Doc/dashboard-r2/).
+"""
+)
+with st.expander("Crítica aos resultados sugeridos por IA"):
+    st.markdown(
+        "**Aproveitado como hipótese verificável:** comparar releases por repositório e combinar "
+        "métricas normalizadas; números conferidos nos JSONs. "
+        "**Descartado:** interpretar as issues `bug` do repositório Doc como a contagem "
+        "de defeitos do produto; elas incluem template, DevOps e o próprio dashboard. "
+        "**Depende do julgamento do time:** pesos, limiares, causas da variação de velocidade "
+        "e adoção das ações propostas."
+    )
 
 # ----- SonarCloud -----
 if not sonar.empty:
@@ -507,9 +619,8 @@ elif gestao is None:
 if motivo_sem_gestao is None:
     st.caption(
         f"Issues do repositório de Doc lidas de `{arquivo_issues}` (pull requests ignorados). "
-        f"Data de referência: {coleta_issues:%d/%m/%Y %H:%M} (horário de Brasília), o registro mais "
-        "recente do JSON. O nome do arquivo não traz a data da coleta, então ela é estimada por esse "
-        "registro. Releases, orçamento e escopo da R1 vêm de `dashboard/config/gestao.json`, com as "
+        f"Data de referência: {coleta_issues:%d/%m/%Y %H:%M} (horário de Brasília), extraída do "
+        "nome do arquivo de captura. Releases, orçamento e escopo da R1 vêm de `dashboard/config/gestao.json`, com as "
         "fontes indicadas no próprio arquivo."
     )
 
