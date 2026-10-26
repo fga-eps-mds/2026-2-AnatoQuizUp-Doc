@@ -5,6 +5,8 @@
 | Data | Versão | Descrição | Autor | Revisor(es) |
 | --- | --- | --- | --- | --- |
 | 17/09/2026 | 1.0 | Criação e estruturação do plano de riscos | [João Paulo Lima](https://github.com/jpaulohe4rt) | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) ([PR #16](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/16)) |
+| 21/10/2026 | 1.1 | Adição dos riscos RN08 (pareamento/revisão não evidenciados) e RN09 (EVM ágil não aplicado corretamente), a partir dos apontamentos da reunião de acompanhamento (issue [#78](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/78)) | [João Paulo Lima](https://github.com/jpaulohe4rt) | |
+| 25/10/2026 | 1.2 | Conversão de probabilidade e impacto para os pesos de 1 a 5, adição da coluna de Prioridade (P×I) na tabela de riscos e das referências que embasam as escalas | [João Paulo Lima](https://github.com/jpaulohe4rt) | |
 
 ---
 
@@ -33,7 +35,7 @@ A quantificação dos riscos é baseada na definição de pesos para a Probabili
 | **Média** | 41% a 60% | 3 |
 | **Baixa** | 21% a 40% | 2 |
 | **Muito Baixa** | 0% a 20% | 1 |
-> Fonte dos intervalos e pesos.
+> Intervalos e pesos adaptados da análise qualitativa de riscos do PMBOK [1].
 
 ### 2.2. Impacto
 | **Impacto** | **Descrição** | **Peso** |
@@ -43,7 +45,7 @@ A quantificação dos riscos é baseada na definição de pesos para a Probabili
 | **Médio** | Possui certo impacto, porém é facilmente recuperado. | 3 |
 | **Baixo** | Pouco impacto no desenvolvimento do projeto. | 2 |
 | **Muito Baixo** | Impacto pouco expressivo no desenvolvimento. | 1 |
-> Fonte das descrições de impacto.
+> Descrições de impacto adaptadas do PMBOK [1] e calibradas para o contexto da disciplina.
 
 ### 2.3. Matriz de Prioridade (Probabilidade x Impacto)
 A partir da multiplicação dos pesos de Probabilidade e Impacto, determina-se a urgência das ações de mitigação.
@@ -55,6 +57,8 @@ A partir da multiplicação dos pesos de Probabilidade e Impacto, determina-se a
 | **Média (3)** | 3 | 6 | 9 | 12 | 15 |
 | **Baixa (2)** | 2 | 4 | 6 | 8 | 10 |
 | **Muito Baixa (1)** | 1 | 2 | 3 | 4 | 5 |
+
+A tabela da seção 3 traz esse produto já calculado para cada risco, na coluna Prioridade (P×I).
 
 **Faixas de Prioridade:**
 *   **Muito Baixa:** 1 a 5.
@@ -68,12 +72,22 @@ A partir da multiplicação dos pesos de Probabilidade e Impacto, determina-se a
 
 Abaixo estão os principais riscos identificados para o ciclo de desenvolvimento do AnatoQuizUp, juntamente com suas estratégias de prevenção e contingência.
 
-| ID | Risco | Categoria EAR | Prob. | Imp. | Prevenção (Mitigação) | Plano de Ação (Contingência) |
-| :--- | :--- | :--- | :---: | :---: | :--- | :--- |
-| **RN01** | Integrantes podem não estar familiarizados com as tecnologias adotadas (IA, LLMs, Chatbots). | Organizacional | Média | Alto | Promover treinamentos internos e incentivar programação em pares (pareamento). | Alocar os membros com mais conhecimento técnico em conjunto com os que possuem mais dificuldades. |
-| **RN02** | Indisponibilidade do cliente para validação de requisitos ou envio de materiais (ex: planilhas e casos OSCE). | Externo | Alta | Muito Alto | Manter comunicação constante com o cliente e agendar validações periódicas. | Utilizar dados mockados e seguir o desenvolvimento da base da aplicação até a recepção dos dados reais. |
-| **RN03** | Vazamento de dados não anonimizados de pacientes nos casos clínicos de simulação. | Externo | Baixa | Muito Alto | Adotar rigoroso processo de anonimização e exigir termos de consentimento antes da inserção na base. | Remover imediatamente os dados do ar, notificar stakeholders e aplicar scripts de limpeza no banco de dados. |
-| **RN04** | Tarefas estimadas de forma equivocada, gerando atraso na execução da Sprint. | Gerenciamento | Alta | Médio | Quebrar tarefas muito grandes ou complexas em pequenas entregas durante a planning. | Realocar tarefas como dívida técnica para a próxima Sprint e reforçar o pareamento. |
-| **RN05** | Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura). | Técnico | Baixa | Muito Alto | Entender a capacidade e as limitações das tecnologias antes da implementação. | Repriorizar o escopo do MVP junto ao cliente e, se necessário, utilizar um fluxo fixo de conversas em vez de um LLM treinado. |
-| **RN06** | A qualidade do software e dos quizzes não corresponder às expectativas educacionais do cliente. | Técnico | Média | Muito Alto | Validar constantemente os requisitos com o cliente e manter a qualidade do código com testes. | Realizar refatoração de código, ajustes de escopo nas questões e nova rodada de validação. |
-| **RN07** | Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente. | Organizacional | Alta | Alto | Conhecer as habilidades da equipe e entregar tarefas não blocantes para membros menos engajados. | Realocar imediatamente as tarefas críticas entre os membros remanescentes. |
+| ID | Risco | Categoria EAR | P | I | Prioridade (P×I) | Prevenção (Mitigação) | Plano de Ação (Contingência) |
+| :--- | :--- | :--- | :---: | :---: | :---: | :--- | :--- |
+| **RN01** | Integrantes podem não estar familiarizados com as tecnologias adotadas (IA, LLMs, Chatbots). | Organizacional | 3 | 4 | **12** (Média) | Promover treinamentos internos e incentivar programação em pares (pareamento). | Alocar os membros com mais conhecimento técnico em conjunto com os que possuem mais dificuldades. |
+| **RN02** | Indisponibilidade do cliente para validação de requisitos ou envio de materiais (ex: planilhas e casos OSCE). | Externo | 4 | 5 | **20** (Alta) | Manter comunicação constante com o cliente e agendar validações periódicas. | Utilizar dados mockados e seguir o desenvolvimento da base da aplicação até a recepção dos dados reais. |
+| **RN03** | Vazamento de dados não anonimizados de pacientes nos casos clínicos de simulação. | Externo | 2 | 5 | **10** (Baixa) | Adotar rigoroso processo de anonimização e exigir termos de consentimento antes da inserção na base. | Remover imediatamente os dados do ar, notificar stakeholders e aplicar scripts de limpeza no banco de dados. |
+| **RN04** | Tarefas estimadas de forma equivocada, gerando atraso na execução da Sprint. | Gerenciamento | 4 | 3 | **12** (Média) | Quebrar tarefas muito grandes ou complexas em pequenas entregas durante a planning. | Realocar tarefas como dívida técnica para a próxima Sprint e reforçar o pareamento. |
+| **RN05** | Complexidade inesperada na automatização e integração do modelo de IA (DevOps/Arquitetura). | Técnico | 2 | 5 | **10** (Baixa) | Entender a capacidade e as limitações das tecnologias antes da implementação. | Repriorizar o escopo do MVP junto ao cliente e, se necessário, utilizar um fluxo fixo de conversas em vez de um LLM treinado. |
+| **RN06** | A qualidade do software e dos quizzes não corresponder às expectativas educacionais do cliente. | Técnico | 3 | 5 | **15** (Média) | Validar constantemente os requisitos com o cliente e manter a qualidade do código com testes. | Realizar refatoração de código, ajustes de escopo nas questões e nova rodada de validação. |
+| **RN07** | Um ou mais membros desistirem da disciplina ou ficarem ausentes temporariamente. | Organizacional | 4 | 4 | **16** (Alta) | Conhecer as habilidades da equipe e entregar tarefas não blocantes para membros menos engajados. | Realocar imediatamente as tarefas críticas entre os membros remanescentes. |
+| **RN08** | Pareamento e revisão de código não serem realizados de forma efetiva ou comprovável entre os membros, concentrando a implementação em poucos integrantes. | Organizacional | 4 | 4 | **16** (Alta) | Exigir coautoria (`Co-authored-by`) nos commits pareados e revisão por um segundo membro antes do merge de cada PR. | Auditar periodicamente a distribuição de commits e PRs por integrante e redistribuir tarefas entre a equipe. |
+| **RN09** | Estimativa de custo e monitoramento via EVM ágil feitos de forma incorreta ou não rastreável, comprometendo a visibilidade real do orçamento e do cronograma. | Gerenciamento | 3 | 4 | **12** (Média) | Aplicar a metodologia de custo-hora e EVM ágil do Plano de Custos revisado, registrando story points e velocity a partir da R2. | Recalcular retroativamente os indicadores (IDP/IDC) com os dados disponíveis e comunicar o desvio à coordenação do projeto. |
+
+---
+
+## 4. Referências
+
+> [1] PMI. **Um guia do conhecimento em gerenciamento de projetos (Guia PMBOK)**. 6. ed. Project Management Institute, 2017. Capítulo 11, que trata das escalas de probabilidade e impacto e da matriz de probabilidade-impacto.
+
+> [2] PMI. **The Standard for Risk Management in Portfolios, Programs, and Projects**. Project Management Institute, 2019.
