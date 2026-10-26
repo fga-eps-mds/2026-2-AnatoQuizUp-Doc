@@ -78,8 +78,19 @@ PADRAO_SONAR = re.compile(rf"^fga-eps-mds-(?P<repo>.+)-(?P<data>{PADRAO_DATA})-(
 PADRAO_JEST = re.compile(rf"^jest-coverage-(?P<repo>.+)-(?P<data>{PADRAO_DATA})\.json$")
 
 
+# Nome canonico de cada repositorio, independente do prefixo e da caixa usados no arquivo.
+NOMES_REPOSITORIOS = {
+    "WEB": "Web",
+    "BFF": "BFF",
+    "QUIZ-SERVICE": "Quiz-Service",
+    "USUARIO-SERVICE": "Usuario-Service",
+}
+
+
 def nome_curto(repo: str) -> str:
-    return repo.replace("2026-2-AnatoQuizUp-", "")
+    """Aceita 2026-2-AnatoQuizUp-Web (formato antigo) e 2026_2_UNB-AnatoQuizUp-WEB (formato novo)."""
+    nome = re.sub(r"^2026[-_]2(?:_UNB)?-AnatoQuizUp-", "", repo)
+    return NOMES_REPOSITORIOS.get(nome.upper(), nome)
 
 
 def para_brasilia(momento: datetime) -> datetime:
@@ -115,10 +126,13 @@ def ler_json(arquivo: Path):
 
 
 def ler_medidas_sonar(conteudo: dict) -> dict:
-    """Extrai as medidas do projeto, aceitando os formatos component e component_tree."""
-    base = conteudo.get("baseComponent") or conteudo.get("component") or conteudo.get("data", {}).get("component", {})
+    """Extrai as medidas do projeto (formato novo project_measures ou antigo component/component_tree)."""
+    brutas = conteudo.get("project_measures")
+    if brutas is None:
+        base = conteudo.get("baseComponent") or conteudo.get("component") or conteudo.get("data", {}).get("component", {})
+        brutas = base.get("measures", [])
     medidas = {}
-    for medida in base.get("measures", []):
+    for medida in brutas:
         try:
             medidas[medida["metric"]] = float(medida["value"])
         except (KeyError, TypeError, ValueError):
