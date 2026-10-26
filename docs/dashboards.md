@@ -1,4 +1,10 @@
-# Dashboard da Release 1
+# Dashboards das Releases 1 e 2
+
+## Release 2 — processo e qualidade
+
+O [app Streamlit](https://2026-2-anatoquizup-doc.streamlit.app/) compara as coletas R1 e R2 por repositório e apresenta os índices de qualidade do produto e de processo. A análise, as limitações das fontes e três decisões gerenciais para o planejamento da R3 estão em [Análise do dashboard R2](dashboard-r2.md). A publicação da versão R2 depende do merge do PR desta atualização.
+
+## Histórico da Release 1
 
 Atualizado em **27/09/2026**. A R1 possui **11 itens mapeados**, sendo **6 concluídos (55%)**, além de **17 pull requests integrados**.
 
