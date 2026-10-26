@@ -2,7 +2,7 @@
 
 ## Release 2 — processo e qualidade
 
-O [app Streamlit](https://2026-2-anatoquizup-doc.streamlit.app/) compara as coletas R1 e R2 por repositório e apresenta a fórmula do índice composto. A análise, as limitações das fontes e três propostas de decisão gerencial estão em [Análise do dashboard R2](dashboard-r2.md). A publicação da versão R2 depende do merge do PR desta atualização.
+O [app Streamlit](https://2026-2-anatoquizup-doc.streamlit.app/) compara as coletas R1 e R2 por repositório e apresenta os índices de qualidade do produto e de processo. A análise, as limitações das fontes e três decisões gerenciais para o planejamento da R3 estão em [Análise do dashboard R2](dashboard-r2.md). A publicação da versão R2 depende do merge do PR desta atualização.
 
 ## Histórico da Release 1
 

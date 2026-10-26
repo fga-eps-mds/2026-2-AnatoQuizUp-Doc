@@ -300,14 +300,13 @@ def calcular_burndown(issues: pd.DataFrame, escopo: list, inicio: date, fim: dat
 
 def calcular_evm(release: dict, gestao: dict, concluidos: int, total: int, coleta: datetime) -> dict:
     referencia = min(coleta.date(), release["fim"])
-    semanas_totais = (release["fim"] - release["inicio"]).days / 7
-    semanas = max((referencia - release["inicio"]).days, 0) / 7
+    # Os intervalos do plano de custos incluem o último dia de cada release.
+    semanas_totais = ((release["fim"] - release["inicio"]).days + 1) / 7
+    semanas = max((referencia - release["inicio"]).days + 1, 0) / 7
     ppc = min(semanas / semanas_totais, 1.0)
     apc = concluidos / total
     pv = ppc * release["orcamento"]
     ev = apc * release["orcamento"]
-    hardware = gestao["custo_hardware"] if referencia >= release["inicio"] else 0.0
-    ac = gestao["custo_recorrente_semanal"] * semanas + hardware
     return {
         "referencia": referencia,
         "semanas": semanas,
@@ -316,11 +315,10 @@ def calcular_evm(release: dict, gestao: dict, concluidos: int, total: int, colet
         "apc": apc,
         "pv": pv,
         "ev": ev,
-        "ac": ac,
-        "hardware": hardware,
-        # O plano de custos (secao 4.2) nao calcula os indices com denominador zero.
+        # AC exige horas reais por integrante; orçamento não é custo realizado.
+        "ac": None,
         "spi": ev / pv if pv > 0 else None,
-        "cpi": ev / ac if ac > 0 else None,
+        "cpi": None,
     }
 
 
@@ -390,6 +388,31 @@ def velocidade_periodo(issues: pd.DataFrame, inicio: datetime, fim: datetime) ->
     return float(fechadas / semanas), int(fechadas)
 
 
+def indice_processo(issues: pd.DataFrame, inicio: datetime, fim: datetime) -> dict | None:
+    """Agrega atividade e distribuição dos fechamentos em semanas completas."""
+    semanas = (fim.date() - inicio.date()).days // 7
+    if semanas < 2:
+        return None
+    fechadas = issues["fechada"].dropna()
+    contagens = [
+        int(((fechadas >= inicio + timedelta(days=7 * i)) &
+             (fechadas < inicio + timedelta(days=7 * (i + 1)))).sum())
+        for i in range(semanas)
+    ]
+    total = sum(contagens)
+    if total == 0:
+        return None
+    atividade = 100 * sum(n > 0 for n in contagens) / semanas
+    distribuicao = 100 * (1 - max(contagens) / total) / (1 - 1 / semanas)
+    return {
+        "semanas": semanas,
+        "contagens": contagens,
+        "atividade": atividade,
+        "distribuicao": distribuicao,
+        "indice": 0.5 * atividade + 0.5 * distribuicao,
+    }
+
+
 st.set_page_config(page_title="AnatoQuizUp · Métricas R2", layout="wide")
 st.title("AnatoQuizUp · Dashboard de métricas")
 st.caption(AVISO_FUSO)
@@ -447,17 +470,40 @@ issues_r2, arquivo_issues_r2, coleta_issues_r2 = carregar_issues(str(PASTA_DADOS
 if not issues_r2.empty:
     fim_observado = min(coleta_issues_r2, fim_r2)
     v1, total_v1 = velocidade_periodo(issues_r2, inicio_r1, fim_r1)
-    v2, total_v2 = velocidade_periodo(issues_r2, inicio_r2, fim_observado)
+    # Sprints de segunda a domingo: 28/09–25/10. O recorte Sonar da R2
+    # continua sendo 29/09–26/10 e é identificado separadamente acima.
+    inicio_sprints_r2 = datetime(2026, 9, 28)
+    v2, total_v2 = velocidade_periodo(issues_r2, inicio_sprints_r2, fim_observado)
     st.subheader("Velocidade observada no backlog")
     st.caption(
         "Proxy: issues fechadas por janela completa de sete dias; não representa story points nem aceitações "
         f"do cliente. Fonte: repositório Doc, captura de {coleta_issues_r2:%d/%m/%Y %H:%M}. "
-        "A janela parcial da R2 fica fora da média."
+        "R1: 10/08–27/09. Sprints da R2: 28/09–25/10, de segunda a domingo, conforme o plano de custos; "
+        "o dia 26/10 ainda é parcial e fica fora desta média. O recorte de produto da R2 é 29/09–26/10."
     )
     st.dataframe(pd.DataFrame([
         {"Release": "R1", "Issues fechadas": total_v1, "Média por 7 dias": v1},
-        {"Release": "R2 até a coleta", "Issues fechadas": total_v2, "Média por 7 dias": v2},
+        {"Release": "Sprints R2 (28/09–25/10)", "Issues fechadas": total_v2, "Média por 7 dias": v2},
     ]), hide_index=True, width="stretch")
+    p1 = indice_processo(issues_r2, inicio_r1, fim_r1)
+    p2 = indice_processo(issues_r2, inicio_sprints_r2, fim_observado)
+    st.subheader("Índice exploratório de processo")
+    st.caption(
+        "Atividade = 100 × semanas com ao menos um fechamento ÷ semanas completas. "
+        "Distribuição = 100 × (1 − maior parcela semanal dos fechamentos) ÷ (1 − 1/número de semanas). "
+        "Índice = 50% atividade + 50% distribuição; cada componente varia de 0 a 100. "
+        "A agregação mede cadência de fechamento do backlog central, não produtividade individual, tamanho "
+        "das entregas nem valor aceito pelo cliente. Sem fechamentos, o índice fica indisponível."
+    )
+    if p1 and p2:
+        st.dataframe(pd.DataFrame([
+            {"Período": "R1", "Semanas": p1["semanas"], "Atividade": p1["atividade"],
+             "Distribuição": p1["distribuicao"], "Índice": p1["indice"]},
+            {"Período": "Sprints R2", "Semanas": p2["semanas"], "Atividade": p2["atividade"],
+             "Distribuição": p2["distribuicao"], "Índice": p2["indice"]},
+        ]).round(1), hide_index=True, width="stretch")
+    else:
+        st.info("Sem dados suficientes para agregar o índice de processo nos dois períodos.")
     defeitos = issues_r2[issues_r2["rotulos"].map(lambda tags: "bug" in tags)]
     st.subheader("Defeitos registrados no backlog de Doc")
     st.dataframe(pd.DataFrame([
@@ -729,17 +775,22 @@ elif not gestao["escopo_r1"]:
     sem_dados("EVM-Ágil", "O escopo da R1 está vazio em `dashboard/config/gestao.json`.")
 else:
     escopo_r1 = gestao["escopo_r1"]
-    fechados_r1 = issues[issues["numero"].isin(escopo_r1) & (issues["estado"] == "closed")]
+    fim_r1_exclusivo = datetime.combine(release_r1["fim"] + timedelta(days=1), datetime.min.time())
+    fechados_r1 = issues[
+        issues["numero"].isin(escopo_r1)
+        & issues["fechada"].notna()
+        & (issues["fechada"] < fim_r1_exclusivo)
+    ]
     evm = calcular_evm(release_r1, gestao, len(fechados_r1), len(escopo_r1), coleta_issues)
     st.caption(
         f"Data de referência: {evm['referencia']:%d/%m/%Y} (data da coleta das issues, limitada ao fim da R1). "
-        "Item concluído = issue do escopo fechada na coleta. O **AC usa o custo planejado** do plano de "
-        "custos (`docs/produto/plano-de-custos.md`), porque o time não mede o custo real; por isso o CPI "
-        "mostra o valor entregue em relação ao gasto previsto, e não uma eficiência de custo medida."
+        "Item concluído = issue do escopo fechada até o fim da R1. PPC e APC usam respectivamente tempo "
+        "decorrido e quantidade de issues; o APC é um proxy porque não há story points da R1. "
+        "O orçamento segue o plano de custos v2.1. Sem horas reais registradas, AC e CPI são indisponíveis."
     )
     c1, c2, c3, c4 = st.columns(4)
     c1.metric("SPI", f"{evm['spi']:.2f}" if evm["spi"] is not None else "sem dados")
-    c2.metric("CPI", f"{evm['cpi']:.2f}" if evm["cpi"] is not None else "sem dados")
+    c2.metric("CPI", "indisponível")
     c3.metric("PPC", f"{evm['ppc']:.1%}")
     c4.metric("APC", f"{evm['apc']:.1%}")
     st.markdown(
@@ -750,9 +801,9 @@ else:
 | APC (percentual concluído) | itens concluídos ÷ itens do escopo | {len(fechados_r1)} ÷ {len(escopo_r1)} | {evm['apc']:.1%} |
 | PV (valor planejado) | PPC × orçamento da R1 | {evm['ppc']:.1%} × {reais(release_r1['orcamento'])} | {reais(evm['pv'])} |
 | EV (valor agregado) | APC × orçamento da R1 | {evm['apc']:.1%} × {reais(release_r1['orcamento'])} | {reais(evm['ev'])} |
-| AC (custo planejado até a data) | custo recorrente semanal × semanas decorridas + hardware | {reais(gestao['custo_recorrente_semanal'])} × {evm['semanas']:.2f} + {reais(evm['hardware'])} | {reais(evm['ac'])} |
+| AC (custo real) | horas reais × custo-hora | Horas da R1 não registradas | indisponível |
 | SPI | EV ÷ PV | {reais(evm['ev'])} ÷ {reais(evm['pv'])} | {f"{evm['spi']:.2f}" if evm['spi'] is not None else "sem dados"} |
-| CPI | EV ÷ AC | {reais(evm['ev'])} ÷ {reais(evm['ac'])} | {f"{evm['cpi']:.2f}" if evm['cpi'] is not None else "sem dados"} |
+| CPI | EV ÷ AC | AC não medido | indisponível |
 """
     )
     st.markdown(
@@ -763,13 +814,7 @@ else:
             "igual a 1: avanço conforme o planejado.",
             "menor que 1: avanço inferior ao planejado.",
         )
-        + "\n- **CPI:** "
-        + interpretar_indice(
-            evm["cpi"],
-            "maior que 1: entregou mais valor do que o custo planejado até a data.",
-            "igual a 1: valor entregue igual ao custo planejado até a data.",
-            "menor que 1: entregou menos valor do que o custo planejado até a data.",
-        )
+        + "\n- **CPI:** indisponível até que as horas reais por integrante sejam registradas."
     )
     if len(fechados_r1) < len(escopo_r1):
         abertos_r1 = sorted(set(escopo_r1) - set(fechados_r1["numero"]))
