@@ -6,7 +6,7 @@
 | --- | --- |
 | **Pauta** | Validação de regras de inatividade, ofensivas, missões e avatar; solicitação de casos clínicos; e acompanhamento do backlog pelo Product Owner. |
 | **Data** | 19/10/2026 |
-| **Horário** | Início: 15:47 — Término: aproximadamente 16:17 |
+| **Horário** | Não informado |
 | **Tipo de reunião** | [x] Reunião semanal com Product Owner e alinhamento de produto |
 
 ## Participantes
@@ -50,4 +50,4 @@
 
 | **Data** | **Versão** | **Descrição** | **Autor(es)** | **Revisor(es)** |
 | --- | --- | --- | --- | --- |
-| 26/10/2026 | 1.0 | Criação da ata a partir da transcrição da reunião. | [Leticia](https://github.com/leticiatmartins) | A definir |
+| 26/10/2026 | 1.0 | Criação da ata a partir da transcrição da reunião. | [Leticia](https://github.com/leticiatmartins) | Gabriel|
