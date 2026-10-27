@@ -1933,6 +1933,7 @@
 <h2 id="1-o-que-e-e-por-que-existe">1. O que é e por que existe</h2>
 <p>OSCE (<em>Objective Structured Clinical Examination</em>) é o formato de avaliação clínica usado em cursos de medicina: o estudante entra numa "estação" com um paciente (real, ator ou simulado) e precisa colher a história clínica (anamnese) e levantar hipóteses diagnósticas, sem o paciente simplesmente dizer qual é a doença.</p>
 <p>A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um <strong>caso clínico</strong>, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma <strong>avaliação</strong>, e a mesma IA troca de papel para "examinador", julgando a conversa contra a <strong>rubrica</strong> do caso — e o BFF transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como <strong>feedback</strong>: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.</p>
+<p>O escopo e as escolhas técnicas desta feature foram alinhados com os Product Owners na <a href="../../reunioes/reuniao-26-10-26/">ata de 26/10/2026</a>: chatbot orientado por casos e protocolos estruturados, Gemini como solução de curto prazo com a integração desacoplada, avaliação por rubricas derivadas do protocolo OSCE, casos como dado estruturado sem fine-tuning nem RAG documental, e primeira versão sem imagens clínicas.</p>
 <h2 id="2-arquitetura">2. Arquitetura</h2>
 <pre class="mermaid"><code>flowchart LR
     aluno(["Aluno&lt;br/&gt;papel STUDENT"])
@@ -2064,7 +2065,7 @@
 </tbody>
 </table>
 <p>A rota <code>GET /api/v1/ia/osce/cenarios</code> devolve <strong>só</strong> os 4 primeiros campos — o resto nunca sai do BFF antes da hora, para não vazar a resposta do caso.</p>
-<p>Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código. <strong>Não há tela de autoria de caso para professor</strong> — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array <code>CENARIOS_OSCE</code>, seguindo os 3 exemplos existentes como modelo.</p>
+<p>Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código — o número e a ausência de imagens seguem o combinado na <a href="../../reunioes/reuniao-26-10-26/">ata de 26/10/2026</a>, que prevê cerca de três casos autorais do Product Owner como base para as variações. <strong>Não há tela de autoria de caso para professor</strong> — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array <code>CENARIOS_OSCE</code>, seguindo os 3 exemplos existentes como modelo.</p>
 <h2 id="4-como-funciona-fluxo-e-contratos">4. Como funciona (fluxo e contratos)</h2>
 <p>Pré-requisito: o mesmo <code>GEMINI_API_KEY</code>/<code>GEMINI_MODEL</code> do chat de ajuda (<code>src/config/env.ts</code> do BFF). Sem a chave configurada, todas as rotas abaixo respondem <code>503 IA_INDISPONIVEL</code>, igual ao <code>/ia/perguntar</code>.</p>
 <p>Todas as três rotas ficam atrás do <code>middlewareAutenticacao</code> (JWT validado na borda, como manda o <a href="../decisoes/">DA-03</a>) e a tela <code>/aluno/osce</code> é protegida para o papel <code>STUDENT</code> no <code>router.tsx</code> do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini, só com o BFF.</p>
@@ -2259,7 +2260,7 @@
 <li><strong>Uma estação não é um OSCE.</strong> São necessárias <strong>14–18 estações</strong> para uma medida confiável de desempenho <strong>[R1] [R3]</strong> — a confiabilidade depende mais do número de estações do que da duração de cada uma <strong>[R1]</strong>. O resultado de um caso isolado é <strong>formativo</strong>: serve para treinar e receber feedback, não como nota da disciplina.</li>
 <li><strong>O juiz é um LLM, não um examinador treinado.</strong> A pontuação é determinística e auditável; a <em>classificação</em> não é. Dois <code>finalizar</code> sobre a mesma conversa podem divergir nos itens de julgamento mais sutil. Daí a justificativa obrigatória por item e a marca de divergência.</li>
 <li><strong>Sem métricas de qualidade da estação.</strong> AMEE 49 <strong>[R2]</strong> audita estações com alpha de Cronbach (≥ 0,7), R² checklist×GRS (&gt; 0,5 bom), discriminação intergrau, número de reprovações e variância entre grupos. Nada disso é calculável sem persistir resultados. Fica como o próximo passo natural depois da persistência.</li>
-<li><strong>Rubricas não validadas por especialista.</strong> As âncoras foram escritas a partir da literatura e do roteiro clínico de cada caso, <strong>não</strong> revisadas por um médico ou professor da área. Antes de qualquer uso com turma real, isso precisa acontecer.</li>
+<li><strong>Rubricas não validadas por especialista.</strong> As âncoras foram escritas a partir da literatura e do roteiro clínico de cada caso, <strong>não</strong> revisadas por um médico ou professor da área. Antes de qualquer uso com turma real, isso precisa acontecer. A <a href="../../reunioes/reuniao-26-10-26/">ata de 26/10/2026</a> já encaminha o caminho: os casos autorais do Product Owner vêm acompanhados da respectiva rubrica de avaliação, que deve substituir ou revisar estas.</li>
 </ul>
 <h2 id="6-referencias">6. Referências</h2>
 <p>Numeração usada ao longo da seção 5.</p>
@@ -2308,6 +2309,7 @@
 <li><a href="../visao-geral/">Visão Geral da Arquitetura</a></li>
 <li><a href="../decisoes/">Decisões Arquiteturais</a></li>
 <li><a href="../endpoints/">Endpoints</a></li>
+<li><a href="../../reunioes/reuniao-26-10-26/">Ata de 26/10/2026 — Arquitetura do Simulador OSCE e Chatbot</a></li>
 </ul>
 <h2 id="historico-de-versao">Histórico de Versão</h2>
 <table>
