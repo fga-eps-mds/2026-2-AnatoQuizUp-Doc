@@ -786,6 +786,27 @@
   
   
     <li class="md-nav__item">
+      <a href="../missoes-semanais/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Missões Semanais
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
       <a href="../revisao-erros/" class="md-nav__link">
         
   
@@ -817,10 +838,10 @@
       
         
         
-        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_11" >
         
           
-          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+          <label class="md-nav__link" for="__nav_2_11" id="__nav_2_11_label" tabindex="0">
             
   
   <span class="md-ellipsis">
@@ -831,8 +852,8 @@
             <span class="md-nav__icon md-icon"></span>
           </label>
         
-        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
-          <label class="md-nav__title" for="__nav_2_10">
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_11_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_11">
             <span class="md-nav__icon md-icon"></span>
             Backlog
           </label>
@@ -1950,7 +1971,7 @@
 <tr>
 <td>Missões e elos</td>
 <td>Não havia uma regra integrada de missão diária ou elo no recorte herdado aqui analisado</td>
-<td>Em 2026.2 foram definidos elos, perda/recuperação por inatividade e missões diárias. A equipe informou que os POs também validaram <strong>missões semanais como escopo</strong>; regras, implementação e evidência dessa decisão ainda precisam ser registradas.</td>
+<td>Em 2026.2 foram definidos elos, perda/recuperação por inatividade e missões diárias. A equipe confirmou que os POs também validaram o escopo, as metas e as recompensas de XP das missões semanais.</td>
 </tr>
 </tbody>
 </table>
@@ -2026,7 +2047,7 @@
 <h3 id="35-missoes">3.5 Missões</h3>
 <p><strong>Missões diárias — regra aprovada em 19/10/2026.</strong> Cada aluno recebe 3 missões sorteadas de um catálogo fixo de 6. O catálogo implementado contém metas de responder 5 ou 10 questões, acertar 5 ou 8 questões e concluir 2 ou 3 quizzes com combinações diferentes de tema e dificuldade, com recompensas de <strong>30, 50 ou 70 XP</strong>. As três missões exibidas a cada dia dependem do sorteio; não se deve prometer 150 XP diários fixos. As entradas estão na <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/blob/main/prisma/migrations/20261022120000_missoes_diarias/migration.sql">migração do Quiz-Service</a>.</p>
 <p>O período vira à meia-noite em <code>America/Sao_Paulo</code>. Só ações do quiz livre dentro do período contam; uma mesma questão pontua no máximo uma vez por dia e uma combinação de tema/dificuldade concluída conta uma vez para a missão correspondente. Missão não concluída expira sem recompensa. Conclusão e crédito de XP ocorrem de forma idempotente, com origem identificada no histórico. Há consulta autenticada em <code>GET /api/v1/missoes/minhas</code>. O <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/14">Quiz-Service #14</a> e o <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-BFF/pull/10">BFF #10</a> foram integrados; a <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/18">interface Web #18</a> ainda estava em revisão na data deste plano. Para critérios de aceite e estados da interface, consulte <a href="../missoes-diarias/">Missões Diárias</a>.</p>
-<p><strong>Missões semanais — escopo confirmado pela equipe como validado pelos POs.</strong> A confirmação altera o recorte anteriormente registrado como “fora do MVP” no documento de missões diárias. Ainda faltam registro rastreável da decisão, quantidade, catálogo, metas, recompensa, início/fim da semana, fuso, expiração, prevenção de duplicidade e critérios de aceite. O código consultado implementa apenas <code>periodicidade: DIARIA</code>; portanto, a aprovação de escopo <strong>não significa entrega técnica</strong>. Atualizar <a href="../missoes-diarias/">Missões Diárias</a>, backlog, EAP e roadmap após detalhar a regra. Missões <strong>mensais</strong> não foram confirmadas neste levantamento.</p>
+<p><strong>Missões semanais — regras validadas pelos POs.</strong> A equipe confirmou em 26/10/2026 que o escopo, as metas e as recompensas de XP foram aprovados na semana anterior à entrega. A confirmação altera o recorte anteriormente registrado como “fora do MVP” no documento de missões diárias. <a href="../missoes-semanais/">Missões Semanais</a> apresenta quantidade, catálogo, metas, recompensa, período, fuso, expiração, deduplicação e critérios de aceite. Código, integração e homologação ainda precisam ser concluídos. Missões <strong>mensais</strong> não foram confirmadas neste levantamento.</p>
 <h3 id="36-conquistas">3.6 Conquistas</h3>
 <p>Além das missões, o Quiz-Service acompanha conquistas por sequência de acertos, total de acertos, acertos por tema e percentual de acerto por tema. Os marcos usam os níveis <strong>Bronze, Prata e Ouro</strong> e podem conceder ATP e item configurado. O desbloqueio é registrado uma única vez por marco, evitando recompensa duplicada. Missão e conquista são mecanismos distintos: a mesma atividade elegível pode avançar os dois, conforme a decisão registrada em <a href="../missoes-diarias/">Missões Diárias</a>. Ver <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/blob/main/src/modules/conquistas/conquistas.service.ts"><code>conquistas.service.ts</code></a>.</p>
 <h2 id="4-criterios-de-integridade-e-experiencia">4. Critérios de integridade e experiência</h2>
@@ -2107,8 +2128,8 @@
 </tr>
 <tr>
 <td>Missões semanais</td>
-<td>Escopo validado segundo informação da equipe; regras e implementação por detalhar</td>
-<td>Registrar decisão dos POs, especificar e abrir/atualizar issue de implementação.</td>
+<td>Escopo, metas e recompensas de XP validados pelos POs, segundo confirmação da equipe</td>
+<td>Vincular a decisão à issue ou ata e validar a implementação em homologação.</td>
 </tr>
 <tr>
 <td>Prazo menor para rebaixamento</td>
