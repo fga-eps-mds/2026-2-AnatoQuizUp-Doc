@@ -50,6 +50,7 @@ nav:
   - Gestão:
     - Metodologia: metodologia/metodologia.md
     - Dashboards R1 e R2: dashboards.md
+    - Métricas de Produto R2: metricas-produto-r2.md
     - Análise do dashboard R2: dashboard-r2.md
     - Quadro de Conhecimento: metodologia/quadro-conhecimento.md
 
