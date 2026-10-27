@@ -13,7 +13,7 @@ flowchart LR
     bff["BFF<br/>Node + Express<br/>(público)"]
     usr["Usuario-Service<br/>Express + Prisma<br/>(privado)"]
     quiz["Quiz-Service<br/>Express + Prisma<br/>(privado)"]
-    ai["AI Service<br/>(reservado)"]
+    gemini[("Gemini API<br/>(externa)")]
     userDb[("Auth DB<br/>PostgreSQL")]
     quizDb[("Quiz DB<br/>PostgreSQL")]
     minio[("MinIO / S3<br/>imagens")]
@@ -22,7 +22,7 @@ flowchart LR
     web -->|"HTTPS REST<br/>Bearer JWT"| bff
     bff -->|"/autenticacao, /usuarios,<br/>/admin, /amizade"| usr
     bff -->|"/questoes, /quiz, /turmas, /lista,<br/>/loja, /inventario, /conquistas, /ranking"| quiz
-    bff -.->|"/ia (503 até ser habilitado)"| ai
+    bff -->|"/ia/dica, /ia/perguntar,<br/>/ia/osce/*"| gemini
     usr --> userDb
     quiz --> quizDb
     quiz --> minio
@@ -36,7 +36,7 @@ flowchart LR
 | **BFF** | Pública | Valida o JWT na borda, injeta `X-Internal-Token` e headers `X-User-*`, faz proxy para os serviços e **agrega dados** de mais de um serviço (ranking, perfil social). Não possui banco. |
 | **Usuario-Service** | Privada | Cadastro, login, sessão (refresh token), recuperação de senha, administração de usuários e amizades. |
 | **Quiz-Service** | Privada | Questões e temas, quiz, turmas, listas de exercícios, gamificação (moedas, loja, inventário, conquistas, ranking), dashboards e geração de PDF. |
-| **AI Service** | Privada (reservado) | Roteamento já previsto no BFF (`/ia`); responde `503` enquanto o serviço não for habilitado. |
+| **Gemini API** | Externa | Provedor de LLM chamado direto pelo BFF nas rotas `/ia/*` (dica, perguntas livres e simulação OSCE). Não há serviço de IA próprio; a `GEMINI_API_KEY` fica somente no BFF. |
 
 ## Perfis de acesso
 
@@ -51,7 +51,7 @@ flowchart LR
 | Perfil | Rotas |
 |---|---|
 | Público | `/login`, `/cadastro`, `/professor/cadastro`, `/esqueci-senha`, `/redefinir-senha` |
-| Aluno | `/aluno/home`, `/aluno/quiz/escolha`, `/aluno/quiz/responder`, `/aluno/historico`, `/aluno/turmas`, `/aluno/turmas/:turmaId/listas/:listaId`, `/aluno/dashboard`, `/aluno/ranking`, `/aluno/conquistas`, `/aluno/loja`, `/aluno/perfil` (+ `/editar`, `/avatar`, `/personalizar`), `/aluno/amigos`, `/aluno/amigos/:id` |
+| Aluno | `/aluno/home`, `/aluno/quiz/escolha`, `/aluno/quiz/responder`, `/aluno/historico`, `/aluno/turmas`, `/aluno/turmas/:turmaId/listas/:listaId`, `/aluno/dashboard`, `/aluno/ranking`, `/aluno/conquistas`, `/aluno/loja`, `/aluno/perfil` (+ `/editar`, `/avatar`, `/personalizar`), `/aluno/amigos`, `/aluno/amigos/:id`, `/aluno/osce` |
 | Professor | `/professor/home`, `/professor/questoes`, `/professor/criar-questao`, `/professor/lista`, `/turmas`, `/turmas/:id`, `/professor/ranking` |
 | Administrador | `/admin/home`, `/admin/dashboard` |
 
@@ -80,9 +80,11 @@ sequenceDiagram
 - [Decisões Arquiteturais](decisoes.md)
 - [Banco de Dados](banco-de-dados.md)
 - [Endpoints](endpoints.md)
+- [Chatbot de Simulação OSCE](chatbot-osce.md)
 
 ## Histórico de Versão
 
 | Data | Versão | Descrição | Autor(es) | Revisor(es) |
 | --- | --- | --- | --- | --- |
 | 28/09/2026 | 1.0 | Criação do documento de arquitetura de 2026.2, com base na documentação de 2026.1 | [Henrique Carvalho](https://github.com/henriquecarv3), [Caio Habibe](https://github.com/CaioHabibe), [João Lucas](https://github.com/jlucasiqueira), [Rafael Melo](https://github.com/rmatuda) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #54](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/54)) |
+| 26/10/2026 | 1.1 | IA deixa de ser serviço reservado: o BFF chama a Gemini direto; inclusão da tela `/aluno/osce` | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |
