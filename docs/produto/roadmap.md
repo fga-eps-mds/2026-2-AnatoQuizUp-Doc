@@ -186,7 +186,7 @@ Se, ao fim da segunda sprint, a vazão estiver próxima da referência mínima, 
 - **Tamanho das issues:** a contagem não mede esforço. Uma issue de documentação e uma de integração entre serviços valem o mesmo.
 - **Repositórios de código fora da conta:** a vazão mede apenas o repositório Doc (documentação, DevOps e histórias). PRs e issues dos repositórios Web, BFF, Quiz-Service e Usuario-Service não estão incluídos.
 - **Superestimação pela R2:** a média de 8,25 resulta de um pico final. Repetir esse padrão na R3 deixaria pouco tempo para a validação do MVP, prevista logo depois, de 30/11 a 14/12.
-- **Dados de coleta:** a exportação das métricas ainda depende de merge ou acionamento manual ([#122](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/122)), o que pode atrasar a leitura semanal.
+- **Dados de coleta:** a exportação semanal automática foi incluída na [#122](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/122); a leitura de cada sprint depende do CI da `main` de cada serviço estar aprovado.
 
 Metas intermediárias propostas, calculadas a partir da referência mínima (2,29 issues por semana, acumulado arredondado para baixo):
 
@@ -234,4 +234,4 @@ A visão visual do recorte aprovado está no [Canvas MVP ampliado no FigJam](htt
 | --- | --- | --- | --- | --- |
 | 28/09/2026 | 1.0 | Criação do roadmap com base no escopo e replanejamento da Release 1 | [João Lucas](https://github.com/jlucasiqueira) | [Henrique Carvalho](https://github.com/henriquecarv3) ([PR #49](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/49)) |
 | 12/10/2026 | 1.1 | Alinhamento das Releases 1, 2 e 3 ao MVP ampliado e inclusão de critérios e métricas | [Leticia](https://github.com/leticiatmartins) | [Rafael Melo](https://github.com/rmatuda) ([PR #87](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/87)) |
-| 26/10/2026 | 1.2 | Planejamento de capacidade da R3 com a vazão real da R1 e da R2 | [Rafael Melo](https://github.com/rmatuda) | |
+| 26/10/2026 | 1.2 | Planejamento de capacidade da R3 com a vazão real da R1 e da R2 | [Rafael Melo](https://github.com/rmatuda) | [Henrique Carvalho](https://github.com/henriquecarv3) ([PR #123](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/123)) |
