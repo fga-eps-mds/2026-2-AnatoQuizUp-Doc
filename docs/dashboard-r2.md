@@ -64,7 +64,7 @@ As três decisões abaixo foram incorporadas a esta revisão em 26/10 para orien
 
 ## Uso crítico de IA nesta análise
 
-**Aproveitado como hipótese verificável:** comparar releases por repositório e combinar métricas normalizadas, sempre com fórmula e fonte visíveis. **Corrigido após conferência dos JSONs:** a conclusão anterior de queda na velocidade ignorava a última sprint completa porque o recorte começava numa terça-feira; os 33 fechamentos de 28/09 a 25/10 foram recontados. **Descartado:** tratar as três issues `bug` do repositório Doc como prova de apenas três defeitos do produto. **Pendente de julgamento humano:** pesos dos índices, causas da concentração de fechamentos e limiares de qualidade. O time deve complementar este registro com os prompts e resultados de IA usados pelos integrantes no `MD_Template.md` e na Wiki.
+**Aproveitado como hipótese verificável:** comparar releases por repositório e combinar métricas normalizadas, sempre com fórmula e fonte visíveis. **Corrigido após conferência dos JSONs:** a conclusão anterior de queda na velocidade ignorava a última sprint completa porque o recorte começava numa terça-feira; os 33 fechamentos de 28/09 a 25/10 foram recontados. **Descartado:** tratar as três issues `bug` do repositório Doc como prova de apenas três defeitos do produto. **Pendente de julgamento humano:** pesos dos índices, causas da concentração de fechamentos e limiares de qualidade. O [registro individual de Letícia](MD_Template.md) reúne cinco ciclos com as respectivas revisões críticas; os demais integrantes devem manter seus próprios registros para a avaliação individual.
 
 ## Checklist de publicação
 
