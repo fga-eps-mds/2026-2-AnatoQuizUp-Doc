@@ -6,7 +6,7 @@
 
 OSCE (*Objective Structured Clinical Examination*) é o formato de avaliação clínica usado em cursos de medicina: o estudante entra numa "estação" com um paciente (real, ator ou simulado) e precisa colher a história clínica (anamnese) e levantar hipóteses diagnósticas, sem o paciente simplesmente dizer qual é a doença.
 
-A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um **caso clínico**, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma **avaliação**, e a mesma IA troca de papel para "examinador", julgando a conversa contra a **rubrica** do caso — e o BFF transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente.
+A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um **caso clínico**, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma **avaliação**, e a mesma IA troca de papel para "examinador", julgando a conversa contra a **rubrica** do caso — e o BFF transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como **feedback**: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.
 
 ## 2. Arquitetura
 
@@ -38,8 +38,8 @@ Não existe um "Serviço de IA" separado nem RAG/Qdrant aqui — o BFF é a cama
 | BFF | `src/shared/utils/pontuacao-osce.ts` | Pesos, soma, percentual, teto do item crítico e divergência checklist×nota global (seção 5) |
 | BFF | `src/routes/index.ts` | Monta `/ia/osce` **antes** de `/ia` (o catch-all de `ia.routes.ts` intercepta qualquer sub-rota não mapeada de `/ia/*`) |
 | Web | `src/features/osce/osceService.ts` | Chamadas HTTP às 3 rotas |
-| Web | `src/pages/aluno/osce/OscePage.tsx` | Tela: lista de casos → chat → rubrica |
-| Web | `src/pages/aluno/osce/RubricaResultado.tsx` | Painel do resultado: as duas medidas, domínios e item a item |
+| Web | `src/pages/aluno/osce/OscePage.tsx` | Tela: lista de casos → chat → feedback |
+| Web | `src/pages/aluno/osce/FeedbackResultado.tsx` | Painel do feedback: as duas medidas, domínios e item a item |
 | Web | `src/app/router.tsx` | Rota `/aluno/osce`, protegida para `STUDENT` |
 | Web | `src/widgets/header/ui/Header.tsx` | Item de menu "Simulação OSCE" (ícone `Stethoscope`) |
 
@@ -269,7 +269,7 @@ Numeração usada ao longo da seção 5.
 ## 7. Decisões e limites conhecidos
 
 - **Sem persistência**: a conversa e a rubrica pontuada não são salvas em banco — fecham a página, perde a simulação. Se a equipe quiser histórico de simulações (para o professor acompanhar progresso, por exemplo), isso é extensão futura, não construída aqui.
-- **Sem streaming**: a resposta da Gemini chega de uma vez (igual ao `/ia/perguntar`), não token a token. O *thinking* da Gemini é desligado (`thinkingConfig.thinkingBudget: 0`) nas duas rotas: com ele a chamada levava 10–15s e às vezes estourava o `REQUEST_TIMEOUT_MS`. A UI mostra um spinner de carregamento enquanto espera.
+- **Sem streaming**: a resposta da Gemini chega de uma vez (igual ao `/ia/perguntar`), não token a token. O *thinking* da Gemini fica no nível mínimo (`thinkingConfig.thinkingLevel: "low"`) nas duas rotas: no nível alto a chamada levava 10–15s e às vezes estourava o `REQUEST_TIMEOUT_MS`. O modelo em uso é o `gemini-3.5-flash-lite`, o degrau mais barato da família, que não aceita `thinkingBudget: 0` (responde `400`) e por isso usa o nível `low`. A UI mostra um spinner de carregamento enquanto espera.
 - **Dado do aluno que cruza para a Gemini**: nenhum — diferente do `/ia/dica`, o modo OSCE não usa o desempenho do aluno, só o texto da conversa em si (que o próprio aluno está digitando). Sem risco de LGPD adicional em relação ao que o chat de ajuda já levanta.
 - **Falha graciosa**: se a Gemini não estiver configurada ou falhar, a rota responde 503/502 com uma mensagem de erro — a página mostra o erro, sem quebrar a navegação.
 
