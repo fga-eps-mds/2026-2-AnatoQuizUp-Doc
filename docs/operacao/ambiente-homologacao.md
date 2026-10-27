@@ -30,6 +30,8 @@ Ele deve ser lido em conjunto com os demais artefatos da R1, e não como substit
 
 O endereço público do BFF contém `minio-homolog` por ser o domínio já associado ao serviço no Railway. Apesar do nome, ele atende o **BFF**, e não um servidor MinIO ativo. Uma alteração futura pode adotar um domínio com nome mais representativo, sem alterar a arquitetura.
 
+O [roteiro de validação da R2](../qualidade/validacao-r2.md) registra os casos de quiz, revisão de erros, progressão, missões, listas e métricas, além do resultado efetivamente observado em cada rodada. O checklist abaixo preserva a evidência da R1 e não constitui aceite da R2.
+
 ## Arquitetura implantada
 
 ```text

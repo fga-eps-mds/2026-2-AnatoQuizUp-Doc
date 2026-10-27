@@ -59,6 +59,7 @@ nav:
   - Qualidade:
     - Roteiro de Testes: qualidade/roteiro-testes.md
     - Resultados dos Testes: qualidade/resultados-testes.md
+    - Validação da R2: qualidade/validacao-r2.md
 
   - Operação:
     - Ambiente de Homologação: operacao/ambiente-homologacao.md
