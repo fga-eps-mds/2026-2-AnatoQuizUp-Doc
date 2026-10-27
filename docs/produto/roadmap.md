@@ -64,7 +64,7 @@ Transformar as funcionalidades existentes em um ciclo completo de estudo, conect
 
 - Acesso autenticado e seleção de perfil.
 - Seleção de tema e nível de dificuldade.
-- Execução de quiz com imagens radiológicas e questões previamente validadas.
+- Execução de quiz com questões previamente validadas. A restauração de imagens radiológicas foi retirada do recorte desta entrega.
 - Feedback com resposta, explicação e indicação do erro.
 - Revisão dos erros e acompanhamento do próprio progresso.
 

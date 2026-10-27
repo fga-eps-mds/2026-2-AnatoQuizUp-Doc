@@ -120,7 +120,7 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 | US03 | estudante | comprar e utilizar itens na loja virtual | usar minhas moedas para potencializar meu aprendizado | EP01 | Must | R1 | Concluída |
 | US04 | estudante | ganhar pontos de experiência (XP) ao responder questões | acompanhar minha evolução | EP01 | Must | R2 | Implementada; validar em homologação |
 | US05 | estudante | ver minha posição no ranking geral, de amigos e da turma | me comparar com colegas e me manter engajado | EP01 | Should | R2 | Herdada de 2026.1 |
-| US06 | estudante | responder quizzes por tema com imagens radiológicas | praticar anatomia aplicada à radiologia | EP02 | Must | R2 | Herdada de 2026.1 |
+| US06 | estudante | responder quizzes por tema; imagens radiológicas fora do recorte atual da R2 | praticar anatomia aplicada à radiologia | EP02 | Must | R2 | Fluxo herdado de 2026.1; validar sem imagens nesta entrega |
 | US07 | estudante | ver a explicação da resposta após responder | entender o motivo do acerto ou erro | EP02 | Must | R2 | Herdada de 2026.1 |
 | US08 | estudante | revisar as questões que errei | focar nas minhas dificuldades | EP02 | Must | R2 | Parcial: histórico de respostas; falta revisão focada nos erros |
 | US09 | professora | criar listas de questões e aplicá-las às turmas | usar a plataforma em sala de aula | EP03 | Must | R2 | Herdada de 2026.1 |
