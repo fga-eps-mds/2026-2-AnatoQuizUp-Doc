@@ -6,7 +6,7 @@
 | --- | --- |
 | **Pauta** | Alinhamento funcional e técnico do simulador OSCE, definição da estratégia de uso de modelos de linguagem, avaliação por rubricas, casos clínicos e infraestrutura. |
 | **Data** | 26/10/2026 |
-| **Horário** | Início: 15:36 — Término: aproximadamente 16:30 |
+| **Horário** | Não informado |
 | **Tipo de reunião** | [x] Reunião semanal com Product Owners e alinhamento técnico |
 
 ## Participantes
@@ -60,4 +60,4 @@
 
 | **Data** | **Versão** | **Descrição** | **Autor(es)** | **Revisor(es)** |
 | --- | --- | --- | --- | --- |
-| 26/10/2026 | 1.0 | Criação da ata a partir da transcrição da reunião. | [Leticia](https://github.com/leticiatmartins) | A definir |
+| 26/10/2026 | 1.0 | Criação da ata a partir da transcrição da reunião. | [Leticia](https://github.com/leticiatmartins) | Gabriel |
