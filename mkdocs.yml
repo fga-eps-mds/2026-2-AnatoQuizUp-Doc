@@ -39,6 +39,7 @@ nav:
     - Backlog:
       - Visão Geral: backlog/visao-geral.md
       - Release Major 1: backlog/release-major-1.md
+      - Release 2: backlog/release-2.md
 
   - Arquitetura:
     - Visão Geral: arquitetura/visao-geral.md
