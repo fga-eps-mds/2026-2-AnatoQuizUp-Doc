@@ -47,4 +47,4 @@
 
 | **Data** | **Versão** | **Descrição** | **Autor(es)** | **Revisor(es)** |
 | --- | --- | --- | --- | --- |
-| 26/10/2026 | 1.0 | Criação da ata a partir da transcrição da reunião. | [Leticia](https://github.com/leticiatmartins) | A definir |
+| 26/10/2026 | 1.0 | Criação da ata a partir da transcrição da reunião. | [Leticia](https://github.com/leticiatmartins) | Gabriel |
