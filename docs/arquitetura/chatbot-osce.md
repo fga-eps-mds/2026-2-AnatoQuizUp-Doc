@@ -8,6 +8,8 @@ OSCE (*Objective Structured Clinical Examination*) é o formato de avaliação c
 
 A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um **caso clínico**, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma **avaliação**, e a mesma IA troca de papel para "examinador", julgando a conversa contra a **rubrica** do caso — e o BFF transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como **feedback**: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.
 
+O escopo e as escolhas técnicas desta feature foram alinhados com os Product Owners na [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md): chatbot orientado por casos e protocolos estruturados, Gemini como solução de curto prazo com a integração desacoplada, avaliação por rubricas derivadas do protocolo OSCE, casos como dado estruturado sem fine-tuning nem RAG documental, e primeira versão sem imagens clínicas.
+
 ## 2. Arquitetura
 
 ```mermaid
@@ -61,7 +63,7 @@ Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-os
 
 A rota `GET /api/v1/ia/osce/cenarios` devolve **só** os 4 primeiros campos — o resto nunca sai do BFF antes da hora, para não vazar a resposta do caso.
 
-Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código. **Não há tela de autoria de caso para professor** — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array `CENARIOS_OSCE`, seguindo os 3 exemplos existentes como modelo.
+Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código — o número e a ausência de imagens seguem o combinado na [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md), que prevê cerca de três casos autorais do Product Owner como base para as variações. **Não há tela de autoria de caso para professor** — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array `CENARIOS_OSCE`, seguindo os 3 exemplos existentes como modelo.
 
 ## 4. Como funciona (fluxo e contratos)
 
@@ -230,7 +232,7 @@ A nota global entra, então, como **teste de concordância**: se a faixa do chec
 - **Uma estação não é um OSCE.** São necessárias **14–18 estações** para uma medida confiável de desempenho **[R1] [R3]** — a confiabilidade depende mais do número de estações do que da duração de cada uma **[R1]**. O resultado de um caso isolado é **formativo**: serve para treinar e receber feedback, não como nota da disciplina.
 - **O juiz é um LLM, não um examinador treinado.** A pontuação é determinística e auditável; a *classificação* não é. Dois `finalizar` sobre a mesma conversa podem divergir nos itens de julgamento mais sutil. Daí a justificativa obrigatória por item e a marca de divergência.
 - **Sem métricas de qualidade da estação.** AMEE 49 **[R2]** audita estações com alpha de Cronbach (≥ 0,7), R² checklist×GRS (> 0,5 bom), discriminação intergrau, número de reprovações e variância entre grupos. Nada disso é calculável sem persistir resultados. Fica como o próximo passo natural depois da persistência.
-- **Rubricas não validadas por especialista.** As âncoras foram escritas a partir da literatura e do roteiro clínico de cada caso, **não** revisadas por um médico ou professor da área. Antes de qualquer uso com turma real, isso precisa acontecer.
+- **Rubricas não validadas por especialista.** As âncoras foram escritas a partir da literatura e do roteiro clínico de cada caso, **não** revisadas por um médico ou professor da área. Antes de qualquer uso com turma real, isso precisa acontecer. A [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md) já encaminha o caminho: os casos autorais do Product Owner vêm acompanhados da respectiva rubrica de avaliação, que deve substituir ou revisar estas.
 
 ## 6. Referências
 
@@ -284,6 +286,7 @@ A regra de pontuação é a parte auditável da feature, então é a parte testa
 - [Visão Geral da Arquitetura](visao-geral.md)
 - [Decisões Arquiteturais](decisoes.md)
 - [Endpoints](endpoints.md)
+- [Ata de 26/10/2026 — Arquitetura do Simulador OSCE e Chatbot](../reunioes/reuniao-26-10-26.md)
 
 ## Histórico de Versão
 
