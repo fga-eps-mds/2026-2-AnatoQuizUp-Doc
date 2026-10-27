@@ -25,7 +25,7 @@ O [Roadmap](roadmap.md) inclui as missões no escopo de gamificação da Release
 
 ### 1.2 Fora do escopo
 
-- Missões semanais, até validação com o PO. O modelo proposto na seção 5 permite incluí-las depois.
+- Missões semanais têm escopo confirmado pela equipe como validado pelos POs. As regras e metas ainda são [proposta para revisão](missoes-semanais.md) e não integram os critérios de aceite desta página diária.
 - Ofensiva diária (streak) e congelamento de sequência, que devem ter issue própria.
 - Elos ou ligas de progressão.
 - Gestão de missões por professores ou administradores.
