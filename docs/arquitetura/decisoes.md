@@ -71,7 +71,7 @@ O Web segue o **Feature-Sliced Design**. Uma camada só importa camadas inferior
 
 **Contexto:** a rota `/ia` nasceu como reserva para um futuro "AI Service" (cliente `ai.client` + variável `AI_URL`, respondendo `503` enquanto não houvesse serviço). Quando a IA passou a ser construída de fato — dica, perguntas livres e a simulação OSCE — não havia estado, banco nem orquestração a justificar um serviço próprio: as três rotas só montam um prompt e repassam a resposta.
 
-**Decisão:** o BFF **é** a camada de IA. Ele chama a Gemini direto pelo `gemini.client`, configurado por `GEMINI_API_KEY`/`GEMINI_MODEL`; `ai.client` e `AI_URL` foram removidos. O `503` sobrou apenas no catch-all de `/ia/*` (sub-rota inexistente ou chave ausente).
+**Decisão** (ratificada com os Product Owners na [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md), que definiu o Gemini como solução de curto prazo com integração desacoplada para permitir a troca futura do modelo)**:** o BFF **é** a camada de IA. Ele chama a Gemini direto pelo `gemini.client`, configurado por `GEMINI_API_KEY`/`GEMINI_MODEL`; `ai.client` e `AI_URL` foram removidos. O `503` sobrou apenas no catch-all de `/ia/*` (sub-rota inexistente ou chave ausente).
 
 **Consequências:**
 - (+) Nenhum serviço a mais para subir, versionar e monitorar; a chave do provedor fica num único lugar, longe do navegador.
