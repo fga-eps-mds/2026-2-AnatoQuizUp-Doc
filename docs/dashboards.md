@@ -4,6 +4,8 @@
 
 O [app Streamlit](https://2026-2-anatoquizup-doc.streamlit.app/) compara as coletas R1 e R2 por repositório e apresenta os índices de qualidade do produto e de processo. A análise e as limitações das fontes estão em [Análise do dashboard R2](dashboard-r2.md); as três decisões gerenciais para o planejamento da R3 também estão [registradas na Wiki](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/wiki).
 
+As métricas de uso exigidas pelo roadmap — conclusão, acerto e retorno — têm [definição e contrato de coleta próprios](metricas-produto-r2.md). Seus resultados dependem de extração e conferência em uma versão homologada da R2.
+
 ## Histórico da Release 1
 
 Atualizado em **27/09/2026**. A R1 possui **11 itens mapeados**, sendo **6 concluídos (55%)**, além de **17 pull requests integrados**.
