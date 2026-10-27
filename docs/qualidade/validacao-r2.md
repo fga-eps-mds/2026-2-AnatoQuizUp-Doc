@@ -42,6 +42,6 @@ Os [resultados de testes anteriores](resultados-testes.md) cobrem a R1 entre 21 
 
 ## Histórico de versão
 
-| Data | Versão | Descrição |
-| --- | --- | --- |
-| 26/10/2026 | 1.0 | Plano de validação da R2 e registro inicial das observações públicas. |
+| Data | Versão | Descrição | Autor | revisor 
+| --- | --- | ---| --- | --- |
+| 26/10/2026 | 1.0 | Plano de validação da R2 e registro inicial das observações públicas. | Leticia | https://github.com/rmatuda
