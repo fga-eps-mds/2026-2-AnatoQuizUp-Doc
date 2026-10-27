@@ -1,0 +1,2081 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AnatoQuizUp é uma plataforma gameficada para aprendizado de anatomia radiológica e de casos clínicos.">
+      
+      
+      
+      
+        <link rel="prev" href="../metodologia/metodologia/">
+      
+      
+        <link rel="next" href="../dashboards/">
+      
+      
+      <link rel="icon" href="../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Registro individual de decisões R2 - AnatoQuizUp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#registro-individual-de-decisoes-e-uso-critico-de-ia-r2" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href=".." title="AnatoQuizUp" class="md-header__button md-logo" aria-label="AnatoQuizUp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnatoQuizUp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Registro individual de decisões R2
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href=".." class="md-tabs__link">
+        
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../produto/visao/" class="md-tabs__link">
+          
+  
+  Produto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../arquitetura/visao-geral/" class="md-tabs__link">
+          
+  
+  Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../metodologia/metodologia/" class="md-tabs__link">
+          
+  
+  Gestão
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../qualidade/roteiro-testes/" class="md-tabs__link">
+          
+  
+  Qualidade
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../operacao/ambiente-homologacao/" class="md-tabs__link">
+          
+  
+  Operação
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../contribuicao/branches/" class="md-tabs__link">
+          
+  
+  Contribuição
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../reunioes/modelo-ata-reuniao/" class="md-tabs__link">
+          
+  
+  Reuniões
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href=".." title="AnatoQuizUp" class="md-nav__button md-logo" aria-label="AnatoQuizUp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AnatoQuizUp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href=".." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Início
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Produto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Produto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/visao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão do Produto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/lean_inception/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lean Inception
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/EAP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EAP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/plano-de-custos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gerenciamento de Custos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/plano-de-riscos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gerenciamento de Riscos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/plano-gamificacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gamificação
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/missoes-diarias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Missões Diárias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../produto/revisao-erros/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Revisão de Erros
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_10" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_10" id="__nav_2_10_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Backlog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_10_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_10">
+            <span class="md-nav__icon md-icon"></span>
+            Backlog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backlog/visao-geral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backlog/release-major-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Major 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../backlog/release-2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release 2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" >
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Arquitetura
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arquitetura
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/visao-geral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/tecnologias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tecnologias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/decisoes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decisões Arquiteturais
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/banco-de-dados/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Banco de Dados
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/endpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../arquitetura/chatbot-osce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chatbot de Simulação OSCE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Gestão
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Gestão
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metodologia/metodologia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Registro individual de decisões R2
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Registro individual de decisões R2
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-1-diagnostico-do-ambiente-e-da-documentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 1 — Diagnóstico do ambiente e da documentação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 1 — Diagnóstico do ambiente e da documentação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-2-replanejamento-do-escopo-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 2 — Replanejamento do escopo da R2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 2 — Replanejamento do escopo da R2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-3-regras-de-gamificacao-validadas-com-os-pos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 3 — Regras de gamificação validadas com os POs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 3 — Regras de gamificação validadas com os POs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-4-metricas-e-decisoes-gerenciais-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 4 — Métricas e decisões gerenciais da R2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 4 — Métricas e decisões gerenciais da R2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-5-fechamento-integrado-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 5 — Fechamento integrado da R2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 5 — Fechamento integrado da R2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sintese-da-decisao-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Síntese da decisão da R2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referências
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist da R2
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dashboards R1 e R2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metricas-produto-r2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Métricas de Produto R2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../dashboard-r2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Análise do dashboard R2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../metodologia/quadro-conhecimento/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quadro de Conhecimento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Qualidade
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Qualidade
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qualidade/roteiro-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roteiro de Testes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qualidade/resultados-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resultados dos Testes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../qualidade/validacao-r2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Validação da R2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Operação
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Operação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../operacao/ambiente-homologacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ambiente de Homologação
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contribuição
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Contribuição
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribuicao/branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribuicao/commits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Commits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribuicao/pull_requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Pull Requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../contribuicao/issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reuniões
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Reuniões
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reunioes/modelo-ata-reuniao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Template de ata de reunião
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reunioes/reuniao-06-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    06-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reunioes/reuniao-16-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reunioes/reuniao-19-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../reunioes/reuniao-26-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    26-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-1-diagnostico-do-ambiente-e-da-documentacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 1 — Diagnóstico do ambiente e da documentação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 1 — Diagnóstico do ambiente e da documentação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-2-replanejamento-do-escopo-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 2 — Replanejamento do escopo da R2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 2 — Replanejamento do escopo da R2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios_1" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-3-regras-de-gamificacao-validadas-com-os-pos" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 3 — Regras de gamificação validadas com os POs
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 3 — Regras de gamificação validadas com os POs">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios_2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-4-metricas-e-decisoes-gerenciais-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 4 — Métricas e decisões gerenciais da R2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 4 — Métricas e decisões gerenciais da R2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios_3" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ciclo-5-fechamento-integrado-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Ciclo 5 — Fechamento integrado da R2
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Ciclo 5 — Fechamento integrado da R2">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#aprendizados-intermediarios_4" class="md-nav__link">
+    <span class="md-ellipsis">
+      Aprendizados intermediários
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#sintese-da-decisao-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Síntese da decisão da R2
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      Referências
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#checklist-da-r2" class="md-nav__link">
+    <span class="md-ellipsis">
+      Checklist da R2
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="registro-individual-de-decisoes-e-uso-critico-de-ia-r2">Registro individual de decisões e uso crítico de IA — R2</h1>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Valor</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Estudante</td>
+<td>Letícia Torres Soares Martins</td>
+</tr>
+<tr>
+<td>Matrícula</td>
+<td>Preencher somente na cópia individual submetida no Aprender 3</td>
+</tr>
+<tr>
+<td>Time</td>
+<td>AnatoQuizUp</td>
+</tr>
+<tr>
+<td>Release</td>
+<td>R2</td>
+</tr>
+<tr>
+<td>Período registrado</td>
+<td>06/10/2026 a 26/10/2026</td>
+</tr>
+<tr>
+<td>Data da consolidação</td>
+<td>26/10/2026</td>
+</tr>
+</tbody>
+</table>
+<p>Este arquivo acumula cinco ciclos individuais de uso de IA durante a R2. Em cada ciclo, a IA foi usada para investigar, rascunhar ou revisar; as decisões foram conferidas em código, métricas, reuniões e registros do projeto antes de serem aceitas. O registro segue o critério da disciplina de explicitar o que foi aceito, corrigido ou rejeitado e manter rastreabilidade verificável.</p>
+<h2 id="ciclo-1-diagnostico-do-ambiente-e-da-documentacao">Ciclo 1 — Diagnóstico do ambiente e da documentação</h2>
+<p><strong>Data:</strong> 06/10/2026<br />
+<strong>Objetivo:</strong> identificar divergências entre a arquitetura documentada, a configuração de homologação e o comportamento dos serviços.</p>
+<p><strong>Interação com IA.</strong> Solicitei uma análise do repositório e dos documentos de arquitetura e homologação para localizar lacunas, dependências e riscos da R2. A IA ajudou a organizar um checklist de rotas, variáveis de ambiente, serviços e fluxos que precisavam ser conferidos.</p>
+<p><strong>Revisão humana e decisão.</strong> Aceitei a estrutura do checklist. Corrigi inferências que confundiam o domínio público do BFF com um serviço MinIO e rejeitei qualquer conclusão sobre funcionamento baseada apenas no nome do domínio. Mantive como regra que uma funcionalidade só seria declarada pronta depois de confrontar documentação, código e teste no ambiente.</p>
+<p><strong>Evidências:</strong> <a href="../reunioes/reuniao-06-10-26/">ata de alinhamento técnico de 06/10</a> · <a href="../operacao/ambiente-homologacao/">ambiente de homologação</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/41">issue #41</a></p>
+<h3 id="aprendizados-intermediarios">Aprendizados intermediários</h3>
+<ul>
+<li>Nomes de serviços e URLs são pistas, não evidências de arquitetura implantada.</li>
+<li>A análise assistida por IA precisa terminar em uma verificação observável: código, configuração documentada ou teste reproduzível.</li>
+<li>Limitações conhecidas devem ser registradas para impedir que uma demonstração seja tratada como validação completa.</li>
+</ul>
+<h2 id="ciclo-2-replanejamento-do-escopo-da-r2">Ciclo 2 — Replanejamento do escopo da R2</h2>
+<p><strong>Data:</strong> 12/10/2026<br />
+<strong>Objetivo:</strong> alinhar backlog, roadmap, EAP e Lean Inception ao MVP ampliado e às entregas possíveis no período.</p>
+<p><strong>Interação com IA.</strong> Pedi apoio para comparar os artefatos de planejamento, encontrar conflitos de datas e escopo e transformar as diferenças em itens rastreáveis. A IA sugeriu reorganizar o MVP em ciclos e explicitar dependências entre histórias.</p>
+<p><strong>Revisão humana e decisão.</strong> Aceitei a comparação entre artefatos e a explicitação de dependências. Corrigi propostas que tratavam toda funcionalidade planejada como compromisso da R2. A decisão humana foi manter no backlog o ciclo completo do produto, mas separar o que seria entregue, validado ou continuado em release posterior.</p>
+<p><strong>Evidências:</strong> <a href="../produto/roadmap/">roadmap</a> · <a href="../produto/EAP/">EAP</a> · <a href="../produto/lean_inception/">Lean Inception</a> · <a href="../backlog/visao-geral/">backlog</a></p>
+<h3 id="aprendizados-intermediarios_1">Aprendizados intermediários</h3>
+<ul>
+<li>Planejamento coerente exige a mesma data de corte e o mesmo vocabulário em todos os artefatos.</li>
+<li>Backlog de produto e compromisso de release são visões relacionadas, mas possuem finalidades diferentes.</li>
+<li>Uma sugestão de IA sobre prioridade só pode ser aceita depois de considerar dependências, capacidade e validação dos POs.</li>
+</ul>
+<h2 id="ciclo-3-regras-de-gamificacao-validadas-com-os-pos">Ciclo 3 — Regras de gamificação validadas com os POs</h2>
+<p><strong>Data:</strong> 19/10/2026<br />
+<strong>Objetivo:</strong> transformar decisões de produto sobre missões, XP e progressão em regras implementáveis e rastreáveis.</p>
+<p><strong>Interação com IA.</strong> Usei IA para confrontar atas, issues, documentação e implementação, destacando regras ambíguas ou contraditórias. Foram levantadas perguntas sobre metas, recompensas, renovação, missões semanais e perda de elo por inatividade.</p>
+<p><strong>Revisão humana e decisão.</strong> Confirmei com os POs as metas e recompensas, o escopo de missões semanais e a redução do tempo até o rebaixamento por inatividade. Corrigi a hipótese inicial de que as missões semanais ainda aguardavam validação. Também rejeitei a promessa de um total fixo de XP diário: as três missões são sorteadas e a recompensa depende da composição recebida.</p>
+<p><strong>Evidências:</strong> <a href="../reunioes/reuniao-19-10-26/">ata de validação de 19/10</a> · <a href="../produto/plano-gamificacao/">plano de gamificação</a> · <a href="../produto/missoes-diarias/">missões diárias</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84">issue #84</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/89">issue #89</a></p>
+<h3 id="aprendizados-intermediarios_2">Aprendizados intermediários</h3>
+<ul>
+<li>A IA ajuda a encontrar contradições, mas não substitui a decisão do PO sobre comportamento e impacto motivacional.</li>
+<li>Regras de gamificação precisam registrar fonte do evento, limite de recompensa, renovação e idempotência.</li>
+<li>Uma decisão validada deve atualizar tanto o documento de produto quanto os critérios de aceite e a implementação.</li>
+</ul>
+<h2 id="ciclo-4-metricas-e-decisoes-gerenciais-da-r2">Ciclo 4 — Métricas e decisões gerenciais da R2</h2>
+<p><strong>Data:</strong> 26/10/2026<br />
+<strong>Objetivo:</strong> comparar R1 e R2 com dados verificáveis e usar os resultados no planejamento da R3.</p>
+<p><strong>Interação com IA.</strong> Solicitei a leitura dos JSONs de métricas, o cálculo de indicadores comparáveis e uma análise de cobertura, segurança, duplicação, velocidade e defeitos. A IA sugeriu normalizações e um índice agregado para apoiar a leitura do dashboard.</p>
+<p><strong>Revisão humana e decisão.</strong> Aceitei os cálculos somente após conferir as fontes e deixar fórmulas e limitações visíveis. Corrigi a janela da velocidade: o primeiro recorte ignorava a última sprint completa e foi refeito para 28/09–25/10. Rejeitei interpretar três issues com rótulo <code>bug</code> no repositório de documentação como o total de defeitos do produto. Os dados sustentaram três decisões para a R3: distribuir entregas ao longo da sprint, estimar itens e registrar horas reais, e priorizar os achados de segurança da Web.</p>
+<p><strong>Evidências:</strong> <a href="../dashboard-r2/">análise do dashboard R2</a> · <a href="https://2026-2-anatoquizup-doc.streamlit.app/">dashboard publicado</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/112">PR #112</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/116">PR #116</a></p>
+<h3 id="aprendizados-intermediarios_3">Aprendizados intermediários</h3>
+<ul>
+<li>Métricas sem recorte, unidade e fonte visíveis produzem conclusões frágeis.</li>
+<li>Um índice agregado facilita comparação, mas pode esconder um risco específico, como a nota C de segurança da Web.</li>
+<li>Ausência de horas reais e pontos por história impede tratar proxies de custo e fluxo como EVM completa ou produtividade individual.</li>
+</ul>
+<h2 id="ciclo-5-fechamento-integrado-da-r2">Ciclo 5 — Fechamento integrado da R2</h2>
+<p><strong>Data:</strong> 26/10/2026<br />
+<strong>Objetivo:</strong> verificar se documentação, backend e frontend descreviam e entregavam o mesmo fluxo para revisão de erros e missões semanais.</p>
+<p><strong>Interação com IA.</strong> Pedi uma auditoria cruzada dos repositórios e PRs para localizar lacunas entre contrato, implementação e interface. A análise apontou o risco de ativar o catálogo semanal no banco antes de o estudante conseguir visualizar suas missões, o que poderia conceder XP de maneira pouco compreensível.</p>
+<p><strong>Revisão humana e decisão.</strong> Aceitei o risco identificado e defini a ativação coordenada como critério de segurança da entrega. O catálogo semanal deve permanecer inativo até que API, BFF, Web e validação estejam disponíveis juntos. Confirmei no código que o BFF já usa encaminhamento genérico de rotas de missões e que a Web possui a integração específica no PR correspondente; a ativação final depende da integração e do teste ponta a ponta. Para a US08, mantive contrato, estados vazios e tratamento de erro alinhados entre serviço e tela.</p>
+<p><strong>Evidências:</strong> <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/19">PR de missões semanais no Quiz-Service #19</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/26">PR de missões semanais na Web #26</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service/pull/18">PR de revisão de erros no Quiz-Service #18</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web/pull/25">PR de revisão de erros na Web #25</a> · <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/119">PR da especificação da US08 #119</a></p>
+<h3 id="aprendizados-intermediarios_4">Aprendizados intermediários</h3>
+<ul>
+<li>Uma migration pode alterar a experiência do usuário mesmo sem mudança de tela; dados ativos também são uma forma de lançamento.</li>
+<li>Funcionalidades distribuídas precisam de critério de ativação que cubra serviço, gateway, interface e teste integrado.</li>
+<li>Revisar cada PR isoladamente não detecta todas as lacunas; a unidade de validação deve ser o fluxo percebido pelo estudante.</li>
+</ul>
+<h2 id="sintese-da-decisao-da-r2">Síntese da decisão da R2</h2>
+<p>Na R2, decidi usar métricas e rastreabilidade como critérios de aceite das análises geradas com IA. Sugestões automáticas só foram incorporadas quando possuíam fonte verificável e permaneceram identificadas como hipótese quando dependiam de julgamento do time ou dos POs. Essa decisão evitou três erros concretos: uma janela incorreta de velocidade, a interpretação indevida de issues de documentação como defeitos totais e a ativação antecipada de missões semanais.</p>
+<p>O sucesso desta decisão é verificável por quatro resultados: cinco ciclos registrados; recortes e fórmulas publicados no dashboard; pelo menos três decisões gerenciais ligadas a dados; e funcionalidades distribuídas com evidências cruzadas entre documentação e PRs.</p>
+<h2 id="referencias">Referências</h2>
+<ul>
+<li>INTERNATIONAL ORGANIZATION FOR STANDARDIZATION. <strong>ISO/IEC 25010:2023 — Systems and software engineering: Product quality model</strong>. 2023.</li>
+<li>MARTÍNEZ-FERNÁNDEZ, Silverio et al. <strong>A Quality Model for Actionable Analytics in Rapid Software Development</strong>. 2018.</li>
+<li>CHOMA, Joel et al. <strong>Towards an artifact to support agile teams in software analytics activities</strong>. 2022.</li>
+<li>KIM, Amy Jo. <strong>Game Thinking: Innovate Smarter &amp; Drive Deep Engagement with Design Techniques from Hit Games</strong>. 2018.</li>
+<li>WERBACH, Kevin; HUNTER, Dan. <strong>For the Win: The Power of Gamification and Game Thinking in Business, Education, Government, and Social Impact</strong>. 2020.</li>
+</ul>
+<h2 id="checklist-da-r2">Checklist da R2</h2>
+<ul>
+<li>[x] Cinco ciclos individuais acumulados.</li>
+<li>[x] Seção de aprendizados intermediários em todos os ciclos.</li>
+<li>[x] Uso crítico de IA com itens aceitos, corrigidos ou rejeitados.</li>
+<li>[x] Evidências rastreáveis em documentos, issues, PRs e dashboard.</li>
+<li>[x] Decisão e critérios de sucesso mensuráveis.</li>
+<li>[ ] Matrícula incluída na cópia individual enviada ao Aprender 3.</li>
+<li>[ ] Revisão final da estudante antes da submissão individual.</li>
+</ul>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "..", "features": ["navigation.tabs"], "search": "../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>
