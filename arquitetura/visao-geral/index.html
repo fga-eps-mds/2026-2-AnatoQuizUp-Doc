@@ -942,6 +942,27 @@
 
               
             
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chatbot-osce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chatbot de Simulação OSCE
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
           </ul>
         </nav>
       
@@ -1647,7 +1668,7 @@
     bff["BFF&lt;br/&gt;Node + Express&lt;br/&gt;(público)"]
     usr["Usuario-Service&lt;br/&gt;Express + Prisma&lt;br/&gt;(privado)"]
     quiz["Quiz-Service&lt;br/&gt;Express + Prisma&lt;br/&gt;(privado)"]
-    ai["AI Service&lt;br/&gt;(reservado)"]
+    gemini[("Gemini API&lt;br/&gt;(externa)")]
     userDb[("Auth DB&lt;br/&gt;PostgreSQL")]
     quizDb[("Quiz DB&lt;br/&gt;PostgreSQL")]
     minio[("MinIO / S3&lt;br/&gt;imagens")]
@@ -1656,7 +1677,7 @@
     web --&gt;|"HTTPS REST&lt;br/&gt;Bearer JWT"| bff
     bff --&gt;|"/autenticacao, /usuarios,&lt;br/&gt;/admin, /amizade"| usr
     bff --&gt;|"/questoes, /quiz, /turmas, /lista,&lt;br/&gt;/loja, /inventario, /conquistas, /ranking"| quiz
-    bff -.-&gt;|"/ia (503 até ser habilitado)"| ai
+    bff --&gt;|"/ia/dica, /ia/perguntar,&lt;br/&gt;/ia/osce/*"| gemini
     usr --&gt; userDb
     quiz --&gt; quizDb
     quiz --&gt; minio</code></pre>
@@ -1691,9 +1712,9 @@
 <td>Questões e temas, quiz, turmas, listas de exercícios, gamificação (moedas, loja, inventário, conquistas, ranking), dashboards e geração de PDF.</td>
 </tr>
 <tr>
-<td><strong>AI Service</strong></td>
-<td>Privada (reservado)</td>
-<td>Roteamento já previsto no BFF (<code>/ia</code>); responde <code>503</code> enquanto o serviço não for habilitado.</td>
+<td><strong>Gemini API</strong></td>
+<td>Externa</td>
+<td>Provedor de LLM chamado direto pelo BFF nas rotas <code>/ia/*</code> (dica, perguntas livres e simulação OSCE). Não há serviço de IA próprio; a <code>GEMINI_API_KEY</code> fica somente no BFF.</td>
 </tr>
 </tbody>
 </table>
@@ -1735,7 +1756,7 @@
 </tr>
 <tr>
 <td>Aluno</td>
-<td><code>/aluno/home</code>, <code>/aluno/quiz/escolha</code>, <code>/aluno/quiz/responder</code>, <code>/aluno/historico</code>, <code>/aluno/turmas</code>, <code>/aluno/turmas/:turmaId/listas/:listaId</code>, <code>/aluno/dashboard</code>, <code>/aluno/ranking</code>, <code>/aluno/conquistas</code>, <code>/aluno/loja</code>, <code>/aluno/perfil</code> (+ <code>/editar</code>, <code>/avatar</code>, <code>/personalizar</code>), <code>/aluno/amigos</code>, <code>/aluno/amigos/:id</code></td>
+<td><code>/aluno/home</code>, <code>/aluno/quiz/escolha</code>, <code>/aluno/quiz/responder</code>, <code>/aluno/historico</code>, <code>/aluno/turmas</code>, <code>/aluno/turmas/:turmaId/listas/:listaId</code>, <code>/aluno/dashboard</code>, <code>/aluno/ranking</code>, <code>/aluno/conquistas</code>, <code>/aluno/loja</code>, <code>/aluno/perfil</code> (+ <code>/editar</code>, <code>/avatar</code>, <code>/personalizar</code>), <code>/aluno/amigos</code>, <code>/aluno/amigos/:id</code>, <code>/aluno/osce</code></td>
 </tr>
 <tr>
 <td>Professor</td>
@@ -1768,6 +1789,7 @@
 <li><a href="../decisoes/">Decisões Arquiteturais</a></li>
 <li><a href="../banco-de-dados/">Banco de Dados</a></li>
 <li><a href="../endpoints/">Endpoints</a></li>
+<li><a href="../chatbot-osce/">Chatbot de Simulação OSCE</a></li>
 </ul>
 <h2 id="historico-de-versao">Histórico de Versão</h2>
 <table>
@@ -1787,6 +1809,13 @@
 <td>Criação do documento de arquitetura de 2026.2, com base na documentação de 2026.1</td>
 <td><a href="https://github.com/henriquecarv3">Henrique Carvalho</a>, <a href="https://github.com/CaioHabibe">Caio Habibe</a>, <a href="https://github.com/jlucasiqueira">João Lucas</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
 <td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a> (<a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/54">PR #54</a>)</td>
+</tr>
+<tr>
+<td>26/10/2026</td>
+<td>1.1</td>
+<td>IA deixa de ser serviço reservado: o BFF chama a Gemini direto; inclusão da tela <code>/aluno/osce</code></td>
+<td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>

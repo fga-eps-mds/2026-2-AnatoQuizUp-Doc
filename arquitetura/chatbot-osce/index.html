@@ -1,0 +1,2386 @@
+
+<!doctype html>
+<html lang="pt" class="no-js">
+  <head>
+    
+      <meta charset="utf-8">
+      <meta name="viewport" content="width=device-width,initial-scale=1">
+      
+        <meta name="description" content="AnatoQuizUp é uma plataforma gameficada para aprendizado de anatomia radiológica e de casos clínicos.">
+      
+      
+      
+      
+        <link rel="prev" href="../endpoints/">
+      
+      
+        <link rel="next" href="../../metodologia/metodologia/">
+      
+      
+      <link rel="icon" href="../../assets/images/favicon.png">
+      <meta name="generator" content="mkdocs-1.6.1, mkdocs-material-9.5.45">
+    
+    
+      
+        <title>Chatbot de Simulação OSCE - AnatoQuizUp</title>
+      
+    
+    
+      <link rel="stylesheet" href="../../assets/stylesheets/main.0253249f.min.css">
+      
+        
+        <link rel="stylesheet" href="../../assets/stylesheets/palette.06af60db.min.css">
+      
+      
+
+
+    
+    
+      
+    
+    
+      
+        
+        
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,700,700i%7CRoboto+Mono:400,400i,700,700i&display=fallback">
+        <style>:root{--md-text-font:"Roboto";--md-code-font:"Roboto Mono"}</style>
+      
+    
+    
+      <link rel="stylesheet" href="../../stylesheets/extra.css">
+    
+    <script>__md_scope=new URL("../..",location),__md_hash=e=>[...e].reduce(((e,_)=>(e<<5)-e+_.charCodeAt(0)),0),__md_get=(e,_=localStorage,t=__md_scope)=>JSON.parse(_.getItem(t.pathname+"."+e)),__md_set=(e,_,t=localStorage,a=__md_scope)=>{try{t.setItem(a.pathname+"."+e,JSON.stringify(_))}catch(e){}}</script>
+    
+      
+
+    
+    
+    
+  </head>
+  
+  
+    
+    
+      
+    
+    
+    
+    
+    <body dir="ltr" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal">
+  
+    
+    <input class="md-toggle" data-md-toggle="drawer" type="checkbox" id="__drawer" autocomplete="off">
+    <input class="md-toggle" data-md-toggle="search" type="checkbox" id="__search" autocomplete="off">
+    <label class="md-overlay" for="__drawer"></label>
+    <div data-md-component="skip">
+      
+        
+        <a href="#chatbot-de-simulacao-osce" class="md-skip">
+          Pular para conteúdo
+        </a>
+      
+    </div>
+    <div data-md-component="announce">
+      
+    </div>
+    
+    
+      
+
+<header class="md-header" data-md-component="header">
+  <nav class="md-header__inner md-grid" aria-label="Cabeçalho">
+    <a href="../.." title="AnatoQuizUp" class="md-header__button md-logo" aria-label="AnatoQuizUp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    <label class="md-header__button md-icon" for="__drawer">
+      
+      <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M3 6h18v2H3zm0 5h18v2H3zm0 5h18v2H3z"/></svg>
+    </label>
+    <div class="md-header__title" data-md-component="header-title">
+      <div class="md-header__ellipsis">
+        <div class="md-header__topic">
+          <span class="md-ellipsis">
+            AnatoQuizUp
+          </span>
+        </div>
+        <div class="md-header__topic" data-md-component="header-topic">
+          <span class="md-ellipsis">
+            
+              Chatbot de Simulação OSCE
+            
+          </span>
+        </div>
+      </div>
+    </div>
+    
+      
+        <form class="md-header__option" data-md-component="palette">
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="default" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_0">
+    
+  
+    
+    
+    
+    <input class="md-option" data-md-color-media="" data-md-color-scheme="slate" data-md-color-primary="blue" data-md-color-accent="teal"  aria-hidden="true"  type="radio" name="__palette" id="__palette_1">
+    
+  
+</form>
+      
+    
+    
+      <script>var palette=__md_get("__palette");if(palette&&palette.color){if("(prefers-color-scheme)"===palette.color.media){var media=matchMedia("(prefers-color-scheme: light)"),input=document.querySelector(media.matches?"[data-md-color-media='(prefers-color-scheme: light)']":"[data-md-color-media='(prefers-color-scheme: dark)']");palette.color.media=input.getAttribute("data-md-color-media"),palette.color.scheme=input.getAttribute("data-md-color-scheme"),palette.color.primary=input.getAttribute("data-md-color-primary"),palette.color.accent=input.getAttribute("data-md-color-accent")}for(var[key,value]of Object.entries(palette.color))document.body.setAttribute("data-md-color-"+key,value)}</script>
+    
+    
+    
+      <label class="md-header__button md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+      </label>
+      <div class="md-search" data-md-component="search" role="dialog">
+  <label class="md-search__overlay" for="__search"></label>
+  <div class="md-search__inner" role="search">
+    <form class="md-search__form" name="search">
+      <input type="text" class="md-search__input" name="query" aria-label="Buscar" placeholder="Buscar" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" data-md-component="search-query" required>
+      <label class="md-search__icon md-icon" for="__search">
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M9.5 3A6.5 6.5 0 0 1 16 9.5c0 1.61-.59 3.09-1.56 4.23l.27.27h.79l5 5-1.5 1.5-5-5v-.79l-.27-.27A6.52 6.52 0 0 1 9.5 16 6.5 6.5 0 0 1 3 9.5 6.5 6.5 0 0 1 9.5 3m0 2C7 5 5 7 5 9.5S7 14 9.5 14 14 12 14 9.5 12 5 9.5 5"/></svg>
+        
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11z"/></svg>
+      </label>
+      <nav class="md-search__options" aria-label="Pesquisar">
+        
+        <button type="reset" class="md-search__icon md-icon" title="Limpar" aria-label="Limpar" tabindex="-1">
+          
+          <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M19 6.41 17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+        </button>
+      </nav>
+      
+    </form>
+    <div class="md-search__output">
+      <div class="md-search__scrollwrap" tabindex="0" data-md-scrollfix>
+        <div class="md-search-result" data-md-component="search-result">
+          <div class="md-search-result__meta">
+            Inicializando busca
+          </div>
+          <ol class="md-search-result__list" role="presentation"></ol>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+    
+    
+  </nav>
+  
+</header>
+    
+    <div class="md-container" data-md-component="container">
+      
+      
+        
+          
+            
+<nav class="md-tabs" aria-label="Abas" data-md-component="tabs">
+  <div class="md-grid">
+    <ul class="md-tabs__list">
+      
+        
+  
+  
+  
+    <li class="md-tabs__item">
+      <a href="../.." class="md-tabs__link">
+        
+  
+    
+  
+  Início
+
+      </a>
+    </li>
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../produto/visao/" class="md-tabs__link">
+          
+  
+  Produto
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+    
+  
+  
+    
+    
+      <li class="md-tabs__item md-tabs__item--active">
+        <a href="../visao-geral/" class="md-tabs__link">
+          
+  
+  Arquitetura
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../metodologia/metodologia/" class="md-tabs__link">
+          
+  
+  Gestão
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../qualidade/roteiro-testes/" class="md-tabs__link">
+          
+  
+  Qualidade
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../operacao/ambiente-homologacao/" class="md-tabs__link">
+          
+  
+  Operação
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../contribuicao/branches/" class="md-tabs__link">
+          
+  
+  Contribuição
+
+        </a>
+      </li>
+    
+  
+
+      
+        
+  
+  
+  
+    
+    
+      <li class="md-tabs__item">
+        <a href="../../reunioes/modelo-ata-reuniao/" class="md-tabs__link">
+          
+  
+  Reuniões
+
+        </a>
+      </li>
+    
+  
+
+      
+    </ul>
+  </div>
+</nav>
+          
+        
+      
+      <main class="md-main" data-md-component="main">
+        <div class="md-main__inner md-grid">
+          
+            
+              
+              <div class="md-sidebar md-sidebar--primary" data-md-component="sidebar" data-md-type="navigation" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+
+  
+
+
+<nav class="md-nav md-nav--primary md-nav--lifted" aria-label="Navegação" data-md-level="0">
+  <label class="md-nav__title" for="__drawer">
+    <a href="../.." title="AnatoQuizUp" class="md-nav__button md-logo" aria-label="AnatoQuizUp" data-md-component="logo">
+      
+  
+  <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M12 8a3 3 0 0 0 3-3 3 3 0 0 0-3-3 3 3 0 0 0-3 3 3 3 0 0 0 3 3m0 3.54C9.64 9.35 6.5 8 3 8v11c3.5 0 6.64 1.35 9 3.54 2.36-2.19 5.5-3.54 9-3.54V8c-3.5 0-6.64 1.35-9 3.54"/></svg>
+
+    </a>
+    AnatoQuizUp
+  </label>
+  
+  <ul class="md-nav__list" data-md-scrollfix>
+    
+      
+      
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../.." class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Início
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2" >
+        
+          
+          <label class="md-nav__link" for="__nav_2" id="__nav_2_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Produto
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_2_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2">
+            <span class="md-nav__icon md-icon"></span>
+            Produto
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/visao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão do Produto
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/lean_inception/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Lean Inception
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/EAP/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    EAP
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/plano-de-custos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gerenciamento de Custos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/plano-de-riscos/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gerenciamento de Riscos
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/roadmap/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roadmap
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/plano-gamificacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Plano de Gamificação
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../produto/missoes-diarias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Missões Diárias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_2_9" >
+        
+          
+          <label class="md-nav__link" for="__nav_2_9" id="__nav_2_9_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Backlog
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="2" aria-labelledby="__nav_2_9_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_2_9">
+            <span class="md-nav__icon md-icon"></span>
+            Backlog
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backlog/visao-geral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../backlog/release-major-1/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Release Major 1
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+    
+  
+  
+  
+    
+    
+    
+      
+        
+        
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--active md-nav__item--section md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_3" checked>
+        
+          
+          <label class="md-nav__link" for="__nav_3" id="__nav_3_label" tabindex="">
+            
+  
+  <span class="md-ellipsis">
+    Arquitetura
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_3_label" aria-expanded="true">
+          <label class="md-nav__title" for="__nav_3">
+            <span class="md-nav__icon md-icon"></span>
+            Arquitetura
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../visao-geral/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Visão Geral
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../tecnologias/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Tecnologias
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../decisoes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Decisões Arquiteturais
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../banco-de-dados/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Banco de Dados
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../endpoints/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+    
+  
+  
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          
+  
+  <span class="md-ellipsis">
+    Chatbot de Simulação OSCE
+  </span>
+  
+
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
+        
+  
+  <span class="md-ellipsis">
+    Chatbot de Simulação OSCE
+  </span>
+  
+
+      </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-o-que-e-e-por-que-existe" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. O que é e por que existe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Arquitetura
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitetura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-tocados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes tocados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-parametrizacao-o-que-e-um-cenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Parametrização: o que é um "cenário"
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-como-funciona-fluxo-e-contratos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Como funciona (fluxo e contratos)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Como funciona (fluxo e contratos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-get-apiv1iaoscecenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1. GET /api/v1/ia/osce/cenarios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-post-apiv1iaosceidmensagem-uma-fala-do-aluno" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2. POST /api/v1/ia/osce/:id/mensagem — uma fala do aluno
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-post-apiv1iaosceidfinalizar-fim-da-simulacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3. POST /api/v1/ia/osce/:id/finalizar — fim da simulação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-a-rubrica-ancoras-de-aceitacao-e-pontuacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. A rubrica: âncoras de aceitação e pontuação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. A rubrica: âncoras de aceitação e pontuação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-duas-medidas-independentes-por-estacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. Duas medidas independentes por estação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-ancoras-comportamentais-por-nivel-de-credito" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2. Âncoras comportamentais por nível de crédito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-pontuacao-e-pesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3. Pontuação e pesos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-a-escala-global-grs-e-o-item-critico" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4. A escala global (GRS) e o item crítico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-qual-das-duas-medidas-decide-a-aprovacao-e-por-que" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5. Qual das duas medidas decide a aprovação — e por quê
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-o-que-nao-e-padrao-ouro-aqui-limitacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.6. O que NÃO é padrão ouro aqui (limitações)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Referências
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-decisoes-e-limites-conhecidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Decisões e limites conhecidos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Testes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentos-relacionados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentos relacionados
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_4" >
+        
+          
+          <label class="md-nav__link" for="__nav_4" id="__nav_4_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Gestão
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_4_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_4">
+            <span class="md-nav__icon md-icon"></span>
+            Gestão
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodologia/metodologia/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Metodologia
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboards/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Dashboards R1 e R2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metricas-produto-r2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Métricas de Produto R2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../dashboard-r2/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Análise do dashboard R2
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../metodologia/quadro-conhecimento/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Quadro de Conhecimento
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_5" >
+        
+          
+          <label class="md-nav__link" for="__nav_5" id="__nav_5_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Qualidade
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_5_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_5">
+            <span class="md-nav__icon md-icon"></span>
+            Qualidade
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qualidade/roteiro-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Roteiro de Testes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../qualidade/resultados-testes/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Resultados dos Testes
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_6" >
+        
+          
+          <label class="md-nav__link" for="__nav_6" id="__nav_6_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Operação
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_6_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_6">
+            <span class="md-nav__icon md-icon"></span>
+            Operação
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../operacao/ambiente-homologacao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Ambiente de Homologação
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_7" >
+        
+          
+          <label class="md-nav__link" for="__nav_7" id="__nav_7_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Contribuição
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_7_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_7">
+            <span class="md-nav__icon md-icon"></span>
+            Contribuição
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/branches/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Branches
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/commits/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Commits
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/pull_requests/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Pull Requests
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../contribuicao/issues/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Política de Issues
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+      
+      
+  
+  
+  
+  
+    
+    
+    
+      
+      
+    
+    
+    <li class="md-nav__item md-nav__item--nested">
+      
+        
+        
+        <input class="md-nav__toggle md-toggle " type="checkbox" id="__nav_8" >
+        
+          
+          <label class="md-nav__link" for="__nav_8" id="__nav_8_label" tabindex="0">
+            
+  
+  <span class="md-ellipsis">
+    Reuniões
+  </span>
+  
+
+            <span class="md-nav__icon md-icon"></span>
+          </label>
+        
+        <nav class="md-nav" data-md-level="1" aria-labelledby="__nav_8_label" aria-expanded="false">
+          <label class="md-nav__title" for="__nav_8">
+            <span class="md-nav__icon md-icon"></span>
+            Reuniões
+          </label>
+          <ul class="md-nav__list" data-md-scrollfix>
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/modelo-ata-reuniao/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Template de ata de reunião
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/reuniao-06-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    06-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/reuniao-16-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    16-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/reuniao-19-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    19-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../../reunioes/reuniao-26-10-26/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    26-10-2026
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+          </ul>
+        </nav>
+      
+    </li>
+  
+
+    
+  </ul>
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+            
+              
+              <div class="md-sidebar md-sidebar--secondary" data-md-component="sidebar" data-md-type="toc" >
+                <div class="md-sidebar__scrollwrap">
+                  <div class="md-sidebar__inner">
+                    
+
+<nav class="md-nav md-nav--secondary" aria-label="Índice">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Índice
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#1-o-que-e-e-por-que-existe" class="md-nav__link">
+    <span class="md-ellipsis">
+      1. O que é e por que existe
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#2-arquitetura" class="md-nav__link">
+    <span class="md-ellipsis">
+      2. Arquitetura
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="2. Arquitetura">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#componentes-tocados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Componentes tocados
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#3-parametrizacao-o-que-e-um-cenario" class="md-nav__link">
+    <span class="md-ellipsis">
+      3. Parametrização: o que é um "cenário"
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#4-como-funciona-fluxo-e-contratos" class="md-nav__link">
+    <span class="md-ellipsis">
+      4. Como funciona (fluxo e contratos)
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="4. Como funciona (fluxo e contratos)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#41-get-apiv1iaoscecenarios" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.1. GET /api/v1/ia/osce/cenarios
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#42-post-apiv1iaosceidmensagem-uma-fala-do-aluno" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.2. POST /api/v1/ia/osce/:id/mensagem — uma fala do aluno
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#43-post-apiv1iaosceidfinalizar-fim-da-simulacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.3. POST /api/v1/ia/osce/:id/finalizar — fim da simulação
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#5-a-rubrica-ancoras-de-aceitacao-e-pontuacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5. A rubrica: âncoras de aceitação e pontuação
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="5. A rubrica: âncoras de aceitação e pontuação">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#51-duas-medidas-independentes-por-estacao" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.1. Duas medidas independentes por estação
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#52-ancoras-comportamentais-por-nivel-de-credito" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.2. Âncoras comportamentais por nível de crédito
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#53-pontuacao-e-pesos" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.3. Pontuação e pesos
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#54-a-escala-global-grs-e-o-item-critico" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.4. A escala global (GRS) e o item crítico
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#55-qual-das-duas-medidas-decide-a-aprovacao-e-por-que" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.5. Qual das duas medidas decide a aprovação — e por quê
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#56-o-que-nao-e-padrao-ouro-aqui-limitacoes" class="md-nav__link">
+    <span class="md-ellipsis">
+      5.6. O que NÃO é padrão ouro aqui (limitações)
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#6-referencias" class="md-nav__link">
+    <span class="md-ellipsis">
+      6. Referências
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#7-decisoes-e-limites-conhecidos" class="md-nav__link">
+    <span class="md-ellipsis">
+      7. Decisões e limites conhecidos
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#8-testes" class="md-nav__link">
+    <span class="md-ellipsis">
+      8. Testes
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#documentos-relacionados" class="md-nav__link">
+    <span class="md-ellipsis">
+      Documentos relacionados
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#historico-de-versao" class="md-nav__link">
+    <span class="md-ellipsis">
+      Histórico de Versão
+    </span>
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+                  </div>
+                </div>
+              </div>
+            
+          
+          
+            <div class="md-content" data-md-component="content">
+              <article class="md-content__inner md-typeset">
+                
+                  
+
+
+<h1 id="chatbot-de-simulacao-osce">Chatbot de simulação OSCE</h1>
+<blockquote>
+<p>Documento de implementação: descreve a feature <strong>já entregue</strong>, não um plano. Reaproveita a mesma infraestrutura de IA do chat de ajuda (<code>/ia/perguntar</code>): Gemini chamada pelo BFF, sem serviço de IA dedicado (ver <a href="../decisoes/">DA-07</a>).</p>
+</blockquote>
+<h2 id="1-o-que-e-e-por-que-existe">1. O que é e por que existe</h2>
+<p>OSCE (<em>Objective Structured Clinical Examination</em>) é o formato de avaliação clínica usado em cursos de medicina: o estudante entra numa "estação" com um paciente (real, ator ou simulado) e precisa colher a história clínica (anamnese) e levantar hipóteses diagnósticas, sem o paciente simplesmente dizer qual é a doença.</p>
+<p>A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um <strong>caso clínico</strong>, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma <strong>avaliação</strong>, e a mesma IA troca de papel para "examinador", julgando a conversa contra a <strong>rubrica</strong> do caso — e o BFF transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como <strong>feedback</strong>: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.</p>
+<h2 id="2-arquitetura">2. Arquitetura</h2>
+<pre class="mermaid"><code>flowchart LR
+    aluno(["Aluno&lt;br/&gt;papel STUDENT"])
+    web["Web&lt;br/&gt;/aluno/osce&lt;br/&gt;(público)"]
+    bff["BFF&lt;br/&gt;/api/v1/ia/osce/*&lt;br/&gt;(público)"]
+    gemini[("Gemini API&lt;br/&gt;(externa)")]
+
+    aluno --&gt; web
+    web --&gt;|"HTTPS REST&lt;br/&gt;Bearer JWT"| bff
+    bff --&gt;|"1. instrução 'modo paciente'&lt;br/&gt;perfil + roteiro oculto"| gemini
+    bff --&gt;|"2. instrução 'modo examinador'&lt;br/&gt;rubrica + âncoras"| gemini
+    gemini -.-&gt;|"fala em personagem /&lt;br/&gt;julgamento em JSON"| bff
+    bff -.-&gt;|"conversa / rubrica pontuada"| web</code></pre>
+<p>As duas chamadas usam o <strong>mesmo</strong> <code>geminiClient</code> e a mesma <code>GEMINI_API_KEY</code> do chat de ajuda; o que muda entre elas é só a instrução de sistema (seção 4). A chave fica no BFF e nunca chega ao Web.</p>
+<p>Não existe um "Serviço de IA" separado nem RAG/Qdrant aqui — o BFF é a camada de IA do projeto (<a href="../decisoes/">DA-07</a>). Diferente do chat de ajuda, o conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.</p>
+<h3 id="componentes-tocados">Componentes tocados</h3>
+<table>
+<thead>
+<tr>
+<th>Repositório</th>
+<th>Arquivo</th>
+<th>Papel</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>BFF</td>
+<td><code>src/shared/constants/cenarios-osce.ts</code></td>
+<td>Os casos clínicos (parametrização, seção 3)</td>
+</tr>
+<tr>
+<td>BFF</td>
+<td><code>src/routes/osce.routes.ts</code></td>
+<td>As 3 rotas HTTP (seção 4)</td>
+</tr>
+<tr>
+<td>BFF</td>
+<td><code>src/shared/utils/pontuacao-osce.ts</code></td>
+<td>Pesos, soma, percentual, teto do item crítico e divergência checklist×nota global (seção 5)</td>
+</tr>
+<tr>
+<td>BFF</td>
+<td><code>src/routes/index.ts</code></td>
+<td>Monta <code>/ia/osce</code> <strong>antes</strong> de <code>/ia</code> (o catch-all de <code>ia.routes.ts</code> intercepta qualquer sub-rota não mapeada de <code>/ia/*</code>)</td>
+</tr>
+<tr>
+<td>Web</td>
+<td><code>src/features/osce/osceService.ts</code></td>
+<td>Chamadas HTTP às 3 rotas</td>
+</tr>
+<tr>
+<td>Web</td>
+<td><code>src/pages/aluno/osce/OscePage.tsx</code></td>
+<td>Tela: lista de casos → chat → feedback</td>
+</tr>
+<tr>
+<td>Web</td>
+<td><code>src/pages/aluno/osce/FeedbackResultado.tsx</code></td>
+<td>Painel do feedback: as duas medidas, domínios e item a item</td>
+</tr>
+<tr>
+<td>Web</td>
+<td><code>src/app/router.tsx</code></td>
+<td>Rota <code>/aluno/osce</code>, protegida para <code>STUDENT</code></td>
+</tr>
+<tr>
+<td>Web</td>
+<td><code>src/widgets/header/ui/Header.tsx</code></td>
+<td>Item de menu "Simulação OSCE" (ícone <code>Stethoscope</code>)</td>
+</tr>
+</tbody>
+</table>
+<h2 id="3-parametrizacao-o-que-e-um-cenario">3. Parametrização: o que é um "cenário"</h2>
+<p>Cada caso clínico é um objeto <code>CenarioOsce</code> (<code>src/shared/constants/cenarios-osce.ts</code> no BFF):</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>Visível para o aluno?</th>
+<th>Uso</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Sim</td>
+<td>Identifica o caso nas rotas (<code>/api/v1/ia/osce/:id/...</code>)</td>
+</tr>
+<tr>
+<td><code>titulo</code></td>
+<td>Sim</td>
+<td>Nome exibido na lista de casos</td>
+</tr>
+<tr>
+<td><code>especialidade</code></td>
+<td>Sim</td>
+<td>Rótulo exibido (ex.: "Cardiologia")</td>
+</tr>
+<tr>
+<td><code>dificuldade</code></td>
+<td>Sim</td>
+<td><code>"Fácil" \| "Médio" \| "Difícil"</code>, exibido como selo colorido</td>
+</tr>
+<tr>
+<td><code>perfilPaciente</code></td>
+<td><strong>Não</strong></td>
+<td>Idade, profissão, jeito de falar — molda o tom das respostas da IA</td>
+</tr>
+<tr>
+<td><code>queixaPrincipal</code></td>
+<td><strong>Não</strong></td>
+<td>O que o paciente diz se perguntado "o que você está sentindo?"</td>
+</tr>
+<tr>
+<td><code>roteiroOculto</code></td>
+<td><strong>Não</strong></td>
+<td>História completa, fatores de risco, achados de exame físico — a IA só revela o que for perguntado</td>
+</tr>
+<tr>
+<td><code>diagnosticoEsperado</code></td>
+<td><strong>Não</strong></td>
+<td>Nunca é dito ao aluno; só aparece no feedback final</td>
+</tr>
+<tr>
+<td><code>rubrica</code></td>
+<td><strong>Não</strong> (só após finalizar)</td>
+<td>Checklist pontuado: itens, domínios, pesos, âncoras de crédito e itens críticos (ver seção 5)</td>
+</tr>
+</tbody>
+</table>
+<p>A rota <code>GET /api/v1/ia/osce/cenarios</code> devolve <strong>só</strong> os 4 primeiros campos — o resto nunca sai do BFF antes da hora, para não vazar a resposta do caso.</p>
+<p>Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código. <strong>Não há tela de autoria de caso para professor</strong> — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array <code>CENARIOS_OSCE</code>, seguindo os 3 exemplos existentes como modelo.</p>
+<h2 id="4-como-funciona-fluxo-e-contratos">4. Como funciona (fluxo e contratos)</h2>
+<p>Pré-requisito: o mesmo <code>GEMINI_API_KEY</code>/<code>GEMINI_MODEL</code> do chat de ajuda (<code>src/config/env.ts</code> do BFF). Sem a chave configurada, todas as rotas abaixo respondem <code>503 IA_INDISPONIVEL</code>, igual ao <code>/ia/perguntar</code>.</p>
+<p>Todas as três rotas ficam atrás do <code>middlewareAutenticacao</code> (JWT validado na borda, como manda o <a href="../decisoes/">DA-03</a>) e a tela <code>/aluno/osce</code> é protegida para o papel <code>STUDENT</code> no <code>router.tsx</code> do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini, só com o BFF.</p>
+<h3 id="41-get-apiv1iaoscecenarios">4.1. <code>GET /api/v1/ia/osce/cenarios</code></h3>
+<p>Lista os casos disponíveis (campos públicos da tabela acima). Sem corpo de requisição.</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"cenarios"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dor-toracica"</span><span class="p">,</span><span class="w"> </span><span class="nt">"titulo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"especialidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardiologia"</span><span class="p">,</span><span class="w"> </span><span class="nt">"dificuldade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Médio"</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<h3 id="42-post-apiv1iaosceidmensagem-uma-fala-do-aluno">4.2. <code>POST /api/v1/ia/osce/:id/mensagem</code> — uma fala do aluno</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"mensagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desde quando você sente essa dor?"</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aluno"</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">"paciente"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">}]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p>O BFF monta a chamada à Gemini com:
+- <strong>Instrução de sistema</strong> = perfil + queixa + roteiro oculto do caso, mais a regra "nunca saia do personagem, nunca diga o nome do diagnóstico".
+- <strong><code>contents</code></strong> = o <code>historico</code> recebido, convertido em turnos <code>user</code> (aluno) / <code>model</code> (paciente), mais a nova <code>mensagem</code> como último turno.</p>
+<p>O <strong>histórico vive no front</strong> (estado React da página), não no BFF — cada chamada reenvia a conversa inteira, do mesmo jeito que o <code>ChatAjudaModal</code> já faz para as perguntas livres. Isso mantém o BFF sem estado de sessão a gerenciar.</p>
+<p>Resposta: <code>{ "resposta": "&lt;fala do paciente, em personagem&gt;" }</code>.</p>
+<h3 id="43-post-apiv1iaosceidfinalizar-fim-da-simulacao">4.3. <code>POST /api/v1/ia/osce/:id/finalizar</code> — fim da simulação</h3>
+<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aluno"</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">"paciente"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">}</span>
+</code></pre></div>
+<p>Troca a instrução de sistema para o modo "examinador": a IA sai do personagem de paciente, recebe o <code>diagnosticoEsperado</code> e a <code>rubrica</code> do caso (cada item com suas <strong>âncoras de crédito</strong>) e produz <strong>duas medidas independentes</strong>, nesta ordem:</p>
+<ol>
+<li><strong>Checklist</strong> — classifica cada item em <code>competente</code> / <code>parcial</code> / <code>nao_realizado</code>, com justificativa citando a fala do aluno.</li>
+<li><strong>Nota global (GRS)</strong> — julga o desempenho como um todo, de 0 a 4, <em>sem</em> somar o checklist.</li>
+</ol>
+<p>A resposta é forçada a JSON pelo <code>responseSchema</code> nativo da Gemini e validada com Zod no BFF — JSON inválido vira <code>502</code>, nunca uma nota silenciosamente errada.</p>
+<p><strong>A IA não calcula nota.</strong> Pesos, soma, percentual, teto do item crítico e a verificação de concordância entre as duas medidas são aplicados em código (<code>pontuacao-osce.ts</code>), porque modelo de linguagem não é confiável para aritmética e porque a regra de aprovação precisa ser auditável.</p>
+<p>Resposta (abreviada):</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"avaliacao"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">    </span><span class="nt">"cenarioId"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dor-toracica"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"titulo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dor torácica no pronto-socorro"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"diagnosticoEsperado"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Síndrome coronariana aguda (angina/infarto)"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"comentarioFinal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Faltou investigar..."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"itens"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">      </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"caracteriza-dor"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"dominio"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Identificação do problema"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"descricao"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Caracteriza a dor: localização, tipo e intensidade"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"ancoras"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">          </span><span class="nt">"competente"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Obtém localização E qualidade da dor (aperto, queimação, pontada) — as duas informações."</span><span class="p">,</span>
+<span class="w">          </span><span class="nt">"parcial"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pergunta só onde dói, ou só como é a dor, sem completar a caracterização."</span>
+<span class="w">        </span><span class="p">},</span>
+<span class="w">        </span><span class="nt">"peso"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"permiteParcial"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"critico"</span><span class="p">:</span><span class="w"> </span><span class="kc">true</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"nivel"</span><span class="p">:</span><span class="w"> </span><span class="s2">"parcial"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"justificativa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Perguntou \"onde dói?\", mas não explorou o tipo da dor."</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"pontos"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"pontosMaximos"</span><span class="p">:</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"pontuacao"</span><span class="p">:</span><span class="w"> </span><span class="mf">12.5</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"pontuacaoMaxima"</span><span class="p">:</span><span class="w"> </span><span class="mi">17</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"percentual"</span><span class="p">:</span><span class="w"> </span><span class="mi">74</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"nivelChecklist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"limitrofe"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"rotuloChecklist"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limítrofe"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"notaGlobal"</span><span class="p">:</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"rotuloNotaGlobal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Limítrofe"</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"ancoraNotaGlobal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Hesitante ou incompleto em pontos importantes; precisaria de supervisão direta o tempo todo."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"justificativaNotaGlobal"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Colheu os dados principais, mas sem fio condutor."</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"aprovado"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span><span class="p">,</span>
+<span class="w">    </span><span class="nt">"itensCriticosNaoCumpridos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span><span class="s2">"Caracteriza a dor: localização, tipo e intensidade"</span><span class="p">],</span>
+<span class="w">    </span><span class="nt">"divergente"</span><span class="p">:</span><span class="w"> </span><span class="kc">false</span>
+<span class="w">  </span><span class="p">}</span>
+<span class="p">}</span>
+</code></pre></div>
+<h2 id="5-a-rubrica-ancoras-de-aceitacao-e-pontuacao">5. A rubrica: âncoras de aceitação e pontuação</h2>
+<p>Esta seção explica <strong>por que</strong> a rubrica tem a forma que tem. Cada decisão aponta para a referência que a sustenta (numeração da seção 6).</p>
+<p>O ponto de partida é o <em>Rating Checklist</em> do capítulo 14 de Amin, Chong &amp; Khoo <strong>[R1]</strong>, mas o desenho foi alinhado ao que a literatura de avaliação em OSCE trata como padrão ouro, em especial as práticas da escola de Leeds <strong>[R2] [R3] [R4]</strong> — o grupo que escreveu os guias AMEE sobre qualidade e organização de OSCE.</p>
+<h3 id="51-duas-medidas-independentes-por-estacao">5.1. Duas medidas independentes por estação</h3>
+<p>Esta é a decisão estrutural: um OSCE de boa qualidade <strong>não</strong> colhe uma medida só. Cada estação produz um <strong>checklist ponderado</strong> (o que foi feito) e uma <strong>nota global</strong> (quão competente foi), julgados separadamente <strong>[R2] [R3]</strong>.</p>
+<p>As duas não são redundantes. A evidência mostra que a nota global é mais sensível a nível de treinamento e captura melhor as habilidades "moles" que o checklist fragmenta <strong>[R5] [R6]</strong>; o checklist, por sua vez, dá o detalhe acionável do feedback. A concordância entre elas é fraca justamente nas estações de <strong>anamnese</strong> — que é o nosso caso <strong>[R6]</strong>.</p>
+<p>Na versão anterior desta feature a "nota global" era calculada <em>a partir</em> do percentual do checklist. Isso era um erro: uma medida derivada da outra não é uma segunda medida, e a concordância entre elas deixa de ser informação. Agora a IA atribui a nota global sem ver a soma, e a divergência entre as duas vira um sinal (seção 5.5).</p>
+<h3 id="52-ancoras-comportamentais-por-nivel-de-credito">5.2. Âncoras comportamentais por nível de crédito</h3>
+<table>
+<thead>
+<tr>
+<th>Campo de <code>ItemRubrica</code></th>
+<th>O que é</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>id</code></td>
+<td>Identificador estável; é o que a IA devolve ao classificar</td>
+</tr>
+<tr>
+<td><code>dominio</code></td>
+<td><code>Comunicação e rapport</code>, <code>Identificação do problema</code>, <code>Raciocínio clínico</code>, <code>Encerramento</code> — agrupamento do livro <strong>[R1]</strong></td>
+</tr>
+<tr>
+<td><code>descricao</code></td>
+<td>O que se espera do aluno, na voz do examinador</td>
+</tr>
+<tr>
+<td><code>ancoras.competente</code></td>
+<td><strong>Âncora de crédito cheio</strong>: o comportamento concreto que vale o peso inteiro</td>
+</tr>
+<tr>
+<td><code>ancoras.parcial</code></td>
+<td><strong>Âncora de crédito parcial</strong>: o que vale metade. Ausente = item de duas âncoras, sem meio-termo</td>
+</tr>
+<tr>
+<td><code>peso</code></td>
+<td><code>1</code> ou <code>2</code> pontos; itens centrais da estação valem 2</td>
+</tr>
+<tr>
+<td><code>critico</code></td>
+<td>Item <em>killer</em>: falhar nele limita o resultado (seção 5.4)</td>
+</tr>
+</tbody>
+</table>
+<p>A mudança importante aqui foi trocar um único <code>aceitacao</code> (só definia "competente") por <strong>âncoras por nível</strong>. Em Leeds, o examinador recebe material de apoio no nível do item dizendo o que vale crédito cheio e o que vale crédito parcial — o exemplo citado é aferir pressão arterial: <em>"±5% para crédito cheio, ±10% para crédito parcial, 0 caso contrário"</em> <strong>[R4]</strong>. Sem isso, a fronteira entre "competente" e "parcial" fica no gosto do examinador; com um examinador-LLM, fica no gosto do modelo naquela amostragem.</p>
+<p>Itens compostos usam três âncoras; itens simples usam duas — também é a prática de Leeds: <em>"'super-items' ... scored by three point anchors. A third group of simpler items are scored with two-point anchors"</em> <strong>[R4]</strong>. O <code>permiteParcial</code> deixou de ser um campo próprio e passou a ser derivado da existência da âncora <code>parcial</code>, para não haver duas fontes de verdade.</p>
+<h3 id="53-pontuacao-e-pesos">5.3. Pontuação e pesos</h3>
+<p>As três colunas do livro (<em>Performed competently</em> / <em>Performed but NOT fully competent</em> / <em>Not performed or incompetent</em>) <strong>[R1]</strong>:</p>
+<table>
+<thead>
+<tr>
+<th>Nível</th>
+<th>Pontos</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>competente</code></td>
+<td>peso cheio (1 ou 2)</td>
+</tr>
+<tr>
+<td><code>parcial</code></td>
+<td>metade do peso — <strong>ou 0</strong>, se o item não tem âncora parcial</td>
+</tr>
+<tr>
+<td><code>nao_realizado</code></td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<p>Item que a IA deixou de julgar conta como <code>nao_realizado</code>: resposta incompleta do modelo nunca infla a nota do aluno.</p>
+<p><strong>Por que não um esquema de pesos mais sofisticado?</strong> Porque a evidência não justifica. Homer et al. compararam o esquema ponderado real do exame com uma versão "simples" e a mudança afetou a decisão de ~3% dos candidatos no geral (~30% dos limítrofes), com métricas de qualidade "um pouco melhores" sob ponderação <strong>[R4]</strong>. Ponderar por julgamento de especialista é adequado <strong>[R7]</strong>; inventar um modelo complexo não compra nada. O que <em>compra</em> reliability é ter itens clinicamente discriminantes <strong>[R8]</strong> — por isso o esforço foi nas âncoras, não nos pesos.</p>
+<p>O percentual do checklist cai numa faixa, alinhada ponto a ponto com a escala global para que as duas sejam comparáveis:</p>
+<table>
+<thead>
+<tr>
+<th>Percentual</th>
+<th>Faixa do checklist</th>
+<th>Equivale a (GRS)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>≥ 90%</td>
+<td>Excelente</td>
+<td>4</td>
+</tr>
+<tr>
+<td>75–89%</td>
+<td>Bom</td>
+<td>3</td>
+</tr>
+<tr>
+<td>60–74%</td>
+<td>Suficiente</td>
+<td>2</td>
+</tr>
+<tr>
+<td>50–59%</td>
+<td>Limítrofe</td>
+<td>1</td>
+</tr>
+<tr>
+<td>&lt; 50%</td>
+<td>Insuficiente</td>
+<td>0</td>
+</tr>
+</tbody>
+</table>
+<h3 id="54-a-escala-global-grs-e-o-item-critico">5.4. A escala global (GRS) e o item crítico</h3>
+<p>A escala de 5 pontos é a de Leeds <strong>[R2]</strong>: <em>"0 = clear fail, 1 = borderline, 2 = clear pass, 3 = very good pass, 4 = excellent pass"</em>.</p>
+<p>As âncoras, porém, foram reescritas em termos de <strong>confiança/supervisão</strong> ("eu deixaria este aluno conduzir sozinho?") em vez de adjetivos abstratos. Escalas alinhadas ao construto que o avaliador realmente usa — entrustment — são mais confiáveis do que escalas de "ruim/bom/ótimo" <strong>[R9] [R10]</strong>.</p>
+<p>O <strong>item crítico</strong> vem da estação de exemplo do capítulo 14 <strong>[R1]</strong>: <em>"The candidate will not score better than 'borderline fail' in overall performance if he/she is unable to teach the right technique."</em> É o mesmo mecanismo do <em>red flag</em> / erro crítico usado em OSCEs regulatórios, onde um ato inseguro reprova a estação independentemente do resto <strong>[R11]</strong>.</p>
+<p>Implementação: se qualquer item <code>critico</code> não for <code>competente</code>, a faixa do checklist é <strong>rebaixada ao teto <code>Limítrofe</code></strong> e <code>aprovado</code> vira <code>false</code>. O teto nunca eleva uma nota já pior que ele. Cada cenário tem ao menos um item crítico (garantido por teste) — hoje sempre dois: <strong>caracterizar o achado que define o caso</strong> e <strong>chegar à hipótese diagnóstica</strong>. O aluno pode ser simpático e organizado e ainda assim não passar se não fizer o diagnóstico.</p>
+<h3 id="55-qual-das-duas-medidas-decide-a-aprovacao-e-por-que">5.5. Qual das duas medidas decide a aprovação — e por quê</h3>
+<p><code>aprovado = percentual do checklist ≥ 60% E nenhum item crítico falhado</code>. <strong>A nota global não decide</strong>; ela é reportada e usada como verificação.</p>
+<p>Isso <strong>inverte</strong> o que a literatura recomenda para examinador humano, e é deliberado. Com humanos, a nota global é a medida mais confiável e o checklist penaliza o candidato experiente que é direto e eficiente <strong>[R5] [R6]</strong>. Com um juiz-LLM a assimetria é outra: o checklist é auditável item a item, com a evidência citada, enquanto a nota global é uma impressão sem rastro — e justamente em <em>history taking</em> a concordância entre LLM e examinador humano é fraca (ICC = 0,36 num estudo recente) <strong>[R12]</strong>.</p>
+<p>A nota global entra, então, como <strong>teste de concordância</strong>: se a faixa do checklist e a nota global se afastam 2 ou mais pontos na escala de 5, o resultado é marcado como <code>divergente</code> e a interface diz ao aluno para levar o caso ao professor em vez de tomar o número como veredito. É o análogo, para um candidato só, do <strong>R²</strong> que o AMEE 49 usa para auditar uma estação: lá, R² &lt; 0,5 entre checklist e nota global é sinal de revisar o desenho da estação <strong>[R2]</strong>.</p>
+<h3 id="56-o-que-nao-e-padrao-ouro-aqui-limitacoes">5.6. O que NÃO é padrão ouro aqui (limitações)</h3>
+<ul>
+<li><strong>O corte de 60% não vem de <em>standard setting</em>.</strong> O padrão ouro para definir a nota de corte de uma estação é o <strong>borderline regression method (BRM)</strong>: regride-se a nota do checklist de <em>toda a coorte</em> sobre a nota global e lê-se na reta o ponto correspondente a "limítrofe" <strong>[R13] [R2]</strong>. BRM precisa de coorte; aqui n = 1 por simulação e não há persistência. Pior: com menos de ~50 candidatos o erro padrão explode e o R² fica instável <strong>[R14]</strong>. Portanto <strong>o corte é criterial e provisório</strong>. Caminho de evolução concreto: persistir as simulações → acumular ≥50 tentativas por cenário → calcular o cut-score por BRM e substituir o 60% fixo. Os dois dados que o BRM precisa (checklist e nota global por tentativa) já estão sendo produzidos.</li>
+<li><strong>Uma estação não é um OSCE.</strong> São necessárias <strong>14–18 estações</strong> para uma medida confiável de desempenho <strong>[R1] [R3]</strong> — a confiabilidade depende mais do número de estações do que da duração de cada uma <strong>[R1]</strong>. O resultado de um caso isolado é <strong>formativo</strong>: serve para treinar e receber feedback, não como nota da disciplina.</li>
+<li><strong>O juiz é um LLM, não um examinador treinado.</strong> A pontuação é determinística e auditável; a <em>classificação</em> não é. Dois <code>finalizar</code> sobre a mesma conversa podem divergir nos itens de julgamento mais sutil. Daí a justificativa obrigatória por item e a marca de divergência.</li>
+<li><strong>Sem métricas de qualidade da estação.</strong> AMEE 49 <strong>[R2]</strong> audita estações com alpha de Cronbach (≥ 0,7), R² checklist×GRS (&gt; 0,5 bom), discriminação intergrau, número de reprovações e variância entre grupos. Nada disso é calculável sem persistir resultados. Fica como o próximo passo natural depois da persistência.</li>
+<li><strong>Rubricas não validadas por especialista.</strong> As âncoras foram escritas a partir da literatura e do roteiro clínico de cada caso, <strong>não</strong> revisadas por um médico ou professor da área. Antes de qualquer uso com turma real, isso precisa acontecer.</li>
+</ul>
+<h2 id="6-referencias">6. Referências</h2>
+<p>Numeração usada ao longo da seção 5.</p>
+<p><strong>Base do modelo da rubrica</strong></p>
+<ul>
+<li><strong>[R1]</strong> Amin, Z.; Chong, Y.S.; Khoo, H.E. <em>Practical Guide to Medical Student Assessment</em>. World Scientific, 2006. <strong>Capítulo 14 — "Objective Structured Clinical Examination (OSCE)", p. 58-64.</strong> Rating Checklist (p. 63), estação de exemplo com a regra de <em>borderline fail</em> (p. 60), recomendação de 14–18 estações e de escala global + treinamento de examinadores (p. 59, 64). ISBN 981-256-808-5.</li>
+<li><strong>[R2]</strong> Pell, G.; Fuller, R.; Homer, M.; Roberts, T. <strong>How to measure the quality of the OSCE: A review of metrics — AMEE Guide no. 49.</strong> <em>Medical Teacher</em>, 32(10):802-811, 2010. Escala global de 5 pontos, R² checklist×GRS, alpha, discriminação intergrau, variância entre grupos. <a href="https://doi.org/10.3109/0142159X.2010.507716">https://doi.org/10.3109/0142159X.2010.507716</a></li>
+<li><strong>[R3]</strong> Khan, K.Z.; Gaunt, K.; Ramachandran, S.; Pushkar, P. <strong>The Objective Structured Clinical Examination (OSCE): AMEE Guide No. 81. Part II: Organisation &amp; Administration.</strong> <em>Medical Teacher</em>, 35(9):e1447-e1463, 2013. Desenho de estação, escolha de rubrica de pontuação, treinamento de examinadores, garantia de qualidade. <a href="https://doi.org/10.3109/0142159X.2013.818635">https://doi.org/10.3109/0142159X.2013.818635</a></li>
+<li><strong>[R4]</strong> Homer, M.; Fuller, R.; Hallam, J.; Pell, G. <strong>Shining a spotlight on scoring in the OSCE: Checklists and item weighting.</strong> <em>Medical Teacher</em>, 42(9):1037-1042, 2020. Âncoras de dois e três pontos, material de apoio por item (o exemplo do ±5%/±10%), impacto real da ponderação (~3% dos candidatos, ~30% dos limítrofes). <a href="https://doi.org/10.1080/0142159X.2020.1781072">https://doi.org/10.1080/0142159X.2020.1781072</a></li>
+</ul>
+<p><strong>Checklist versus nota global</strong></p>
+<ul>
+<li><strong>[R5]</strong> Ilgen, J.S.; Ma, I.W.Y.; Hatala, R.; Cook, D.A. <strong>A systematic review of validity evidence for checklists versus global rating scales in simulation-based assessment.</strong> <em>Medical Education</em>, 49(2):161-173, 2015. Revisão sistemática: escalas globais têm confiabilidade igual ou superior e são mais sensíveis a nível de expertise. <a href="https://doi.org/10.1111/medu.12621">https://doi.org/10.1111/medu.12621</a>
+  (A afirmação equivalente aparece em [R1] p. 59, creditada a Norman, 2003, e em [R3].)</li>
+<li><strong>[R6]</strong> Daniels, V.J. et al. <strong>A Comparison of Checklist and Domain-Based Ratings in the Assessment of OSCE Performance.</strong> <em>Cureus</em>, 2023. Correlação entre as duas medidas varia por estação: <strong>fraca em estações de anamnese</strong>, forte em estações de conduta. <a href="https://pubmed.ncbi.nlm.nih.gov/37435263/">https://pubmed.ncbi.nlm.nih.gov/37435263/</a></li>
+<li><strong>[R7]</strong> Kahraman, N. et al., sobre esquemas de ponderação em OSCE: julgamento de especialista para pesos de item é adequado e se relaciona melhor com critérios externos do que ponderação unitária. <em>Citado em [R4]</em> — não consultado no original.</li>
+<li><strong>[R8]</strong> Daniels, V.J.; Bordage, G. et al. <strong>Effect of clinically discriminating, evidence-based checklist items on the reliability of scores from an Internal Medicine residency OSCE.</strong> <em>Advances in Health Sciences Education</em>, 2014. Itens clinicamente discriminantes aumentam a confiabilidade e reduzem o número de estações necessárias. <a href="https://doi.org/10.1007/s10459-013-9482-4">https://doi.org/10.1007/s10459-013-9482-4</a></li>
+</ul>
+<p><strong>Âncoras alinhadas ao construto</strong></p>
+<ul>
+<li><strong>[R9]</strong> Crossley, J. et al. <strong>Good questions, good answers: construct alignment improves the performance of workplace-based assessment scales.</strong> <em>Medical Education</em>, 2011. Escalas com âncoras narrativas alinhadas ao construto são mais confiáveis.</li>
+<li><strong>[R10]</strong> Rekman, J. et al. <strong>Entrustability Scales: Outlining Their Usefulness for Competency-Based Clinical Assessment.</strong> <em>Academic Medicine</em>, 91(2):186-190, 2016. Escalas de <em>entrustment</em> refletem o julgamento que o avaliador já faz na prática, aumentando a confiabilidade.</li>
+<li><strong>[R11]</strong> Prática regulatória de <em>red flag</em> / erro crítico em OSCE (ex.: o OSCE do Nursing and Midwifery Council, Reino Unido): um ato inseguro reprova a estação independentemente do desempenho no restante. Documentação regulatória, não artigo revisado por pares — usado aqui apenas como reforço do mecanismo já descrito em [R1] p. 60.</li>
+</ul>
+<p><strong>Juiz automatizado</strong></p>
+<ul>
+<li><strong>[R12]</strong> <strong>The Validity of Generative Artificial Intelligence in Evaluating Medical Students in Objective Structured Clinical Examination.</strong> <em>JMIR Formative Research</em>, 2025. Concordância IA×examinador humano <strong>fraca em anamnese (ICC = 0,36; IC 95% −0,32 a 0,78)</strong>; a IA tendeu a dar notas mais altas que os médicos. <a href="https://formative.jmir.org/2025/1/e79465">https://formative.jmir.org/2025/1/e79465</a></li>
+</ul>
+<p><strong>Standard setting</strong></p>
+<ul>
+<li><strong>[R13]</strong> McKinley, D.W.; Norcini, J.J. <strong>How to set standards on performance-based examinations: AMEE Guide No. 85.</strong> <em>Medical Teacher</em>, 2014. Borderline regression method como método de referência para derivar a nota de corte de estações. <a href="https://doi.org/10.3109/0142159X.2014.890600">https://doi.org/10.3109/0142159X.2014.890600</a></li>
+<li><strong>[R14]</strong> Homer, M.; Setna, Z.; Jones, A. et al. <strong>Setting defensible standards in small cohort OSCEs: Understanding better when borderline regression can "work".</strong> <em>Medical Teacher</em>, 2020. Coortes abaixo de ~50 candidatos têm erro padrão alto e R² instável. <a href="https://pubmed.ncbi.nlm.nih.gov/31657266/">https://pubmed.ncbi.nlm.nih.gov/31657266/</a></li>
+</ul>
+<h2 id="7-decisoes-e-limites-conhecidos">7. Decisões e limites conhecidos</h2>
+<ul>
+<li><strong>Sem persistência</strong>: a conversa e a rubrica pontuada não são salvas em banco — fecham a página, perde a simulação. Se a equipe quiser histórico de simulações (para o professor acompanhar progresso, por exemplo), isso é extensão futura, não construída aqui.</li>
+<li><strong>Sem streaming</strong>: a resposta da Gemini chega de uma vez (igual ao <code>/ia/perguntar</code>), não token a token. O <em>thinking</em> da Gemini fica no nível mínimo (<code>thinkingConfig.thinkingLevel: "low"</code>) nas duas rotas: no nível alto a chamada levava 10–15s e às vezes estourava o <code>REQUEST_TIMEOUT_MS</code>. O modelo em uso é o <code>gemini-3.5-flash-lite</code>, o degrau mais barato da família, que não aceita <code>thinkingBudget: 0</code> (responde <code>400</code>) e por isso usa o nível <code>low</code>. A UI mostra um spinner de carregamento enquanto espera.</li>
+<li><strong>Dado do aluno que cruza para a Gemini</strong>: nenhum — diferente do <code>/ia/dica</code>, o modo OSCE não usa o desempenho do aluno, só o texto da conversa em si (que o próprio aluno está digitando). Sem risco de LGPD adicional em relação ao que o chat de ajuda já levanta.</li>
+<li><strong>Falha graciosa</strong>: se a Gemini não estiver configurada ou falhar, a rota responde 503/502 com uma mensagem de erro — a página mostra o erro, sem quebrar a navegação.</li>
+</ul>
+<h2 id="8-testes">8. Testes</h2>
+<p>A regra de pontuação é a parte auditável da feature, então é a parte testada: <code>tests/unit/pontuacao-osce.test.ts</code> (BFF, Jest) cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como <code>nao_realizado</code>, o teto do item crítico, a nota global fora da escala e a marca de divergência — além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes). São 13 casos.</p>
+<p><strong>Gap conhecido</strong>: <code>src/routes/osce.routes.ts</code> ainda <strong>não</strong> tem teste de rota (as outras rotas do BFF têm, em <code>tests/unit/*.routes.test.ts</code>, com o cliente externo mockado). Enquanto isso não existir, a feature consome a folga do <code>coverageThreshold</code> de 85% exigido pelo <a href="../decisoes/">DA-08</a> — é o próximo item de qualidade desta feature.</p>
+<h2 id="documentos-relacionados">Documentos relacionados</h2>
+<ul>
+<li><a href="../visao-geral/">Visão Geral da Arquitetura</a></li>
+<li><a href="../decisoes/">Decisões Arquiteturais</a></li>
+<li><a href="../endpoints/">Endpoints</a></li>
+</ul>
+<h2 id="historico-de-versao">Histórico de Versão</h2>
+<table>
+<thead>
+<tr>
+<th>Data</th>
+<th>Versão</th>
+<th>Descrição</th>
+<th>Autor(es)</th>
+<th>Revisor(es)</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>26/10/2026</td>
+<td>1.0</td>
+<td>Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações</td>
+<td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
+<td></td>
+</tr>
+</tbody>
+</table>
+
+
+
+
+
+
+
+
+
+
+
+
+                
+              </article>
+            </div>
+          
+          
+<script>var target=document.getElementById(location.hash.slice(1));target&&target.name&&(target.checked=target.name.startsWith("__tabbed_"))</script>
+        </div>
+        
+      </main>
+      
+        <footer class="md-footer">
+  
+  <div class="md-footer-meta md-typeset">
+    <div class="md-footer-meta__inner md-grid">
+      <div class="md-copyright">
+  
+  
+    Made with
+    <a href="https://squidfunk.github.io/mkdocs-material/" target="_blank" rel="noopener">
+      Material for MkDocs
+    </a>
+  
+</div>
+      
+    </div>
+  </div>
+</footer>
+      
+    </div>
+    <div class="md-dialog" data-md-component="dialog">
+      <div class="md-dialog__inner md-typeset"></div>
+    </div>
+    
+    
+    <script id="__config" type="application/json">{"base": "../..", "features": ["navigation.tabs"], "search": "../../assets/javascripts/workers/search.6ce7567c.min.js", "translations": {"clipboard.copied": "Copiado para \u00e1rea de transfer\u00eancia", "clipboard.copy": "Copiar para \u00e1rea de transfer\u00eancia", "search.result.more.one": "mais 1 nesta p\u00e1gina", "search.result.more.other": "# mais nesta p\u00e1gina", "search.result.none": "Nenhum documento encontrado", "search.result.one": "1 documento encontrado", "search.result.other": "# documentos encontrados", "search.result.placeholder": "Digite para iniciar a busca", "search.result.term.missing": "Ausente", "select.version": "Selecione a vers\u00e3o"}}</script>
+    
+    
+      <script src="../../assets/javascripts/bundle.83f73b43.min.js"></script>
+      
+    
+  </body>
+</html>

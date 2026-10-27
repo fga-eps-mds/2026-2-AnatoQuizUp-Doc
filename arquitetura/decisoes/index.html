@@ -883,9 +883,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#da-07-servico-de-ia-reservado" class="md-nav__link">
+  <a href="#da-07-ia-no-bff-sem-servico-dedicado" class="md-nav__link">
     <span class="md-ellipsis">
-      DA-07 — Serviço de IA reservado
+      DA-07 — IA no BFF, sem serviço dedicado
     </span>
   </a>
   
@@ -951,6 +951,27 @@
   
   <span class="md-ellipsis">
     Endpoints
+  </span>
+  
+
+      </a>
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chatbot-osce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chatbot de Simulação OSCE
   </span>
   
 
@@ -1630,9 +1651,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#da-07-servico-de-ia-reservado" class="md-nav__link">
+  <a href="#da-07-ia-no-bff-sem-servico-dedicado" class="md-nav__link">
     <span class="md-ellipsis">
-      DA-07 — Serviço de IA reservado
+      DA-07 — IA no BFF, sem serviço dedicado
     </span>
   </a>
   
@@ -1744,8 +1765,15 @@ Usuario-Service/src/modules/
 <p><strong>Decisão:</strong> moedas, loja, inventário e conquistas ficam no mesmo serviço do quiz.</p>
 <p><strong>Justificativa:</strong> ganhar moedas e desbloquear conquistas acontece <strong>na mesma transação</strong> em que o aluno responde uma questão. Separar em outro serviço exigiria consistência eventual entre bancos para cada resposta.</p>
 <p><strong>Consequência:</strong> toda movimentação de moedas é registrada em <code>TransacaoMoeda</code> (acerto, conquista, compra, uso de potencializador), o que garante rastreabilidade do saldo.</p>
-<h2 id="da-07-servico-de-ia-reservado">DA-07 — Serviço de IA reservado</h2>
-<p>O BFF já possui a rota <code>/ia</code> e o cliente <code>ai.client</code>, que respondem <code>503</code> enquanto <code>AI_URL</code> não estiver configurada. Isso permite habilitar geração de questões por IA em releases futuras (<code>OrigemQuestao.GERADA_POR_IA</code> já existe no modelo) sem mudar o contrato do frontend.</p>
+<h2 id="da-07-ia-no-bff-sem-servico-dedicado">DA-07 — IA no BFF, sem serviço dedicado</h2>
+<p><strong>Contexto:</strong> a rota <code>/ia</code> nasceu como reserva para um futuro "AI Service" (cliente <code>ai.client</code> + variável <code>AI_URL</code>, respondendo <code>503</code> enquanto não houvesse serviço). Quando a IA passou a ser construída de fato — dica, perguntas livres e a simulação OSCE — não havia estado, banco nem orquestração a justificar um serviço próprio: as três rotas só montam um prompt e repassam a resposta.</p>
+<p><strong>Decisão:</strong> o BFF <strong>é</strong> a camada de IA. Ele chama a Gemini direto pelo <code>gemini.client</code>, configurado por <code>GEMINI_API_KEY</code>/<code>GEMINI_MODEL</code>; <code>ai.client</code> e <code>AI_URL</code> foram removidos. O <code>503</code> sobrou apenas no catch-all de <code>/ia/*</code> (sub-rota inexistente ou chave ausente).</p>
+<p><strong>Consequências:</strong>
+- (+) Nenhum serviço a mais para subir, versionar e monitorar; a chave do provedor fica num único lugar, longe do navegador.
+- (+) Sem estado de sessão: o histórico da conversa vive no front e é reenviado a cada chamada, como no chat de ajuda.
+- (−) O BFF acumula responsabilidade de IA, e o custo da API passa por ele — monitorar uso desde o início.
+- (−) Se entrar RAG, geração de questões em lote ou fila de processamento (<code>OrigemQuestao.GERADA_POR_IA</code> já existe no modelo), esta decisão deve ser reavaliada: aí um serviço próprio volta a se pagar.</p>
+<p>A simulação OSCE <strong>não persiste nada</strong> (conversa e rubrica morrem com a página), o que é coerente com o DA-02 e não muda o <a href="../banco-de-dados/">banco de dados</a>. Essa escolha é também o que hoje impede derivar a nota de corte por <em>borderline regression</em> — ver a seção 5.6 do <a href="../chatbot-osce/">documento da feature</a>.</p>
 <h2 id="da-08-qualidade-continua">DA-08 — Qualidade contínua</h2>
 <ul>
 <li>Pipeline obrigatório em todo PR: lint, build, testes e SonarCloud.</li>
@@ -1770,6 +1798,13 @@ Usuario-Service/src/modules/
 <td>Registro das decisões arquiteturais de 2026.2</td>
 <td><a href="https://github.com/henriquecarv3">Henrique Carvalho</a>, <a href="https://github.com/CaioHabibe">Caio Habibe</a>, <a href="https://github.com/jlucasiqueira">João Lucas</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
 <td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a> (<a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/54">PR #54</a>)</td>
+</tr>
+<tr>
+<td>26/10/2026</td>
+<td>1.1</td>
+<td>DA-07 reescrita: IA implementada no próprio BFF via Gemini, sem serviço dedicado</td>
+<td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>

@@ -14,7 +14,7 @@
         <link rel="prev" href="../banco-de-dados/">
       
       
-        <link rel="next" href="../../metodologia/metodologia/">
+        <link rel="next" href="../chatbot-osce/">
       
       
       <link rel="icon" href="../../assets/images/favicon.png">
@@ -898,6 +898,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ia-no-bff-via-gemini" class="md-nav__link">
+    <span class="md-ellipsis">
+      IA (no BFF, via Gemini)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rotas-internas-bloqueadas-no-bff" class="md-nav__link">
     <span class="md-ellipsis">
       Rotas internas (bloqueadas no BFF)
@@ -919,6 +928,27 @@
   
 </nav>
       
+    </li>
+  
+
+              
+            
+              
+                
+  
+  
+  
+  
+    <li class="md-nav__item">
+      <a href="../chatbot-osce/" class="md-nav__link">
+        
+  
+  <span class="md-ellipsis">
+    Chatbot de Simulação OSCE
+  </span>
+  
+
+      </a>
     </li>
   
 
@@ -1567,6 +1597,15 @@
 </li>
       
         <li class="md-nav__item">
+  <a href="#ia-no-bff-via-gemini" class="md-nav__link">
+    <span class="md-ellipsis">
+      IA (no BFF, via Gemini)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#rotas-internas-bloqueadas-no-bff" class="md-nav__link">
     <span class="md-ellipsis">
       Rotas internas (bloqueadas no BFF)
@@ -1755,13 +1794,41 @@
 <td>Usuário + Quiz</td>
 <td>Perfil público com avatar equipado e conquistas em destaque</td>
 </tr>
+</tbody>
+</table>
+<h2 id="ia-no-bff-via-gemini">IA (no BFF, via Gemini)</h2>
+<p>Não há serviço de IA: estas rotas são atendidas pelo próprio BFF, que chama a Gemini API (<a href="../decisoes/">DA-07</a>). Todas exigem JWT.</p>
+<table>
+<thead>
 <tr>
-<td><code>/ia/*</code></td>
-<td>AI Service</td>
-<td>Reservado; responde <code>503</code></td>
+<th>Método e rota</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>GET /ia/dica</code></td>
+<td>Dica da questão ativa baseada em regra, sem LLM</td>
+</tr>
+<tr>
+<td><code>POST /ia/perguntar</code></td>
+<td>Pergunta livre do aluno sobre a questão, respondida pela Gemini</td>
+</tr>
+<tr>
+<td><code>GET /ia/osce/cenarios</code></td>
+<td>Casos clínicos disponíveis para simulação (campos públicos)</td>
+</tr>
+<tr>
+<td><code>POST /ia/osce/:id/mensagem</code></td>
+<td>Uma fala do aluno; a Gemini responde em personagem de paciente</td>
+</tr>
+<tr>
+<td><code>POST /ia/osce/:id/finalizar</code></td>
+<td>Encerra a estação e devolve a rubrica pontuada (<a href="../chatbot-osce/">detalhes</a>)</td>
 </tr>
 </tbody>
 </table>
+<p>Qualquer outra sub-rota de <code>/ia/*</code> cai no catch-all do BFF e responde <code>503 IA_INDISPONIVEL</code> — é também o que todas elas respondem se a <code>GEMINI_API_KEY</code> não estiver configurada.</p>
 <h2 id="rotas-internas-bloqueadas-no-bff">Rotas internas (bloqueadas no BFF)</h2>
 <p><code>/inventario/usuarios/equipados</code> e <code>/conquistas/usuarios/destaques</code> retornam <strong>404</strong> quando chamadas externamente. São usadas apenas pelo BFF para compor ranking e perfil social.</p>
 <h2 id="historico-de-versao">Histórico de Versão</h2>
@@ -1782,6 +1849,13 @@
 <td>Levantamento dos endpoints a partir do código dos serviços</td>
 <td><a href="https://github.com/henriquecarv3">Henrique Carvalho</a>, <a href="https://github.com/CaioHabibe">Caio Habibe</a>, <a href="https://github.com/jlucasiqueira">João Lucas</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
 <td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a> (<a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/54">PR #54</a>)</td>
+</tr>
+<tr>
+<td>26/10/2026</td>
+<td>1.1</td>
+<td>Rotas <code>/ia/*</code> documentadas como implementadas no BFF, incluindo a simulação OSCE</td>
+<td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
+<td></td>
 </tr>
 </tbody>
 </table>
