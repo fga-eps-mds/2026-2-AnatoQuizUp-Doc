@@ -17,7 +17,7 @@ O backlog é revisado ao final de cada sprint, considerando as entregas realizad
 | Release | Foco | Detalhamento |
 |---|---|---|
 | Release 1 | Identidade do estudante, avatar e loja virtual | [Release 1](release-major-1.md) |
-| Release 2 | Ciclos de aprendizagem e gamificação, com base do acompanhamento pedagógico | A detalhar após refinamento com os Product Owners |
+| Release 2 | Ciclos de aprendizagem e gamificação, com base do acompanhamento pedagógico | [Release 2: histórias, tarefas e evidências](release-2.md) |
 | Release 3 | Fechamento do ciclo da professora, curadoria e um piloto avançado | A detalhar após seleção do piloto com os Product Owners |
 
 > **Base herdada:** o AnatoQuizUp é evoluído a partir do produto desenvolvido em 2026.1, que já possuía cadastro e autenticação, questões, quiz, turmas, listas, loja, inventário, conquistas e ranking. Este backlog registra o que é construído ou evoluído em 2026.2 e identifica as histórias herdadas.
@@ -118,11 +118,11 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 | US01 | estudante | possuir um avatar padrão | ter uma identidade na plataforma desde o primeiro acesso | EP01 | Must | R1 | Parcial |
 | US02 | estudante | personalizar aparência, acessórios e roupas do meu avatar | me sentir representado e exibir os itens que conquistei | EP01 | Must | R1 | Parcial (Roupas adiada para a R2) |
 | US03 | estudante | comprar e utilizar itens na loja virtual | usar minhas moedas para potencializar meu aprendizado | EP01 | Must | R1 | Concluída |
-| US04 | estudante | ganhar pontos de experiência (XP) ao responder questões | acompanhar minha evolução | EP01 | Must | R2 | Repriorizada da R1 |
+| US04 | estudante | ganhar pontos de experiência (XP) ao responder questões | acompanhar minha evolução | EP01 | Must | R2 | Implementada; validar em homologação |
 | US05 | estudante | ver minha posição no ranking geral, de amigos e da turma | me comparar com colegas e me manter engajado | EP01 | Should | R2 | Herdada de 2026.1 |
-| US06 | estudante | responder quizzes por tema com imagens radiológicas | praticar anatomia aplicada à radiologia | EP02 | Must | R2 | Herdada de 2026.1 |
+| US06 | estudante | responder quizzes por tema; imagens radiológicas fora do recorte atual da R2 | praticar anatomia aplicada à radiologia | EP02 | Must | R2 | Fluxo herdado de 2026.1; validar sem imagens nesta entrega |
 | US07 | estudante | ver a explicação da resposta após responder | entender o motivo do acerto ou erro | EP02 | Must | R2 | Herdada de 2026.1 |
-| US08 | estudante | revisar as questões que errei | focar nas minhas dificuldades | EP02 | Must | R2 | Não iniciada |
+| US08 | estudante | revisar as questões que errei | focar nas minhas dificuldades | EP02 | Must | R2 | Parcial: histórico de respostas; falta revisão focada nos erros |
 | US09 | professora | criar listas de questões e aplicá-las às turmas | usar a plataforma em sala de aula | EP03 | Must | R2 | Herdada de 2026.1 |
 | US10 | professora | visualizar os resultados dos estudantes da turma | identificar dificuldades e ajustar minhas aulas | EP03 | Must | R2 | Herdada de 2026.1 |
 | US11 | estudante | tirar dúvidas com um chatbot durante o estudo | resolver dúvidas sem depender do horário da professora | EP04 | Should (piloto) | R3 | Candidato a piloto |
@@ -130,10 +130,10 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 | US13 | estudante | praticar casos clínicos no modelo OSCE | treinar raciocínio clínico | EP05 | Should (piloto) | R3 | Candidato a piloto |
 | US14 | administradora | gerenciar usuários e permissões | manter o acesso à plataforma seguro | EP06 | Must | Contínuo | Herdada de 2026.1 |
 | US15 | estudante | me cadastrar e acessar a plataforma com e-mail e senha | ter meu progresso salvo | EP06 | Must | Contínuo | Herdada de 2026.1 |
-| US16 | estudante | escolher disciplina, tema e nível de conhecimento antes do quiz | estudar no ritmo e no conteúdo de que preciso | EP02 | Must | R2 | Não iniciada |
+| US16 | estudante | escolher disciplina, tema e nível de conhecimento antes do quiz | estudar no ritmo e no conteúdo de que preciso | EP02 | Must | R2 | Parcial: tema e dificuldade disponíveis; disciplina a verificar |
 | US17 | estudante | simular consultas com pacientes virtuais | praticar a anamnese e o raciocínio clínico | EP05 | Won't (MVP) | Incremento | Não iniciada |
-| US18 | estudante | cumprir missões diárias, semanais e mensais | manter frequência e continuidade nos estudos | EP01 | Should | R2 | Não iniciada |
-| US19 | estudante | visualizar meu progresso, resultados e temas com dificuldade | direcionar meus próximos estudos | EP02 | Must | R2 | Não iniciada |
+| US18 | estudante | cumprir missões diárias e semanais | manter frequência e continuidade nos estudos | EP01 | Should | R2 | Diárias implementadas; regras semanais aprovadas e implementação em PR; mensais sem confirmação |
+| US19 | estudante | visualizar meu progresso, resultados e temas com dificuldade | direcionar meus próximos estudos | EP02 | Must | R2 | Implementação existente; validar dados e jornada em homologação |
 | US20 | estudante | receber avisos de inatividade e recuperar um elo após voltar a estudar | manter uma rotina de estudos e continuar progredindo | EP01 | Should | R2 | Refinada (#89; depende de US23) |
 | US21 | estudante | visualizar meu avatar ativo nas áreas que me representam | manter minha identidade visual consistente | EP01 | Should | Pós-validação R1 | Refinada (#91; vinculada a US01 e US02) |
 | US22 | estudante | localizar a personalização do avatar na navegação principal | customizar minha identidade visual sem procurar pela interface | EP01 | Should | Pós-validação R1 | Refinada (#92; melhoria de UX #93) |
@@ -141,7 +141,7 @@ Todas as funcionalidades levantadas na Lean Inception estão associadas a um ép
 
 > As histórias a partir da US04 são uma proposta derivada da Lean Inception e do MVP ampliado. As marcadas como "Herdada de 2026.1" já possuem implementação do semestre anterior e serão revisadas com os Product Owners para decidir se precisam de evolução. Somente um dos candidatos a piloto, US11 ou US13, deverá ser comprometido no MVP. Todas as histórias serão refinadas, estimadas e receberão critérios de aceitação antes de entrarem em uma sprint.
 
-> As missões diárias da US18 fazem parte do escopo de gamificação da Release 2 definido no [Roadmap](../produto/roadmap.md). As regras diárias, o fluxo e o contrato estão em [Missões Diárias](../produto/missoes-diarias.md), validados pelo PO em 19/10/2026. A definição e o protótipo são tratados na [#83](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83), e a implementação, na [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84). A extensão para missões semanais e mensais e a prioridade Should desta proposta ainda devem ser validadas com os Product Owners. A US19 trata do acompanhamento dos resultados e das dificuldades de aprendizagem. A US23 corresponde à progressão de elos da [#82](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82), sem duplicar a história de ranking. As issues [#96](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96) e [#97](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97) são etapas técnicas da US11, não novas histórias.
+> As missões diárias da US18 fazem parte do escopo de gamificação da Release 2 definido no [Roadmap](../produto/roadmap.md). As regras diárias, o fluxo e o contrato estão em [Missões Diárias](../produto/missoes-diarias.md), validados pelo PO em 19/10/2026. A definição e o protótipo são tratados na [#83](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/83), e a implementação, na [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84). Segundo confirmação da equipe em 26/10/2026, os POs também aprovaram o escopo, as metas e as recompensas de XP das missões semanais na semana anterior à entrega; a implementação está em PR e ainda precisa ser homologada. Missões mensais não têm confirmação neste levantamento. A US19 trata do acompanhamento dos resultados e das dificuldades de aprendizagem. A US23 corresponde à progressão de elos da [#82](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/82), sem duplicar a história de ranking. As issues [#96](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/96) e [#97](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/97) são etapas técnicas da US11, não novas histórias.
 
 ## Legenda de status
 

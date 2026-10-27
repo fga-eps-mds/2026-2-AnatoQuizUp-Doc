@@ -40,7 +40,20 @@ Todas as rotas públicas são expostas pelo **BFF** sob `/api/v1`. Exceto as de 
 |---|---|---|
 | `GET /ranking/geral`, `/ranking/amigos`, `/ranking/turmas/:turmaId`, `/ranking/listas/:turmaId/:listaId` | Quiz + Usuário | Pontuação + nome e avatar dos usuários |
 | `GET /perfis/:usuarioId/social` | Usuário + Quiz | Perfil público com avatar equipado e conquistas em destaque |
-| `/ia/*` | AI Service | Reservado; responde `503` |
+
+## IA (no BFF, via Gemini)
+
+Não há serviço de IA: estas rotas são atendidas pelo próprio BFF, que chama a Gemini API ([DA-07](decisoes.md)). Todas exigem JWT.
+
+| Método e rota | Descrição |
+|---|---|
+| `GET /ia/dica` | Dica da questão ativa baseada em regra, sem LLM |
+| `POST /ia/perguntar` | Pergunta livre do aluno sobre a questão, respondida pela Gemini |
+| `GET /ia/osce/cenarios` | Casos clínicos disponíveis para simulação (campos públicos) |
+| `POST /ia/osce/:id/mensagem` | Uma fala do aluno; a Gemini responde em personagem de paciente |
+| `POST /ia/osce/:id/finalizar` | Encerra a estação e devolve a rubrica pontuada ([detalhes](chatbot-osce.md)) |
+
+Qualquer outra sub-rota de `/ia/*` cai no catch-all do BFF e responde `503 IA_INDISPONIVEL` — é também o que todas elas respondem se a `GEMINI_API_KEY` não estiver configurada.
 
 ## Rotas internas (bloqueadas no BFF)
 
@@ -51,3 +64,4 @@ Todas as rotas públicas são expostas pelo **BFF** sob `/api/v1`. Exceto as de 
 | Data | Versão | Descrição | Autor(es) | Revisor(es) |
 | --- | --- | --- | --- | --- |
 | 28/09/2026 | 1.0 | Levantamento dos endpoints a partir do código dos serviços | [Henrique Carvalho](https://github.com/henriquecarv3), [Caio Habibe](https://github.com/CaioHabibe), [João Lucas](https://github.com/jlucasiqueira), [Rafael Melo](https://github.com/rmatuda) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #54](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/54)) |
+| 26/10/2026 | 1.1 | Rotas `/ia/*` documentadas como implementadas no BFF, incluindo a simulação OSCE | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |
