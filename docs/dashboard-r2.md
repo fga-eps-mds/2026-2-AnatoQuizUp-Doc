@@ -10,7 +10,7 @@
 | Velocidade observada | Captura mais recente de issues do repositório Doc | Semanas completas de sprint, de segunda a domingo: R1 de 10/08 a 27/09; R2 de 28/09 a 25/10; issues fechadas por semana, sem story points ou aceite do cliente |
 | Defeitos registrados | Rótulo `bug` na mesma captura de issues | Contagem pela data de criação da issue; **proxy limitado** ao backlog central, que contém documentação e DevOps |
 
-O app lê os dois formatos do exportador SonarCloud: `baseComponent.measures` (setembro) e `project_measures` (outubro). O nome do projeto é normalizado porque a chave Sonar mudou entre as coletas. Os horários do app são exibidos no horário de Brasília. O workflow `metricas.yml` de cada serviço exporta após o merge de PR ou acionamento manual; não há coleta periódica garantida a cada sprint. As coletas de 26/10 foram conferidas nos quatro repositórios.
+O app lê os dois formatos do exportador SonarCloud: `baseComponent.measures` (setembro) e `project_measures` (outubro). O nome do projeto é normalizado porque a chave Sonar mudou entre as coletas. Os horários do app são exibidos no horário de Brasília. O workflow `metricas.yml` de cada serviço exporta após o merge de PR, por acionamento manual e automaticamente ao fim de cada sprint (domingo, 23h17 no horário de Brasília). As coletas de 26/10 foram conferidas nos quatro repositórios.
 
 ## Comparação disponível
 
