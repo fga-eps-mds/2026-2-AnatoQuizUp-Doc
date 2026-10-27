@@ -6,7 +6,7 @@
 | --- | --- |
 | **Pauta** | Apresentação e validação das propostas de gamificação relacionadas a XP, níveis, elos, ranking e missões. |
 | **Data** | 16/10/2026 |
-| **Horário** | Início: 13:14 — Término: aproximadamente 13:26 |
+| **Horário** | Não informado |
 | **Tipo de reunião** | [x] Reunião semanal com Product Owner e alinhamento de produto |
 
 ## Participantes
