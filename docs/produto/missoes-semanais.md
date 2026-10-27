@@ -1,16 +1,16 @@
-# Missões semanais — proposta de regras para a R2
+# Missões semanais — regras aprovadas para a R2
 
 | Campo | Informação |
 | --- | --- |
 | Relação | Extensão de [Missões Diárias](missoes-diarias.md) e da US18 |
-| Decisão conhecida | A equipe informou que os Product Owners aprovaram **o escopo de missões semanais**. A [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84) documenta somente as missões diárias. |
-| Situação das regras abaixo | **Proposta técnica para revisão dos Product Owners**; metas, XP e horários não têm aceite registrado. |
+| Decisão conhecida | A equipe confirmou em 26/10/2026 que os Product Owners aprovaram, na semana anterior à entrega, **o escopo, as metas e as recompensas de XP das missões semanais**. A [#84](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/84) documenta somente as missões diárias. |
+| Situação das regras abaixo | **Aprovadas pelos Product Owners**, conforme confirmação da equipe; implementação e homologação ainda precisam ser concluídas. |
 
 ## Objetivo
 
 Incentivar estudo distribuído ao longo da semana sem exigir presença diária. A recompensa é consequência de respostas e quizzes verificáveis; ela não substitui o feedback pedagógico nem comprova aprendizagem.
 
-## Regras propostas
+## Regras aprovadas
 
 - O período é a semana civil de **segunda-feira, 00:00, a segunda-feira seguinte, 00:00**, no fuso `America/Sao_Paulo`. Missão não concluída expira sem recompensa.
 - Cada aluno recebe **três missões sorteadas** de um catálogo fixo de seis no primeiro acesso do período. A atribuição fica estável durante a semana. O sorteio e as metas são independentes das missões diárias.
@@ -21,7 +21,7 @@ Incentivar estudo distribuído ao longo da semana sem exigir presença diária. 
 
 ### Catálogo inicial proposto
 
-| Código | Meta na semana | Recompensa proposta |
+| Código | Meta na semana | Recompensa aprovada |
 | --- | --- | ---: |
 | `CONSTANCIA_SEMANAL` | Responder 20 questões diferentes | 100 XP |
 | `EXPLORACAO_SEMANAL` | Responder 30 questões diferentes | 150 XP |
@@ -30,7 +30,7 @@ Incentivar estudo distribuído ao longo da semana sem exigir presença diária. 
 | `VARIEDADE_SEMANAL` | Concluir 4 quizzes com combinações diferentes de tema e dificuldade | 180 XP |
 | `RITMO_SEMANAL` | Concluir 6 quizzes com combinações diferentes de tema e dificuldade | 220 XP |
 
-Os valores são **parâmetros propostos**, não resultados de validação pedagógica. Antes do merge da implementação, os POs devem confirmar ou alterar: quantidade de missões, metas, recompensas, dia e horário de renovação, expiração e tratamento de listas de turma. A equipe deve registrar a decisão na issue ou ata e verificar se há questões e combinações suficientes para tornar cada meta alcançável.
+Os valores foram confirmados pelos Product Owners, segundo registro da equipe em 26/10/2026. Essa aprovação define a regra de produto; não constitui resultado de validação pedagógica nem comprova a implementação em homologação. A equipe ainda deve vincular a decisão à issue ou ata correspondente e verificar se há questões e combinações suficientes para tornar cada meta alcançável.
 
 ## Critérios de aceite para a implementação
 
@@ -45,4 +45,4 @@ Os valores são **parâmetros propostos**, não resultados de validação pedag�
 
 | Data | Versão | Descrição | Autor | Revisor(es) |
 | --- | --- | --- | --- | --- |
-| 26/10/2026 | 0.1 | Proposta de regras semanais para revisão; escopo confirmado pela equipe | Equipe AnatoQuizUp 2026.2 | Pendente |
+| 26/10/2026 | 1.0 | Registro das regras semanais aprovadas pelos POs na semana anterior à entrega | Equipe AnatoQuizUp 2026.2 | Product Owners, conforme confirmação da equipe |
