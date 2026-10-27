@@ -19,7 +19,7 @@ O planejamento deve ser revisado ao fim de cada sprint, considerando entregas re
 | Release | Período | Foco | Resultado esperado | Situação |
 | :--- | :--- | :--- | :--- | :--- |
 | **Release 1** | 17/08 a 27/09 | Identidade e base da gamificação | Usuários personalizam o avatar, acessam a loja e dispõem da fundação necessária para a progressão gamificada. | Concluída |
-| **Release 2** | 28/09 a 25/10 | Ciclo de aprendizagem e progressão | Estudantes realizam quizzes por tema e nível, recebem feedback, revisam erros e acompanham o próprio progresso; XP, moedas, missões e ranking conectam estudo e gamificação. | Planejada / em execução |
+| **Release 2** | Desenvolvimento de 28/09 a 25/10; marco de entrega em 26/10 | Ciclo de aprendizagem e progressão | Estudantes realizam quizzes por tema e nível, recebem feedback, revisam erros e acompanham o próprio progresso; XP, moedas, missões e ranking conectam estudo e gamificação. | Em validação; critérios de saída pendentes |
 | **Release 3** | 26/10 a 29/11 | Ciclo do professor e validação do MVP | Professores selecionam conteúdo validado, organizam listas, acompanham resultados e ajustam atividades; um piloto avançado é validado junto ao fluxo principal. | Planejada |
 
 ## Linha do tempo
@@ -28,7 +28,7 @@ O planejamento deve ser revisado ao fim de cada sprint, considerando entregas re
 | :--- | :--- | :--- |
 | 10/08 | Kickoff e planejamento inicial | Alinhamento do problema, público e objetivos do semestre. |
 | 17/08 a 27/09 | Release 1 | Fundação de identidade, avatar e loja. |
-| 28/09 a 25/10 | Release 2 | Ciclo de aprendizagem integrado à progressão gamificada. |
+| 28/09 a 25/10; entrega em 26/10 | Release 2 | Ciclo de aprendizagem integrado à progressão gamificada; o dia 26/10 é o marco de apresentação e aceite, conforme a EAP. |
 | 26/10 a 29/11 | Release 3 | Ciclo do professor, piloto avançado e estabilização do MVP. |
 | 30/11 a 14/12 | Validação e encerramento | Avaliação das métricas, correções finais, documentação e apresentação dos resultados. |
 
