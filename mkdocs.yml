@@ -68,6 +68,9 @@ nav:
   - Reuniões:
     - Template de ata de reunião: reunioes/modelo-ata-reuniao.md
     - 06-10-2026: reunioes/reuniao-06-10-26.md
+    - 16-10-2026: reunioes/reuniao-16-10-26.md
+    - 19-10-2026: reunioes/reuniao-19-10-26.md
+    - 26-10-2026: reunioes/reuniao-26-10-26.md
 
 extra_css:
   - stylesheets/extra.css
