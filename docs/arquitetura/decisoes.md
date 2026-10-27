@@ -67,9 +67,19 @@ O Web segue o **Feature-Sliced Design**. Uma camada só importa camadas inferior
 
 **Consequência:** toda movimentação de moedas é registrada em `TransacaoMoeda` (acerto, conquista, compra, uso de potencializador), o que garante rastreabilidade do saldo.
 
-## DA-07 — Serviço de IA reservado
+## DA-07 — IA no BFF, sem serviço dedicado
 
-O BFF já possui a rota `/ia` e o cliente `ai.client`, que respondem `503` enquanto `AI_URL` não estiver configurada. Isso permite habilitar geração de questões por IA em releases futuras (`OrigemQuestao.GERADA_POR_IA` já existe no modelo) sem mudar o contrato do frontend.
+**Contexto:** a rota `/ia` nasceu como reserva para um futuro "AI Service" (cliente `ai.client` + variável `AI_URL`, respondendo `503` enquanto não houvesse serviço). Quando a IA passou a ser construída de fato — dica, perguntas livres e a simulação OSCE — não havia estado, banco nem orquestração a justificar um serviço próprio: as três rotas só montam um prompt e repassam a resposta.
+
+**Decisão:** o BFF **é** a camada de IA. Ele chama a Gemini direto pelo `gemini.client`, configurado por `GEMINI_API_KEY`/`GEMINI_MODEL`; `ai.client` e `AI_URL` foram removidos. O `503` sobrou apenas no catch-all de `/ia/*` (sub-rota inexistente ou chave ausente).
+
+**Consequências:**
+- (+) Nenhum serviço a mais para subir, versionar e monitorar; a chave do provedor fica num único lugar, longe do navegador.
+- (+) Sem estado de sessão: o histórico da conversa vive no front e é reenviado a cada chamada, como no chat de ajuda.
+- (−) O BFF acumula responsabilidade de IA, e o custo da API passa por ele — monitorar uso desde o início.
+- (−) Se entrar RAG, geração de questões em lote ou fila de processamento (`OrigemQuestao.GERADA_POR_IA` já existe no modelo), esta decisão deve ser reavaliada: aí um serviço próprio volta a se pagar.
+
+A simulação OSCE **não persiste nada** (conversa e rubrica morrem com a página), o que é coerente com o DA-02 e não muda o [banco de dados](banco-de-dados.md). Essa escolha é também o que hoje impede derivar a nota de corte por *borderline regression* — ver a seção 5.6 do [documento da feature](chatbot-osce.md).
 
 ## DA-08 — Qualidade contínua
 
@@ -82,3 +92,4 @@ O BFF já possui a rota `/ia` e o cliente `ai.client`, que respondem `503` enqua
 | Data | Versão | Descrição | Autor(es) | Revisor(es) |
 | --- | --- | --- | --- | --- |
 | 28/09/2026 | 1.0 | Registro das decisões arquiteturais de 2026.2 | [Henrique Carvalho](https://github.com/henriquecarv3), [Caio Habibe](https://github.com/CaioHabibe), [João Lucas](https://github.com/jlucasiqueira), [Rafael Melo](https://github.com/rmatuda) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #54](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/54)) |
+| 26/10/2026 | 1.1 | DA-07 reescrita: IA implementada no próprio BFF via Gemini, sem serviço dedicado | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |

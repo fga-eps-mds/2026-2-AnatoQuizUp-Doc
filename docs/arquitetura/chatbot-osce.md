@@ -1,6 +1,6 @@
 # Chatbot de simulação OSCE
 
-> Documento de implementação: descreve a feature entregue (não é um plano de estudo, como `chatbot-ajuda-ia.md` — essa já foi construída). Reaproveita a mesma infraestrutura de IA do chat de ajuda (Gemini via BFF).
+> Documento de implementação: descreve a feature **já entregue**, não um plano. Reaproveita a mesma infraestrutura de IA do chat de ajuda (`/ia/perguntar`): Gemini chamada pelo BFF, sem serviço de IA dedicado (ver [DA-07](decisoes.md)).
 
 ## 1. O que é e por que existe
 
@@ -10,19 +10,24 @@ A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um **caso clínico
 
 ## 2. Arquitetura
 
-```
-Aluno (Web) → /aluno/osce (nova aba do menu, só para o papel STUDENT)
-   ↓
-BFF (/ia/osce/*, roteador próprio, mesmo padrão de /ia/perguntar)
-   ↓ proxy autenticado para a Gemini API (geminiClient já existente)
-Gemini API — chamada 2x com instruções de sistema diferentes:
-   1. "Modo paciente": interpreta o perfil clínico do caso
-   2. "Modo examinador": classifica cada item da rubrica E dá uma nota global (sem calcular pontos)
-   ↓
-Resposta volta pelo BFF → Web renderiza a conversa / o feedback
+```mermaid
+flowchart LR
+    aluno(["Aluno<br/>papel STUDENT"])
+    web["Web<br/>/aluno/osce<br/>(público)"]
+    bff["BFF<br/>/api/v1/ia/osce/*<br/>(público)"]
+    gemini[("Gemini API<br/>(externa)")]
+
+    aluno --> web
+    web -->|"HTTPS REST<br/>Bearer JWT"| bff
+    bff -->|"1. instrução 'modo paciente'<br/>perfil + roteiro oculto"| gemini
+    bff -->|"2. instrução 'modo examinador'<br/>rubrica + âncoras"| gemini
+    gemini -.->|"fala em personagem /<br/>julgamento em JSON"| bff
+    bff -.->|"conversa / rubrica pontuada"| web
 ```
 
-Não existe um "Serviço de IA" separado nem RAG/Qdrant aqui — diferente do chat de ajuda, o conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.
+As duas chamadas usam o **mesmo** `geminiClient` e a mesma `GEMINI_API_KEY` do chat de ajuda; o que muda entre elas é só a instrução de sistema (seção 4). A chave fica no BFF e nunca chega ao Web.
+
+Não existe um "Serviço de IA" separado nem RAG/Qdrant aqui — o BFF é a camada de IA do projeto ([DA-07](decisoes.md)). Diferente do chat de ajuda, o conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.
 
 ### Componentes tocados
 
@@ -44,7 +49,7 @@ Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-os
 
 | Campo | Visível para o aluno? | Uso |
 |---|---|---|
-| `id` | Sim | Identifica o caso nas rotas (`/ia/osce/:id/...`) |
+| `id` | Sim | Identifica o caso nas rotas (`/api/v1/ia/osce/:id/...`) |
 | `titulo` | Sim | Nome exibido na lista de casos |
 | `especialidade` | Sim | Rótulo exibido (ex.: "Cardiologia") |
 | `dificuldade` | Sim | `"Fácil" \| "Médio" \| "Difícil"`, exibido como selo colorido |
@@ -54,7 +59,7 @@ Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-os
 | `diagnosticoEsperado` | **Não** | Nunca é dito ao aluno; só aparece no feedback final |
 | `rubrica` | **Não** (só após finalizar) | Checklist pontuado: itens, domínios, pesos, âncoras de crédito e itens críticos (ver seção 5) |
 
-A rota `GET /ia/osce/cenarios` devolve **só** os 4 primeiros campos — o resto nunca sai do BFF antes da hora, para não vazar a resposta do caso.
+A rota `GET /api/v1/ia/osce/cenarios` devolve **só** os 4 primeiros campos — o resto nunca sai do BFF antes da hora, para não vazar a resposta do caso.
 
 Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código. **Não há tela de autoria de caso para professor** — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array `CENARIOS_OSCE`, seguindo os 3 exemplos existentes como modelo.
 
@@ -62,7 +67,9 @@ Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, 
 
 Pré-requisito: o mesmo `GEMINI_API_KEY`/`GEMINI_MODEL` do chat de ajuda (`src/config/env.ts` do BFF). Sem a chave configurada, todas as rotas abaixo respondem `503 IA_INDISPONIVEL`, igual ao `/ia/perguntar`.
 
-### 4.1. `GET /ia/osce/cenarios`
+Todas as três rotas ficam atrás do `middlewareAutenticacao` (JWT validado na borda, como manda o [DA-03](decisoes.md)) e a tela `/aluno/osce` é protegida para o papel `STUDENT` no `router.tsx` do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini, só com o BFF.
+
+### 4.1. `GET /api/v1/ia/osce/cenarios`
 
 Lista os casos disponíveis (campos públicos da tabela acima). Sem corpo de requisição.
 
@@ -70,7 +77,7 @@ Lista os casos disponíveis (campos públicos da tabela acima). Sem corpo de req
 { "cenarios": [{ "id": "dor-toracica", "titulo": "...", "especialidade": "Cardiologia", "dificuldade": "Médio" }] }
 ```
 
-### 4.2. `POST /ia/osce/:id/mensagem` — uma fala do aluno
+### 4.2. `POST /api/v1/ia/osce/:id/mensagem` — uma fala do aluno
 
 ```json
 {
@@ -87,7 +94,7 @@ O **histórico vive no front** (estado React da página), não no BFF — cada c
 
 Resposta: `{ "resposta": "<fala do paciente, em personagem>" }`.
 
-### 4.3. `POST /ia/osce/:id/finalizar` — fim da simulação
+### 4.3. `POST /api/v1/ia/osce/:id/finalizar` — fim da simulação
 
 ```json
 { "historico": [{ "autor": "aluno" | "paciente", "texto": "..." }] }
@@ -265,3 +272,21 @@ Numeração usada ao longo da seção 5.
 - **Sem streaming**: a resposta da Gemini chega de uma vez (igual ao `/ia/perguntar`), não token a token. O *thinking* da Gemini é desligado (`thinkingConfig.thinkingBudget: 0`) nas duas rotas: com ele a chamada levava 10–15s e às vezes estourava o `REQUEST_TIMEOUT_MS`. A UI mostra um spinner de carregamento enquanto espera.
 - **Dado do aluno que cruza para a Gemini**: nenhum — diferente do `/ia/dica`, o modo OSCE não usa o desempenho do aluno, só o texto da conversa em si (que o próprio aluno está digitando). Sem risco de LGPD adicional em relação ao que o chat de ajuda já levanta.
 - **Falha graciosa**: se a Gemini não estiver configurada ou falhar, a rota responde 503/502 com uma mensagem de erro — a página mostra o erro, sem quebrar a navegação.
+
+## 8. Testes
+
+A regra de pontuação é a parte auditável da feature, então é a parte testada: `tests/unit/pontuacao-osce.test.ts` (BFF, Jest) cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como `nao_realizado`, o teto do item crítico, a nota global fora da escala e a marca de divergência — além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes). São 13 casos.
+
+**Gap conhecido**: `src/routes/osce.routes.ts` ainda **não** tem teste de rota (as outras rotas do BFF têm, em `tests/unit/*.routes.test.ts`, com o cliente externo mockado). Enquanto isso não existir, a feature consome a folga do `coverageThreshold` de 85% exigido pelo [DA-08](decisoes.md) — é o próximo item de qualidade desta feature.
+
+## Documentos relacionados
+
+- [Visão Geral da Arquitetura](visao-geral.md)
+- [Decisões Arquiteturais](decisoes.md)
+- [Endpoints](endpoints.md)
+
+## Histórico de Versão
+
+| Data | Versão | Descrição | Autor(es) |
+| :--- | :--- | :--- | :--- |
+| 26/10/2026 | 1.0 | Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações | [João Paulo](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) |

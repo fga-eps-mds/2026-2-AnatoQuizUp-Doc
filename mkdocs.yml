@@ -46,6 +46,7 @@ nav:
     - Decisões Arquiteturais: arquitetura/decisoes.md
     - Banco de Dados: arquitetura/banco-de-dados.md
     - Endpoints: arquitetura/endpoints.md
+    - Chatbot de Simulação OSCE: arquitetura/chatbot-osce.md
 
   - Gestão:
     - Metodologia: metodologia/metodologia.md
