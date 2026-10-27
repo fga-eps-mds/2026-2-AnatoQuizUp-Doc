@@ -287,6 +287,6 @@ A regra de pontuação é a parte auditável da feature, então é a parte testa
 
 ## Histórico de Versão
 
-| Data | Versão | Descrição | Autor(es) |
-| :--- | :--- | :--- | :--- |
-| 26/10/2026 | 1.0 | Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações | [João Paulo](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) |
+| Data | Versão | Descrição | Autor(es) | Revisor(es) |
+| --- | --- | --- | --- | --- |
+| 26/10/2026 | 1.0 | Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |
