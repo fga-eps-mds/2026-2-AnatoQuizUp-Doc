@@ -18,6 +18,7 @@
 | Hugo de Verson Santana Camilo Jorge | [x] Presente |
 | João Paulo Lima da Silva | [x] Presente |
 | Leticia Torres Soares Martins | [x] Presente |
+| Arthur Fonseca Vale | [x] Presente |
 | Neysa Aparecida Tinoco Regattieri | [x] Presente |
 | Vinicius de Carvalho Rispoli | [x] Presente |
 
