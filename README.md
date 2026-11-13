@@ -127,6 +127,18 @@ Este repositório tem como objetivo manter a documentação do projeto, reunir o
     </table>
 </center>
 
+## Repositórios do projeto
+
+| Repositório | Função |
+|---|---|
+| [`2026-2-AnatoQuizUp-Web`](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Web) | Frontend (React + Vite) |
+| [`2026-2-AnatoQuizUp-BFF`](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-BFF) | Backend-For-Frontend (porta de entrada pública) |
+| [`2026-2-AnatoQuizUp-Usuario-Service`](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Usuario-Service) | Serviço de usuário (autenticação, identidade e admin) |
+| [`2026-2-AnatoQuizUp-Quiz-Service`](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Quiz-Service) | Questões, quiz, turmas, vínculo de alunos, Quiz DB e storage de imagens (MinIO/S3) |
+| [`2026-2-AnatoQuizUp-ChatbotOSCE`](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-ChatbotOSCE) | Chatbot para casos clínicos OSCE |
+| [`2026-1-AnatoQuizUp-AI`](https://github.com/fga-eps-mds/2026-1-AnatoQuizUp-AI) | Serviço de IA feito pelo primeiro time (placeholder reservado para futura implementação de questões e imagens geradas por IA) |
+| `2026-2-AnatoQuizUp-Doc` (este) | Documentação (MkDocs) |
+
 ## Pré-requisitos
 
 - python 3.10 ou superior
@@ -167,3 +179,5 @@ http://127.0.0.1:8000
 | 04/09/2026 | 1.0 | Criação do README | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |
 | 09/09/2026 | 1.1 | Atualização do README | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |
 | 27/09/2026 | 1.2 | Remoção dos dados dos contribuidores | [Letícia Torres Soares Martins](https://github.com/leticiatmartins) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #47](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/47)) |
+| 13/11/2026 | 1.3 | Adição da referencia de todos os repositórios do projeto | [Gabriel Freitas](https://github.com/gabrielfreitass1) | [Gabriel Freitas](https://github.com/gabrielfreitass1) (aprovação informada pela equipe) |
+
