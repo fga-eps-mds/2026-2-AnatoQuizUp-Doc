@@ -41,19 +41,26 @@ Todas as rotas públicas são expostas pelo **BFF** sob `/api/v1`. Exceto as de 
 | `GET /ranking/geral`, `/ranking/amigos`, `/ranking/turmas/:turmaId`, `/ranking/listas/:turmaId/:listaId` | Quiz + Usuário | Pontuação + nome e avatar dos usuários |
 | `GET /perfis/:usuarioId/social` | Usuário + Quiz | Perfil público com avatar equipado e conquistas em destaque |
 
-## IA (no BFF, via Gemini)
+## IA (dica e perguntar, no BFF via Gemini)
 
-Não há serviço de IA: estas rotas são atendidas pelo próprio BFF, que chama a Gemini API ([DA-07](decisoes.md)). Todas exigem JWT.
+Estas rotas são atendidas pelo próprio BFF, que chama a Gemini API ([DA-07](decisoes.md)). Exigem JWT.
 
 | Método e rota | Descrição |
 |---|---|
 | `GET /ia/dica` | Dica da questão ativa baseada em regra, sem LLM |
 | `POST /ia/perguntar` | Pergunta livre do aluno sobre a questão, respondida pela Gemini |
+
+Qualquer outra sub-rota de `/ia/*` não listada aqui ou na tabela abaixo cai no catch-all do BFF e responde `503 IA_INDISPONIVEL` — é também o que `/ia/dica` e `/ia/perguntar` respondem se a `GEMINI_API_KEY` não estiver configurada.
+
+## IA (simulação OSCE, proxy para o ChatbotOSCE)
+
+O BFF faz proxy destas rotas para o microsserviço **ChatbotOSCE** ([DA-07](decisoes.md)), do mesmo jeito que faz para o Quiz-Service e o Usuario-Service. Exigem JWT; o ChatbotOSCE revalida o token e exige o `x-internal-token` do BFF.
+
+| Método e rota | Descrição |
+|---|---|
 | `GET /ia/osce/cenarios` | Casos clínicos disponíveis para simulação (campos públicos) |
 | `POST /ia/osce/:id/mensagem` | Uma fala do aluno; a Gemini responde em personagem de paciente |
 | `POST /ia/osce/:id/finalizar` | Encerra a estação e devolve a rubrica pontuada ([detalhes](chatbot-osce.md)) |
-
-Qualquer outra sub-rota de `/ia/*` cai no catch-all do BFF e responde `503 IA_INDISPONIVEL` — é também o que todas elas respondem se a `GEMINI_API_KEY` não estiver configurada.
 
 ## Rotas internas (bloqueadas no BFF)
 
@@ -65,3 +72,4 @@ Qualquer outra sub-rota de `/ia/*` cai no catch-all do BFF e responde `503 IA_IN
 | --- | --- | --- | --- | --- |
 | 28/09/2026 | 1.0 | Levantamento dos endpoints a partir do código dos serviços | [Henrique Carvalho](https://github.com/henriquecarv3), [Caio Habibe](https://github.com/CaioHabibe), [João Lucas](https://github.com/jlucasiqueira), [Rafael Melo](https://github.com/rmatuda) | [João Paulo Lima](https://github.com/jpaulohe4rt) ([PR #54](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/pull/54)) |
 | 26/10/2026 | 1.1 | Rotas `/ia/*` documentadas como implementadas no BFF, incluindo a simulação OSCE | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |
+| 17/11/2026 | 1.2 | Rotas `/ia/osce/*` passam a ser proxy do BFF para o microsserviço ChatbotOSCE | [João Paulo Lima](https://github.com/jpaulohe4rt) | |

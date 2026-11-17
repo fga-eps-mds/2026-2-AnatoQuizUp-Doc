@@ -13,6 +13,7 @@ flowchart LR
     bff["BFF<br/>Node + Express<br/>(público)"]
     usr["Usuario-Service<br/>Express + Prisma<br/>(privado)"]
     quiz["Quiz-Service<br/>Express + Prisma<br/>(privado)"]
+    chatbot["ChatbotOSCE<br/>Express<br/>(privado)"]
     gemini[("Gemini API<br/>(externa)")]
     userDb[("Auth DB<br/>PostgreSQL")]
     quizDb[("Quiz DB<br/>PostgreSQL")]
@@ -22,7 +23,9 @@ flowchart LR
     web -->|"HTTPS REST<br/>Bearer JWT"| bff
     bff -->|"/autenticacao, /usuarios,<br/>/admin, /amizade"| usr
     bff -->|"/questoes, /quiz, /turmas, /lista,<br/>/loja, /inventario, /conquistas, /ranking"| quiz
-    bff -->|"/ia/dica, /ia/perguntar,<br/>/ia/osce/*"| gemini
+    bff -->|"/ia/dica, /ia/perguntar"| gemini
+    bff -->|"/ia/osce/* (proxy)"| chatbot
+    chatbot --> gemini
     usr --> userDb
     quiz --> quizDb
     quiz --> minio
@@ -36,7 +39,8 @@ flowchart LR
 | **BFF** | Pública | Valida o JWT na borda, injeta `X-Internal-Token` e headers `X-User-*`, faz proxy para os serviços e **agrega dados** de mais de um serviço (ranking, perfil social). Não possui banco. |
 | **Usuario-Service** | Privada | Cadastro, login, sessão (refresh token), recuperação de senha, administração de usuários e amizades. |
 | **Quiz-Service** | Privada | Questões e temas, quiz, turmas, listas de exercícios, gamificação (moedas, loja, inventário, conquistas, ranking), dashboards e geração de PDF. |
-| **Gemini API** | Externa | Provedor de LLM chamado direto pelo BFF nas rotas `/ia/*` (dica, perguntas livres e simulação OSCE). Não há serviço de IA próprio; a `GEMINI_API_KEY` fica somente no BFF. |
+| **ChatbotOSCE** | Privada | Simulação de casos clínicos (OSCE): conversa com o paciente interpretado pela Gemini e avaliação da estação contra a rubrica do caso. Só é alcançável via proxy do BFF (`/ia/osce/*`); tem sua própria `GEMINI_API_KEY`. |
+| **Gemini API** | Externa | Provedor de LLM. Chamado direto pelo BFF em `/ia/dica` e `/ia/perguntar`, e pelo ChatbotOSCE para a simulação OSCE. |
 
 ## Perfis de acesso
 
