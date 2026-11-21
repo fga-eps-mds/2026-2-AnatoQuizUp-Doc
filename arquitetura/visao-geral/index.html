@@ -1794,6 +1794,7 @@
     bff["BFF&lt;br/&gt;Node + Express&lt;br/&gt;(público)"]
     usr["Usuario-Service&lt;br/&gt;Express + Prisma&lt;br/&gt;(privado)"]
     quiz["Quiz-Service&lt;br/&gt;Express + Prisma&lt;br/&gt;(privado)"]
+    chatbot["ChatbotOSCE&lt;br/&gt;Express&lt;br/&gt;(privado)"]
     gemini[("Gemini API&lt;br/&gt;(externa)")]
     userDb[("Auth DB&lt;br/&gt;PostgreSQL")]
     quizDb[("Quiz DB&lt;br/&gt;PostgreSQL")]
@@ -1803,7 +1804,9 @@
     web --&gt;|"HTTPS REST&lt;br/&gt;Bearer JWT"| bff
     bff --&gt;|"/autenticacao, /usuarios,&lt;br/&gt;/admin, /amizade"| usr
     bff --&gt;|"/questoes, /quiz, /turmas, /lista,&lt;br/&gt;/loja, /inventario, /conquistas, /ranking"| quiz
-    bff --&gt;|"/ia/dica, /ia/perguntar,&lt;br/&gt;/ia/osce/*"| gemini
+    bff --&gt;|"/ia/dica, /ia/perguntar"| gemini
+    bff --&gt;|"/ia/osce/* (proxy)"| chatbot
+    chatbot --&gt; gemini
     usr --&gt; userDb
     quiz --&gt; quizDb
     quiz --&gt; minio</code></pre>
@@ -1838,9 +1841,14 @@
 <td>Questões e temas, quiz, turmas, listas de exercícios, gamificação (moedas, loja, inventário, conquistas, ranking), dashboards e geração de PDF.</td>
 </tr>
 <tr>
+<td><strong>ChatbotOSCE</strong></td>
+<td>Privada</td>
+<td>Simulação de casos clínicos (OSCE): conversa com o paciente interpretado pela Gemini e avaliação da estação contra a rubrica do caso. Só é alcançável via proxy do BFF (<code>/ia/osce/*</code>); tem sua própria <code>GEMINI_API_KEY</code>.</td>
+</tr>
+<tr>
 <td><strong>Gemini API</strong></td>
 <td>Externa</td>
-<td>Provedor de LLM chamado direto pelo BFF nas rotas <code>/ia/*</code> (dica, perguntas livres e simulação OSCE). Não há serviço de IA próprio; a <code>GEMINI_API_KEY</code> fica somente no BFF.</td>
+<td>Provedor de LLM. Chamado direto pelo BFF em <code>/ia/dica</code> e <code>/ia/perguntar</code>, e pelo ChatbotOSCE para a simulação OSCE.</td>
 </tr>
 </tbody>
 </table>

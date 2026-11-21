@@ -961,9 +961,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ia-no-bff-via-gemini" class="md-nav__link">
+  <a href="#ia-dica-e-perguntar-no-bff-via-gemini" class="md-nav__link">
     <span class="md-ellipsis">
-      IA (no BFF, via Gemini)
+      IA (dica e perguntar, no BFF via Gemini)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ia-simulacao-osce-proxy-para-o-chatbotosce" class="md-nav__link">
+    <span class="md-ellipsis">
+      IA (simulação OSCE, proxy para o ChatbotOSCE)
     </span>
   </a>
   
@@ -1723,9 +1732,18 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#ia-no-bff-via-gemini" class="md-nav__link">
+  <a href="#ia-dica-e-perguntar-no-bff-via-gemini" class="md-nav__link">
     <span class="md-ellipsis">
-      IA (no BFF, via Gemini)
+      IA (dica e perguntar, no BFF via Gemini)
+    </span>
+  </a>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#ia-simulacao-osce-proxy-para-o-chatbotosce" class="md-nav__link">
+    <span class="md-ellipsis">
+      IA (simulação OSCE, proxy para o ChatbotOSCE)
     </span>
   </a>
   
@@ -1922,8 +1940,8 @@
 </tr>
 </tbody>
 </table>
-<h2 id="ia-no-bff-via-gemini">IA (no BFF, via Gemini)</h2>
-<p>Não há serviço de IA: estas rotas são atendidas pelo próprio BFF, que chama a Gemini API (<a href="../decisoes/">DA-07</a>). Todas exigem JWT.</p>
+<h2 id="ia-dica-e-perguntar-no-bff-via-gemini">IA (dica e perguntar, no BFF via Gemini)</h2>
+<p>Estas rotas são atendidas pelo próprio BFF, que chama a Gemini API (<a href="../decisoes/">DA-07</a>). Exigem JWT.</p>
 <table>
 <thead>
 <tr>
@@ -1940,6 +1958,19 @@
 <td><code>POST /ia/perguntar</code></td>
 <td>Pergunta livre do aluno sobre a questão, respondida pela Gemini</td>
 </tr>
+</tbody>
+</table>
+<p>Qualquer outra sub-rota de <code>/ia/*</code> não listada aqui ou na tabela abaixo cai no catch-all do BFF e responde <code>503 IA_INDISPONIVEL</code> — é também o que <code>/ia/dica</code> e <code>/ia/perguntar</code> respondem se a <code>GEMINI_API_KEY</code> não estiver configurada.</p>
+<h2 id="ia-simulacao-osce-proxy-para-o-chatbotosce">IA (simulação OSCE, proxy para o ChatbotOSCE)</h2>
+<p>O BFF faz proxy destas rotas para o microsserviço <strong>ChatbotOSCE</strong> (<a href="../decisoes/">DA-07</a>), do mesmo jeito que faz para o Quiz-Service e o Usuario-Service. Exigem JWT; o ChatbotOSCE revalida o token e exige o <code>x-internal-token</code> do BFF.</p>
+<table>
+<thead>
+<tr>
+<th>Método e rota</th>
+<th>Descrição</th>
+</tr>
+</thead>
+<tbody>
 <tr>
 <td><code>GET /ia/osce/cenarios</code></td>
 <td>Casos clínicos disponíveis para simulação (campos públicos)</td>
@@ -1954,7 +1985,6 @@
 </tr>
 </tbody>
 </table>
-<p>Qualquer outra sub-rota de <code>/ia/*</code> cai no catch-all do BFF e responde <code>503 IA_INDISPONIVEL</code> — é também o que todas elas respondem se a <code>GEMINI_API_KEY</code> não estiver configurada.</p>
 <h2 id="rotas-internas-bloqueadas-no-bff">Rotas internas (bloqueadas no BFF)</h2>
 <p><code>/inventario/usuarios/equipados</code> e <code>/conquistas/usuarios/destaques</code> retornam <strong>404</strong> quando chamadas externamente. São usadas apenas pelo BFF para compor ranking e perfil social.</p>
 <h2 id="historico-de-versao">Histórico de Versão</h2>
@@ -1981,6 +2011,13 @@
 <td>1.1</td>
 <td>Rotas <code>/ia/*</code> documentadas como implementadas no BFF, incluindo a simulação OSCE</td>
 <td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17/11/2026</td>
+<td>1.2</td>
+<td>Rotas <code>/ia/osce/*</code> passam a ser proxy do BFF para o microsserviço ChatbotOSCE</td>
+<td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a></td>
 <td></td>
 </tr>
 </tbody>

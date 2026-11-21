@@ -946,9 +946,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#da-07-ia-no-bff-sem-servico-dedicado" class="md-nav__link">
+  <a href="#da-07-ia-no-bff-exceto-a-simulacao-osce-servico-dedicado" class="md-nav__link">
     <span class="md-ellipsis">
-      DA-07 — IA no BFF, sem serviço dedicado
+      DA-07 — IA no BFF, exceto a simulação OSCE (serviço dedicado)
     </span>
   </a>
   
@@ -1777,9 +1777,9 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#da-07-ia-no-bff-sem-servico-dedicado" class="md-nav__link">
+  <a href="#da-07-ia-no-bff-exceto-a-simulacao-osce-servico-dedicado" class="md-nav__link">
     <span class="md-ellipsis">
-      DA-07 — IA no BFF, sem serviço dedicado
+      DA-07 — IA no BFF, exceto a simulação OSCE (serviço dedicado)
     </span>
   </a>
   
@@ -1891,14 +1891,16 @@ Usuario-Service/src/modules/
 <p><strong>Decisão:</strong> moedas, loja, inventário e conquistas ficam no mesmo serviço do quiz.</p>
 <p><strong>Justificativa:</strong> ganhar moedas e desbloquear conquistas acontece <strong>na mesma transação</strong> em que o aluno responde uma questão. Separar em outro serviço exigiria consistência eventual entre bancos para cada resposta.</p>
 <p><strong>Consequência:</strong> toda movimentação de moedas é registrada em <code>TransacaoMoeda</code> (acerto, conquista, compra, uso de potencializador), o que garante rastreabilidade do saldo.</p>
-<h2 id="da-07-ia-no-bff-sem-servico-dedicado">DA-07 — IA no BFF, sem serviço dedicado</h2>
-<p><strong>Contexto:</strong> a rota <code>/ia</code> nasceu como reserva para um futuro "AI Service" (cliente <code>ai.client</code> + variável <code>AI_URL</code>, respondendo <code>503</code> enquanto não houvesse serviço). Quando a IA passou a ser construída de fato — dica, perguntas livres e a simulação OSCE — não havia estado, banco nem orquestração a justificar um serviço próprio: as três rotas só montam um prompt e repassam a resposta.</p>
-<p><strong>Decisão</strong> (ratificada com os Product Owners na <a href="../../reunioes/reuniao-26-10-26/">ata de 26/10/2026</a>, que definiu o Gemini como solução de curto prazo com integração desacoplada para permitir a troca futura do modelo)<strong>:</strong> o BFF <strong>é</strong> a camada de IA. Ele chama a Gemini direto pelo <code>gemini.client</code>, configurado por <code>GEMINI_API_KEY</code>/<code>GEMINI_MODEL</code>; <code>ai.client</code> e <code>AI_URL</code> foram removidos. O <code>503</code> sobrou apenas no catch-all de <code>/ia/*</code> (sub-rota inexistente ou chave ausente).</p>
+<h2 id="da-07-ia-no-bff-exceto-a-simulacao-osce-servico-dedicado">DA-07 — IA no BFF, exceto a simulação OSCE (serviço dedicado)</h2>
+<p><strong>Contexto:</strong> a rota <code>/ia</code> nasceu como reserva para um futuro "AI Service" (cliente <code>ai.client</code> + variável <code>AI_URL</code>, respondendo <code>503</code> enquanto não houvesse serviço). Quando a IA passou a ser construída de fato — dica, perguntas livres e a simulação OSCE —, a decisão de 26/10 foi manter tudo no BFF: nenhuma das três rotas tinha estado, banco ou orquestração que justificasse um serviço próprio.</p>
+<p><strong>Decisão original</strong> (ratificada com os Product Owners na <a href="../../reunioes/reuniao-26-10-26/">ata de 26/10/2026</a>, que definiu o Gemini como solução de curto prazo com integração desacoplada para permitir a troca futura do modelo)<strong>:</strong> o BFF <strong>é</strong> a camada de IA. Ele chama a Gemini direto pelo <code>gemini.client</code>, configurado por <code>GEMINI_API_KEY</code>/<code>GEMINI_MODEL</code>; <code>ai.client</code> e <code>AI_URL</code> foram removidos.</p>
+<p><strong>Revisão — simulação OSCE extraída para o microsserviço ChatbotOSCE:</strong> com os Product Owners, decidiu-se criar um microsserviço dedicado (<code>ChatbotOSCE</code>) só para a simulação de casos clínicos. <code>/ia/dica</code> e <code>/ia/perguntar</code> continuam no BFF, sem mudança — a exceção é só a estação OSCE (<code>/ia/osce/*</code>), que tem um escopo de prompt bem maior (interpretar paciente e depois examinador) e é a frente que vai crescer no roadmap (cadastro de casos pelo professor, novas estações). O BFF deixa de chamar a Gemini para essas rotas e passa a fazer proxy para o ChatbotOSCE, do mesmo jeito que já faz para o Quiz-Service e o Usuario-Service (<code>criarProxyHandler</code>); o <code>503</code> do catch-all de <code>/ia/*</code> permanece para sub-rota inexistente ou chave ausente nas rotas que seguem no BFF.</p>
 <p><strong>Consequências:</strong>
-- (+) Nenhum serviço a mais para subir, versionar e monitorar; a chave do provedor fica num único lugar, longe do navegador.
+- (+) Dica e perguntas livres continuam simples, sem serviço a mais para subir, versionar e monitorar.
+- (+) A simulação OSCE ganha um dono próprio para crescer (cadastro de casos, novas estações) sem inflar o BFF.
 - (+) Sem estado de sessão: o histórico da conversa vive no front e é reenviado a cada chamada, como no chat de ajuda.
-- (−) O BFF acumula responsabilidade de IA, e o custo da API passa por ele — monitorar uso desde o início.
-- (−) Se entrar RAG, geração de questões em lote ou fila de processamento (<code>OrigemQuestao.GERADA_POR_IA</code> já existe no modelo), esta decisão deve ser reavaliada: aí um serviço próprio volta a se pagar.</p>
+- (−) Mais um serviço para subir, versionar e monitorar, com seu próprio <code>GEMINI_API_KEY</code>/<code>GEMINI_MODEL</code>.
+- (−) Se entrar RAG, geração de questões em lote ou fila de processamento (<code>OrigemQuestao.GERADA_POR_IA</code> já existe no modelo) nas rotas que ficaram no BFF, esta decisão deve ser reavaliada de novo.</p>
 <p>A simulação OSCE <strong>não persiste nada</strong> (conversa e rubrica morrem com a página), o que é coerente com o DA-02 e não muda o <a href="../banco-de-dados/">banco de dados</a>. Essa escolha é também o que hoje impede derivar a nota de corte por <em>borderline regression</em> — ver a seção 5.6 do <a href="../chatbot-osce/">documento da feature</a>.</p>
 <h2 id="da-08-qualidade-continua">DA-08 — Qualidade contínua</h2>
 <ul>
@@ -1930,6 +1932,13 @@ Usuario-Service/src/modules/
 <td>1.1</td>
 <td>DA-07 reescrita: IA implementada no próprio BFF via Gemini, sem serviço dedicado</td>
 <td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
+<td></td>
+</tr>
+<tr>
+<td>17/11/2026</td>
+<td>1.2</td>
+<td>DA-07 revisada: simulação OSCE extraída para o microsserviço ChatbotOSCE, decidido com os Product Owners; <code>/ia/dica</code> e <code>/ia/perguntar</code> continuam no BFF</td>
+<td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a></td>
 <td></td>
 </tr>
 </tbody>
