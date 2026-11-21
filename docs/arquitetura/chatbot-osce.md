@@ -1,12 +1,12 @@
 # Chatbot de simulação OSCE
 
-> Documento de implementação: descreve a feature **já entregue**, não um plano. Reaproveita a mesma infraestrutura de IA do chat de ajuda (`/ia/perguntar`): Gemini chamada pelo BFF, sem serviço de IA dedicado (ver [DA-07](decisoes.md)).
+> Documento de implementação: descreve a feature **já entregue**, não um plano. A IA da simulação vive no microsserviço **ChatbotOSCE**, que chama a Gemini; o BFF só faz proxy para ele. O chat de ajuda (`/ia/perguntar`) continua no BFF (ver [DA-07](decisoes.md)).
 
 ## 1. O que é e por que existe
 
 OSCE (*Objective Structured Clinical Examination*) é o formato de avaliação clínica usado em cursos de medicina: o estudante entra numa "estação" com um paciente (real, ator ou simulado) e precisa colher a história clínica (anamnese) e levantar hipóteses diagnósticas, sem o paciente simplesmente dizer qual é a doença.
 
-A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um **caso clínico**, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma **avaliação**, e a mesma IA troca de papel para "examinador", julgando a conversa contra a **rubrica** do caso — e o BFF transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como **feedback**: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.
+A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um **caso clínico**, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma **avaliação**, e a mesma IA troca de papel para "examinador", julgando a conversa contra a **rubrica** do caso — e o ChatbotOSCE transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como **feedback**: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.
 
 O escopo e as escolhas técnicas desta feature foram alinhados com os Product Owners na [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md): chatbot orientado por casos e protocolos estruturados, Gemini como solução de curto prazo com a integração desacoplada, avaliação por rubricas derivadas do protocolo OSCE, casos como dado estruturado sem fine-tuning nem RAG documental, e primeira versão sem imagens clínicas.
 
@@ -16,29 +16,35 @@ O escopo e as escolhas técnicas desta feature foram alinhados com os Product Ow
 flowchart LR
     aluno(["Aluno<br/>papel STUDENT"])
     web["Web<br/>/aluno/osce<br/>(público)"]
-    bff["BFF<br/>/api/v1/ia/osce/*<br/>(público)"]
+    bff["BFF<br/>/api/v1/ia/osce/*<br/>(público, proxy)"]
+    chatbot["ChatbotOSCE<br/>/osce/*<br/>(privado)"]
     gemini[("Gemini API<br/>(externa)")]
 
     aluno --> web
     web -->|"HTTPS REST<br/>Bearer JWT"| bff
-    bff -->|"1. instrução 'modo paciente'<br/>perfil + roteiro oculto"| gemini
-    bff -->|"2. instrução 'modo examinador'<br/>rubrica + âncoras"| gemini
-    gemini -.->|"fala em personagem /<br/>julgamento em JSON"| bff
-    bff -.->|"conversa / rubrica pontuada"| web
+    bff -->|"proxy: x-internal-token<br/>+ X-User-Id/Papel/Status"| chatbot
+    chatbot -->|"1. instrução 'modo paciente'<br/>perfil + roteiro oculto"| gemini
+    chatbot -->|"2. instrução 'modo examinador'<br/>rubrica + âncoras"| gemini
+    gemini -.->|"fala em personagem /<br/>julgamento em JSON"| chatbot
+    chatbot -.->|"conversa / rubrica pontuada"| bff
+    bff -.->|"resposta"| web
 ```
 
-As duas chamadas usam o **mesmo** `geminiClient` e a mesma `GEMINI_API_KEY` do chat de ajuda; o que muda entre elas é só a instrução de sistema (seção 4). A chave fica no BFF e nunca chega ao Web.
+O ChatbotOSCE tem a **sua** `GEMINI_API_KEY` e `GEMINI_MODEL`, independentes das do BFF (que atendem só `/ia/dica` e `/ia/perguntar`). As duas chamadas à Gemini usam o mesmo cliente dentro do ChatbotOSCE; o que muda entre elas é só a instrução de sistema (seção 4). A chave fica no ChatbotOSCE e nunca chega ao BFF nem ao Web.
 
-Não existe um "Serviço de IA" separado nem RAG/Qdrant aqui — o BFF é a camada de IA do projeto ([DA-07](decisoes.md)). Diferente do chat de ajuda, o conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.
+Não há RAG/Qdrant aqui. O ChatbotOSCE é o dono da IA da simulação; o chat de ajuda segue no BFF ([DA-07](decisoes.md)). Diferente do chat de ajuda, o conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.
 
 ### Componentes tocados
 
 | Repositório | Arquivo | Papel |
 |---|---|---|
-| BFF | `src/shared/constants/cenarios-osce.ts` | Os casos clínicos (parametrização, seção 3) |
-| BFF | `src/routes/osce.routes.ts` | As 3 rotas HTTP (seção 4) |
-| BFF | `src/shared/utils/pontuacao-osce.ts` | Pesos, soma, percentual, teto do item crítico e divergência checklist×nota global (seção 5) |
-| BFF | `src/routes/index.ts` | Monta `/ia/osce` **antes** de `/ia` (o catch-all de `ia.routes.ts` intercepta qualquer sub-rota não mapeada de `/ia/*`) |
+| ChatbotOSCE | `src/shared/constants/cenarios-osce.ts` | Os casos clínicos (parametrização, seção 3) |
+| ChatbotOSCE | `src/routes/osce.routes.ts` | As 3 rotas HTTP em `/osce/*` (seção 4) e as chamadas à Gemini (`gemini.client.ts`) |
+| ChatbotOSCE | `src/shared/utils/pontuacao-osce.ts` | Pesos, soma, percentual, teto do item crítico e divergência checklist×nota global (seção 5) |
+| ChatbotOSCE | `src/shared/clients/gemini.client.ts` | Cliente da Gemini, com `GEMINI_API_KEY`/`GEMINI_MODEL` próprios |
+| ChatbotOSCE | `src/shared/middlewares/` | Token interno (`x-internal-token`) e JWT, nesta ordem |
+| BFF | `src/shared/clients/chatbotOsce.client.ts` | Cliente do proxy para o ChatbotOSCE (`CHATBOT_OSCE_URL`) |
+| BFF | `src/routes/index.ts` | Monta o proxy de `/ia/osce` **antes** de `/ia` (o catch-all de `ia.routes.ts` intercepta qualquer sub-rota não mapeada de `/ia/*`) |
 | Web | `src/features/osce/osceService.ts` | Chamadas HTTP às 3 rotas |
 | Web | `src/pages/aluno/osce/OscePage.tsx` | Tela: lista de casos → chat → feedback |
 | Web | `src/pages/aluno/osce/FeedbackResultado.tsx` | Painel do feedback: as duas medidas, domínios e item a item |
@@ -47,7 +53,7 @@ Não existe um "Serviço de IA" separado nem RAG/Qdrant aqui — o BFF é a cama
 
 ## 3. Parametrização: o que é um "cenário"
 
-Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-osce.ts` no BFF):
+Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-osce.ts` no ChatbotOSCE):
 
 | Campo | Visível para o aluno? | Uso |
 |---|---|---|
@@ -63,13 +69,13 @@ Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-os
 
 A rota `GET /api/v1/ia/osce/cenarios` devolve **só** os 4 primeiros campos — o resto nunca sai do BFF antes da hora, para não vazar a resposta do caso.
 
-Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código — o número e a ausência de imagens seguem o combinado na [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md), que prevê cerca de três casos autorais do Product Owner como base para as variações. **Não há tela de autoria de caso para professor** — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array `CENARIOS_OSCE`, seguindo os 3 exemplos existentes como modelo.
+Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código do ChatbotOSCE — o número e a ausência de imagens seguem o combinado na [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md), que prevê cerca de três casos autorais do Product Owner como base para as variações. **Não há tela de autoria de caso para professor** — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array `CENARIOS_OSCE`, seguindo os 3 exemplos existentes como modelo.
 
 ## 4. Como funciona (fluxo e contratos)
 
-Pré-requisito: o mesmo `GEMINI_API_KEY`/`GEMINI_MODEL` do chat de ajuda (`src/config/env.ts` do BFF). Sem a chave configurada, todas as rotas abaixo respondem `503 IA_INDISPONIVEL`, igual ao `/ia/perguntar`.
+Pré-requisito: `GEMINI_API_KEY` e `GEMINI_MODEL` configurados no ChatbotOSCE (`src/config/env.ts`). Sem a chave, as rotas abaixo respondem `503 IA_INDISPONIVEL`. A chave do BFF não entra nesse caminho.
 
-Todas as três rotas ficam atrás do `middlewareAutenticacao` (JWT validado na borda, como manda o [DA-03](decisoes.md)) e a tela `/aluno/osce` é protegida para o papel `STUDENT` no `router.tsx` do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini, só com o BFF.
+O BFF valida o JWT na borda e encaminha a chamada com `x-internal-token`. O ChatbotOSCE revalida o JWT e rejeita chamadas sem o token interno, como manda o [DA-03](decisoes.md). A tela `/aluno/osce` é protegida para o papel `STUDENT` no `router.tsx` do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini nem com o ChatbotOSCE, só com o BFF.
 
 ### 4.1. `GET /api/v1/ia/osce/cenarios`
 
@@ -88,7 +94,7 @@ Lista os casos disponíveis (campos públicos da tabela acima). Sem corpo de req
 }
 ```
 
-O BFF monta a chamada à Gemini com:
+O ChatbotOSCE monta a chamada à Gemini com:
 - **Instrução de sistema** = perfil + queixa + roteiro oculto do caso, mais a regra "nunca saia do personagem, nunca diga o nome do diagnóstico".
 - **`contents`** = o `historico` recebido, convertido em turnos `user` (aluno) / `model` (paciente), mais a nova `mensagem` como último turno.
 
@@ -107,9 +113,9 @@ Troca a instrução de sistema para o modo "examinador": a IA sai do personagem 
 1. **Checklist** — classifica cada item em `competente` / `parcial` / `nao_realizado`, com justificativa citando a fala do aluno.
 2. **Nota global (GRS)** — julga o desempenho como um todo, de 0 a 4, *sem* somar o checklist.
 
-A resposta é forçada a JSON pelo `responseSchema` nativo da Gemini e validada com Zod no BFF — JSON inválido vira `502`, nunca uma nota silenciosamente errada.
+A resposta é forçada a JSON pelo `responseSchema` nativo da Gemini e validada com Zod no ChatbotOSCE — JSON inválido vira `502`, nunca uma nota silenciosamente errada.
 
-**A IA não calcula nota.** Pesos, soma, percentual, teto do item crítico e a verificação de concordância entre as duas medidas são aplicados em código (`pontuacao-osce.ts`), porque modelo de linguagem não é confiável para aritmética e porque a regra de aprovação precisa ser auditável.
+**A IA não calcula nota.** Pesos, soma, percentual, teto do item crítico e a verificação de concordância entre as duas medidas são aplicados em código (`src/shared/utils/pontuacao-osce.ts` no ChatbotOSCE), porque modelo de linguagem não é confiável para aritmética e porque a regra de aprovação precisa ser auditável.
 
 Resposta (abreviada):
 
@@ -273,13 +279,13 @@ Numeração usada ao longo da seção 5.
 - **Sem persistência**: a conversa e a rubrica pontuada não são salvas em banco — fecham a página, perde a simulação. Se a equipe quiser histórico de simulações (para o professor acompanhar progresso, por exemplo), isso é extensão futura, não construída aqui.
 - **Sem streaming**: a resposta da Gemini chega de uma vez (igual ao `/ia/perguntar`), não token a token. O *thinking* da Gemini fica no nível mínimo (`thinkingConfig.thinkingLevel: "low"`) nas duas rotas: no nível alto a chamada levava 10–15s e às vezes estourava o `REQUEST_TIMEOUT_MS`. O modelo em uso é o `gemini-3.5-flash-lite`, o degrau mais barato da família, que não aceita `thinkingBudget: 0` (responde `400`) e por isso usa o nível `low`. A UI mostra um spinner de carregamento enquanto espera.
 - **Dado do aluno que cruza para a Gemini**: nenhum — diferente do `/ia/dica`, o modo OSCE não usa o desempenho do aluno, só o texto da conversa em si (que o próprio aluno está digitando). Sem risco de LGPD adicional em relação ao que o chat de ajuda já levanta.
-- **Falha graciosa**: se a Gemini não estiver configurada ou falhar, a rota responde 503/502 com uma mensagem de erro — a página mostra o erro, sem quebrar a navegação.
+- **Falha graciosa**: se a Gemini não estiver configurada ou falhar, o ChatbotOSCE responde 503/502 (504 se a chamada expirar) com uma mensagem de erro. Se o próprio ChatbotOSCE estiver fora, o proxy do BFF responde 502/504. A página mostra o erro, sem quebrar a navegação.
 
 ## 8. Testes
 
-A regra de pontuação é a parte auditável da feature, então é a parte testada: `tests/unit/pontuacao-osce.test.ts` (BFF, Jest) cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como `nao_realizado`, o teto do item crítico, a nota global fora da escala e a marca de divergência — além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes). São 13 casos.
+A regra de pontuação é a parte auditável da feature, então é a parte mais testada. `tests/unit/pontuacao-osce.test.ts` (ChatbotOSCE, Jest) cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como `nao_realizado`, o teto do item crítico, a nota global fora da escala e a marca de divergência — além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes). São 13 casos.
 
-**Gap conhecido**: `src/routes/osce.routes.ts` ainda **não** tem teste de rota (as outras rotas do BFF têm, em `tests/unit/*.routes.test.ts`, com o cliente externo mockado). Enquanto isso não existir, a feature consome a folga do `coverageThreshold` de 85% exigido pelo [DA-08](decisoes.md) — é o próximo item de qualidade desta feature.
+As rotas têm testes de integração no ChatbotOSCE: `tests/integration/osce.routes.test.ts` (token interno, JWT, contrato, erros 502/504 e 500) e `tests/integration/osce.ia-indisponivel.test.ts` (503 sem chave). No BFF, `tests/integration/ia-osce.spec.ts` cobre o proxy. A cobertura mínima de 85% exigida pelo [DA-08](decisoes.md) é verificada em cada repositório.
 
 ## Documentos relacionados
 
@@ -293,3 +299,4 @@ A regra de pontuação é a parte auditável da feature, então é a parte testa
 | Data | Versão | Descrição | Autor(es) | Revisor(es) |
 | --- | --- | --- | --- | --- |
 | 26/10/2026 | 1.0 | Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |
+| 21/11/2026 | 1.1 | Simulação extraída para o microsserviço ChatbotOSCE: IA, casos, rotas e pontuação ficam lá; o BFF faz só proxy | [João Paulo Lima](https://github.com/jpaulohe4rt) | |

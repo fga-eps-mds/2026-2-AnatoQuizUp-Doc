@@ -77,16 +77,17 @@ Uma alteração em `VITE_API_URL` exige um novo build/deploy do Web, pois variá
 
 | Serviço | Configurações relevantes |
 | --- | --- |
-| BFF | `BACKEND_URL`, `QUIZ_SERVICE_URL`, `JWT_SECRET_KEY`, `INTERNAL_TOKEN`, `CORS_ORIGINS`, `PORT`. |
+| BFF | `BACKEND_URL`, `QUIZ_SERVICE_URL`, `CHATBOT_OSCE_URL`, `JWT_SECRET_KEY`, `INTERNAL_TOKEN`, `CORS_ORIGINS`, `PORT`. |
 | Usuário-Service | `DATABASE_URL`, `JWT_SECRET_KEY`, `INTERNAL_TOKEN`, `CORS_ORIGINS`, `PORT`. |
 | Quiz-Service | `DATABASE_URL`, `JWT_SECRET_KEY`, `INTERNAL_TOKEN`, `CORS_ORIGINS`, `PORT`. |
+| ChatbotOSCE | `GEMINI_API_KEY`, `GEMINI_MODEL`, `JWT_SECRET_KEY`, `INTERNAL_TOKEN`, `CORS_ORIGINS`, `PORT`. |
 
 Regras importantes:
 
-1. `JWT_SECRET_KEY` deve ser idêntica no BFF e no Usuário-Service; caso contrário, tokens emitidos no login não serão aceitos.
-2. `INTERNAL_TOKEN` deve ser o mesmo no BFF, Usuário-Service e Quiz-Service; ele protege a comunicação interna entre serviços.
+1. `JWT_SECRET_KEY` deve ser idêntica no BFF, no Usuário-Service e no ChatbotOSCE; caso contrário, tokens emitidos no login não serão aceitos pelos serviços.
+2. `INTERNAL_TOKEN` deve ser o mesmo no BFF, Usuário-Service, Quiz-Service e ChatbotOSCE; ele protege a comunicação interna entre serviços.
 3. `CORS_ORIGINS` deve conter a origem do site Netlify de homologação.
-4. `BACKEND_URL` e `QUIZ_SERVICE_URL` devem usar os domínios privados fornecidos pelo Railway, e não endereços públicos ou `localhost`.
+4. `BACKEND_URL`, `QUIZ_SERVICE_URL` e `CHATBOT_OSCE_URL` devem usar os domínios privados fornecidos pelo Railway, e não endereços públicos ou `localhost`. `CHATBOT_OSCE_URL` tem `http://localhost:3335` como padrão local.
 5. Nunca registrar no repositório valores de `DATABASE_URL`, tokens, chaves JWT ou senhas dos bancos.
 
 ## Deploy, dados e atualização
