@@ -1,12 +1,12 @@
 # Chatbot de simulação OSCE
 
-> Documento de implementação: descreve a feature **já entregue**, não um plano. Reaproveita a mesma infraestrutura de IA do chat de ajuda (`/ia/perguntar`): Gemini chamada pelo BFF, sem serviço de IA dedicado (ver [DA-07](decisoes.md)).
+> Documento de implementação: descreve a feature **já entregue**, não um plano. A simulação roda no microsserviço **ChatbotOSCE**, que chama a Gemini; o BFF só faz proxy de `/api/v1/ia/osce/*` para ele (ver a [DA-07](decisoes.md) revisada). O chat de ajuda (`/ia/perguntar`) e a dica continuam no BFF.
 
 ## 1. O que é e por que existe
 
 OSCE (*Objective Structured Clinical Examination*) é o formato de avaliação clínica usado em cursos de medicina: o estudante entra numa "estação" com um paciente (real, ator ou simulado) e precisa colher a história clínica (anamnese) e levantar hipóteses diagnósticas, sem o paciente simplesmente dizer qual é a doença.
 
-A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um **caso clínico**, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma **avaliação**, e a mesma IA troca de papel para "examinador", julgando a conversa contra a **rubrica** do caso — e o BFF transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como **feedback**: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.
+A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um **caso clínico**, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma **avaliação**, e a mesma IA troca de papel para "examinador", julgando a conversa contra a **rubrica** do caso — e o ChatbotOSCE transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como **feedback**: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.
 
 O escopo e as escolhas técnicas desta feature foram alinhados com os Product Owners na [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md): chatbot orientado por casos e protocolos estruturados, Gemini como solução de curto prazo com a integração desacoplada, avaliação por rubricas derivadas do protocolo OSCE, casos como dado estruturado sem fine-tuning nem RAG documental, e primeira versão sem imagens clínicas.
 
@@ -16,38 +16,44 @@ O escopo e as escolhas técnicas desta feature foram alinhados com os Product Ow
 flowchart LR
     aluno(["Aluno<br/>papel STUDENT"])
     web["Web<br/>/aluno/osce<br/>(público)"]
-    bff["BFF<br/>/api/v1/ia/osce/*<br/>(público)"]
+    bff["BFF<br/>/api/v1/ia/osce/*<br/>(público, proxy)"]
+    chatbot["ChatbotOSCE<br/>/osce/*<br/>(interno)"]
     gemini[("Gemini API<br/>(externa)")]
 
     aluno --> web
     web -->|"HTTPS REST<br/>Bearer JWT"| bff
-    bff -->|"1. instrução 'modo paciente'<br/>perfil + roteiro oculto"| gemini
-    bff -->|"2. instrução 'modo examinador'<br/>rubrica + âncoras"| gemini
-    gemini -.->|"fala em personagem /<br/>julgamento em JSON"| bff
-    bff -.->|"conversa / rubrica pontuada"| web
+    bff -->|"proxy: Bearer JWT<br/>+ x-internal-token"| chatbot
+    chatbot -->|"1. instrução 'modo paciente'<br/>perfil + roteiro oculto"| gemini
+    chatbot -->|"2. instrução 'modo examinador'<br/>rubrica + âncoras"| gemini
+    gemini -.->|"fala em personagem /<br/>julgamento em JSON"| chatbot
+    chatbot -.->|"conversa / rubrica pontuada"| bff
+    bff -.->|"resposta repassada"| web
 ```
 
-As duas chamadas usam o **mesmo** `geminiClient` e a mesma `GEMINI_API_KEY` do chat de ajuda; o que muda entre elas é só a instrução de sistema (seção 4). A chave fica no BFF e nunca chega ao Web.
+O BFF valida o JWT na borda e repassa a chamada com `criarProxyHandler` (`src/routes/index.ts`), reescrevendo `/api/v1/ia/osce` para `/osce`. O ChatbotOSCE só aceita chamadas com o `x-internal-token` do BFF e valida o JWT de novo. As duas chamadas à Gemini usam o mesmo `geminiClient` e a `GEMINI_API_KEY` **do ChatbotOSCE**; o que muda entre elas é só a instrução de sistema (seção 4). A chave fica no ChatbotOSCE e nunca chega ao BFF nem ao Web.
 
-Não existe um "Serviço de IA" separado nem RAG/Qdrant aqui — o BFF é a camada de IA do projeto ([DA-07](decisoes.md)). Diferente do chat de ajuda, o conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.
+Não há RAG/Qdrant aqui. O conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.
 
 ### Componentes tocados
 
 | Repositório | Arquivo | Papel |
 |---|---|---|
-| BFF | `src/shared/constants/cenarios-osce.ts` | Os casos clínicos (parametrização, seção 3) |
-| BFF | `src/routes/osce.routes.ts` | As 3 rotas HTTP (seção 4) |
-| BFF | `src/shared/utils/pontuacao-osce.ts` | Pesos, soma, percentual, teto do item crítico e divergência checklist×nota global (seção 5) |
-| BFF | `src/routes/index.ts` | Monta `/ia/osce` **antes** de `/ia` (o catch-all de `ia.routes.ts` intercepta qualquer sub-rota não mapeada de `/ia/*`) |
+| ChatbotOSCE | `src/shared/constants/cenarios-osce.ts` | Os casos clínicos (parametrização, seção 3) |
+| ChatbotOSCE | `src/routes/osce.routes.ts` | As 3 rotas HTTP, montadas em `/osce` (seção 4) |
+| ChatbotOSCE | `src/shared/utils/pontuacao-osce.ts` | Pesos, soma, percentual, teto do item crítico e divergência checklist×nota global (seção 5) |
+| BFF | `src/routes/index.ts` | Proxy de `/ia/osce/*` para o ChatbotOSCE, montado **antes** de `/ia` (o catch-all de `ia.routes.ts` intercepta qualquer sub-rota não mapeada de `/ia/*`) |
 | Web | `src/features/osce/osceService.ts` | Chamadas HTTP às 3 rotas |
-| Web | `src/pages/aluno/osce/OscePage.tsx` | Tela: lista de casos → chat → feedback |
+| Web | `src/features/osce/detectarDespedida.ts` | Detecta despedida ou pedido de encerramento na fala do aluno (seção 4.4) |
+| Web | `src/pages/aluno/osce/OscePage.tsx` | Tela: lista de casos → cenário → chat → feedback |
+| Web | `src/pages/aluno/osce/CenarioApresentacao.tsx` | Etapa de cenário, antes do chat (seção 4.4) |
+| Web | `src/pages/aluno/osce/ModalConfirmarEncerramento.tsx` | Confirmação "Encerrar e ver avaliação?" (seção 4.4) |
 | Web | `src/pages/aluno/osce/FeedbackResultado.tsx` | Painel do feedback: as duas medidas, domínios e item a item |
 | Web | `src/app/router.tsx` | Rota `/aluno/osce`, protegida para `STUDENT` |
 | Web | `src/widgets/header/ui/Header.tsx` | Item de menu "Simulação OSCE" (ícone `Stethoscope`) |
 
 ## 3. Parametrização: o que é um "cenário"
 
-Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-osce.ts` no BFF):
+Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-osce.ts` no ChatbotOSCE):
 
 | Campo | Visível para o aluno? | Uso |
 |---|---|---|
@@ -55,29 +61,54 @@ Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-os
 | `titulo` | Sim | Nome exibido na lista de casos |
 | `especialidade` | Sim | Rótulo exibido (ex.: "Cardiologia") |
 | `dificuldade` | Sim | `"Fácil" \| "Médio" \| "Difícil"`, exibido como selo colorido |
-| `perfilPaciente` | **Não** | Idade, profissão, jeito de falar — molda o tom das respostas da IA |
+| `contextoInicial` | Sim | `{ local, papelEstudante, idade, sexo, queixa }`, exibido na etapa de cenário antes do chat (seção 4.4) |
+| `perfilPaciente` | **Não** | Idade, sexo, profissão, jeito de falar — molda o tom das respostas da IA |
 | `queixaPrincipal` | **Não** | O que o paciente diz se perguntado "o que você está sentindo?" |
 | `roteiroOculto` | **Não** | História completa, fatores de risco, achados de exame físico — a IA só revela o que for perguntado |
 | `diagnosticoEsperado` | **Não** | Nunca é dito ao aluno; só aparece no feedback final |
 | `rubrica` | **Não** (só após finalizar) | Checklist pontuado: itens, domínios, pesos, âncoras de crédito e itens críticos (ver seção 5) |
 
-A rota `GET /api/v1/ia/osce/cenarios` devolve **só** os 4 primeiros campos — o resto nunca sai do BFF antes da hora, para não vazar a resposta do caso.
+A rota `GET /api/v1/ia/osce/cenarios` devolve **só** os 5 primeiros campos — o resto nunca sai do ChatbotOSCE antes da hora, para não vazar a resposta do caso.
+
+O `contextoInicial` é escrito à mão em cada caso, sem ser gerado a partir do `perfilPaciente`. Ele traz só o local, o papel do estudante, a idade, o sexo e uma queixa curta e neutra (ex.: "Dor abdominal"). Não pode trazer profissão, temperamento nem pistas do roteiro ou do diagnóstico, e a queixa não repete o `queixaPrincipal`, que é a fala do paciente no roteiro. Idade e sexo precisam bater com o `perfilPaciente` do mesmo caso. Os testes de integração do ChatbotOSCE verificam essas regras.
 
 Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código — o número e a ausência de imagens seguem o combinado na [ata de 26/10/2026](../reunioes/reuniao-26-10-26.md), que prevê cerca de três casos autorais do Product Owner como base para as variações. **Não há tela de autoria de caso para professor** — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array `CENARIOS_OSCE`, seguindo os 3 exemplos existentes como modelo.
 
 ## 4. Como funciona (fluxo e contratos)
 
-Pré-requisito: o mesmo `GEMINI_API_KEY`/`GEMINI_MODEL` do chat de ajuda (`src/config/env.ts` do BFF). Sem a chave configurada, todas as rotas abaixo respondem `503 IA_INDISPONIVEL`, igual ao `/ia/perguntar`.
+Pré-requisitos:
+- `GEMINI_API_KEY`/`GEMINI_MODEL` configurados no ChatbotOSCE (`src/config/env.ts`). Sem a chave, `mensagem` e `finalizar` respondem `503 IA_INDISPONIVEL`, vindo do ChatbotOSCE e repassado pelo BFF.
+- No BFF, `CHATBOT_OSCE_URL` apontando para o ChatbotOSCE (porta padrão `3335`) e o mesmo `INTERNAL_TOKEN` dos dois lados.
 
-Todas as três rotas ficam atrás do `middlewareAutenticacao` (JWT validado na borda, como manda o [DA-03](decisoes.md)) e a tela `/aluno/osce` é protegida para o papel `STUDENT` no `router.tsx` do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini, só com o BFF.
+As rotas públicas ficam no BFF atrás do `middlewareAutenticacao` (JWT validado na borda, como manda o [DA-03](decisoes.md)). No ChatbotOSCE, as mesmas rotas exigem o `x-internal-token` e o JWT. A tela `/aluno/osce` é protegida para o papel `STUDENT` no `router.tsx` do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini nem com o ChatbotOSCE, só com o BFF.
+
+Os caminhos abaixo são os públicos, no BFF. No ChatbotOSCE eles ficam em `/osce/...`.
 
 ### 4.1. `GET /api/v1/ia/osce/cenarios`
 
 Lista os casos disponíveis (campos públicos da tabela acima). Sem corpo de requisição.
 
 ```json
-{ "cenarios": [{ "id": "dor-toracica", "titulo": "...", "especialidade": "Cardiologia", "dificuldade": "Médio" }] }
+{
+  "cenarios": [
+    {
+      "id": "dor-toracica",
+      "titulo": "...",
+      "especialidade": "Cardiologia",
+      "dificuldade": "Médio",
+      "contextoInicial": {
+        "local": "Pronto-socorro de um hospital geral",
+        "papelEstudante": "Médico(a) responsável pelo primeiro atendimento",
+        "idade": 58,
+        "sexo": "Masculino",
+        "queixa": "Dor torácica"
+      }
+    }
+  ]
+}
 ```
+
+No Web, `contextoInicial` é tratado como opcional: se o Web for publicado antes do ChatbotOSCE, a etapa de cenário mostra um texto padrão no lugar.
 
 ### 4.2. `POST /api/v1/ia/osce/:id/mensagem` — uma fala do aluno
 
@@ -88,11 +119,11 @@ Lista os casos disponíveis (campos públicos da tabela acima). Sem corpo de req
 }
 ```
 
-O BFF monta a chamada à Gemini com:
-- **Instrução de sistema** = perfil + queixa + roteiro oculto do caso, mais a regra "nunca saia do personagem, nunca diga o nome do diagnóstico".
+O ChatbotOSCE monta a chamada à Gemini com:
+- **Instrução de sistema** = perfil + queixa + roteiro oculto do caso, mais as regras "nunca saia do personagem, nunca diga o nome do diagnóstico" e a regra de encerramento (seção 4.4).
 - **`contents`** = o `historico` recebido, convertido em turnos `user` (aluno) / `model` (paciente), mais a nova `mensagem` como último turno.
 
-O **histórico vive no front** (estado React da página), não no BFF — cada chamada reenvia a conversa inteira, do mesmo jeito que o `ChatAjudaModal` já faz para as perguntas livres. Isso mantém o BFF sem estado de sessão a gerenciar.
+O **histórico vive no front** (estado React da página), não no backend — cada chamada reenvia a conversa inteira, do mesmo jeito que o `ChatAjudaModal` já faz para as perguntas livres. Isso mantém o ChatbotOSCE sem estado de sessão a gerenciar.
 
 Resposta: `{ "resposta": "<fala do paciente, em personagem>" }`.
 
@@ -107,7 +138,7 @@ Troca a instrução de sistema para o modo "examinador": a IA sai do personagem 
 1. **Checklist** — classifica cada item em `competente` / `parcial` / `nao_realizado`, com justificativa citando a fala do aluno.
 2. **Nota global (GRS)** — julga o desempenho como um todo, de 0 a 4, *sem* somar o checklist.
 
-A resposta é forçada a JSON pelo `responseSchema` nativo da Gemini e validada com Zod no BFF — JSON inválido vira `502`, nunca uma nota silenciosamente errada.
+A resposta é forçada a JSON pelo `responseSchema` nativo da Gemini e validada com Zod no ChatbotOSCE — JSON inválido vira `502`, nunca uma nota silenciosamente errada.
 
 **A IA não calcula nota.** Pesos, soma, percentual, teto do item crítico e a verificação de concordância entre as duas medidas são aplicados em código (`pontuacao-osce.ts`), porque modelo de linguagem não é confiável para aritmética e porque a regra de aprovação precisa ser auditável.
 
@@ -153,6 +184,24 @@ Resposta (abreviada):
   }
 }
 ```
+
+### 4.4. Início e encerramento
+
+Fluxo da tela `/aluno/osce` (US24, [Doc#195](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/195)): **lista → cenário → chat → feedback**. A `OscePage` controla isso com uma etapa explícita (`'lista' | 'cenario' | 'chat'`).
+
+**Card do caso.** Mostra só título, especialidade e dificuldade. O diagnóstico só aparece na resposta de `/finalizar`.
+
+**Etapa de cenário** (`CenarioApresentacao.tsx`). Antes do chat, o aluno lê o `contextoInicial`: local, seu papel e a idade, o sexo e a queixa do paciente. Os botões são "Iniciar atendimento" e "Voltar". O campo de texto só existe na etapa de chat, depois de "Iniciar atendimento".
+
+**Atalho fixo.** O botão "Encerrar e receber feedback" fica acima do campo de texto, no rodapé fixo (`sticky`) do card, e aparece durante toda a conversa. Ele fica desabilitado antes da primeira fala, enquanto uma fala ou a avaliação está em andamento e depois do feedback. O antigo "Finalizar e ver feedback" do topo foi removido.
+
+**Despedida detectada, com confirmação.** `detectarDespedida(texto)` (`src/features/osce/detectarDespedida.ts`) roda no cliente, é determinística e não muda o contrato da API. Ela normaliza acentos e caixa e usa padrões conservadores: combinações claras ("tchau", "obrigado, era isso", "podemos encerrar", "vou encerrar", "finalizar a consulta") e despedidas que só valem no fim da mensagem, como frase própria ("até mais", "até logo"). Assim, "dói até mais quando ando" e "obrigado, e a dor piora?" não contam como despedida. Quando detecta uma despedida, a tela envia a fala normalmente (o paciente responde uma vez) e depois abre o modal "Encerrar e ver avaliação?" (`ModalConfirmarEncerramento.tsx`), com "Continuar atendimento" e "Encerrar". Se o envio falhar, o modal abre mesmo assim. "Continuar atendimento" fecha o modal e devolve o foco ao campo de texto. "Encerrar" chama `/finalizar`, e se ele falhar o modal fecha e o erro aparece no chat. O modal segue o padrão de acessibilidade do `ModalConfirmarCompra`: `role="dialog"`, `aria-modal`, foco dentro do modal ao abrir e Esc para fechar.
+
+**Anti-loop em duas camadas.**
+- *Cliente:* se o aluno já se despediu, escolheu "Continuar atendimento" e se despede de novo, o modal abre direto e a fala **não** é enviada à IA. O critério "o paciente não entra em loop de despedida" não depende só do prompt.
+- *Prompt:* a instrução do modo paciente manda responder com uma única despedida curta quando o médico se despedir ou encerrar a consulta e, se ele insistir, responder de forma mínima, sem repetir a despedida.
+
+**Pendência:** o cliente pediu que a despedida encerrasse sozinha. A confirmação foi incluída para evitar encerramento acidental e ainda precisa ser validada com ele.
 
 ## 5. A rubrica: âncoras de aceitação e pontuação
 
@@ -277,9 +326,13 @@ Numeração usada ao longo da seção 5.
 
 ## 8. Testes
 
-A regra de pontuação é a parte auditável da feature, então é a parte testada: `tests/unit/pontuacao-osce.test.ts` (BFF, Jest) cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como `nao_realizado`, o teto do item crítico, a nota global fora da escala e a marca de divergência — além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes). São 13 casos.
+Os testes ficam no ChatbotOSCE (Jest, com a Gemini mockada), dentro do `coverageThreshold` de 85% exigido pelo [DA-08](decisoes.md):
 
-**Gap conhecido**: `src/routes/osce.routes.ts` ainda **não** tem teste de rota (as outras rotas do BFF têm, em `tests/unit/*.routes.test.ts`, com o cliente externo mockado). Enquanto isso não existir, a feature consome a folga do `coverageThreshold` de 85% exigido pelo [DA-08](decisoes.md) — é o próximo item de qualidade desta feature.
+- `tests/unit/pontuacao-osce.test.ts`: a regra de pontuação, que é a parte auditável da feature. Cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como `nao_realizado`, o teto do item crítico, a nota global fora da escala e a marca de divergência, além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes).
+- `tests/integration/osce.routes.test.ts`: as rotas, com token interno, JWT, 404/400/502/504 e a pontuação a partir do julgamento da IA. Também verifica que a lista traz o `contextoInicial` e nenhum campo oculto, que nenhum `contextoInicial` contém o diagnóstico do próprio caso ou repete o `queixaPrincipal`, que idade e sexo batem com o perfil, e que a instrução do paciente leva a regra de encerramento.
+- `tests/integration/osce.ia-indisponivel.test.ts`: o `503` quando a `GEMINI_API_KEY` não está configurada.
+
+No Web, os testes ficam em `test/unit/pages/aluno/osce/` (tela, etapa de cenário, modal e anti-loop), `test/unit/features/osce/detectarDespedida.test.ts` (casos positivos e negativos) e `test/unit/features/osce/osceService.test.ts`.
 
 ## Documentos relacionados
 
@@ -293,3 +346,4 @@ A regra de pontuação é a parte auditável da feature, então é a parte testa
 | Data | Versão | Descrição | Autor(es) | Revisor(es) |
 | --- | --- | --- | --- | --- |
 | 26/10/2026 | 1.0 | Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |
+| 21/11/2026 | 1.1 | Arquitetura atualizada para o microsserviço ChatbotOSCE (DA-07 revisada); US24: `contextoInicial`, etapa de cenário, encerramento por chat com confirmação e anti-loop | [Rafael Melo](https://github.com/rmatuda), [Henrique Carvalho](https://github.com/henriquecarv3) | |
