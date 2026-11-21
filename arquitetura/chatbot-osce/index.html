@@ -1033,6 +1033,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#44-inicio-e-encerramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4. Início e encerramento
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1918,6 +1927,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#44-inicio-e-encerramento" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.4. Início e encerramento
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2054,27 +2072,30 @@
 
 <h1 id="chatbot-de-simulacao-osce">Chatbot de simulação OSCE</h1>
 <blockquote>
-<p>Documento de implementação: descreve a feature <strong>já entregue</strong>, não um plano. Reaproveita a mesma infraestrutura de IA do chat de ajuda (<code>/ia/perguntar</code>): Gemini chamada pelo BFF, sem serviço de IA dedicado (ver <a href="../decisoes/">DA-07</a>).</p>
+<p>Documento de implementação: descreve a feature <strong>já entregue</strong>, não um plano. A simulação roda no microsserviço <strong>ChatbotOSCE</strong>, que chama a Gemini; o BFF só faz proxy de <code>/api/v1/ia/osce/*</code> para ele (ver a <a href="../decisoes/">DA-07</a> revisada). O chat de ajuda (<code>/ia/perguntar</code>) e a dica continuam no BFF.</p>
 </blockquote>
 <h2 id="1-o-que-e-e-por-que-existe">1. O que é e por que existe</h2>
 <p>OSCE (<em>Objective Structured Clinical Examination</em>) é o formato de avaliação clínica usado em cursos de medicina: o estudante entra numa "estação" com um paciente (real, ator ou simulado) e precisa colher a história clínica (anamnese) e levantar hipóteses diagnósticas, sem o paciente simplesmente dizer qual é a doença.</p>
-<p>A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um <strong>caso clínico</strong>, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma <strong>avaliação</strong>, e a mesma IA troca de papel para "examinador", julgando a conversa contra a <strong>rubrica</strong> do caso — e o BFF transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como <strong>feedback</strong>: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.</p>
+<p>A feature replica isso dentro do AnatoQuizUp: o aluno escolhe um <strong>caso clínico</strong>, conversa em texto no papel de médico, e a IA interpreta o paciente — respondendo só o que for perguntado, nunca entregando o diagnóstico. Ao final, o aluno pede uma <strong>avaliação</strong>, e a mesma IA troca de papel para "examinador", julgando a conversa contra a <strong>rubrica</strong> do caso — e o ChatbotOSCE transforma esse julgamento em pontuação (seção 5). Como num OSCE real, saem duas medidas: o checklist ponderado e uma nota global independente. Nas telas isso aparece como <strong>feedback</strong>: "rubrica" é o nome do instrumento de avaliação, não do que o aluno lê.</p>
 <p>O escopo e as escolhas técnicas desta feature foram alinhados com os Product Owners na <a href="../../reunioes/reuniao-26-10-26/">ata de 26/10/2026</a>: chatbot orientado por casos e protocolos estruturados, Gemini como solução de curto prazo com a integração desacoplada, avaliação por rubricas derivadas do protocolo OSCE, casos como dado estruturado sem fine-tuning nem RAG documental, e primeira versão sem imagens clínicas.</p>
 <h2 id="2-arquitetura">2. Arquitetura</h2>
 <pre class="mermaid"><code>flowchart LR
     aluno(["Aluno&lt;br/&gt;papel STUDENT"])
     web["Web&lt;br/&gt;/aluno/osce&lt;br/&gt;(público)"]
-    bff["BFF&lt;br/&gt;/api/v1/ia/osce/*&lt;br/&gt;(público)"]
+    bff["BFF&lt;br/&gt;/api/v1/ia/osce/*&lt;br/&gt;(público, proxy)"]
+    chatbot["ChatbotOSCE&lt;br/&gt;/osce/*&lt;br/&gt;(interno)"]
     gemini[("Gemini API&lt;br/&gt;(externa)")]
 
     aluno --&gt; web
     web --&gt;|"HTTPS REST&lt;br/&gt;Bearer JWT"| bff
-    bff --&gt;|"1. instrução 'modo paciente'&lt;br/&gt;perfil + roteiro oculto"| gemini
-    bff --&gt;|"2. instrução 'modo examinador'&lt;br/&gt;rubrica + âncoras"| gemini
-    gemini -.-&gt;|"fala em personagem /&lt;br/&gt;julgamento em JSON"| bff
-    bff -.-&gt;|"conversa / rubrica pontuada"| web</code></pre>
-<p>As duas chamadas usam o <strong>mesmo</strong> <code>geminiClient</code> e a mesma <code>GEMINI_API_KEY</code> do chat de ajuda; o que muda entre elas é só a instrução de sistema (seção 4). A chave fica no BFF e nunca chega ao Web.</p>
-<p>Não existe um "Serviço de IA" separado nem RAG/Qdrant aqui — o BFF é a camada de IA do projeto (<a href="../decisoes/">DA-07</a>). Diferente do chat de ajuda, o conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.</p>
+    bff --&gt;|"proxy: Bearer JWT&lt;br/&gt;+ x-internal-token"| chatbot
+    chatbot --&gt;|"1. instrução 'modo paciente'&lt;br/&gt;perfil + roteiro oculto"| gemini
+    chatbot --&gt;|"2. instrução 'modo examinador'&lt;br/&gt;rubrica + âncoras"| gemini
+    gemini -.-&gt;|"fala em personagem /&lt;br/&gt;julgamento em JSON"| chatbot
+    chatbot -.-&gt;|"conversa / rubrica pontuada"| bff
+    bff -.-&gt;|"resposta repassada"| web</code></pre>
+<p>O BFF valida o JWT na borda e repassa a chamada com <code>criarProxyHandler</code> (<code>src/routes/index.ts</code>), reescrevendo <code>/api/v1/ia/osce</code> para <code>/osce</code>. O ChatbotOSCE só aceita chamadas com o <code>x-internal-token</code> do BFF e valida o JWT de novo. As duas chamadas à Gemini usam o mesmo <code>geminiClient</code> e a <code>GEMINI_API_KEY</code> <strong>do ChatbotOSCE</strong>; o que muda entre elas é só a instrução de sistema (seção 4). A chave fica no ChatbotOSCE e nunca chega ao BFF nem ao Web.</p>
+<p>Não há RAG/Qdrant aqui. O conteúdo de cada caso é pequeno e fixo (ver seção 3), então ele cabe inteiro no prompt da Gemini. Reavaliar RAG só se a biblioteca de casos crescer muito.</p>
 <h3 id="componentes-tocados">Componentes tocados</h3>
 <table>
 <thead>
@@ -2086,24 +2107,24 @@
 </thead>
 <tbody>
 <tr>
-<td>BFF</td>
+<td>ChatbotOSCE</td>
 <td><code>src/shared/constants/cenarios-osce.ts</code></td>
 <td>Os casos clínicos (parametrização, seção 3)</td>
 </tr>
 <tr>
-<td>BFF</td>
+<td>ChatbotOSCE</td>
 <td><code>src/routes/osce.routes.ts</code></td>
-<td>As 3 rotas HTTP (seção 4)</td>
+<td>As 3 rotas HTTP, montadas em <code>/osce</code> (seção 4)</td>
 </tr>
 <tr>
-<td>BFF</td>
+<td>ChatbotOSCE</td>
 <td><code>src/shared/utils/pontuacao-osce.ts</code></td>
 <td>Pesos, soma, percentual, teto do item crítico e divergência checklist×nota global (seção 5)</td>
 </tr>
 <tr>
 <td>BFF</td>
 <td><code>src/routes/index.ts</code></td>
-<td>Monta <code>/ia/osce</code> <strong>antes</strong> de <code>/ia</code> (o catch-all de <code>ia.routes.ts</code> intercepta qualquer sub-rota não mapeada de <code>/ia/*</code>)</td>
+<td>Proxy de <code>/ia/osce/*</code> para o ChatbotOSCE, montado <strong>antes</strong> de <code>/ia</code> (o catch-all de <code>ia.routes.ts</code> intercepta qualquer sub-rota não mapeada de <code>/ia/*</code>)</td>
 </tr>
 <tr>
 <td>Web</td>
@@ -2112,8 +2133,23 @@
 </tr>
 <tr>
 <td>Web</td>
+<td><code>src/features/osce/detectarDespedida.ts</code></td>
+<td>Detecta despedida ou pedido de encerramento na fala do aluno (seção 4.4)</td>
+</tr>
+<tr>
+<td>Web</td>
 <td><code>src/pages/aluno/osce/OscePage.tsx</code></td>
-<td>Tela: lista de casos → chat → feedback</td>
+<td>Tela: lista de casos → cenário → chat → feedback</td>
+</tr>
+<tr>
+<td>Web</td>
+<td><code>src/pages/aluno/osce/CenarioApresentacao.tsx</code></td>
+<td>Etapa de cenário, antes do chat (seção 4.4)</td>
+</tr>
+<tr>
+<td>Web</td>
+<td><code>src/pages/aluno/osce/ModalConfirmarEncerramento.tsx</code></td>
+<td>Confirmação "Encerrar e ver avaliação?" (seção 4.4)</td>
 </tr>
 <tr>
 <td>Web</td>
@@ -2133,7 +2169,7 @@
 </tbody>
 </table>
 <h2 id="3-parametrizacao-o-que-e-um-cenario">3. Parametrização: o que é um "cenário"</h2>
-<p>Cada caso clínico é um objeto <code>CenarioOsce</code> (<code>src/shared/constants/cenarios-osce.ts</code> no BFF):</p>
+<p>Cada caso clínico é um objeto <code>CenarioOsce</code> (<code>src/shared/constants/cenarios-osce.ts</code> no ChatbotOSCE):</p>
 <table>
 <thead>
 <tr>
@@ -2164,9 +2200,14 @@
 <td><code>"Fácil" \| "Médio" \| "Difícil"</code>, exibido como selo colorido</td>
 </tr>
 <tr>
+<td><code>contextoInicial</code></td>
+<td>Sim</td>
+<td><code>{ local, papelEstudante, idade, sexo, queixa }</code>, exibido na etapa de cenário antes do chat (seção 4.4)</td>
+</tr>
+<tr>
 <td><code>perfilPaciente</code></td>
 <td><strong>Não</strong></td>
-<td>Idade, profissão, jeito de falar — molda o tom das respostas da IA</td>
+<td>Idade, sexo, profissão, jeito de falar — molda o tom das respostas da IA</td>
 </tr>
 <tr>
 <td><code>queixaPrincipal</code></td>
@@ -2190,25 +2231,46 @@
 </tr>
 </tbody>
 </table>
-<p>A rota <code>GET /api/v1/ia/osce/cenarios</code> devolve <strong>só</strong> os 4 primeiros campos — o resto nunca sai do BFF antes da hora, para não vazar a resposta do caso.</p>
+<p>A rota <code>GET /api/v1/ia/osce/cenarios</code> devolve <strong>só</strong> os 5 primeiros campos — o resto nunca sai do ChatbotOSCE antes da hora, para não vazar a resposta do caso.</p>
+<p>O <code>contextoInicial</code> é escrito à mão em cada caso, sem ser gerado a partir do <code>perfilPaciente</code>. Ele traz só o local, o papel do estudante, a idade, o sexo e uma queixa curta e neutra (ex.: "Dor abdominal"). Não pode trazer profissão, temperamento nem pistas do roteiro ou do diagnóstico, e a queixa não repete o <code>queixaPrincipal</code>, que é a fala do paciente no roteiro. Idade e sexo precisam bater com o <code>perfilPaciente</code> do mesmo caso. Os testes de integração do ChatbotOSCE verificam essas regras.</p>
 <p>Hoje há 3 casos fixos (dor torácica/cardiologia, cefaleia súbita/neurologia, dor abdominal/apendicite) no próprio código — o número e a ausência de imagens seguem o combinado na <a href="../../reunioes/reuniao-26-10-26/">ata de 26/10/2026</a>, que prevê cerca de três casos autorais do Product Owner como base para as variações. <strong>Não há tela de autoria de caso para professor</strong> — decisão deliberada (YAGNI): construir CRUD de casos sem uma demanda real validada seria antecipar um requisito que ninguém pediu ainda. Para adicionar um caso novo hoje, basta um objeto novo no array <code>CENARIOS_OSCE</code>, seguindo os 3 exemplos existentes como modelo.</p>
 <h2 id="4-como-funciona-fluxo-e-contratos">4. Como funciona (fluxo e contratos)</h2>
-<p>Pré-requisito: o mesmo <code>GEMINI_API_KEY</code>/<code>GEMINI_MODEL</code> do chat de ajuda (<code>src/config/env.ts</code> do BFF). Sem a chave configurada, todas as rotas abaixo respondem <code>503 IA_INDISPONIVEL</code>, igual ao <code>/ia/perguntar</code>.</p>
-<p>Todas as três rotas ficam atrás do <code>middlewareAutenticacao</code> (JWT validado na borda, como manda o <a href="../decisoes/">DA-03</a>) e a tela <code>/aluno/osce</code> é protegida para o papel <code>STUDENT</code> no <code>router.tsx</code> do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini, só com o BFF.</p>
+<p>Pré-requisitos:
+- <code>GEMINI_API_KEY</code>/<code>GEMINI_MODEL</code> configurados no ChatbotOSCE (<code>src/config/env.ts</code>). Sem a chave, <code>mensagem</code> e <code>finalizar</code> respondem <code>503 IA_INDISPONIVEL</code>, vindo do ChatbotOSCE e repassado pelo BFF.
+- No BFF, <code>CHATBOT_OSCE_URL</code> apontando para o ChatbotOSCE (porta padrão <code>3335</code>) e o mesmo <code>INTERNAL_TOKEN</code> dos dois lados.</p>
+<p>As rotas públicas ficam no BFF atrás do <code>middlewareAutenticacao</code> (JWT validado na borda, como manda o <a href="../decisoes/">DA-03</a>). No ChatbotOSCE, as mesmas rotas exigem o <code>x-internal-token</code> e o JWT. A tela <code>/aluno/osce</code> é protegida para o papel <code>STUDENT</code> no <code>router.tsx</code> do Web. Nenhum segredo do provedor entra na resposta: o Web nunca fala com a Gemini nem com o ChatbotOSCE, só com o BFF.</p>
+<p>Os caminhos abaixo são os públicos, no BFF. No ChatbotOSCE eles ficam em <code>/osce/...</code>.</p>
 <h3 id="41-get-apiv1iaoscecenarios">4.1. <code>GET /api/v1/ia/osce/cenarios</code></h3>
 <p>Lista os casos disponíveis (campos públicos da tabela acima). Sem corpo de requisição.</p>
-<div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"cenarios"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dor-toracica"</span><span class="p">,</span><span class="w"> </span><span class="nt">"titulo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span><span class="w"> </span><span class="nt">"especialidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardiologia"</span><span class="p">,</span><span class="w"> </span><span class="nt">"dificuldade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Médio"</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">}</span>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"cenarios"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span>
+<span class="w">      </span><span class="nt">"id"</span><span class="p">:</span><span class="w"> </span><span class="s2">"dor-toracica"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"titulo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"especialidade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Cardiologia"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"dificuldade"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Médio"</span><span class="p">,</span>
+<span class="w">      </span><span class="nt">"contextoInicial"</span><span class="p">:</span><span class="w"> </span><span class="p">{</span>
+<span class="w">        </span><span class="nt">"local"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Pronto-socorro de um hospital geral"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"papelEstudante"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Médico(a) responsável pelo primeiro atendimento"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"idade"</span><span class="p">:</span><span class="w"> </span><span class="mi">58</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"sexo"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Masculino"</span><span class="p">,</span>
+<span class="w">        </span><span class="nt">"queixa"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Dor torácica"</span>
+<span class="w">      </span><span class="p">}</span>
+<span class="w">    </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
 </code></pre></div>
+<p>No Web, <code>contextoInicial</code> é tratado como opcional: se o Web for publicado antes do ChatbotOSCE, a etapa de cenário mostra um texto padrão no lugar.</p>
 <h3 id="42-post-apiv1iaosceidmensagem-uma-fala-do-aluno">4.2. <code>POST /api/v1/ia/osce/:id/mensagem</code> — uma fala do aluno</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
 <span class="w">  </span><span class="nt">"mensagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desde quando você sente essa dor?"</span><span class="p">,</span>
 <span class="w">  </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aluno"</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">"paciente"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">}]</span>
 <span class="p">}</span>
 </code></pre></div>
-<p>O BFF monta a chamada à Gemini com:
-- <strong>Instrução de sistema</strong> = perfil + queixa + roteiro oculto do caso, mais a regra "nunca saia do personagem, nunca diga o nome do diagnóstico".
+<p>O ChatbotOSCE monta a chamada à Gemini com:
+- <strong>Instrução de sistema</strong> = perfil + queixa + roteiro oculto do caso, mais as regras "nunca saia do personagem, nunca diga o nome do diagnóstico" e a regra de encerramento (seção 4.4).
 - <strong><code>contents</code></strong> = o <code>historico</code> recebido, convertido em turnos <code>user</code> (aluno) / <code>model</code> (paciente), mais a nova <code>mensagem</code> como último turno.</p>
-<p>O <strong>histórico vive no front</strong> (estado React da página), não no BFF — cada chamada reenvia a conversa inteira, do mesmo jeito que o <code>ChatAjudaModal</code> já faz para as perguntas livres. Isso mantém o BFF sem estado de sessão a gerenciar.</p>
+<p>O <strong>histórico vive no front</strong> (estado React da página), não no backend — cada chamada reenvia a conversa inteira, do mesmo jeito que o <code>ChatAjudaModal</code> já faz para as perguntas livres. Isso mantém o ChatbotOSCE sem estado de sessão a gerenciar.</p>
 <p>Resposta: <code>{ "resposta": "&lt;fala do paciente, em personagem&gt;" }</code>.</p>
 <h3 id="43-post-apiv1iaosceidfinalizar-fim-da-simulacao">4.3. <code>POST /api/v1/ia/osce/:id/finalizar</code> — fim da simulação</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aluno"</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">"paciente"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">}</span>
@@ -2218,7 +2280,7 @@
 <li><strong>Checklist</strong> — classifica cada item em <code>competente</code> / <code>parcial</code> / <code>nao_realizado</code>, com justificativa citando a fala do aluno.</li>
 <li><strong>Nota global (GRS)</strong> — julga o desempenho como um todo, de 0 a 4, <em>sem</em> somar o checklist.</li>
 </ol>
-<p>A resposta é forçada a JSON pelo <code>responseSchema</code> nativo da Gemini e validada com Zod no BFF — JSON inválido vira <code>502</code>, nunca uma nota silenciosamente errada.</p>
+<p>A resposta é forçada a JSON pelo <code>responseSchema</code> nativo da Gemini e validada com Zod no ChatbotOSCE — JSON inválido vira <code>502</code>, nunca uma nota silenciosamente errada.</p>
 <p><strong>A IA não calcula nota.</strong> Pesos, soma, percentual, teto do item crítico e a verificação de concordância entre as duas medidas são aplicados em código (<code>pontuacao-osce.ts</code>), porque modelo de linguagem não é confiável para aritmética e porque a regra de aprovação precisa ser auditável.</p>
 <p>Resposta (abreviada):</p>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
@@ -2260,6 +2322,16 @@
 <span class="w">  </span><span class="p">}</span>
 <span class="p">}</span>
 </code></pre></div>
+<h3 id="44-inicio-e-encerramento">4.4. Início e encerramento</h3>
+<p>Fluxo da tela <code>/aluno/osce</code> (US24, <a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/195">Doc#195</a>): <strong>lista → cenário → chat → feedback</strong>. A <code>OscePage</code> controla isso com uma etapa explícita (<code>'lista' | 'cenario' | 'chat'</code>).</p>
+<p><strong>Card do caso.</strong> Mostra só título, especialidade e dificuldade. O diagnóstico só aparece na resposta de <code>/finalizar</code>.</p>
+<p><strong>Etapa de cenário</strong> (<code>CenarioApresentacao.tsx</code>). Antes do chat, o aluno lê o <code>contextoInicial</code>: local, seu papel e a idade, o sexo e a queixa do paciente. Os botões são "Iniciar atendimento" e "Voltar". O campo de texto só existe na etapa de chat, depois de "Iniciar atendimento".</p>
+<p><strong>Atalho fixo.</strong> O botão "Encerrar e receber feedback" fica acima do campo de texto, no rodapé fixo (<code>sticky</code>) do card, e aparece durante toda a conversa. Ele fica desabilitado antes da primeira fala, enquanto uma fala ou a avaliação está em andamento e depois do feedback. O antigo "Finalizar e ver feedback" do topo foi removido.</p>
+<p><strong>Despedida detectada, com confirmação.</strong> <code>detectarDespedida(texto)</code> (<code>src/features/osce/detectarDespedida.ts</code>) roda no cliente, é determinística e não muda o contrato da API. Ela normaliza acentos e caixa e usa padrões conservadores: combinações claras ("tchau", "obrigado, era isso", "podemos encerrar", "vou encerrar", "finalizar a consulta") e despedidas que só valem no fim da mensagem, como frase própria ("até mais", "até logo"). Assim, "dói até mais quando ando" e "obrigado, e a dor piora?" não contam como despedida. Quando detecta uma despedida, a tela envia a fala normalmente (o paciente responde uma vez) e depois abre o modal "Encerrar e ver avaliação?" (<code>ModalConfirmarEncerramento.tsx</code>), com "Continuar atendimento" e "Encerrar". Se o envio falhar, o modal abre mesmo assim. "Continuar atendimento" fecha o modal e devolve o foco ao campo de texto. "Encerrar" chama <code>/finalizar</code>, e se ele falhar o modal fecha e o erro aparece no chat. O modal segue o padrão de acessibilidade do <code>ModalConfirmarCompra</code>: <code>role="dialog"</code>, <code>aria-modal</code>, foco dentro do modal ao abrir e Esc para fechar.</p>
+<p><strong>Anti-loop em duas camadas.</strong>
+- <em>Cliente:</em> se o aluno já se despediu, escolheu "Continuar atendimento" e se despede de novo, o modal abre direto e a fala <strong>não</strong> é enviada à IA. O critério "o paciente não entra em loop de despedida" não depende só do prompt.
+- <em>Prompt:</em> a instrução do modo paciente manda responder com uma única despedida curta quando o médico se despedir ou encerrar a consulta e, se ele insistir, responder de forma mínima, sem repetir a despedida.</p>
+<p><strong>Pendência:</strong> o cliente pediu que a despedida encerrasse sozinha. A confirmação foi incluída para evitar encerramento acidental e ainda precisa ser validada com ele.</p>
 <h2 id="5-a-rubrica-ancoras-de-aceitacao-e-pontuacao">5. A rubrica: âncoras de aceitação e pontuação</h2>
 <p>Esta seção explica <strong>por que</strong> a rubrica tem a forma que tem. Cada decisão aponta para a referência que a sustenta (numeração da seção 6).</p>
 <p>O ponto de partida é o <em>Rating Checklist</em> do capítulo 14 de Amin, Chong &amp; Khoo <strong>[R1]</strong>, mas o desenho foi alinhado ao que a literatura de avaliação em OSCE trata como padrão ouro, em especial as práticas da escola de Leeds <strong>[R2] [R3] [R4]</strong> — o grupo que escreveu os guias AMEE sobre qualidade e organização de OSCE.</p>
@@ -2428,8 +2500,13 @@
 <li><strong>Falha graciosa</strong>: se a Gemini não estiver configurada ou falhar, a rota responde 503/502 com uma mensagem de erro — a página mostra o erro, sem quebrar a navegação.</li>
 </ul>
 <h2 id="8-testes">8. Testes</h2>
-<p>A regra de pontuação é a parte auditável da feature, então é a parte testada: <code>tests/unit/pontuacao-osce.test.ts</code> (BFF, Jest) cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como <code>nao_realizado</code>, o teto do item crítico, a nota global fora da escala e a marca de divergência — além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes). São 13 casos.</p>
-<p><strong>Gap conhecido</strong>: <code>src/routes/osce.routes.ts</code> ainda <strong>não</strong> tem teste de rota (as outras rotas do BFF têm, em <code>tests/unit/*.routes.test.ts</code>, com o cliente externo mockado). Enquanto isso não existir, a feature consome a folga do <code>coverageThreshold</code> de 85% exigido pelo <a href="../decisoes/">DA-08</a> — é o próximo item de qualidade desta feature.</p>
+<p>Os testes ficam no ChatbotOSCE (Jest, com a Gemini mockada), dentro do <code>coverageThreshold</code> de 85% exigido pelo <a href="../decisoes/">DA-08</a>:</p>
+<ul>
+<li><code>tests/unit/pontuacao-osce.test.ts</code>: a regra de pontuação, que é a parte auditável da feature. Cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como <code>nao_realizado</code>, o teto do item crítico, a nota global fora da escala e a marca de divergência, além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes).</li>
+<li><code>tests/integration/osce.routes.test.ts</code>: as rotas, com token interno, JWT, 404/400/502/504 e a pontuação a partir do julgamento da IA. Também verifica que a lista traz o <code>contextoInicial</code> e nenhum campo oculto, que nenhum <code>contextoInicial</code> contém o diagnóstico do próprio caso ou repete o <code>queixaPrincipal</code>, que idade e sexo batem com o perfil, e que a instrução do paciente leva a regra de encerramento.</li>
+<li><code>tests/integration/osce.ia-indisponivel.test.ts</code>: o <code>503</code> quando a <code>GEMINI_API_KEY</code> não está configurada.</li>
+</ul>
+<p>No Web, os testes ficam em <code>test/unit/pages/aluno/osce/</code> (tela, etapa de cenário, modal e anti-loop), <code>test/unit/features/osce/detectarDespedida.test.ts</code> (casos positivos e negativos) e <code>test/unit/features/osce/osceService.test.ts</code>.</p>
 <h2 id="documentos-relacionados">Documentos relacionados</h2>
 <ul>
 <li><a href="../visao-geral/">Visão Geral da Arquitetura</a></li>
@@ -2454,6 +2531,13 @@
 <td>1.0</td>
 <td>Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações</td>
 <td><a href="https://github.com/jpaulohe4rt">João Paulo Lima</a>, <a href="https://github.com/rmatuda">Rafael Melo</a></td>
+<td></td>
+</tr>
+<tr>
+<td>21/11/2026</td>
+<td>1.1</td>
+<td>Arquitetura atualizada para o microsserviço ChatbotOSCE (DA-07 revisada); US24: <code>contextoInicial</code>, etapa de cenário, encerramento por chat com confirmação e anti-loop</td>
+<td><a href="https://github.com/rmatuda">Rafael Melo</a>, <a href="https://github.com/henriquecarv3">Henrique Carvalho</a></td>
 <td></td>
 </tr>
 </tbody>
