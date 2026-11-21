@@ -39,7 +39,7 @@ flowchart LR
 | **BFF** | Pública | Valida o JWT na borda, injeta `X-Internal-Token` e headers `X-User-*`, faz proxy para os serviços e **agrega dados** de mais de um serviço (ranking, perfil social). Não possui banco. |
 | **Usuario-Service** | Privada | Cadastro, login, sessão (refresh token), recuperação de senha, administração de usuários e amizades. |
 | **Quiz-Service** | Privada | Questões e temas, quiz, turmas, listas de exercícios, gamificação (moedas, loja, inventário, conquistas, ranking), dashboards e geração de PDF. |
-| **ChatbotOSCE** | Privada | Simulação de casos clínicos (OSCE): conversa com o paciente interpretado pela Gemini e avaliação da estação contra a rubrica do caso. Só é alcançável via proxy do BFF (`/ia/osce/*`); tem sua própria `GEMINI_API_KEY`. |
+| **ChatbotOSCE** | Privada | Simulação de casos clínicos (OSCE): conversa com o paciente interpretado pela Gemini e avaliação da estação contra a rubrica do caso. Só aceita chamadas com o `x-internal-token` do BFF (`/ia/osce/*`); tem sua própria `GEMINI_API_KEY`. |
 | **Gemini API** | Externa | Provedor de LLM. Chamado direto pelo BFF em `/ia/dica` e `/ia/perguntar`, e pelo ChatbotOSCE para a simulação OSCE. |
 
 ## Perfis de acesso

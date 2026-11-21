@@ -50,11 +50,11 @@ Estas rotas são atendidas pelo próprio BFF, que chama a Gemini API ([DA-07](de
 | `GET /ia/dica` | Dica da questão ativa baseada em regra, sem LLM |
 | `POST /ia/perguntar` | Pergunta livre do aluno sobre a questão, respondida pela Gemini |
 
-Qualquer outra sub-rota de `/ia/*` não listada aqui ou na tabela abaixo cai no catch-all do BFF e responde `503 IA_INDISPONIVEL` — é também o que `/ia/dica` e `/ia/perguntar` respondem se a `GEMINI_API_KEY` não estiver configurada.
+Sem `GEMINI_API_KEY` no BFF, `/ia/perguntar` e qualquer sub-rota de `/ia/*` não mapeada respondem `503 IA_INDISPONIVEL` (o catch-all do BFF). `/ia/dica` segue funcionando, por ser só regra. Com a chave configurada, uma sub-rota inexistente responde `404`.
 
 ## IA (simulação OSCE, proxy para o ChatbotOSCE)
 
-O BFF faz proxy destas rotas para o microsserviço **ChatbotOSCE** ([DA-07](decisoes.md)), do mesmo jeito que faz para o Quiz-Service e o Usuario-Service. Exigem JWT; o ChatbotOSCE revalida o token e exige o `x-internal-token` do BFF.
+O BFF faz proxy destas rotas para o microsserviço **ChatbotOSCE** ([DA-07](decisoes.md)), do mesmo jeito que faz para o Quiz-Service e o Usuario-Service. Exigem JWT; o ChatbotOSCE revalida o token e exige o `x-internal-token` do BFF. Não dependem da `GEMINI_API_KEY` do BFF: sem a chave do ChatbotOSCE, respondem `503 IA_INDISPONIVEL`.
 
 | Método e rota | Descrição |
 |---|---|
