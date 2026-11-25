@@ -64,7 +64,9 @@ Cada caso clínico é um objeto `CenarioOsce` (`src/shared/constants/cenarios-os
 | `contextoInicial` | Sim | `{ local, papelEstudante, idade, sexo, queixa }`, exibido na etapa de cenário antes do chat (seção 4.4) |
 | `perfilPaciente` | **Não** | Idade, sexo, profissão, jeito de falar — molda o tom das respostas da IA |
 | `queixaPrincipal` | **Não** | O que o paciente diz se perguntado "o que você está sentindo?" |
-| `roteiroOculto` | **Não** | História completa, fatores de risco, achados de exame físico — a IA só revela o que for perguntado |
+| `historiaSintomas` | **Não** | História, sintomas e antecedentes que o paciente conhece — a IA só revela o que for perguntado |
+| `exameFisico` | Só quando o aluno pede | Achados do exame físico, devolvidos literalmente do cadastro (seção 4.5). Não entra no prompt do paciente |
+| `exames` | Só quando o aluno pede | Exames complementares `{ nome, resultado }`, devolvidos literalmente do cadastro (seção 4.5). Do prompt, só os nomes |
 | `diagnosticoEsperado` | **Não** | Nunca é dito ao aluno; só aparece no feedback final |
 | `rubrica` | **Não** (só após finalizar) | Checklist pontuado: itens, domínios, pesos, âncoras de crédito e itens críticos (ver seção 5) |
 
@@ -114,18 +116,35 @@ No Web, `contextoInicial` é tratado como opcional: se o Web for publicado antes
 
 ```json
 {
-  "mensagem": "Desde quando você sente essa dor?",
-  "historico": [{ "autor": "aluno" | "paciente", "texto": "..." }]
+  "mensagem": "Vou pedir um ECG.",
+  "historico": [
+    { "autor": "aluno" | "paciente", "texto": "..." },
+    { "autor": "exame" | "indisponivel", "exame": "Eletrocardiograma", "texto": "..." }
+  ]
 }
 ```
 
 O ChatbotOSCE monta a chamada à Gemini com:
-- **Instrução de sistema** = perfil + queixa + roteiro oculto do caso, mais as regras "nunca saia do personagem, nunca diga o nome do diagnóstico" e a regra de encerramento (seção 4.4).
-- **`contents`** = o `historico` recebido, convertido em turnos `user` (aluno) / `model` (paciente), mais a nova `mensagem` como último turno.
+- **Instrução de sistema** = perfil + queixa + `historiaSintomas` do caso e os **nomes** dos exames cadastrados, mais as regras "só fale o que está na história; fora dela diga que não sabe", "nunca diga o nome do diagnóstico", "você não conhece resultados de exames nem sinais vitais" e a regra de encerramento (seção 4.4). O exame físico e os resultados **não** entram na instrução.
+- **`contents`** = o `historico` recebido, convertido em turnos `user` (aluno) / `model` (paciente), mais a nova `mensagem` como último turno. Os cards de exame entram só como uma nota de que o médico recebeu o resultado, sem o resultado.
+- **`responseSchema`** = JSON com `fala`, `pediuExameFisico`, `examesSolicitados` (enum com os nomes cadastrados) e `examesNaoCadastrados` (seção 4.5).
 
 O **histórico vive no front** (estado React da página), não no backend — cada chamada reenvia a conversa inteira, do mesmo jeito que o `ChatAjudaModal` já faz para as perguntas livres. Isso mantém o ChatbotOSCE sem estado de sessão a gerenciar.
 
-Resposta: `{ "resposta": "<fala do paciente, em personagem>" }`.
+Resposta:
+
+```json
+{
+  "resposta": "Tudo bem, doutor.",
+  "turnos": [
+    { "autor": "paciente", "texto": "Tudo bem, doutor." },
+    { "autor": "exame", "exame": "Eletrocardiograma", "texto": "<resultado cadastrado>" },
+    { "autor": "indisponivel", "exame": "Tomografia de tórax", "texto": "Não disponível neste caso." }
+  ]
+}
+```
+
+`resposta` continua sendo só a fala do paciente (contrato anterior); a tela usa `turnos`, na ordem em que aparecem no chat. Se o modelo não devolver JSON válido, ou não devolver fala nem exame, a rota responde `502`.
 
 ### 4.3. `POST /api/v1/ia/osce/:id/finalizar` — fim da simulação
 
@@ -202,6 +221,33 @@ Fluxo da tela `/aluno/osce` (US24, [Doc#195](https://github.com/fga-eps-mds/2026
 - *Prompt:* a instrução do modo paciente manda responder com uma única despedida curta quando o médico se despedir ou encerrar a consulta e, se ele insistir, responder de forma mínima, sem repetir a despedida.
 
 **Pendência:** o cliente pediu que a despedida encerrasse sozinha. A confirmação foi incluída para evitar encerramento acidental e ainda precisa ser validada com ele.
+
+### 4.5. Paciente restrito ao caso e pedidos de exame
+
+US25 ([Doc#196](https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/196)). O roteiro segue os mesmos campos do cadastro de casos do Quiz-Service (US26): `historiaSintomas`, `exameFisico` e `exames[]`.
+
+**O paciente só conhece a história.** O prompt do paciente leva perfil, queixa e `historiaSintomas`. Fora disso, ele diz que não sabe ou não se lembra, sem inventar sintomas, antecedentes ou números. Sinais vitais e achados de exame ficam no `exameFisico`, que o paciente não conhece.
+
+**Exame é dado do caso, não fala do paciente.** A cada mensagem, a Gemini devolve um JSON (`responseSchema`) que separa a fala do paciente dos pedidos de exame:
+
+| Campo | O que a IA faz |
+|---|---|
+| `fala` | Resposta do paciente em linguagem leiga |
+| `pediuExameFisico` | `true` quando o médico examina ou pede sinais vitais. Pergunta sobre sintoma ("teve febre?") não conta |
+| `examesSolicitados` | Exames pedidos que estão no cadastro. É um `enum` com os nomes cadastrados, então a IA só escolhe, aceitando siglas e sinônimos (ECG = Eletrocardiograma) |
+| `examesNaoCadastrados` | Exames pedidos pelo nome que não estão no cadastro |
+
+O ChatbotOSCE monta os turnos da resposta em código (`montarTurnosResposta`, em `src/shared/utils/simulacao-paciente.ts`):
+- exame físico pedido → card com o `exameFisico` **inteiro e literal**; caso sem exame físico → "não disponível";
+- exame cadastrado → card com o `resultado` **literal** do cadastro;
+- exame não cadastrado → "não disponível neste caso";
+- pedido genérico ("vou pedir uns exames") não gera card.
+
+Como o texto do resultado nunca passa pela IA, ela não tem como inventar ou adiantar um resultado. Se a IA puser um exame cadastrado na lista errada, o nome é conferido de novo (sem acento e caixa) e o aluno recebe o resultado; um nome fora do cadastro nunca vira resultado.
+
+**Avaliação.** Os cards entram no histórico enviado a `/finalizar` e aparecem na transcrição como linhas entre colchetes (`[Resultado entregue ao aluno — Eletrocardiograma]: ...`), para o examinador pontuar itens como "solicita ECG".
+
+**No Web**, `TurnoChatOsce.tsx` desenha o card "Resultado de exame" e o aviso "não disponível neste caso", e o placeholder do campo passa a ser "Pergunte algo ao paciente ou solicite um exame...".
 
 ## 5. A rubrica: âncoras de aceitação e pontuação
 
@@ -331,6 +377,7 @@ Os testes ficam no ChatbotOSCE (Jest, com a Gemini mockada), dentro do `coverage
 - `tests/unit/pontuacao-osce.test.ts`: a regra de pontuação, que é a parte auditável da feature. Cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como `nao_realizado`, o teto do item crítico, a nota global fora da escala e a marca de divergência, além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes).
 - `tests/integration/osce.routes.test.ts`: as rotas, com token interno, JWT, 404/400/502/504 e a pontuação a partir do julgamento da IA. Também verifica que a lista traz o `contextoInicial` e nenhum campo oculto, que nenhum `contextoInicial` contém o diagnóstico do próprio caso ou repete o `queixaPrincipal`, que idade e sexo batem com o perfil, e que a instrução do paciente leva a regra de encerramento.
 - `tests/integration/osce.ia-indisponivel.test.ts`: o `503` quando a `GEMINI_API_KEY` não está configurada.
+- `tests/unit/simulacao-paciente.test.ts`: a montagem dos turnos de exame (resultado literal, nome fora do cadastro, deduplicação, exame físico ausente), o `responseSchema`, a ausência de exame físico e resultados no prompt do paciente e a transcrição da avaliação.
 
 No Web, os testes ficam em `test/unit/pages/aluno/osce/` (tela, etapa de cenário, modal e anti-loop), `test/unit/features/osce/detectarDespedida.test.ts` (casos positivos e negativos) e `test/unit/features/osce/osceService.test.ts`.
 
@@ -347,3 +394,4 @@ No Web, os testes ficam em `test/unit/pages/aluno/osce/` (tela, etapa de cenári
 | --- | --- | --- | --- | --- |
 | 26/10/2026 | 1.0 | Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |
 | 21/11/2026 | 1.1 | Arquitetura atualizada para o microsserviço ChatbotOSCE (DA-07 revisada); US24: `contextoInicial`, etapa de cenário, encerramento por chat com confirmação e anti-loop | [Rafael Melo](https://github.com/rmatuda), [Henrique Carvalho](https://github.com/henriquecarv3) | |
+| 23/11/2026 | 1.2 | US25: roteiro em `historiaSintomas`/`exameFisico`/`exames`, paciente restrito à história e exames devolvidos do cadastro (seção 4.5) | [Henrique Carvalho](https://github.com/henriquecarv3) | |
