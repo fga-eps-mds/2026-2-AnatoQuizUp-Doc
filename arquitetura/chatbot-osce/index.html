@@ -1042,6 +1042,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#45-paciente-restrito-ao-caso-e-pedidos-de-exame" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5. Paciente restrito ao caso e pedidos de exame
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -1936,6 +1945,15 @@
   
 </li>
         
+          <li class="md-nav__item">
+  <a href="#45-paciente-restrito-ao-caso-e-pedidos-de-exame" class="md-nav__link">
+    <span class="md-ellipsis">
+      4.5. Paciente restrito ao caso e pedidos de exame
+    </span>
+  </a>
+  
+</li>
+        
       </ul>
     </nav>
   
@@ -2215,9 +2233,19 @@
 <td>O que o paciente diz se perguntado "o que você está sentindo?"</td>
 </tr>
 <tr>
-<td><code>roteiroOculto</code></td>
+<td><code>historiaSintomas</code></td>
 <td><strong>Não</strong></td>
-<td>História completa, fatores de risco, achados de exame físico — a IA só revela o que for perguntado</td>
+<td>História, sintomas e antecedentes que o paciente conhece — a IA só revela o que for perguntado</td>
+</tr>
+<tr>
+<td><code>exameFisico</code></td>
+<td>Só quando o aluno pede</td>
+<td>Achados do exame físico, devolvidos literalmente do cadastro (seção 4.5). Não entra no prompt do paciente</td>
+</tr>
+<tr>
+<td><code>exames</code></td>
+<td>Só quando o aluno pede</td>
+<td>Exames complementares <code>{ nome, resultado }</code>, devolvidos literalmente do cadastro (seção 4.5). Do prompt, só os nomes</td>
 </tr>
 <tr>
 <td><code>diagnosticoEsperado</code></td>
@@ -2263,15 +2291,29 @@
 <p>No Web, <code>contextoInicial</code> é tratado como opcional: se o Web for publicado antes do ChatbotOSCE, a etapa de cenário mostra um texto padrão no lugar.</p>
 <h3 id="42-post-apiv1iaosceidmensagem-uma-fala-do-aluno">4.2. <code>POST /api/v1/ia/osce/:id/mensagem</code> — uma fala do aluno</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span>
-<span class="w">  </span><span class="nt">"mensagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Desde quando você sente essa dor?"</span><span class="p">,</span>
-<span class="w">  </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aluno"</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">"paciente"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">}]</span>
+<span class="w">  </span><span class="nt">"mensagem"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Vou pedir um ECG."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aluno"</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">"paciente"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exame"</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">"indisponivel"</span><span class="p">,</span><span class="w"> </span><span class="nt">"exame"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eletrocardiograma"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
 <span class="p">}</span>
 </code></pre></div>
 <p>O ChatbotOSCE monta a chamada à Gemini com:
-- <strong>Instrução de sistema</strong> = perfil + queixa + roteiro oculto do caso, mais as regras "nunca saia do personagem, nunca diga o nome do diagnóstico" e a regra de encerramento (seção 4.4).
-- <strong><code>contents</code></strong> = o <code>historico</code> recebido, convertido em turnos <code>user</code> (aluno) / <code>model</code> (paciente), mais a nova <code>mensagem</code> como último turno.</p>
+- <strong>Instrução de sistema</strong> = perfil + queixa + <code>historiaSintomas</code> do caso e os <strong>nomes</strong> dos exames cadastrados, mais as regras "só fale o que está na história; fora dela diga que não sabe", "nunca diga o nome do diagnóstico", "você não conhece resultados de exames nem sinais vitais" e a regra de encerramento (seção 4.4). O exame físico e os resultados <strong>não</strong> entram na instrução.
+- <strong><code>contents</code></strong> = o <code>historico</code> recebido, convertido em turnos <code>user</code> (aluno) / <code>model</code> (paciente), mais a nova <code>mensagem</code> como último turno. Os cards de exame entram só como uma nota de que o médico recebeu o resultado, sem o resultado.
+- <strong><code>responseSchema</code></strong> = JSON com <code>fala</code>, <code>pediuExameFisico</code>, <code>examesSolicitados</code> (enum com os nomes cadastrados) e <code>examesNaoCadastrados</code> (seção 4.5).</p>
 <p>O <strong>histórico vive no front</strong> (estado React da página), não no backend — cada chamada reenvia a conversa inteira, do mesmo jeito que o <code>ChatAjudaModal</code> já faz para as perguntas livres. Isso mantém o ChatbotOSCE sem estado de sessão a gerenciar.</p>
-<p>Resposta: <code>{ "resposta": "&lt;fala do paciente, em personagem&gt;" }</code>.</p>
+<p>Resposta:</p>
+<div class="highlight"><pre><span></span><code><span class="p">{</span>
+<span class="w">  </span><span class="nt">"resposta"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tudo bem, doutor."</span><span class="p">,</span>
+<span class="w">  </span><span class="nt">"turnos"</span><span class="p">:</span><span class="w"> </span><span class="p">[</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"paciente"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tudo bem, doutor."</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"exame"</span><span class="p">,</span><span class="w"> </span><span class="nt">"exame"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Eletrocardiograma"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"&lt;resultado cadastrado&gt;"</span><span class="w"> </span><span class="p">},</span>
+<span class="w">    </span><span class="p">{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"indisponivel"</span><span class="p">,</span><span class="w"> </span><span class="nt">"exame"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Tomografia de tórax"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"Não disponível neste caso."</span><span class="w"> </span><span class="p">}</span>
+<span class="w">  </span><span class="p">]</span>
+<span class="p">}</span>
+</code></pre></div>
+<p><code>resposta</code> continua sendo só a fala do paciente (contrato anterior); a tela usa <code>turnos</code>, na ordem em que aparecem no chat. Se o modelo não devolver JSON válido, ou não devolver fala nem exame, a rota responde <code>502</code>.</p>
 <h3 id="43-post-apiv1iaosceidfinalizar-fim-da-simulacao">4.3. <code>POST /api/v1/ia/osce/:id/finalizar</code> — fim da simulação</h3>
 <div class="highlight"><pre><span></span><code><span class="p">{</span><span class="w"> </span><span class="nt">"historico"</span><span class="p">:</span><span class="w"> </span><span class="p">[{</span><span class="w"> </span><span class="nt">"autor"</span><span class="p">:</span><span class="w"> </span><span class="s2">"aluno"</span><span class="w"> </span><span class="err">|</span><span class="w"> </span><span class="s2">"paciente"</span><span class="p">,</span><span class="w"> </span><span class="nt">"texto"</span><span class="p">:</span><span class="w"> </span><span class="s2">"..."</span><span class="w"> </span><span class="p">}]</span><span class="w"> </span><span class="p">}</span>
 </code></pre></div>
@@ -2332,6 +2374,44 @@
 - <em>Cliente:</em> se o aluno já se despediu, escolheu "Continuar atendimento" e se despede de novo, o modal abre direto e a fala <strong>não</strong> é enviada à IA. O critério "o paciente não entra em loop de despedida" não depende só do prompt.
 - <em>Prompt:</em> a instrução do modo paciente manda responder com uma única despedida curta quando o médico se despedir ou encerrar a consulta e, se ele insistir, responder de forma mínima, sem repetir a despedida.</p>
 <p><strong>Pendência:</strong> o cliente pediu que a despedida encerrasse sozinha. A confirmação foi incluída para evitar encerramento acidental e ainda precisa ser validada com ele.</p>
+<h3 id="45-paciente-restrito-ao-caso-e-pedidos-de-exame">4.5. Paciente restrito ao caso e pedidos de exame</h3>
+<p>US25 (<a href="https://github.com/fga-eps-mds/2026-2-AnatoQuizUp-Doc/issues/196">Doc#196</a>). O roteiro segue os mesmos campos do cadastro de casos do Quiz-Service (US26): <code>historiaSintomas</code>, <code>exameFisico</code> e <code>exames[]</code>.</p>
+<p><strong>O paciente só conhece a história.</strong> O prompt do paciente leva perfil, queixa e <code>historiaSintomas</code>. Fora disso, ele diz que não sabe ou não se lembra, sem inventar sintomas, antecedentes ou números. Sinais vitais e achados de exame ficam no <code>exameFisico</code>, que o paciente não conhece.</p>
+<p><strong>Exame é dado do caso, não fala do paciente.</strong> A cada mensagem, a Gemini devolve um JSON (<code>responseSchema</code>) que separa a fala do paciente dos pedidos de exame:</p>
+<table>
+<thead>
+<tr>
+<th>Campo</th>
+<th>O que a IA faz</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><code>fala</code></td>
+<td>Resposta do paciente em linguagem leiga</td>
+</tr>
+<tr>
+<td><code>pediuExameFisico</code></td>
+<td><code>true</code> quando o médico examina ou pede sinais vitais. Pergunta sobre sintoma ("teve febre?") não conta</td>
+</tr>
+<tr>
+<td><code>examesSolicitados</code></td>
+<td>Exames pedidos que estão no cadastro. É um <code>enum</code> com os nomes cadastrados, então a IA só escolhe, aceitando siglas e sinônimos (ECG = Eletrocardiograma)</td>
+</tr>
+<tr>
+<td><code>examesNaoCadastrados</code></td>
+<td>Exames pedidos pelo nome que não estão no cadastro</td>
+</tr>
+</tbody>
+</table>
+<p>O ChatbotOSCE monta os turnos da resposta em código (<code>montarTurnosResposta</code>, em <code>src/shared/utils/simulacao-paciente.ts</code>):
+- exame físico pedido → card com o <code>exameFisico</code> <strong>inteiro e literal</strong>; caso sem exame físico → "não disponível";
+- exame cadastrado → card com o <code>resultado</code> <strong>literal</strong> do cadastro;
+- exame não cadastrado → "não disponível neste caso";
+- pedido genérico ("vou pedir uns exames") não gera card.</p>
+<p>Como o texto do resultado nunca passa pela IA, ela não tem como inventar ou adiantar um resultado. Se a IA puser um exame cadastrado na lista errada, o nome é conferido de novo (sem acento e caixa) e o aluno recebe o resultado; um nome fora do cadastro nunca vira resultado.</p>
+<p><strong>Avaliação.</strong> Os cards entram no histórico enviado a <code>/finalizar</code> e aparecem na transcrição como linhas entre colchetes (<code>[Resultado entregue ao aluno — Eletrocardiograma]: ...</code>), para o examinador pontuar itens como "solicita ECG".</p>
+<p><strong>No Web</strong>, <code>TurnoChatOsce.tsx</code> desenha o card "Resultado de exame" e o aviso "não disponível neste caso", e o placeholder do campo passa a ser "Pergunte algo ao paciente ou solicite um exame...".</p>
 <h2 id="5-a-rubrica-ancoras-de-aceitacao-e-pontuacao">5. A rubrica: âncoras de aceitação e pontuação</h2>
 <p>Esta seção explica <strong>por que</strong> a rubrica tem a forma que tem. Cada decisão aponta para a referência que a sustenta (numeração da seção 6).</p>
 <p>O ponto de partida é o <em>Rating Checklist</em> do capítulo 14 de Amin, Chong &amp; Khoo <strong>[R1]</strong>, mas o desenho foi alinhado ao que a literatura de avaliação em OSCE trata como padrão ouro, em especial as práticas da escola de Leeds <strong>[R2] [R3] [R4]</strong> — o grupo que escreveu os guias AMEE sobre qualidade e organização de OSCE.</p>
@@ -2505,6 +2585,7 @@
 <li><code>tests/unit/pontuacao-osce.test.ts</code>: a regra de pontuação, que é a parte auditável da feature. Cobre os pesos e o crédito parcial, o item não julgado pela IA tratado como <code>nao_realizado</code>, o teto do item crítico, a nota global fora da escala e a marca de divergência, além da integridade das três rubricas (ids únicos, ao menos um item crítico, âncoras coerentes).</li>
 <li><code>tests/integration/osce.routes.test.ts</code>: as rotas, com token interno, JWT, 404/400/502/504 e a pontuação a partir do julgamento da IA. Também verifica que a lista traz o <code>contextoInicial</code> e nenhum campo oculto, que nenhum <code>contextoInicial</code> contém o diagnóstico do próprio caso ou repete o <code>queixaPrincipal</code>, que idade e sexo batem com o perfil, e que a instrução do paciente leva a regra de encerramento.</li>
 <li><code>tests/integration/osce.ia-indisponivel.test.ts</code>: o <code>503</code> quando a <code>GEMINI_API_KEY</code> não está configurada.</li>
+<li><code>tests/unit/simulacao-paciente.test.ts</code>: a montagem dos turnos de exame (resultado literal, nome fora do cadastro, deduplicação, exame físico ausente), o <code>responseSchema</code>, a ausência de exame físico e resultados no prompt do paciente e a transcrição da avaliação.</li>
 </ul>
 <p>No Web, os testes ficam em <code>test/unit/pages/aluno/osce/</code> (tela, etapa de cenário, modal e anti-loop), <code>test/unit/features/osce/detectarDespedida.test.ts</code> (casos positivos e negativos) e <code>test/unit/features/osce/osceService.test.ts</code>.</p>
 <h2 id="documentos-relacionados">Documentos relacionados</h2>
@@ -2538,6 +2619,13 @@
 <td>1.1</td>
 <td>Arquitetura atualizada para o microsserviço ChatbotOSCE (DA-07 revisada); US24: <code>contextoInicial</code>, etapa de cenário, encerramento por chat com confirmação e anti-loop</td>
 <td><a href="https://github.com/rmatuda">Rafael Melo</a>, <a href="https://github.com/henriquecarv3">Henrique Carvalho</a></td>
+<td></td>
+</tr>
+<tr>
+<td>23/11/2026</td>
+<td>1.2</td>
+<td>US25: roteiro em <code>historiaSintomas</code>/<code>exameFisico</code>/<code>exames</code>, paciente restrito à história e exames devolvidos do cadastro (seção 4.5)</td>
+<td><a href="https://github.com/henriquecarv3">Henrique Carvalho</a></td>
 <td></td>
 </tr>
 </tbody>
