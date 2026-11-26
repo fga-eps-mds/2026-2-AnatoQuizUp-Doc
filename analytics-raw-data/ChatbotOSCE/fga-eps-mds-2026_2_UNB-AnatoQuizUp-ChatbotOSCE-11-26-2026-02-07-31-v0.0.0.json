@@ -1,0 +1,1773 @@
+{
+  "timestamp": "2026-11-26T02:07:31.936676+00:00",
+  "tag": "v0.0.0",
+  "project": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE",
+  "branch": "main",
+  "commit": "4fd2977122540eeb90bdd8e7262725b9eaef0d55",
+  "analysis": {
+    "key": "7c156420-2856-47c5-989f-f09a7eb4fa4c",
+    "date": "2026-11-26T02:06:41+0000",
+    "events": [
+      {
+        "key": "AaIVm1AW3fTm2WPvvjiK",
+        "category": "VERSION",
+        "name": "not provided"
+      }
+    ],
+    "projectVersion": "not provided",
+    "manualNewCodePeriodBaseline": false,
+    "revision": "4fd2977122540eeb90bdd8e7262725b9eaef0d55"
+  },
+  "project_measures": [
+    {
+      "metric": "test_execution_time",
+      "value": "143"
+    },
+    {
+      "metric": "coverage",
+      "value": "97.8",
+      "bestValue": false
+    },
+    {
+      "metric": "complexity",
+      "value": "139"
+    },
+    {
+      "metric": "test_failures",
+      "value": "0",
+      "bestValue": true
+    },
+    {
+      "metric": "duplicated_lines_density",
+      "value": "0.0",
+      "bestValue": true
+    },
+    {
+      "metric": "tests",
+      "value": "84"
+    },
+    {
+      "metric": "functions",
+      "value": "65"
+    },
+    {
+      "metric": "security_rating",
+      "value": "1.0",
+      "bestValue": true
+    },
+    {
+      "metric": "ncloc",
+      "value": "1554"
+    },
+    {
+      "metric": "files",
+      "value": "17"
+    },
+    {
+      "metric": "comment_lines_density",
+      "value": "14.5",
+      "bestValue": false
+    },
+    {
+      "metric": "test_errors",
+      "value": "0",
+      "bestValue": true
+    }
+  ],
+  "metrics_requested": [
+    "files",
+    "functions",
+    "complexity",
+    "comment_lines_density",
+    "duplicated_lines_density",
+    "coverage",
+    "ncloc",
+    "tests",
+    "test_errors",
+    "test_failures",
+    "test_execution_time",
+    "security_rating"
+  ],
+  "baseComponent": {
+    "id": "AaH2Hjb6xdykrFGkUblB",
+    "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE",
+    "name": "2026-2-AnatoQuizUp-ChatbotOSCE",
+    "qualifier": "TRK",
+    "measures": []
+  },
+  "components": [
+    {
+      "id": "AaH-OpbSBctgcPNrTGgy",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/types/api.types.ts",
+      "name": "api.types.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/types/api.types.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "0.0",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "0"
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "0"
+        },
+        {
+          "metric": "ncloc",
+          "value": "7"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGgx",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/app.ts",
+      "name": "app.ts",
+      "qualifier": "FIL",
+      "path": "src/app.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "10.0",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "2"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "2"
+        },
+        {
+          "metric": "ncloc",
+          "value": "54"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg7",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/middlewares/autenticacao.middleware.ts",
+      "name": "autenticacao.middleware.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/middlewares/autenticacao.middleware.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "28.4",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "6"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "1"
+        },
+        {
+          "metric": "ncloc",
+          "value": "48"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg0",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/constants/cenarios-osce.ts",
+      "name": "cenarios-osce.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/constants/cenarios-osce.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "6.7",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "2"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "2"
+        },
+        {
+          "metric": "ncloc",
+          "value": "581"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhB",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/clients",
+      "name": "clients",
+      "qualifier": "DIR",
+      "path": "src/shared/clients",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "18.2",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "1"
+        },
+        {
+          "metric": "coverage",
+          "value": "80.0",
+          "bestValue": false
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "0"
+        },
+        {
+          "metric": "ncloc",
+          "value": "9"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg4",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/errors/codigos-de-erro.ts",
+      "name": "codigos-de-erro.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/errors/codigos-de-erro.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "8.3",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "0"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "0"
+        },
+        {
+          "metric": "ncloc",
+          "value": "11"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhG",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/config",
+      "name": "config",
+      "qualifier": "DIR",
+      "path": "src/config",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "34.8",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "19"
+        },
+        {
+          "metric": "coverage",
+          "value": "90.9",
+          "bestValue": false
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "3"
+        },
+        {
+          "metric": "functions",
+          "value": "11"
+        },
+        {
+          "metric": "ncloc",
+          "value": "103"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg2",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/constants",
+      "name": "constants",
+      "qualifier": "DIR",
+      "path": "src/shared/constants",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "6.6",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "2"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "2"
+        },
+        {
+          "metric": "functions",
+          "value": "2"
+        },
+        {
+          "metric": "ncloc",
+          "value": "599"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaIQJj5ZP1eH05h68pLx",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:tests/unit/cors.test.ts",
+      "name": "cors.test.ts",
+      "qualifier": "UTS",
+      "path": "tests/unit/cors.test.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_execution_time",
+          "value": "2"
+        },
+        {
+          "metric": "tests",
+          "value": "4"
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhD",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/config/cors.ts",
+      "name": "cors.ts",
+      "qualifier": "FIL",
+      "path": "src/config/cors.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "40.4",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "6"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "4"
+        },
+        {
+          "metric": "ncloc",
+          "value": "28"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhF",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/config/env.ts",
+      "name": "env.ts",
+      "qualifier": "FIL",
+      "path": "src/config/env.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "44.3",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "7"
+        },
+        {
+          "metric": "coverage",
+          "value": "81.0",
+          "bestValue": false
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "4"
+        },
+        {
+          "metric": "ncloc",
+          "value": "39"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg3",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/errors/erro-aplicacao.ts",
+      "name": "erro-aplicacao.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/errors/erro-aplicacao.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "36.7",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "1"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "1"
+        },
+        {
+          "metric": "ncloc",
+          "value": "19"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg5",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/errors",
+      "name": "errors",
+      "qualifier": "DIR",
+      "path": "src/shared/errors",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "28.6",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "1"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "2"
+        },
+        {
+          "metric": "functions",
+          "value": "1"
+        },
+        {
+          "metric": "ncloc",
+          "value": "30"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhA",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/clients/gemini.client.ts",
+      "name": "gemini.client.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/clients/gemini.client.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "18.2",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "1"
+        },
+        {
+          "metric": "coverage",
+          "value": "80.0",
+          "bestValue": false
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "0"
+        },
+        {
+          "metric": "ncloc",
+          "value": "9"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhO",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:tests/integration",
+      "name": "integration",
+      "qualifier": "DIR",
+      "path": "tests/integration",
+      "measures": [
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_execution_time",
+          "value": "134"
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "tests",
+          "value": "52"
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhE",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/config/logger.ts",
+      "name": "logger.ts",
+      "qualifier": "FIL",
+      "path": "src/config/logger.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "12.2",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "6"
+        },
+        {
+          "metric": "coverage",
+          "value": "94.4",
+          "bestValue": false
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "3"
+        },
+        {
+          "metric": "ncloc",
+          "value": "36"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg1",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/constants/mensagens.ts",
+      "name": "mensagens.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/constants/mensagens.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "0.0",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "0"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "0"
+        },
+        {
+          "metric": "ncloc",
+          "value": "18"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg9",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/middlewares",
+      "name": "middlewares",
+      "qualifier": "DIR",
+      "path": "src/shared/middlewares",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "25.7",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "15"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "3"
+        },
+        {
+          "metric": "functions",
+          "value": "3"
+        },
+        {
+          "metric": "ncloc",
+          "value": "110"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhM",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:tests/integration/osce.ia-indisponivel.test.ts",
+      "name": "osce.ia-indisponivel.test.ts",
+      "qualifier": "UTS",
+      "path": "tests/integration/osce.ia-indisponivel.test.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_execution_time",
+          "value": "9"
+        },
+        {
+          "metric": "tests",
+          "value": "3"
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhN",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:tests/integration/osce.routes.test.ts",
+      "name": "osce.routes.test.ts",
+      "qualifier": "UTS",
+      "path": "tests/integration/osce.routes.test.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_execution_time",
+          "value": "125"
+        },
+        {
+          "metric": "tests",
+          "value": "49"
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhH",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/routes/osce.routes.ts",
+      "name": "osce.routes.ts",
+      "qualifier": "FIL",
+      "path": "src/routes/osce.routes.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "9.9",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "36"
+        },
+        {
+          "metric": "coverage",
+          "value": "98.6",
+          "bestValue": false
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "15"
+        },
+        {
+          "metric": "ncloc",
+          "value": "336"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhK",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:tests/unit/pontuacao-osce.test.ts",
+      "name": "pontuacao-osce.test.ts",
+      "qualifier": "UTS",
+      "path": "tests/unit/pontuacao-osce.test.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_execution_time",
+          "value": "4"
+        },
+        {
+          "metric": "tests",
+          "value": "13"
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg-",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/utils/pontuacao-osce.ts",
+      "name": "pontuacao-osce.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/utils/pontuacao-osce.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "25.2",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "22"
+        },
+        {
+          "metric": "coverage",
+          "value": "96.2",
+          "bestValue": false
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "11"
+        },
+        {
+          "metric": "ncloc",
+          "value": "113"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhI",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/routes",
+      "name": "routes",
+      "qualifier": "DIR",
+      "path": "src/routes",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "9.9",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "36"
+        },
+        {
+          "metric": "coverage",
+          "value": "98.6",
+          "bestValue": false
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "15"
+        },
+        {
+          "metric": "ncloc",
+          "value": "336"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGgw",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/server.ts",
+      "name": "server.ts",
+      "qualifier": "FIL",
+      "path": "src/server.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "30.0",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "7"
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "7"
+        },
+        {
+          "metric": "ncloc",
+          "value": "21"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhC",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared",
+      "name": "shared",
+      "qualifier": "DIR",
+      "path": "src/shared",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "13.0",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "75"
+        },
+        {
+          "metric": "coverage",
+          "value": "98.7",
+          "bestValue": false
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "11"
+        },
+        {
+          "metric": "functions",
+          "value": "30"
+        },
+        {
+          "metric": "ncloc",
+          "value": "1040"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaIQkIO8VdsX4CW64L70",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:tests/unit/simulacao-paciente.test.ts",
+      "name": "simulacao-paciente.test.ts",
+      "qualifier": "UTS",
+      "path": "tests/unit/simulacao-paciente.test.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_execution_time",
+          "value": "3"
+        },
+        {
+          "metric": "tests",
+          "value": "15"
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaIQkIO8VdsX4CW64L7z",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/utils/simulacao-paciente.ts",
+      "name": "simulacao-paciente.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/utils/simulacao-paciente.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "12.2",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "34"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "13"
+        },
+        {
+          "metric": "ncloc",
+          "value": "172"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhJ",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src",
+      "name": "src",
+      "qualifier": "DIR",
+      "path": "src",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "14.5",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "139"
+        },
+        {
+          "metric": "coverage",
+          "value": "97.8",
+          "bestValue": false
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "17"
+        },
+        {
+          "metric": "functions",
+          "value": "65"
+        },
+        {
+          "metric": "ncloc",
+          "value": "1554"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhP",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:tests",
+      "name": "tests",
+      "qualifier": "DIR",
+      "path": "tests",
+      "measures": [
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_execution_time",
+          "value": "143"
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "tests",
+          "value": "84"
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg8",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/middlewares/token-interno.middleware.ts",
+      "name": "token-interno.middleware.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/middlewares/token-interno.middleware.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "0.0",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "3"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "1"
+        },
+        {
+          "metric": "ncloc",
+          "value": "18"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg6",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/middlewares/tratamento-erros.middleware.ts",
+      "name": "tratamento-erros.middleware.ts",
+      "qualifier": "FIL",
+      "path": "src/shared/middlewares/tratamento-erros.middleware.ts",
+      "language": "ts",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "30.2",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "6"
+        },
+        {
+          "metric": "coverage",
+          "value": "100.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "1"
+        },
+        {
+          "metric": "ncloc",
+          "value": "44"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGgz",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/types",
+      "name": "types",
+      "qualifier": "DIR",
+      "path": "src/shared/types",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "0.0",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "0"
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "1"
+        },
+        {
+          "metric": "functions",
+          "value": "0"
+        },
+        {
+          "metric": "ncloc",
+          "value": "7"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGhL",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:tests/unit",
+      "name": "unit",
+      "qualifier": "DIR",
+      "path": "tests/unit",
+      "measures": [
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_errors",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "test_execution_time",
+          "value": "9"
+        },
+        {
+          "metric": "test_failures",
+          "value": "0",
+          "bestValue": true
+        },
+        {
+          "metric": "tests",
+          "value": "32"
+        }
+      ]
+    },
+    {
+      "id": "AaH-OpbSBctgcPNrTGg_",
+      "key": "fga-eps-mds_2026-2-AnatoQuizUp-ChatbotOSCE:src/shared/utils",
+      "name": "utils",
+      "qualifier": "DIR",
+      "path": "src/shared/utils",
+      "measures": [
+        {
+          "metric": "comment_lines_density",
+          "value": "17.9",
+          "bestValue": false
+        },
+        {
+          "metric": "complexity",
+          "value": "56"
+        },
+        {
+          "metric": "coverage",
+          "value": "98.7",
+          "bestValue": false
+        },
+        {
+          "metric": "duplicated_lines_density",
+          "value": "0.0",
+          "bestValue": true
+        },
+        {
+          "metric": "files",
+          "value": "2"
+        },
+        {
+          "metric": "functions",
+          "value": "24"
+        },
+        {
+          "metric": "ncloc",
+          "value": "285"
+        },
+        {
+          "metric": "security_rating",
+          "value": "1.0",
+          "bestValue": true
+        }
+      ]
+    }
+  ]
+}
