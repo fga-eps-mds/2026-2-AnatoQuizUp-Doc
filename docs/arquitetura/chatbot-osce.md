@@ -167,7 +167,7 @@ Resposta (abreviada):
 {
   "avaliacao": {
     "cenarioId": "dor-toracica",
-    "titulo": "Dor torácica no pronto-socorro",
+    "titulo": "Dor no peito há 2 horas",
     "diagnosticoEsperado": "Síndrome coronariana aguda (angina/infarto)",
     "comentarioFinal": "Faltou investigar...",
     "itens": [
@@ -395,3 +395,4 @@ No Web, os testes ficam em `test/unit/pages/aluno/osce/` (tela, etapa de cenári
 | 26/10/2026 | 1.0 | Documentação da simulação OSCE: arquitetura, contratos, rubrica pontuada e limitações | [João Paulo Lima](https://github.com/jpaulohe4rt), [Rafael Melo](https://github.com/rmatuda) | |
 | 21/11/2026 | 1.1 | Arquitetura atualizada para o microsserviço ChatbotOSCE (DA-07 revisada); US24: `contextoInicial`, etapa de cenário, encerramento por chat com confirmação e anti-loop | [Rafael Melo](https://github.com/rmatuda), [Henrique Carvalho](https://github.com/henriquecarv3) | |
 | 23/11/2026 | 1.2 | US25: roteiro em `historiaSintomas`/`exameFisico`/`exames`, paciente restrito à história e exames devolvidos do cadastro (seção 4.5) | [Henrique Carvalho](https://github.com/henriquecarv3) | |
+| 25/11/2026 | 1.3 | T1.8 (US24): títulos dos casos trocados para não sugerir o diagnóstico (ex.: "Dor no peito há 2 horas") | [Rafael Melo](https://github.com/rmatuda), [Henrique Carvalho](https://github.com/henriquecarv3) | |
