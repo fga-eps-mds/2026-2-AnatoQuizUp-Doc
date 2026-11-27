@@ -1,0 +1,6 @@
+repo,tag,tipo,data,escopo,deploy_homologacao,observacao
+Geral,R1,major,2026-09-28,Planejamento e MVP inicial,Sim,Primeira entrega major
+Geral,R2,major,2026-10-26,Gamificacao e Qualidade,Sim,Segunda entrega major
+Geral,R3,major,2026-11-30,OSCE e Dashboard Final,Sim,Entrega final do semestre
+Web,web-v1.0.0,minor,2026-10-15,Melhorias visuais,Sim,Release minor da Web
+Quiz-Service,quiz-v0.0.4,minor,2026-10-27,Lista de quizzes e XP,Sim,Release minor do Quiz
